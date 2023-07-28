@@ -40,10 +40,6 @@ public class OrderUI : MonoBehaviour
         texts[index].text = name;
         countdowns[index] = countdown;
         countdownTexts[index].text = ((int) countdown).ToString();
-
-        // orderName.text = name;
-        // orderDescription.text = description;
-        // this.countdown = countdown;
     }
 
     public OrderManager.OrderUIDelegate GetOrderDelegate() {

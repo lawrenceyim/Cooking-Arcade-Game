@@ -18,17 +18,21 @@ public class OrderManager : MonoBehaviour
         orders = new string[numberOfOrders];
         updateDescriptionUI = GameObject.Find("DescriptionPanel").GetComponent<Description>().GetOrderDelegate();
         updateOrderUI = GameObject.Find("OrderPanel").GetComponent<OrderUI>().GetOrderDelegate();
-        // orders[0] = new Order();
+        Recipe.InitializeRecipes();
+    }
 
+
+    private void Update() {
+        ProcessInput();
     }
 
     void ProcessInput() {
         // Detect numeric key press
         for (int i = 1; i <= numberOfOrders; i++)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha0 + i) && orders[i] != null)
+            if (Input.GetKeyDown(KeyCode.Alpha0 + i) && orders[i - 1] != null)
             {
-                updateDescriptionUI(orders[i], Recipe.recipeDescription[orders[i]], 59f);
+                updateDescriptionUI(orders[i - 1], Recipe.recipeDescription[orders[i - 1]], 59f);
             }
         }
     }

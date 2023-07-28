@@ -11,6 +11,11 @@ public class Description : MonoBehaviour
     [SerializeField] TextMeshPro OrderCountdown;
     float countdown;
 
+    private void Start() {
+        orderName.text = "";
+        orderDescription.text = "";
+    }
+
     public void SetOrderDescription(string name, string description, float countdown) {
         orderName.text = name;
         orderDescription.text = description;

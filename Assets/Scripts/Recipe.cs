@@ -102,7 +102,7 @@ public static class Recipe
         AddRecipe("Greek Salad", new List<Ingredients>{Ingredients.cucumbers, Ingredients.feta, Ingredients.olives, Ingredients.onions, Ingredients.tomatoes},
             FoodTypes.Salad,
             "A salad with cucumbers, feta, olives, onions, and tomatoes");
-        AddRecipe("Garden Salad", new List<Ingredients>{Ingredients.avocado, Ingredients.bacon, Ingredients.eggs, Ingredients.lettuce, Ingredients.tomatoes},
+        AddRecipe("Cobb Salad", new List<Ingredients>{Ingredients.avocado, Ingredients.bacon, Ingredients.eggs, Ingredients.lettuce, Ingredients.tomatoes},
             FoodTypes.Salad,
             "A salad with avocado, bacon, eggs, lettuce, and tomatoes");
     }
