@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7047190484611106719}
   - component: {fileID: 3348539907963353763}
   - component: {fileID: 5253789544063156182}
+  - component: {fileID: 3306104144034816192}
   m_Layer: 0
   m_Name: MaleCustomerPlaceHolderPrefab
   m_TagString: Untagged
@@ -97,3 +98,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608732ba49feca7418fd404702dc73d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &3306104144034816192
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516305000796953393}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.58, y: 0.58}
+    newSize: {x: 0.58, y: 0.58}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

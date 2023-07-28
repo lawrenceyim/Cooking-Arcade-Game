@@ -1,35 +1,60 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
-    bool walking = true;
+    enum State {
+        Walking,
+        Waiting,
+        Leaving
+    }
+
     Vector3 target;
-    float speed = 2f;
+    float orderPosition;
+    float speed = 4f;
+    State currentState = State.Walking;
+    Timer timer;
+    Action callback;
 
     void Start()
     {
         target = transform.position;
         target.x = -target.x;
+        timer = gameObject.AddComponent<Timer>();
+        timer.SetTimer(UnityEngine.Random.Range(2f, 5f), () => ChangeState());
     }
 
     void Update()
     {
-        if (walking) {
-            transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
-            if (transform.position == target) {
-                Destroy(gameObject);
-            }
+        switch (currentState) {
+            case State.Walking:
+                transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                break;
+            case State.Waiting:
+                break;
+            case State.Leaving:
+                transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                if (transform.position == target) {
+                    callback();
+                    Destroy(gameObject);
+                }
+                break;
+            default:
+                break;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Seat")) {
-            // if (other.gameObject.GetComponent<Seat>().IsEmpty()) {
-            //     walking = false;
-            // }
+    public void ChangeState() {
+        if (currentState == State.Walking) {
+            currentState = State.Waiting;
+        } else {
+            currentState = State.Leaving;
         }
     }
 
+    public void SetDelegate(Action action) {
+        callback = action;
+    }
 }
