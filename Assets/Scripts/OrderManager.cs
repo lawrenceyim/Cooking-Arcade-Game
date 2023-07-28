@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,22 +6,31 @@ using UnityEngine;
 public class OrderManager : MonoBehaviour
 {
     int numberOfOrders = 6;
-    Order[] orders;
-    [SerializeField] Recipe[] recipes;  // Can be set in the scene to determine which recipes will appear in each level 
+    string[] orders;
+    [SerializeField] string[] recipeNames;  // Can be set in the scene to determine which recipes will appear in each level 
+    public delegate void DescriptionUIDelegate(string name, string desc, float countdown);
+    DescriptionUIDelegate updateDescriptionUI;
+    public delegate void OrderUIDelegate(int index, string name, float countdown);
+    OrderUIDelegate updateOrderUI;
 
-    // Start is called before the first frame update
     void Start()
     {   
+        orders = new string[numberOfOrders];
+        updateDescriptionUI = GameObject.Find("DescriptionPanel").GetComponent<Description>().GetOrderDelegate();
+        updateOrderUI = GameObject.Find("OrderPanel").GetComponent<OrderUI>().GetOrderDelegate();
+        // orders[0] = new Order();
 
-
-        orders = new Order[numberOfOrders];
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void ProcessInput() {
+        // Detect numeric key press
+        for (int i = 1; i <= numberOfOrders; i++)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha0 + i) && orders[i] != null)
+            {
+                updateDescriptionUI(orders[i], Recipe.recipeDescription[orders[i]], 59f);
+            }
+        }
     }
 
     public bool hasEmptyOrderSlot() {
@@ -32,15 +42,22 @@ public class OrderManager : MonoBehaviour
         return false;
     }
 
-    public void AddOrder(Order newOrder) {
+    public void AddOrder() {
         for (int i = 0; i < numberOfOrders; i++) {
             if (orders[i] == null) {
-                orders[i] = newOrder;
+                int recipeIndex = UnityEngine.Random.Range(0, recipeNames.Length);
+                orders[i] = recipeNames[recipeIndex];
+                updateOrderUI(i, orders[i], 59f);
+                break;
             }
         }
     }
 
     public void RemoveOrder(int orderIndex) {
         orders[orderIndex] = null;
+    }
+
+    public bool HasOrder(int index) {
+        return orders[index] != null;
     }
 }
