@@ -18,6 +18,7 @@ public class Customer : MonoBehaviour
     Timer timer;
     Action callback;
 
+
     void Start()
     {
         target = transform.position;
@@ -49,6 +50,7 @@ public class Customer : MonoBehaviour
     public void ChangeState() {
         if (currentState == State.Walking) {
             currentState = State.Waiting;
+            GameObject.Find("LevelManager").GetComponent<OrderManager>().AddOrder();
         } else {
             currentState = State.Leaving;
         }
