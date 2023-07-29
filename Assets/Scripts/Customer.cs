@@ -24,7 +24,7 @@ public class Customer : MonoBehaviour
         target = transform.position;
         target.x = -target.x + 1;
         timer = gameObject.AddComponent<Timer>();
-        timer.SetTimer(UnityEngine.Random.Range(2f, 5f), () => ChangeState());
+        timer.SetTimer(UnityEngine.Random.Range(2f, 4.5f), () => ChangeState());
     }
 
     void Update()
@@ -36,7 +36,7 @@ public class Customer : MonoBehaviour
             case State.Waiting:
                 break;
             case State.Leaving:
-                transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
                 if (transform.position.x >= 13f) {
                     callback();
                     Destroy(gameObject);

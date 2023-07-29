@@ -122,6 +122,7 @@ public static class Recipe
         for (int i = 0; i < enumList.Count; i++) {
             stringList.Add(enumList[i].ToString());
         }
+        stringList.Sort();
         return stringList;
     }
 }
