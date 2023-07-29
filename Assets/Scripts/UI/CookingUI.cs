@@ -51,14 +51,6 @@ public class CookingUI : MonoBehaviour
         }
     }
 
-    public OrderManager.CookingUIDelegate GetCookingDelegate() {
-        return UpdateButtons;
-    }
-
-    public OrderManager.CookingUIResetDelegate GetCookingResetDelegate() {
-        return DeactivateButtons;
-    }
-
     void ProcessInput() {
         if (Input.GetKey(KeyCode.A)) {	
             if (currentFoodtype == Recipe.FoodTypes.Salad) {

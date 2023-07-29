@@ -25,8 +25,8 @@ public class OrderManager : MonoBehaviour
         customers = new GameObject[numberOfOrders];
         updateDescriptionUI = GameObject.Find("DescriptionPanel").GetComponent<Description>().GetDescriptionDelegate();
         updateOrderUI = GameObject.Find("OrderPanel").GetComponent<OrderUI>().GetOrderDelegate();
-        updateCookingUI = GameObject.Find("CookingPanel").GetComponent<CookingUI>().GetCookingDelegate();
-        resetCookingUI = GameObject.Find("CookingPanel").GetComponent<CookingUI>().GetCookingResetDelegate();
+        updateCookingUI = GameObject.Find("CookingPanel").GetComponent<CookingUI>().UpdateButtons;
+        resetCookingUI = GameObject.Find("CookingPanel").GetComponent<CookingUI>().DeactivateButtons;
         Recipe.InitializeRecipes();
         Recipe.InitializeKeys();
     }

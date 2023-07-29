@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,9 @@ public class CustomerSpawner : MonoBehaviour
     Timer timer;
     [SerializeField] int customerCount = 0;
     int customerLimit = 6;
-    
+    public delegate float DataDelegate();
+    public DataDelegate checkTimeLeft;
+
     void Start()
     {
         Debug.Log(KeyCode.A);
@@ -19,6 +22,7 @@ public class CustomerSpawner : MonoBehaviour
         timer = gameObject.AddComponent<Timer>();
         SpawnCustomer();
         InvokeNextCustomerSpawn();
+        checkTimeLeft = GameObject.Find("DataPanel").GetComponent<DataUI>().GetTimeLeft;
     }
 
     // Spawns a customer and sets a timer to spawn the next customer recursively
@@ -27,13 +31,15 @@ public class CustomerSpawner : MonoBehaviour
             if (customerCount < customerLimit) {
                 SpawnCustomer();
             }
-            InvokeNextCustomerSpawn();
+            if (checkTimeLeft() > 15) {
+                InvokeNextCustomerSpawn();
+            } 
         });
     }
 
     void SpawnCustomer() {
         IncreaseCustomerCount();
-        int randomCustomerIndex = Random.Range(0, customerPrefab.Length);
+        int randomCustomerIndex = UnityEngine.Random.Range(0, customerPrefab.Length);
         GameObject customer = Instantiate(customerPrefab[randomCustomerIndex], spawnPosition, Quaternion.identity);
         customer.GetComponent<Customer>().SetDelegate(DecreaseCustomerCount);
     }
@@ -44,5 +50,9 @@ public class CustomerSpawner : MonoBehaviour
 
     public void DecreaseCustomerCount() {
         customerCount--;
+    }
+
+    public bool NoCustomersLeft() {
+        return customerCount == 0;
     }
 }
