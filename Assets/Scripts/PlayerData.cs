@@ -38,4 +38,8 @@ public static class PlayerData
     private class SaveObject {
         public int money;
     }
+
+    public static bool HasEnoughMoney(int amount) {
+        return money >= amount;
+    }
 }

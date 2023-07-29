@@ -12,15 +12,13 @@ public class DataUI : MonoBehaviour
     CustomerSpawnerDelegate noCustomersLeft;
 
 
-    // Start is called before the first frame update
     void Start()
     {
-        SetMoneyUI();
+        UpdateMoneyUI();
         timeLeft = 300f;
         noCustomersLeft = GameObject.Find("LevelManager").GetComponent<CustomerSpawner>().NoCustomersLeft;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (timeLeft > 0) {
@@ -36,7 +34,7 @@ public class DataUI : MonoBehaviour
         }
     }
 
-    public void SetMoneyUI() {
+    public void UpdateMoneyUI() {
         moneyUI.text = PlayerData.money.ToString();
     }
 

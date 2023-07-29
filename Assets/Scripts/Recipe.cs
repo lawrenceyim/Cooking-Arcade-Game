@@ -54,7 +54,7 @@ public static class Recipe
         recipeList.Add(name);
     }
 
-
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     public static void InitializeRecipes() {
         ingredientsForFoodType.Add(FoodTypes.Burger, new List<Ingredients>{Ingredients.bacon, Ingredients.buns,  
             Ingredients.cheese, Ingredients.lettuce, Ingredients.onions, Ingredients.patty, Ingredients.tomatoes});
@@ -112,6 +112,7 @@ public static class Recipe
             "Avocado, bacon, eggs, lettuce, and tomatoes");
     }
 
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     public static void InitializeKeys() {
         keyMapping.Add(Ingredients.avocado, KeyCode.A);
         keyMapping.Add(Ingredients.bacon, KeyCode.B);
@@ -139,7 +140,7 @@ public static class Recipe
         keyMapping.Add(Ingredients.tomatoes, KeyCode.T);
     }
 
-
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     public static void InitializeSprites() {
 
     }

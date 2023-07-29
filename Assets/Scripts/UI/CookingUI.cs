@@ -13,9 +13,10 @@ public class CookingUI : MonoBehaviour
     [SerializeField] GameObject restartButton;
     Recipe.FoodTypes currentFoodtype;
     Dictionary<KeyCode, Recipe.Ingredients> availableKeys;
-
+    DataUI dataUI;
     void Start()
     {
+        dataUI = GameObject.Find("DataPanel").GetComponent<DataUI>();
         availableKeys = new Dictionary<KeyCode, Recipe.Ingredients>();
         ingredientNames = new TextMeshPro[cookingSlots.Length];
         buttonKeys = new TextMeshPro[cookingSlots.Length];
@@ -57,243 +58,26 @@ public class CookingUI : MonoBehaviour
     void ProcessInput() {
         foreach (KeyCode key in availableKeys.Keys) {
             if (Input.GetKeyDown(key)) {
-                Debug.Log($"{key} pressed.");
+                Recipe.Ingredients ingredient = availableKeys[key];
+                if (!PlayerData.HasEnoughMoney(10)) {
+                    continue;
+                }
+                PlayerData.money -= 10;
+                dataUI.UpdateMoneyUI();
+                // Add sprite
+                // Add ingredient to the dish in code
+            
             }
         }
-        // if (Input.GetKey(KeyCode.A)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.B)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.C)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.D)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.E)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.F)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.G)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.H)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.I)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.J)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.K)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.L)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.M)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.N)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.O)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.P)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.Q)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.R)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.S)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.T)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.U)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.V)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.W)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.X)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.Y)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.Z)) {	
-        //     if (currentFoodtype == Recipe.FoodTypes.Salad) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Burger) {
-                
-        //     } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-                
-        //     }
-        // }
+        if (Input.GetKeyDown(KeyCode.KeypadEnter)) {
+            // Serve
+            // Calculate sales
+            // Call customer to leave
+        }
+        if (Input.GetKeyDown(KeyCode.Backspace)) {
+            // Reset the dish in code
+            // Reset sprites for the dish
+        }
     }
 
     void SetButtonVisual(int buttonIndex) {
