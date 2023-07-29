@@ -45,7 +45,7 @@ public static class Recipe
     public static Dictionary<string, FoodTypes> foodTypes = new Dictionary<string, FoodTypes>();
     public static Dictionary<Ingredients, KeyCode> keyMapping = new Dictionary<Ingredients, KeyCode>();
     public static List<string> recipeList = new List<string>();
-
+    public static Dictionary<Ingredients, Sprite> ingredientSprites = new Dictionary<Ingredients, Sprite>();
 
     public static void AddRecipe(string name, List<Ingredients> required, FoodTypes type, string description) {
         requiredIngredients.Add(name, required);
@@ -139,6 +139,11 @@ public static class Recipe
         keyMapping.Add(Ingredients.tomatoes, KeyCode.T);
     }
 
+
+    public static void InitializeSprites() {
+
+    }
+
     public static List<Ingredients> GetRequiredIngredients(string name) {
         return requiredIngredients[name];
     }
@@ -150,5 +155,14 @@ public static class Recipe
     public static string SelectRandomRecipe() {
         int randomIndex = UnityEngine.Random.Range(0, recipeList.Count);
         return recipeList[randomIndex];
+    }
+
+    public static Dictionary<KeyCode, Ingredients> GetCurrentKeys(FoodTypes foodtype) {
+        Dictionary<KeyCode, Ingredients> keys = new Dictionary<KeyCode, Ingredients>();
+        List<Ingredients> ingred = ingredientsForFoodType[foodtype];
+        for (int i = 0; i < ingred.Count; i++) {
+            keys.Add(keyMapping[ingred[i]], ingred[i]);
+        }
+        return keys;
     }
 }
