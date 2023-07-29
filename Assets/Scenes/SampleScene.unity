@@ -594,6 +594,7 @@ MonoBehaviour:
   - {fileID: 130196883}
   - {fileID: 983479096}
   ingredientNames: []
+  buttonKeys: []
   serveButton: {fileID: 522117592}
   restartButton: {fileID: 1814809182}
 --- !u!1001 &261028759
@@ -1045,6 +1046,10 @@ PrefabInstance:
     - target: {fileID: 1186839277581124416, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_Name
       value: Restart
+      objectReference: {fileID: 0}
+    - target: {fileID: 2340104591914226705, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
+      propertyPath: m_text
+      value: Back
       objectReference: {fileID: 0}
     - target: {fileID: 5955132463604263934, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1930,6 +1935,10 @@ PrefabInstance:
     - target: {fileID: 1186839277581124416, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_Name
       value: Serve
+      objectReference: {fileID: 0}
+    - target: {fileID: 2340104591914226705, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
+      propertyPath: m_text
+      value: Enter
       objectReference: {fileID: 0}
     - target: {fileID: 5955132463604263934, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_SizeDelta.x

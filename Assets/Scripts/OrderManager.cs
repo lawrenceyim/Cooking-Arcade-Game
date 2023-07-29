@@ -28,6 +28,7 @@ public class OrderManager : MonoBehaviour
         updateCookingUI = GameObject.Find("CookingPanel").GetComponent<CookingUI>().GetCookingDelegate();
         resetCookingUI = GameObject.Find("CookingPanel").GetComponent<CookingUI>().GetCookingResetDelegate();
         Recipe.InitializeRecipes();
+        Recipe.InitializeKeys();
     }
 
     private void Update() {

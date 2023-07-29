@@ -38,10 +38,14 @@ public static class Recipe
         Salad
     }
 
+
     public static Dictionary<string, List<Ingredients>> requiredIngredients = new Dictionary<string, List<Ingredients>>();
     public static Dictionary<FoodTypes, List<Ingredients>> ingredientsForFoodType = new Dictionary<FoodTypes, List<Ingredients>>();
     public static Dictionary<string, string> recipeDescription = new Dictionary<string, string>();
     public static Dictionary<string, FoodTypes> foodTypes = new Dictionary<string, FoodTypes>();
+    public static Dictionary<Ingredients, KeyCode> keyMapping = new Dictionary<Ingredients, KeyCode>();
+
+
 
     public static void AddRecipe(string name, List<Ingredients> required, FoodTypes type, string description) {
         requiredIngredients.Add(name, required);
@@ -107,22 +111,38 @@ public static class Recipe
             "Avocado, bacon, eggs, lettuce, and tomatoes");
     }
 
-    public static List<string> GetRequiredIngredients(string name) {
-        List<Ingredients> enumList = requiredIngredients[name];
-        List<string> stringList = new List<string>();
-        for (int i = 0; i < enumList.Count; i++) {
-            stringList.Add(enumList[i].ToString());
-        }
-        return stringList;
+    public static void InitializeKeys() {
+        keyMapping.Add(Ingredients.avocado, KeyCode.A);
+        keyMapping.Add(Ingredients.bacon, KeyCode.B);
+        keyMapping.Add(Ingredients.buns, KeyCode.D);
+        keyMapping.Add(Ingredients.carrots, KeyCode.C);
+        keyMapping.Add(Ingredients.cheese, KeyCode.C);
+        keyMapping.Add(Ingredients.croutons, KeyCode.D);
+        keyMapping.Add(Ingredients.cucumbers, KeyCode.K);
+        keyMapping.Add(Ingredients.dough, KeyCode.D);
+        keyMapping.Add(Ingredients.eggs, KeyCode.E);
+        keyMapping.Add(Ingredients.feta, KeyCode.F);
+        keyMapping.Add(Ingredients.lettuce, KeyCode.L);
+        keyMapping.Add(Ingredients.ham, KeyCode.H);
+        keyMapping.Add(Ingredients.mozzarella, KeyCode.C);
+        keyMapping.Add(Ingredients.mushrooms, KeyCode.M);
+        keyMapping.Add(Ingredients.olives, KeyCode.O);
+        keyMapping.Add(Ingredients.onions, KeyCode.N);
+        keyMapping.Add(Ingredients.parmesan, KeyCode.J);
+        keyMapping.Add(Ingredients.patty, KeyCode.P);
+        keyMapping.Add(Ingredients.pepperoni, KeyCode.P);
+        keyMapping.Add(Ingredients.peppers, KeyCode.V);
+        keyMapping.Add(Ingredients.pineapple, KeyCode.F);
+        keyMapping.Add(Ingredients.sauce, KeyCode.S);
+        keyMapping.Add(Ingredients.sausage, KeyCode.R);
+        keyMapping.Add(Ingredients.tomatoes, KeyCode.T);
     }
 
-    public static List<string> GetAllIngredients(string name) {
-        List<Ingredients> enumList = ingredientsForFoodType[foodTypes[name]];
-        List<string> stringList = new List<string>();
-        for (int i = 0; i < enumList.Count; i++) {
-            stringList.Add(enumList[i].ToString());
-        }
-        stringList.Sort();
-        return stringList;
+    public static List<Ingredients> GetRequiredIngredients(string name) {
+        return requiredIngredients[name];
+    }
+
+    public static List<Ingredients> GetAllIngredients(string name) {
+        return ingredientsForFoodType[foodTypes[name]];
     }
 }
