@@ -44,16 +44,17 @@ public static class Recipe
     public static Dictionary<string, string> recipeDescription = new Dictionary<string, string>();
     public static Dictionary<string, FoodTypes> foodTypes = new Dictionary<string, FoodTypes>();
     public static Dictionary<Ingredients, KeyCode> keyMapping = new Dictionary<Ingredients, KeyCode>();
-
-
+    public static List<string> recipeList = new List<string>();
+    public static Dictionary<Ingredients, Sprite> ingredientSprites = new Dictionary<Ingredients, Sprite>();
 
     public static void AddRecipe(string name, List<Ingredients> required, FoodTypes type, string description) {
         requiredIngredients.Add(name, required);
         foodTypes.Add(name, type);
         recipeDescription.Add(name, description);
+        recipeList.Add(name);
     }
 
-
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     public static void InitializeRecipes() {
         ingredientsForFoodType.Add(FoodTypes.Burger, new List<Ingredients>{Ingredients.bacon, Ingredients.buns,  
             Ingredients.cheese, Ingredients.lettuce, Ingredients.onions, Ingredients.patty, Ingredients.tomatoes});
@@ -111,6 +112,7 @@ public static class Recipe
             "Avocado, bacon, eggs, lettuce, and tomatoes");
     }
 
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     public static void InitializeKeys() {
         keyMapping.Add(Ingredients.avocado, KeyCode.A);
         keyMapping.Add(Ingredients.bacon, KeyCode.B);
@@ -138,11 +140,30 @@ public static class Recipe
         keyMapping.Add(Ingredients.tomatoes, KeyCode.T);
     }
 
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    public static void InitializeSprites() {
+
+    }
+
     public static List<Ingredients> GetRequiredIngredients(string name) {
         return requiredIngredients[name];
     }
 
     public static List<Ingredients> GetAllIngredients(string name) {
         return ingredientsForFoodType[foodTypes[name]];
+    }
+
+    public static string SelectRandomRecipe() {
+        int randomIndex = UnityEngine.Random.Range(0, recipeList.Count);
+        return recipeList[randomIndex];
+    }
+
+    public static Dictionary<KeyCode, Ingredients> GetCurrentKeys(FoodTypes foodtype) {
+        Dictionary<KeyCode, Ingredients> keys = new Dictionary<KeyCode, Ingredients>();
+        List<Ingredients> ingred = ingredientsForFoodType[foodtype];
+        for (int i = 0; i < ingred.Count; i++) {
+            keys.Add(keyMapping[ingred[i]], ingred[i]);
+        }
+        return keys;
     }
 }

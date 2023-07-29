@@ -8,7 +8,6 @@ public class OrderManager : MonoBehaviour
     int numberOfOrders = 6;
     string[] orders;
     GameObject[] customers;
-    [SerializeField] string[] recipeNames;  // Can be set in the scene to determine which recipes will appear in each level 
     public delegate void DescriptionUIDelegate(string name, float countdown);
     DescriptionUIDelegate updateDescriptionUI;
     public delegate void OrderUIDelegate(int index, string name, float countdown);
@@ -27,8 +26,6 @@ public class OrderManager : MonoBehaviour
         updateOrderUI = GameObject.Find("OrderPanel").GetComponent<OrderUI>().GetOrderDelegate();
         updateCookingUI = GameObject.Find("CookingPanel").GetComponent<CookingUI>().UpdateButtons;
         resetCookingUI = GameObject.Find("CookingPanel").GetComponent<CookingUI>().DeactivateButtons;
-        Recipe.InitializeRecipes();
-        Recipe.InitializeKeys();
     }
 
     private void Update() {
@@ -60,8 +57,7 @@ public class OrderManager : MonoBehaviour
     public void AddOrder(GameObject customer) {
         for (int i = 0; i < numberOfOrders; i++) {
             if (orders[i] == null) {
-                int recipeIndex = UnityEngine.Random.Range(0, recipeNames.Length);
-                orders[i] = recipeNames[recipeIndex];
+                orders[i] = Recipe.SelectRandomRecipe();
                 updateOrderUI(i, orders[i], 30f);
                 customers[i] = customer;
                 break;
