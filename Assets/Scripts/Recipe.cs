@@ -44,13 +44,14 @@ public static class Recipe
     public static Dictionary<string, string> recipeDescription = new Dictionary<string, string>();
     public static Dictionary<string, FoodTypes> foodTypes = new Dictionary<string, FoodTypes>();
     public static Dictionary<Ingredients, KeyCode> keyMapping = new Dictionary<Ingredients, KeyCode>();
-
+    public static List<string> recipeList = new List<string>();
 
 
     public static void AddRecipe(string name, List<Ingredients> required, FoodTypes type, string description) {
         requiredIngredients.Add(name, required);
         foodTypes.Add(name, type);
         recipeDescription.Add(name, description);
+        recipeList.Add(name);
     }
 
 
@@ -144,5 +145,10 @@ public static class Recipe
 
     public static List<Ingredients> GetAllIngredients(string name) {
         return ingredientsForFoodType[foodTypes[name]];
+    }
+
+    public static string SelectRandomRecipe() {
+        int randomIndex = UnityEngine.Random.Range(0, recipeList.Count);
+        return recipeList[randomIndex];
     }
 }

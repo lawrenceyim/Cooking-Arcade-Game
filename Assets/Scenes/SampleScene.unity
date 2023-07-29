@@ -274,11 +274,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1186839277581124416, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_Name
-      value: CookingSlot (16)
+      value: CookingSlot (10)
       objectReference: {fileID: 0}
     - target: {fileID: 8973234770308158946, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8973234770308158946, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_LocalScale.x
@@ -585,14 +585,14 @@ MonoBehaviour:
   - {fileID: 261028761}
   - {fileID: 1042663819}
   - {fileID: 1226511812}
+  - {fileID: 1228898316}
   - {fileID: 428967351}
+  - {fileID: 130196883}
   - {fileID: 1360694241}
+  - {fileID: 983479096}
   - {fileID: 369695161}
   - {fileID: 595849759}
   - {fileID: 838805408}
-  - {fileID: 1228898316}
-  - {fileID: 130196883}
-  - {fileID: 983479096}
   ingredientNames: []
   buttonKeys: []
   serveButton: {fileID: 522117592}
@@ -832,11 +832,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1186839277581124416, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_Name
-      value: CookingSlot (11)
+      value: CookingSlot (13)
       objectReference: {fileID: 0}
     - target: {fileID: 8973234770308158946, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8973234770308158946, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_LocalScale.x
@@ -907,7 +907,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8973234770308158946, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8973234770308158946, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_LocalScale.x
@@ -1207,11 +1207,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1186839277581124416, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_Name
-      value: CookingSlot (12)
+      value: CookingSlot (14)
       objectReference: {fileID: 0}
     - target: {fileID: 8973234770308158946, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8973234770308158946, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_LocalScale.x
@@ -1297,14 +1297,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1228898315}
   - {fileID: 428967350}
+  - {fileID: 130196882}
   - {fileID: 1360694240}
+  - {fileID: 983479095}
   - {fileID: 369695160}
   - {fileID: 595849758}
   - {fileID: 838805407}
-  - {fileID: 1228898315}
-  - {fileID: 130196882}
-  - {fileID: 983479095}
   - {fileID: 1391663332}
   m_Father: {fileID: 226925060}
   m_RootOrder: 1
@@ -1421,11 +1421,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1186839277581124416, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_Name
-      value: CookingSlot (13)
+      value: CookingSlot (15)
       objectReference: {fileID: 0}
     - target: {fileID: 8973234770308158946, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8973234770308158946, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_LocalScale.x
@@ -1492,11 +1492,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1186839277581124416, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_Name
-      value: CookingSlot (17)
+      value: CookingSlot (12)
       objectReference: {fileID: 0}
     - target: {fileID: 8973234770308158946, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8973234770308158946, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_LocalScale.x
@@ -1705,11 +1705,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1186839277581124416, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_Name
-      value: CookingSlot (15)
+      value: CookingSlot (8)
       objectReference: {fileID: 0}
     - target: {fileID: 8973234770308158946, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8973234770308158946, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_LocalScale.x
@@ -1802,11 +1802,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1404591e759fe5841a00d08ea77fe979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recipeNames:
-  - Cheeseburger
-  - Classic Burger
-  - Bacon Cheeseburger
-  - Classic Pepperoni Pizza
 --- !u!4 &1229866054
 Transform:
   m_ObjectHideFlags: 0
@@ -1863,11 +1858,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1186839277581124416, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_Name
-      value: CookingSlot (10)
+      value: CookingSlot (11)
       objectReference: {fileID: 0}
     - target: {fileID: 8973234770308158946, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8973234770308158946, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
       propertyPath: m_LocalScale.x
