@@ -31,7 +31,7 @@ public class Customer : MonoBehaviour
     {
         switch (currentState) {
             case State.Walking:
-                transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
                 break;
             case State.Waiting:
                 break;
