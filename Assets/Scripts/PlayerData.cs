@@ -7,7 +7,6 @@ public static class PlayerData
 {
     public static int money;
 
-
     [RuntimeInitializeOnLoadMethod]
     static void RunOnGameStart()
     {
@@ -32,7 +31,7 @@ public static class PlayerData
     }
 
     public static void ResetSave() {
-        money = 0;
+        money = 1000;
         SaveData();
     }
 
