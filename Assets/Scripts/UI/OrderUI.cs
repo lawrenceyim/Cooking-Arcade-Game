@@ -25,13 +25,16 @@ public class OrderUI : MonoBehaviour
         orderManager = GameObject.Find("LevelManager").GetComponent<OrderManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         for (int i = 0; i < orderBlocks.Length; i++) {
             if (orderManager.HasOrder(i)) {
                 countdowns[i] -= Time.deltaTime;
                 countdownTexts[i].text = ((int)countdowns[i]).ToString();
+                if (countdowns[i] <= 0) {
+                    ResetOrderSlot(i);
+                    orderManager.RemoveOrder(i);
+                }
             } 
         }
     }
@@ -40,6 +43,11 @@ public class OrderUI : MonoBehaviour
         texts[index].text = name;
         countdowns[index] = countdown;
         countdownTexts[index].text = ((int) countdown).ToString();
+    }
+
+    public void ResetOrderSlot(int index) {
+        texts[index].text = "";
+        countdownTexts[index].text = "";
     }
 
     public OrderManager.OrderUIDelegate GetOrderDelegate() {

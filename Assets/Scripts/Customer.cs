@@ -22,7 +22,7 @@ public class Customer : MonoBehaviour
     void Start()
     {
         target = transform.position;
-        target.x = -target.x;
+        target.x = -target.x + 1;
         timer = gameObject.AddComponent<Timer>();
         timer.SetTimer(UnityEngine.Random.Range(2f, 5f), () => ChangeState());
     }
@@ -37,7 +37,7 @@ public class Customer : MonoBehaviour
                 break;
             case State.Leaving:
                 transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
-                if (transform.position == target) {
+                if (transform.position.x >= 13f) {
                     callback();
                     Destroy(gameObject);
                 }
@@ -50,7 +50,7 @@ public class Customer : MonoBehaviour
     public void ChangeState() {
         if (currentState == State.Walking) {
             currentState = State.Waiting;
-            GameObject.Find("LevelManager").GetComponent<OrderManager>().AddOrder();
+            GameObject.Find("LevelManager").GetComponent<OrderManager>().AddOrder(gameObject);
         } else {
             currentState = State.Leaving;
         }

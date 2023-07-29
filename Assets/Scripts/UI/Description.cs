@@ -16,9 +16,9 @@ public class Description : MonoBehaviour
         orderDescription.text = "";
     }
 
-    public void SetOrderDescription(string name, string description, float countdown) {
+    public void SetOrderDescription(string name, float countdown) {
         orderName.text = name;
-        orderDescription.text = description;
+        orderDescription.text = Recipe.recipeDescription[name];
         this.countdown = countdown;
     }
 
@@ -27,7 +27,7 @@ public class Description : MonoBehaviour
         // OrderCountdown.text = ((int) countdown).ToString();
     }
 
-    public OrderManager.DescriptionUIDelegate GetOrderDelegate() {
+    public OrderManager.DescriptionUIDelegate GetDescriptionDelegate() {
         return SetOrderDescription;
     }
 }

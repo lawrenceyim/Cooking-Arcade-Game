@@ -61,49 +61,67 @@ public static class Recipe
 
         AddRecipe("Cheeseburger", new List<Ingredients>{Ingredients.buns, Ingredients.cheese, Ingredients.patty}, 
             FoodTypes.Burger, 
-            "A burger with cheese");
+            "Buns, cheese, patty.");
         AddRecipe("The Works", new List<Ingredients>{Ingredients.buns, Ingredients.cheese, Ingredients.lettuce, 
             Ingredients.onions, Ingredients.patty, Ingredients.tomatoes}, 
             FoodTypes.Burger, 
-            "A burger with cheese, lettuce, tomatoes, and onions.");
+            "Buns, cheese, lettuce, onions, patty, and tomatoes.");
         AddRecipe("Classic Burger", new List<Ingredients>{Ingredients.buns, Ingredients.lettuce, Ingredients.patty, Ingredients.tomatoes}, 
             FoodTypes.Burger, 
-            "A burger with lettuce, and tomato");
+            "Buns, lettuce, patty, and tomatoes");
         AddRecipe("Bacon Cheeseburger", new List<Ingredients>{Ingredients.bacon, Ingredients.buns, Ingredients.cheese, 
             Ingredients.patty}, 
             FoodTypes.Burger, 
-            "A cheeseburger with bacon");
+            "Bacon, buns, cheese, and patty");
 
         AddRecipe("Classic Pepperoni Pizza", new List<Ingredients>{Ingredients.dough, Ingredients.mozzarella, Ingredients.pepperoni, Ingredients.sauce},
             FoodTypes.Pizza,
-            "A pizza with pepperoni");
+            "Dough, mozzarella, pepperoni, and sauce");
         AddRecipe("Meat Lovers Pizza", new List<Ingredients>{Ingredients.dough, Ingredients.ham, Ingredients.mozzarella, 
             Ingredients.pepperoni, Ingredients.sauce, Ingredients.sausage},
             FoodTypes.Pizza,
-            "A pizza with pepperoni, ham, and sausage");
+            "Dough, ham, mozzarella, pepperoni, sauce, and sausage");
         AddRecipe("Hawaiian Pizza", new List<Ingredients>{Ingredients.dough, Ingredients.ham, Ingredients.mozzarella, 
             Ingredients.pineapple, Ingredients.sauce},
             FoodTypes.Pizza,
-            "A pizza with ham and pineapple");
+            "Dough, ham, mozzarella, pineapple, and sauce");
         AddRecipe("Vegetarian Pizza", new List<Ingredients>{Ingredients.dough, Ingredients.mozzarella, Ingredients.mushrooms, 
             Ingredients.peppers, Ingredients.sauce},
             FoodTypes.Pizza,
-            "A pizza with mushrooms and peppers");
+            "Dough, mozzarella, mushrooms, peppers, and sauce");
         AddRecipe("Cheese Pizza", new List<Ingredients>{Ingredients.dough, Ingredients.mozzarella, Ingredients.sauce},
             FoodTypes.Pizza,
-            "A cheese pizza");
+            "Dough, mozzarella, and sauce");
 
         AddRecipe("Garden Salad", new List<Ingredients>{Ingredients.carrots, Ingredients.cucumbers, Ingredients.lettuce, Ingredients.tomatoes},
             FoodTypes.Salad,
-            "A salad with lettuce, tomatoes, cucumbers, and carrots");
+            "Lettuce, tomatoes, cucumbers, and carrots");
         AddRecipe("Caesar Salad", new List<Ingredients>{Ingredients.croutons, Ingredients.lettuce, Ingredients.parmesan},
             FoodTypes.Salad,
-            "A salad with lettuce, croutons, and parmesan cheese");
+            "Lettuce, croutons, and parmesan");
         AddRecipe("Greek Salad", new List<Ingredients>{Ingredients.cucumbers, Ingredients.feta, Ingredients.olives, Ingredients.onions, Ingredients.tomatoes},
             FoodTypes.Salad,
-            "A salad with cucumbers, feta, olives, onions, and tomatoes");
+            "Cucumbers, feta, olives, onions, and tomatoes");
         AddRecipe("Cobb Salad", new List<Ingredients>{Ingredients.avocado, Ingredients.bacon, Ingredients.eggs, Ingredients.lettuce, Ingredients.tomatoes},
             FoodTypes.Salad,
-            "A salad with avocado, bacon, eggs, lettuce, and tomatoes");
+            "Avocado, bacon, eggs, lettuce, and tomatoes");
+    }
+
+    public static List<string> GetRequiredIngredients(string name) {
+        List<Ingredients> enumList = requiredIngredients[name];
+        List<string> stringList = new List<string>();
+        for (int i = 0; i < enumList.Count; i++) {
+            stringList.Add(enumList[i].ToString());
+        }
+        return stringList;
+    }
+
+    public static List<string> GetAllIngredients(string name) {
+        List<Ingredients> enumList = ingredientsForFoodType[foodTypes[name]];
+        List<string> stringList = new List<string>();
+        for (int i = 0; i < enumList.Count; i++) {
+            stringList.Add(enumList[i].ToString());
+        }
+        return stringList;
     }
 }
