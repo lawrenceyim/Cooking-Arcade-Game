@@ -16,6 +16,8 @@ public class OrderManager : MonoBehaviour
     CookingUIResetDelegate resetCookingUI;
     int currentIndex;
     Cooking cookingScript;
+    DataUI dataUI;
+
 
     void Start()
     {   
@@ -26,6 +28,8 @@ public class OrderManager : MonoBehaviour
         updateCookingUI = GameObject.Find("CookingPanel").GetComponent<CookingUI>().UpdateButtons;
         resetCookingUI = GameObject.Find("CookingPanel").GetComponent<CookingUI>().DeactivateButtons;
         cookingScript = GameObject.Find("DishPanel").GetComponent<Cooking>();
+        dataUI = GameObject.Find("DataPanel").GetComponent<DataUI>();
+
     }
 
     private void Update() {
@@ -81,7 +85,8 @@ public class OrderManager : MonoBehaviour
     }
 
     public void OrderServed() {
-
+        PlayerData.money += Recipe.sellingPrice[orders[currentIndex]];
+        dataUI.UpdateMoneyUI();
         RemoveOrder(currentIndex);
     }
 

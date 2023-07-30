@@ -35,7 +35,7 @@ public class DataUI : MonoBehaviour
     }
 
     public void UpdateMoneyUI() {
-        moneyUI.text = PlayerData.money.ToString();
+        moneyUI.text = "$" + PlayerData.money.ToString();
     }
 
     public float GetTimeLeft() {

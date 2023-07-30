@@ -32,7 +32,9 @@ public class Cooking : MonoBehaviour
         dishes[index] = dish;
         ResetDish(index);
         dishes[index].SetActive(false);
-        ingredientsNeeded[index] = Recipe.GetRequiredIngredients(dishName).Count;
+        ingredientsAdded[index] = 0;
+        List<Recipe.Ingredients> temp = Recipe.requiredIngredients[dishName];
+        ingredientsNeeded[index] = temp.Count;
     }
 
     public bool IsDishComplete() {
@@ -44,12 +46,12 @@ public class Cooking : MonoBehaviour
             if (dishes[currentIndex].transform.GetChild(i).gameObject.GetComponent<Ingredient>().ingredient == ingredient) {
                 dishes[currentIndex].transform.GetChild(i).gameObject.SetActive(true);
                 ingredientsAdded[currentIndex]++;
+                break;
             }
         }
         if (IsDishComplete()) {
             Debug.Log("Dish completed");
-            RemoveDish(currentIndex);
-            orderManager.OrderServed();
+            StartCoroutine(wait());
         }
     }
 
@@ -60,6 +62,20 @@ public class Cooking : MonoBehaviour
         dishes[currentIndex].SetActive(true);
     }
 
+    public bool IngredientAlreadyAdded(Recipe.Ingredients ingredient) {
+        for (int i = 0; i < dishes[currentIndex].transform.childCount; i++) {
+            GameObject ingred = dishes[currentIndex].transform.GetChild(i).gameObject;
+            if (ingred.activeSelf && ingred.GetComponent<Ingredient>().ingredient == ingredient) {
+                return true;
+            }
+        }
+        return false;
+    } 
 
+    IEnumerator wait() {
+        yield return new WaitForSecondsRealtime(.1f);
+        RemoveDish(currentIndex);
+        orderManager.OrderServed();
+    }
 }
 

@@ -7,16 +7,15 @@ using TMPro;
 public class CookingUI : MonoBehaviour
 {
     [SerializeField] GameObject[] cookingSlots;
-    [SerializeField] TextMeshPro[] ingredientNames;
-    [SerializeField] TextMeshPro[] buttonKeys;
-    [SerializeField] GameObject serveButton;
-    [SerializeField] GameObject restartButton;
+    TextMeshPro[] ingredientNames;
+    TextMeshPro[] buttonKeys;
     Recipe.FoodTypes currentFoodtype;
     string currentDishName;
     Dictionary<KeyCode, Recipe.Ingredients> availableKeys;
     DataUI dataUI;
     Cooking cookingScript;
     int currentIndex;
+    List<Recipe.Ingredients> neededForDish;
 
     void Start()
     {
@@ -48,13 +47,10 @@ public class CookingUI : MonoBehaviour
             ingredientNames[i].text = ingredients[i].ToString();
             buttonKeys[i].text = Recipe.keyMapping[ingredients[i]].ToString();
         }
-        serveButton.SetActive(true);
-        restartButton.SetActive(true);
+        neededForDish = Recipe.requiredIngredients[name];
     }
 
     public void DeactivateButtons() {
-        serveButton.SetActive(false);
-        restartButton.SetActive(false);
         for (int i = 0; i < cookingSlots.Length; i++) {
             ingredientNames[i].text = "";
             buttonKeys[i].text = "";
@@ -68,18 +64,19 @@ public class CookingUI : MonoBehaviour
         foreach (KeyCode key in availableKeys.Keys) {
             if (Input.GetKeyDown(key)) {
                 Recipe.Ingredients ingredient = availableKeys[key];
-                if (!PlayerData.HasEnoughMoney(1)) {
-                    continue;
-                }
-                PlayerData.money -= 1;
-                dataUI.UpdateMoneyUI();
-
-                if (Recipe.requiredIngredients[currentDishName].Contains(ingredient)) {
-                    cookingScript.MakeIngredientVisible(ingredient);
-                } else {
+                if (!neededForDish.Contains(ingredient)) {
                     Debug.Log("Wrong ingredient. Dish scrapped");
                     cookingScript.ResetDish(currentIndex);
+                } 
+                if (!PlayerData.HasEnoughMoney(Recipe.ingredientCost[ingredient])) {
+                    continue;
                 }
+                if (!cookingScript.IngredientAlreadyAdded(ingredient)) {
+                    PlayerData.money -= Recipe.ingredientCost[ingredient];
+                    dataUI.UpdateMoneyUI();
+                    cookingScript.MakeIngredientVisible(ingredient);
+                    continue;
+                } 
             }
         }
     }

@@ -46,6 +46,8 @@ public static class Recipe
     public static Dictionary<Ingredients, KeyCode> keyMapping = new Dictionary<Ingredients, KeyCode>();
     public static List<string> recipeList = new List<string>();
     public static Dictionary<string, GameObject> dishes = new Dictionary<string, GameObject>();
+    public static Dictionary<Ingredients, int> ingredientCost = new Dictionary<Ingredients, int>();
+    public static Dictionary<string, int> sellingPrice = new Dictionary<string, int>();
 
     public static void AddRecipe(string name, List<Ingredients> required, FoodTypes type, string description) {
         requiredIngredients.Add(name, required);
@@ -117,6 +119,15 @@ public static class Recipe
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    public static void InitializeSellingPrices() {
+        sellingPrice.Add("Cheeseburger", 10);
+        sellingPrice.Add("Classic Burger", 10);
+        sellingPrice.Add("The Works", 15);
+        sellingPrice.Add("Bacon Cheeseburger", 15);
+
+    }
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     public static void InitializeKeys() {
         keyMapping.Add(Ingredients.avocado, KeyCode.A);
         keyMapping.Add(Ingredients.bacon, KeyCode.B);
@@ -142,6 +153,34 @@ public static class Recipe
         keyMapping.Add(Ingredients.sauce, KeyCode.S);
         keyMapping.Add(Ingredients.sausage, KeyCode.R);
         keyMapping.Add(Ingredients.tomatoes, KeyCode.T);
+    }
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    public static void InitializePrice() {
+        //ingredientCost.Add(Ingredients.avocado, );
+       ingredientCost.Add(Ingredients.bacon, 3);
+       ingredientCost.Add(Ingredients.buns, 1);
+        //ingredientCost.Add(Ingredients.carrots, );
+       ingredientCost.Add(Ingredients.cheese, 2);
+        //ingredientCost.Add(Ingredients.croutons, );
+        //ingredientCost.Add(Ingredients.cucumbers, );
+        //ingredientCost.Add(Ingredients.dough, );
+        //ingredientCost.Add(Ingredients.eggs, );
+        //ingredientCost.Add(Ingredients.feta, );
+       ingredientCost.Add(Ingredients.lettuce, 1);
+        //ingredientCost.Add(Ingredients.ham, );
+        //ingredientCost.Add(Ingredients.mozzarella, );
+        //ingredientCost.Add(Ingredients.mushrooms, );
+        //ingredientCost.Add(Ingredients.olives, );
+       ingredientCost.Add(Ingredients.onions, 1);
+        //ingredientCost.Add(Ingredients.parmesan, );
+       ingredientCost.Add(Ingredients.patty, 3);
+        //ingredientCost.Add(Ingredients.pepperoni, );
+        //ingredientCost.Add(Ingredients.peppers, );
+        //ingredientCost.Add(Ingredients.pineapple, );
+        //ingredientCost.Add(Ingredients.sauce, );
+        //ingredientCost.Add(Ingredients.sausage, );
+       ingredientCost.Add(Ingredients.tomatoes, 1);
     }
 
     public static List<Ingredients> GetRequiredIngredients(string name) {
