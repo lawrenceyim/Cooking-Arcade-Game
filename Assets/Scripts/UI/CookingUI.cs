@@ -12,10 +12,15 @@ public class CookingUI : MonoBehaviour
     [SerializeField] GameObject serveButton;
     [SerializeField] GameObject restartButton;
     Recipe.FoodTypes currentFoodtype;
+    string currentDishName;
     Dictionary<KeyCode, Recipe.Ingredients> availableKeys;
     DataUI dataUI;
+    Cooking cookingScript;
+    int currentIndex;
+
     void Start()
     {
+        cookingScript = GameObject.Find("DishPanel").GetComponent<Cooking>();
         dataUI = GameObject.Find("DataPanel").GetComponent<DataUI>();
         availableKeys = new Dictionary<KeyCode, Recipe.Ingredients>();
         ingredientNames = new TextMeshPro[cookingSlots.Length];
@@ -31,8 +36,10 @@ public class CookingUI : MonoBehaviour
         ProcessInput();
     }
 
-    public void UpdateButtons(string name) {
+    public void UpdateButtons(string name, int index) {
         DeactivateButtons();
+        currentIndex = index;
+        currentDishName = name;
         currentFoodtype = Recipe.foodTypes[name];
         availableKeys = Recipe.GetCurrentKeys(currentFoodtype);
         List<Recipe.Ingredients> ingredients = Recipe.GetAllIngredients(name);
@@ -53,40 +60,27 @@ public class CookingUI : MonoBehaviour
             buttonKeys[i].text = "";
             cookingSlots[i].SetActive(false);
         }
+        availableKeys = null;
     }
 
     void ProcessInput() {
+        if (availableKeys == null) return;
         foreach (KeyCode key in availableKeys.Keys) {
             if (Input.GetKeyDown(key)) {
                 Recipe.Ingredients ingredient = availableKeys[key];
-                if (!PlayerData.HasEnoughMoney(10)) {
+                if (!PlayerData.HasEnoughMoney(1)) {
                     continue;
                 }
-                PlayerData.money -= 10;
+                PlayerData.money -= 1;
                 dataUI.UpdateMoneyUI();
-                // Add sprite
-                // Add ingredient to the dish in code
-            
+
+                if (Recipe.requiredIngredients[currentDishName].Contains(ingredient)) {
+                    cookingScript.MakeIngredientVisible(ingredient);
+                } else {
+                    Debug.Log("Wrong ingredient. Dish scrapped");
+                    cookingScript.ResetDish(currentIndex);
+                }
             }
-        }
-        if (Input.GetKeyDown(KeyCode.KeypadEnter)) {
-            // Serve
-            // Calculate sales
-            // Call customer to leave
-        }
-        if (Input.GetKeyDown(KeyCode.Backspace)) {
-            // Reset the dish in code
-            // Reset sprites for the dish
-        }
-    }
-
-    void SetButtonVisual(int buttonIndex) {
-        if (currentFoodtype == Recipe.FoodTypes.Burger) {
-
-        } else if (currentFoodtype == Recipe.FoodTypes.Pizza) {
-
-        } else if (currentFoodtype == Recipe.FoodTypes.Salad) {
-
         }
     }
 }

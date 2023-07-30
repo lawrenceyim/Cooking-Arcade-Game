@@ -49,8 +49,4 @@ public class OrderUI : MonoBehaviour
         texts[index].text = "";
         countdownTexts[index].text = "";
     }
-
-    public OrderManager.OrderUIDelegate GetOrderDelegate() {
-        return SetOrderSlot;
-    }
 }

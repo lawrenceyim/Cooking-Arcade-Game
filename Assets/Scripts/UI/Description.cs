@@ -9,25 +9,24 @@ public class Description : MonoBehaviour
     [SerializeField] TextMeshPro orderName;
     [SerializeField] TextMeshPro orderDescription;
     [SerializeField] TextMeshPro OrderCountdown;
-    float countdown;
 
     private void Start() {
         orderName.text = "";
         orderDescription.text = "";
     }
 
-    public void SetOrderDescription(string name, float countdown) {
+    public void SetOrderDescription(string name) {
         orderName.text = name;
         orderDescription.text = Recipe.recipeDescription[name];
-        this.countdown = countdown;
+    }
+
+    public void ClearOrderDescription() {
+        orderName.text = "";
+        orderDescription.text = "";
     }
 
     void Update() {
         // countdown -= Time.deltaTime;
         // OrderCountdown.text = ((int) countdown).ToString();
-    }
-
-    public OrderManager.DescriptionUIDelegate GetDescriptionDelegate() {
-        return SetOrderDescription;
     }
 }

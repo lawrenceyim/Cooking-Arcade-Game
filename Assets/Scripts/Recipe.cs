@@ -45,13 +45,17 @@ public static class Recipe
     public static Dictionary<string, FoodTypes> foodTypes = new Dictionary<string, FoodTypes>();
     public static Dictionary<Ingredients, KeyCode> keyMapping = new Dictionary<Ingredients, KeyCode>();
     public static List<string> recipeList = new List<string>();
-    public static Dictionary<Ingredients, Sprite> ingredientSprites = new Dictionary<Ingredients, Sprite>();
+    public static Dictionary<string, GameObject> dishes = new Dictionary<string, GameObject>();
 
     public static void AddRecipe(string name, List<Ingredients> required, FoodTypes type, string description) {
         requiredIngredients.Add(name, required);
         foodTypes.Add(name, type);
         recipeDescription.Add(name, description);
         recipeList.Add(name);
+
+        if (name == "Cheeseburger")
+            dishes.Add(name, (GameObject) Resources.Load("Prefab/Food/Dishes/Cheeseburger"));
+    
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -138,11 +142,6 @@ public static class Recipe
         keyMapping.Add(Ingredients.sauce, KeyCode.S);
         keyMapping.Add(Ingredients.sausage, KeyCode.R);
         keyMapping.Add(Ingredients.tomatoes, KeyCode.T);
-    }
-
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    public static void InitializeSprites() {
-
     }
 
     public static List<Ingredients> GetRequiredIngredients(string name) {

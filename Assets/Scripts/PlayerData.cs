@@ -31,7 +31,7 @@ public static class PlayerData
     }
 
     public static void ResetSave() {
-        money = 1000;
+        money = 100;
         SaveData();
     }
 

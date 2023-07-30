@@ -17,7 +17,6 @@ public class CustomerSpawner : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(KeyCode.A);
         orderManager = GetComponent<OrderManager>();
         timer = gameObject.AddComponent<Timer>();
         SpawnCustomer();

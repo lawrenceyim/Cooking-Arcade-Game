@@ -8,24 +8,24 @@ public class OrderManager : MonoBehaviour
     int numberOfOrders = 6;
     string[] orders;
     GameObject[] customers;
-    public delegate void DescriptionUIDelegate(string name, float countdown);
-    DescriptionUIDelegate updateDescriptionUI;
-    public delegate void OrderUIDelegate(int index, string name, float countdown);
-    OrderUIDelegate updateOrderUI;
-    public delegate void CookingUIDelegate(string name);
+    Description descriptionScript;
+    OrderUI orderUIScript;
+    public delegate void CookingUIDelegate(string name, int index);
     CookingUIDelegate updateCookingUI;
     public delegate void CookingUIResetDelegate();
     CookingUIResetDelegate resetCookingUI;
     int currentIndex;
+    Cooking cookingScript;
 
     void Start()
     {   
         orders = new string[numberOfOrders];
         customers = new GameObject[numberOfOrders];
-        updateDescriptionUI = GameObject.Find("DescriptionPanel").GetComponent<Description>().GetDescriptionDelegate();
-        updateOrderUI = GameObject.Find("OrderPanel").GetComponent<OrderUI>().GetOrderDelegate();
+        descriptionScript = GameObject.Find("DescriptionPanel").GetComponent<Description>();
+        orderUIScript = GameObject.Find("OrderPanel").GetComponent<OrderUI>();
         updateCookingUI = GameObject.Find("CookingPanel").GetComponent<CookingUI>().UpdateButtons;
         resetCookingUI = GameObject.Find("CookingPanel").GetComponent<CookingUI>().DeactivateButtons;
+        cookingScript = GameObject.Find("DishPanel").GetComponent<Cooking>();
     }
 
     private void Update() {
@@ -39,8 +39,9 @@ public class OrderManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha0 + i) && orders[i - 1] != null)
             {
                 currentIndex = i - 1;
-                updateDescriptionUI(orders[i - 1], 59f);
-                updateCookingUI(orders[i - 1]);
+                descriptionScript.SetOrderDescription(orders[i - 1]);
+                updateCookingUI(orders[i - 1], currentIndex);
+                cookingScript.ChangeDish(currentIndex);
             }
         }
     }
@@ -57,9 +58,11 @@ public class OrderManager : MonoBehaviour
     public void AddOrder(GameObject customer) {
         for (int i = 0; i < numberOfOrders; i++) {
             if (orders[i] == null) {
-                orders[i] = Recipe.SelectRandomRecipe();
-                updateOrderUI(i, orders[i], 30f);
+                // orders[i] = Recipe.SelectRandomRecipe();
+                orders[i] = "Cheeseburger";
+                orderUIScript.SetOrderSlot(i, orders[i], 30f);
                 customers[i] = customer;
+                cookingScript.AddDish(i, Instantiate(Recipe.dishes[orders[i]], new Vector3(0f, 0f, 0f), Quaternion.identity), orders[i]);
                 break;
             }
         }
@@ -69,9 +72,17 @@ public class OrderManager : MonoBehaviour
         customers[orderIndex].GetComponent<Customer>().ChangeState();
         orders[orderIndex] = null;
         customers[orderIndex] = null;
+        cookingScript.RemoveDish(orderIndex);
+        orderUIScript.ResetOrderSlot(orderIndex);
         if (orderIndex == currentIndex) {
+            descriptionScript.ClearOrderDescription();
             resetCookingUI();
         }
+    }
+
+    public void OrderServed() {
+
+        RemoveOrder(currentIndex);
     }
 
     public bool HasOrder(int index) {
