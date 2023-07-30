@@ -13,7 +13,7 @@ public class Customer : MonoBehaviour
 
     Vector3 target;
     float orderPosition;
-    float speed = 4f;
+    float speed = 5f;
     State currentState = State.Walking;
     Timer timer;
     Action callback;
@@ -37,7 +37,7 @@ public class Customer : MonoBehaviour
                 break;
             case State.Leaving:
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-                if (transform.position.x >= 13f) {
+                if (transform.position.x >= 15f) {
                     callback();
                     Destroy(gameObject);
                 }

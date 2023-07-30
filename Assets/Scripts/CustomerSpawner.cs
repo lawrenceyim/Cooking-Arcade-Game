@@ -8,7 +8,7 @@ public class CustomerSpawner : MonoBehaviour
     float spawnCooldown = 5f;
     OrderManager orderManager;
     [SerializeField] GameObject[] customerPrefab;
-    Vector3 spawnPosition = new Vector3(-13f, -1.35f, 9f);
+    Vector3 spawnPosition = new Vector3(-16f, -1.35f, 9f);
     Timer timer;
     [SerializeField] int customerCount = 0;
     int customerLimit = 6;
@@ -30,7 +30,7 @@ public class CustomerSpawner : MonoBehaviour
             if (customerCount < customerLimit) {
                 SpawnCustomer();
             }
-            if (checkTimeLeft() > 15) {
+            if (checkTimeLeft() > 5) {
                 InvokeNextCustomerSpawn();
             } 
         });
