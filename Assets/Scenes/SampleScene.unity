@@ -451,16 +451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b6d875de0ace148af9a3e2975df9fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dishes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  ingredientsAdded: 000000000000000000000000000000000000000000000000
-  ingredientsNeeded: 000000000000000000000000000000000000000000000000
-  currentIndex: 1
 --- !u!1 &219725135
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +568,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.509434, g: 0.33609444, b: 0.19464225, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1877,6 +1867,14 @@ MonoBehaviour:
   - {fileID: 4298379781775575330, guid: 06d651c8153a48046b4bec4412d7faf7, type: 3}
   customerPrefab:
   - {fileID: 516305000796953393, guid: 9ce500de6c6486f408414b932d3e5055, type: 3}
+  ingredientIconPrefab:
+  - {fileID: 6767358900033959072, guid: ad7a85ae576cd1a49b091df1286d82f3, type: 3}
+  - {fileID: 6767358900033959072, guid: 7583148e70908c549b790e75c6ce1c79, type: 3}
+  - {fileID: 6767358900033959072, guid: 08fce5a027c75e94ea7f9bfb6dad7e0f, type: 3}
+  - {fileID: 6767358900033959072, guid: 666169da0b833e2449c7dde986707e35, type: 3}
+  - {fileID: 6767358900033959072, guid: 794df26352ce9fb4eb61d308decae4a2, type: 3}
+  - {fileID: 6767358900033959072, guid: fd28db06de87d2c4297027e358427af3, type: 3}
+  - {fileID: 6767358900033959072, guid: 781972d770ce8614bb5735a2f493c876, type: 3}
 --- !u!1 &1348426874 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1186839277581124416, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}

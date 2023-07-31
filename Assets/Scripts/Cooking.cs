@@ -5,10 +5,10 @@ using UnityEngine;
 public class Cooking : MonoBehaviour
 {
     OrderManager orderManager;
-    public GameObject[] dishes = new GameObject[6];
-    public int[] ingredientsAdded = new int[6];
-    public int[] ingredientsNeeded = new int[6];
-    public int currentIndex = 0;
+    GameObject[] dishes = new GameObject[6];
+    int[] ingredientsAdded = new int[6];
+    int[] ingredientsNeeded = new int[6];
+    int currentIndex = 0;
 
     private void Start() {
         orderManager = GameObject.Find("LevelManager").GetComponent<OrderManager>();
