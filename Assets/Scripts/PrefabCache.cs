@@ -5,8 +5,9 @@ using UnityEngine;
 public class PrefabCache : MonoBehaviour
 {
     public static PrefabCache instance;
-    [SerializeField] public GameObject CheeseBurger;
+    [SerializeField] public List<GameObject> dishes;
     [SerializeField] public GameObject[] customerPrefab;
+    public Dictionary<string, GameObject> dishDict;
 
     private void Awake() {
         if (instance == null) {
@@ -15,6 +16,12 @@ public class PrefabCache : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
+
+        dishDict = new Dictionary<string, GameObject>();
+        foreach (GameObject dish in dishes) {
+            dishDict.Add(dish.GetComponent<Dish>().dishName, dish);
+        }
+
     }
 
 }

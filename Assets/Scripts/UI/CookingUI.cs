@@ -9,13 +9,12 @@ public class CookingUI : MonoBehaviour
     [SerializeField] GameObject[] cookingSlots;
     TextMeshPro[] ingredientNames;
     TextMeshPro[] buttonKeys;
-    Recipe.FoodTypes currentFoodtype;
-    string currentDishName;
     Dictionary<KeyCode, Recipe.Ingredients> availableKeys;
     DataUI dataUI;
     Cooking cookingScript;
     int currentIndex;
     List<Recipe.Ingredients> neededForDish;
+    Dish dish;
 
     void Start()
     {
@@ -35,19 +34,18 @@ public class CookingUI : MonoBehaviour
         ProcessInput();
     }
 
-    public void UpdateButtons(string name, int index) {
+    public void UpdateButtons(Dish dish, int index) {
         DeactivateButtons();
+        this.dish = dish;
         currentIndex = index;
-        currentDishName = name;
-        currentFoodtype = Recipe.foodTypes[name];
-        availableKeys = Recipe.GetCurrentKeys(currentFoodtype);
-        List<Recipe.Ingredients> ingredients = Recipe.GetAllIngredients(name);
+        availableKeys = Recipe.GetCurrentKeys(dish.foodType);
+        List<Recipe.Ingredients> ingredients = Recipe.GetAllIngredients(dish);
         for (int i = 0; i < ingredients.Count; i++) {
             cookingSlots[i].SetActive(true);
             ingredientNames[i].text = ingredients[i].ToString();
             buttonKeys[i].text = Recipe.keyMapping[ingredients[i]].ToString();
         }
-        neededForDish = Recipe.requiredIngredients[name];
+        neededForDish = dish.ingredientsList;
     }
 
     public void DeactivateButtons() {
