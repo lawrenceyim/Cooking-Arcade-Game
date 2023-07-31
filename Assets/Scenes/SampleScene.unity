@@ -1788,6 +1788,7 @@ GameObject:
   - component: {fileID: 1229866053}
   - component: {fileID: 1229866055}
   - component: {fileID: 1229866056}
+  - component: {fileID: 1229866057}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: LevelManager
@@ -1849,6 +1850,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55beab51fb5e9814b869c0da4375b783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1229866057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229866052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78991f9bd7897454cb46eac6c2699715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CheeseBurger: {fileID: 4298379781775575330, guid: 06d651c8153a48046b4bec4412d7faf7, type: 3}
+  customerPrefab:
+  - {fileID: 516305000796953393, guid: 9ce500de6c6486f408414b932d3e5055, type: 3}
 --- !u!1 &1348426874 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1186839277581124416, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}

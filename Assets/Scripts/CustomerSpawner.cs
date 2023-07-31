@@ -7,7 +7,6 @@ public class CustomerSpawner : MonoBehaviour
 {
     float spawnCooldown = 5f;
     OrderManager orderManager;
-    [SerializeField] GameObject[] customerPrefab;
     Vector3 spawnPosition = new Vector3(-16f, -1.35f, 9f);
     Timer timer;
     [SerializeField] int customerCount = 0;
@@ -38,8 +37,8 @@ public class CustomerSpawner : MonoBehaviour
 
     void SpawnCustomer() {
         IncreaseCustomerCount();
-        int randomCustomerIndex = UnityEngine.Random.Range(0, customerPrefab.Length);
-        GameObject customer = Instantiate(customerPrefab[randomCustomerIndex], spawnPosition, Quaternion.identity);
+        int randomCustomerIndex = UnityEngine.Random.Range(0, PrefabCache.instance.customerPrefab.Length);
+        GameObject customer = Instantiate(PrefabCache.instance.customerPrefab[randomCustomerIndex], spawnPosition, Quaternion.identity);
         customer.GetComponent<Customer>().SetDelegate(DecreaseCustomerCount);
     }
 

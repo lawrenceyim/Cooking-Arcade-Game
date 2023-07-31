@@ -56,7 +56,9 @@ public static class Recipe
         recipeList.Add(name);
 
         if (name == "Cheeseburger")
-            dishes.Add(name, (GameObject) Resources.Load("Prefab/Food/Dishes/Cheeseburger"));
+            dishes.Add(name, PrefabCache.instance.CheeseBurger);
+
+            // dishes.Add(name, (GameObject) Resources.Load("Prefab/Food/Dishes/Cheeseburger"));
     
     }
 
