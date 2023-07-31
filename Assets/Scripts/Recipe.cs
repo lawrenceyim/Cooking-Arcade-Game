@@ -38,29 +38,10 @@ public static class Recipe
         Salad
     }
 
-
-    public static Dictionary<string, List<Ingredients>> requiredIngredients = new Dictionary<string, List<Ingredients>>();
     public static Dictionary<FoodTypes, List<Ingredients>> ingredientsForFoodType = new Dictionary<FoodTypes, List<Ingredients>>();
-    public static Dictionary<string, string> recipeDescription = new Dictionary<string, string>();
-    public static Dictionary<string, FoodTypes> foodTypes = new Dictionary<string, FoodTypes>();
     public static Dictionary<Ingredients, KeyCode> keyMapping = new Dictionary<Ingredients, KeyCode>();
-    public static List<string> recipeList = new List<string>();
-    public static Dictionary<string, GameObject> dishes = new Dictionary<string, GameObject>();
     public static Dictionary<Ingredients, int> ingredientCost = new Dictionary<Ingredients, int>();
-    public static Dictionary<string, int> sellingPrice = new Dictionary<string, int>();
-
-    public static void AddRecipe(string name, List<Ingredients> required, FoodTypes type, string description) {
-        requiredIngredients.Add(name, required);
-        foodTypes.Add(name, type);
-        recipeDescription.Add(name, description);
-        recipeList.Add(name);
-
-        if (name == "Cheeseburger")
-            dishes.Add(name, PrefabCache.instance.CheeseBurger);
-
-            // dishes.Add(name, (GameObject) Resources.Load("Prefab/Food/Dishes/Cheeseburger"));
-    
-    }
+    public static List<Dish> dishList = new List<Dish>();
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     public static void InitializeRecipes() {
@@ -71,66 +52,10 @@ public static class Recipe
         ingredientsForFoodType.Add(FoodTypes.Salad, new List<Ingredients>{Ingredients.avocado, Ingredients.bacon, Ingredients.carrots, 
             Ingredients.croutons, Ingredients.cucumbers, Ingredients.eggs, Ingredients.feta, Ingredients.lettuce, 
             Ingredients.olives, Ingredients.onions, Ingredients.parmesan, Ingredients.tomatoes});
-
-        AddRecipe("Cheeseburger", new List<Ingredients>{Ingredients.buns, Ingredients.cheese, Ingredients.patty}, 
-            FoodTypes.Burger, 
-            "Buns, cheese, patty.");
-        AddRecipe("The Works", new List<Ingredients>{Ingredients.buns, Ingredients.cheese, Ingredients.lettuce, 
-            Ingredients.onions, Ingredients.patty, Ingredients.tomatoes}, 
-            FoodTypes.Burger, 
-            "Buns, cheese, lettuce, onions, patty, and tomatoes.");
-        AddRecipe("Classic Burger", new List<Ingredients>{Ingredients.buns, Ingredients.lettuce, Ingredients.patty, Ingredients.tomatoes}, 
-            FoodTypes.Burger, 
-            "Buns, lettuce, patty, and tomatoes");
-        AddRecipe("Bacon Cheeseburger", new List<Ingredients>{Ingredients.bacon, Ingredients.buns, Ingredients.cheese, 
-            Ingredients.patty}, 
-            FoodTypes.Burger, 
-            "Bacon, buns, cheese, and patty");
-
-        AddRecipe("Classic Pepperoni Pizza", new List<Ingredients>{Ingredients.dough, Ingredients.mozzarella, Ingredients.pepperoni, Ingredients.sauce},
-            FoodTypes.Pizza,
-            "Dough, mozzarella, pepperoni, and sauce");
-        AddRecipe("Meat Lovers Pizza", new List<Ingredients>{Ingredients.dough, Ingredients.ham, Ingredients.mozzarella, 
-            Ingredients.pepperoni, Ingredients.sauce, Ingredients.sausage},
-            FoodTypes.Pizza,
-            "Dough, ham, mozzarella, pepperoni, sauce, and sausage");
-        AddRecipe("Hawaiian Pizza", new List<Ingredients>{Ingredients.dough, Ingredients.ham, Ingredients.mozzarella, 
-            Ingredients.pineapple, Ingredients.sauce},
-            FoodTypes.Pizza,
-            "Dough, ham, mozzarella, pineapple, and sauce");
-        AddRecipe("Vegetarian Pizza", new List<Ingredients>{Ingredients.dough, Ingredients.mozzarella, Ingredients.mushrooms, 
-            Ingredients.peppers, Ingredients.sauce},
-            FoodTypes.Pizza,
-            "Dough, mozzarella, mushrooms, peppers, and sauce");
-        AddRecipe("Cheese Pizza", new List<Ingredients>{Ingredients.dough, Ingredients.mozzarella, Ingredients.sauce},
-            FoodTypes.Pizza,
-            "Dough, mozzarella, and sauce");
-
-        AddRecipe("Garden Salad", new List<Ingredients>{Ingredients.carrots, Ingredients.cucumbers, Ingredients.lettuce, Ingredients.tomatoes},
-            FoodTypes.Salad,
-            "Lettuce, tomatoes, cucumbers, and carrots");
-        AddRecipe("Caesar Salad", new List<Ingredients>{Ingredients.croutons, Ingredients.lettuce, Ingredients.parmesan},
-            FoodTypes.Salad,
-            "Lettuce, croutons, and parmesan");
-        AddRecipe("Greek Salad", new List<Ingredients>{Ingredients.cucumbers, Ingredients.feta, Ingredients.olives, Ingredients.onions, Ingredients.tomatoes},
-            FoodTypes.Salad,
-            "Cucumbers, feta, olives, onions, and tomatoes");
-        AddRecipe("Cobb Salad", new List<Ingredients>{Ingredients.avocado, Ingredients.bacon, Ingredients.eggs, Ingredients.lettuce, Ingredients.tomatoes},
-            FoodTypes.Salad,
-            "Avocado, bacon, eggs, lettuce, and tomatoes");
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    public static void InitializeSellingPrices() {
-        sellingPrice.Add("Cheeseburger", 10);
-        sellingPrice.Add("Classic Burger", 10);
-        sellingPrice.Add("The Works", 15);
-        sellingPrice.Add("Bacon Cheeseburger", 15);
-
-    }
-
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    public static void InitializeKeys() {
+    private static void InitializeKeys() {
         keyMapping.Add(Ingredients.avocado, KeyCode.A);
         keyMapping.Add(Ingredients.bacon, KeyCode.B);
         keyMapping.Add(Ingredients.buns, KeyCode.D);
@@ -158,7 +83,7 @@ public static class Recipe
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    public static void InitializePrice() {
+    private static void InitializePrice() {
         //ingredientCost.Add(Ingredients.avocado, );
        ingredientCost.Add(Ingredients.bacon, 3);
        ingredientCost.Add(Ingredients.buns, 1);
@@ -185,17 +110,21 @@ public static class Recipe
        ingredientCost.Add(Ingredients.tomatoes, 1);
     }
 
-    public static List<Ingredients> GetRequiredIngredients(string name) {
-        return requiredIngredients[name];
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    private static void ConvertDictToList() {
+        List<GameObject> temp = new List<GameObject>(PrefabCache.instance.dishes);
+        foreach (GameObject g in temp) {
+            dishList.Add(g.GetComponent<Dish>());
+        }
     }
 
-    public static List<Ingredients> GetAllIngredients(string name) {
-        return ingredientsForFoodType[foodTypes[name]];
+    public static List<Ingredients> GetAllIngredients(Dish dish) {
+        return ingredientsForFoodType[dish.foodType];
     }
 
-    public static string SelectRandomRecipe() {
-        int randomIndex = UnityEngine.Random.Range(0, recipeList.Count);
-        return recipeList[randomIndex];
+    public static Dish SelectRandomRecipe() {
+        int randomIndex = UnityEngine.Random.Range(0, dishList.Count);
+        return dishList[randomIndex];
     }
 
     public static Dictionary<KeyCode, Ingredients> GetCurrentKeys(FoodTypes foodtype) {

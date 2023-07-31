@@ -15,9 +15,9 @@ public class Description : MonoBehaviour
         orderDescription.text = "";
     }
 
-    public void SetOrderDescription(string name) {
-        orderName.text = name;
-        orderDescription.text = Recipe.recipeDescription[name];
+    public void SetOrderDescription(Dish dish) {
+        orderName.text = dish.dishName;
+        orderDescription.text = dish.description;
     }
 
     public void ClearOrderDescription() {

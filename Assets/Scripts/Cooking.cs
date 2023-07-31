@@ -33,7 +33,7 @@ public class Cooking : MonoBehaviour
         ResetDish(index);
         dishes[index].SetActive(false);
         ingredientsAdded[index] = 0;
-        List<Recipe.Ingredients> temp = Recipe.requiredIngredients[dishName];
+        List<Recipe.Ingredients> temp = dish.GetComponent<Dish>().ingredientsList;
         ingredientsNeeded[index] = temp.Count;
     }
 

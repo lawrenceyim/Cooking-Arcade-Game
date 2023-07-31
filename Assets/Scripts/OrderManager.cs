@@ -6,11 +6,11 @@ using UnityEngine;
 public class OrderManager : MonoBehaviour
 {
     int numberOfOrders = 6;
-    string[] orders;
+    Dish[] orders;
     GameObject[] customers;
     Description descriptionScript;
     OrderUI orderUIScript;
-    public delegate void CookingUIDelegate(string name, int index);
+    public delegate void CookingUIDelegate(Dish name, int index);
     CookingUIDelegate updateCookingUI;
     public delegate void CookingUIResetDelegate();
     CookingUIResetDelegate resetCookingUI;
@@ -21,7 +21,7 @@ public class OrderManager : MonoBehaviour
 
     void Start()
     {   
-        orders = new string[numberOfOrders];
+        orders = new Dish[numberOfOrders];
         customers = new GameObject[numberOfOrders];
         descriptionScript = GameObject.Find("DescriptionPanel").GetComponent<Description>();
         orderUIScript = GameObject.Find("OrderPanel").GetComponent<OrderUI>();
@@ -29,7 +29,6 @@ public class OrderManager : MonoBehaviour
         resetCookingUI = GameObject.Find("CookingPanel").GetComponent<CookingUI>().DeactivateButtons;
         cookingScript = GameObject.Find("DishPanel").GetComponent<Cooking>();
         dataUI = GameObject.Find("DataPanel").GetComponent<DataUI>();
-
     }
 
     private void Update() {
@@ -62,11 +61,10 @@ public class OrderManager : MonoBehaviour
     public void AddOrder(GameObject customer) {
         for (int i = 0; i < numberOfOrders; i++) {
             if (orders[i] == null) {
-                // orders[i] = Recipe.SelectRandomRecipe();
-                orders[i] = "Cheeseburger";
-                orderUIScript.SetOrderSlot(i, orders[i], 30f);
+                orders[i] = Recipe.SelectRandomRecipe();
+                orderUIScript.SetOrderSlot(i, orders[i].dishName, 30f);
                 customers[i] = customer;
-                cookingScript.AddDish(i, Instantiate(Recipe.dishes[orders[i]], new Vector3(0f, 0f, 0f), Quaternion.identity), orders[i]);
+                cookingScript.AddDish(i, Instantiate(PrefabCache.instance.dishDict[orders[i].dishName], new Vector3(0f, 0f, 0f), Quaternion.identity), orders[i].dishName);
                 break;
             }
         }
@@ -85,7 +83,7 @@ public class OrderManager : MonoBehaviour
     }
 
     public void OrderServed() {
-        PlayerData.money += Recipe.sellingPrice[orders[currentIndex]];
+        PlayerData.money += orders[currentIndex].sellingPrice;
         dataUI.UpdateMoneyUI();
         RemoveOrder(currentIndex);
     }
