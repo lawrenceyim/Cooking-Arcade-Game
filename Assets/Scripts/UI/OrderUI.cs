@@ -6,20 +6,20 @@ using TMPro;
 public class OrderUI : MonoBehaviour
 {
     [SerializeField] GameObject[] orderBlocks;
-    float[] countdowns;
-    TextMeshPro[] texts;
+    float[] countdowns; 
+    SpriteRenderer[] spriteRenderers;
     TextMeshPro[] countdownTexts;
     OrderManager orderManager;
 
     void Start()
     {
         countdowns = new float[orderBlocks.Length];
-        texts = new TextMeshPro[orderBlocks.Length];
+        spriteRenderers = new SpriteRenderer[orderBlocks.Length];
         countdownTexts = new TextMeshPro[orderBlocks.Length];
         for (int i = 0; i < orderBlocks.Length; i++) {
-            texts[i] = orderBlocks[i].transform.Find("Text").GetComponent<TextMeshPro>();
-            countdownTexts[i] = orderBlocks[i].transform.Find("Countdown").GetComponent<TextMeshPro>();
-            texts[i].text = "";
+            spriteRenderers[i] = orderBlocks[i].transform.Find("Icon").gameObject.GetComponent<SpriteRenderer>();
+            spriteRenderers[i].enabled = false;
+            countdownTexts[i] = orderBlocks[i].transform.Find("Timer").gameObject.transform.Find("Countdown").GetComponent<TextMeshPro>();
             countdownTexts[i].text = "";
         }
         orderManager = GameObject.Find("LevelManager").GetComponent<OrderManager>();
@@ -40,13 +40,15 @@ public class OrderUI : MonoBehaviour
     }
 
     public void SetOrderSlot(int index, string name, float countdown) {
-        texts[index].text = name;
+        spriteRenderers[index].sprite = PrefabCache.instance.dishIconDict[name];
+        spriteRenderers[index].enabled = true;
         countdowns[index] = countdown;
         countdownTexts[index].text = ((int) countdown).ToString();
     }
 
     public void ResetOrderSlot(int index) {
-        texts[index].text = "";
+        spriteRenderers[index].enabled = false;
         countdownTexts[index].text = "";
     }
+
 }

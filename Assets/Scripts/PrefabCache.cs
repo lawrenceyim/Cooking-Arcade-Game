@@ -8,8 +8,10 @@ public class PrefabCache : MonoBehaviour
     [SerializeField] public List<GameObject> dishes;
     [SerializeField] public GameObject[] customerPrefab;
     [SerializeField] public GameObject[] ingredientIconPrefab;
+    [SerializeField] public GameObject[] dishIconPrefab;
     public Dictionary<string, GameObject> dishDict;
     public Dictionary<Recipe.Ingredients, Sprite> iconDict;
+    public Dictionary<string, Sprite> dishIconDict;
 
     private void Awake() {
         if (instance == null) {
@@ -27,6 +29,11 @@ public class PrefabCache : MonoBehaviour
         iconDict = new Dictionary<Recipe.Ingredients, Sprite>();
         foreach (GameObject icon in ingredientIconPrefab) {
             iconDict.Add(icon.GetComponent<IngredientIcon>().ingredient, icon.GetComponent<SpriteRenderer>().sprite);
+        }
+
+        dishIconDict = new Dictionary<string, Sprite>();
+        foreach (GameObject icon in dishIconPrefab) {
+            dishIconDict.Add(icon.GetComponent<DishIcon>().dishName, icon.GetComponent<SpriteRenderer>().sprite);
         }
 
     }
