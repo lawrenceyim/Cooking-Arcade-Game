@@ -7,7 +7,7 @@ using TMPro;
 public class CookingUI : MonoBehaviour
 {
     [SerializeField] GameObject[] cookingSlots;
-    GameObject[] iconGameObjects;
+    [SerializeField] SpriteRenderer[] iconSpriteRenderers;
     TextMeshPro[] buttonKeys;
     Dictionary<KeyCode, Recipe.Ingredients> availableKeys;
     DataUI dataUI;
@@ -21,10 +21,8 @@ public class CookingUI : MonoBehaviour
         cookingScript = GameObject.Find("DishPanel").GetComponent<Cooking>();
         dataUI = GameObject.Find("DataPanel").GetComponent<DataUI>();
         availableKeys = new Dictionary<KeyCode, Recipe.Ingredients>();
-        iconGameObjects = new GameObject[cookingSlots.Length];
         buttonKeys = new TextMeshPro[cookingSlots.Length];
         for (int i = 0; i < cookingSlots.Length; i++) {
-            iconGameObjects[i] = cookingSlots[i].transform.Find("Icon").gameObject;
             buttonKeys[i] = cookingSlots[i].transform.Find("Button").transform.Find("Text").GetComponent<TextMeshPro>();
         }
         DeactivateButtons();
@@ -41,9 +39,8 @@ public class CookingUI : MonoBehaviour
         availableKeys = Recipe.GetCurrentKeys(dish.foodType);
         List<Recipe.Ingredients> ingredients = Recipe.GetAllIngredients(dish);
         for (int i = 0; i < ingredients.Count; i++) {
-            cookingSlots[i].SetActive(true);
-            iconGameObjects[i].GetComponent<SpriteRenderer>().sprite = PrefabCache.instance.iconDict[ingredients[i]];
-            iconGameObjects[i].SetActive(true);
+            iconSpriteRenderers[i].sprite = PrefabCache.instance.iconDict[ingredients[i]];
+            iconSpriteRenderers[i].enabled = true;
             buttonKeys[i].text = Recipe.keyMapping[ingredients[i]].ToString();
         }
         neededForDish = dish.ingredientsList;
@@ -51,9 +48,8 @@ public class CookingUI : MonoBehaviour
 
     public void DeactivateButtons() {
         for (int i = 0; i < cookingSlots.Length; i++) {
-            iconGameObjects[i].SetActive(false);
+            iconSpriteRenderers[i].enabled = false;
             buttonKeys[i].text = "";
-            cookingSlots[i].SetActive(false);
         }
         availableKeys = null;
     }
