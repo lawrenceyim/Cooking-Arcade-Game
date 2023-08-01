@@ -2105,6 +2105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dishes:
   - {fileID: 4298379781775575330, guid: 06d651c8153a48046b4bec4412d7faf7, type: 3}
+  - {fileID: 4298379781775575330, guid: 657b5434ab95fc34fb31f9f02ee9e37f, type: 3}
   customerPrefab:
   - {fileID: 516305000796953393, guid: 9ce500de6c6486f408414b932d3e5055, type: 3}
   ingredientIconPrefab:
@@ -2117,6 +2118,7 @@ MonoBehaviour:
   - {fileID: 6767358900033959072, guid: 781972d770ce8614bb5735a2f493c876, type: 3}
   dishIconPrefab:
   - {fileID: 1585247147735194754, guid: 9e5dc7f28f20ebe498427311af70e905, type: 3}
+  - {fileID: 1650474068419893535, guid: a669c0fa139c14046a2e4718503390f0, type: 3}
 --- !u!1 &1241273758 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3499354266210521290, guid: 78e03e8cac9ee7e4db5a0f2adbdb3e6a, type: 3}
