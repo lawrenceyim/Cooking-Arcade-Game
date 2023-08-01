@@ -37,7 +37,7 @@ public class Customer : MonoBehaviour
                 break;
             case State.Leaving:
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-                if (transform.position.x >= 15f) {
+                if (transform.position.x >= 9f) {
                     callback();
                     Destroy(gameObject);
                 }
