@@ -60,6 +60,7 @@ public class CookingUI : MonoBehaviour
             if (Input.GetKeyDown(key)) {
                 Recipe.Ingredients ingredient = availableKeys[key];
                 if (!neededForDish.Contains(ingredient)) {
+                    AudioManager.instance.PlayTrashSound();
                     Debug.Log("Wrong ingredient. Dish scrapped");
                     cookingScript.ResetDish(currentIndex);
                 } 
@@ -67,6 +68,7 @@ public class CookingUI : MonoBehaviour
                     continue;
                 }
                 if (!cookingScript.IngredientAlreadyAdded(ingredient)) {
+                    AudioManager.instance.PlayAddIngredientSound();
                     PlayerData.money -= Recipe.ingredientCost[ingredient];
                     dataUI.UpdateMoneyUI();
                     cookingScript.MakeIngredientVisible(ingredient);
