@@ -13,7 +13,7 @@ public class Customer : MonoBehaviour
 
     Vector3 target;
     float orderPosition;
-    float speed = 5f;
+    float speed = 3f;
     State currentState = State.Walking;
     Timer timer;
     Action callback;
