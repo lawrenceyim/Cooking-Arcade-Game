@@ -16,7 +16,7 @@ public class Description : MonoBehaviour
     }
 
     public void SetOrderDescription(Dish dish) {
-        orderName.text = dish.dishName;
+        orderName.text = Recipe.dishNameString[dish.dishName];
         orderDescription.text = dish.description;
     }
 

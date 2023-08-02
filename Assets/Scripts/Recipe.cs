@@ -38,9 +38,17 @@ public static class Recipe
         Salad
     }
 
+    public enum DishName {
+        TheWorks,
+        ClassicBurger,
+        Cheeseburger,
+        BaconCheeseburger
+    }
+
     public static Dictionary<FoodTypes, List<Ingredients>> ingredientsForFoodType = new Dictionary<FoodTypes, List<Ingredients>>();
     public static Dictionary<Ingredients, KeyCode> keyMapping = new Dictionary<Ingredients, KeyCode>();
     public static Dictionary<Ingredients, int> ingredientCost = new Dictionary<Ingredients, int>();
+    public static Dictionary<DishName, string> dishNameString = new Dictionary<DishName, string>();
     public static List<Dish> dishList = new List<Dish>();
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -116,6 +124,15 @@ public static class Recipe
         foreach (GameObject g in temp) {
             dishList.Add(g.GetComponent<Dish>());
         }
+    }
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    private static void InitializeDishNames() {
+        dishNameString.Add(DishName.BaconCheeseburger, "Bacon CheeseBurger");
+        dishNameString.Add(DishName.ClassicBurger, "Classic Burger");
+        dishNameString.Add(DishName.TheWorks, "The Works");
+        dishNameString.Add(DishName.Cheeseburger, "CheeseBurger");
+
     }
 
     public static List<Ingredients> GetAllIngredients(Dish dish) {

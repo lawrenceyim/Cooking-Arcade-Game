@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class DishIcon : MonoBehaviour
 {
-    [SerializeField] public string dishName;
+    [SerializeField] public Recipe.DishName dishName;
 }

@@ -64,7 +64,7 @@ public class OrderManager : MonoBehaviour
                 orders[i] = Recipe.SelectRandomRecipe();
                 orderUIScript.SetOrderSlot(i, orders[i].dishName, 30f);
                 customers[i] = customer;
-                cookingScript.AddDish(i, Instantiate(PrefabCache.instance.dishDict[orders[i].dishName], new Vector3(0f, 0f, 0f), Quaternion.identity), orders[i].dishName);
+                cookingScript.AddDish(i, Instantiate(PrefabCache.instance.dishDict[orders[i].dishName], new Vector3(0f, 0f, 0f), Quaternion.identity));
                 break;
             }
         }

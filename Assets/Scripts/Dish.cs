@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dish : MonoBehaviour
 {
-    [SerializeField] public string dishName;
+    [SerializeField] public Recipe.DishName dishName;
     [SerializeField] public Recipe.FoodTypes foodType;
     [SerializeField] public List<Recipe.Ingredients> ingredientsList;
     [SerializeField] public string description;

@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b23a86718b0e440408030a40c979c621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dishName: Classic Burger
+  dishName: 1
   foodType: 0
   ingredientsList: 020000000a0000001100000017000000
   description: Buns, patty, lettuce, and tomatoes

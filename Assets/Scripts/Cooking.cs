@@ -28,7 +28,7 @@ public class Cooking : MonoBehaviour
         ingredientsNeeded[index] = 0;
     }
 
-    public void AddDish(int index, GameObject dish, string dishName) {
+    public void AddDish(int index, GameObject dish) {
         dishes[index] = dish;
         ResetDish(index);
         dishes[index].SetActive(false);

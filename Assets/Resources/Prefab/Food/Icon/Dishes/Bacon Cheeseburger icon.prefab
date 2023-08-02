@@ -97,4 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2509fc171960e542a15b094c36e6f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dishName: Bacon Cheeseburger
+  dishName: 3

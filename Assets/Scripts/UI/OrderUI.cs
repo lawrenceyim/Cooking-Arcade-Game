@@ -39,8 +39,8 @@ public class OrderUI : MonoBehaviour
         }
     }
 
-    public void SetOrderSlot(int index, string name, float countdown) {
-        spriteRenderers[index].sprite = PrefabCache.instance.dishIconDict[name];
+    public void SetOrderSlot(int index, Recipe.DishName dishName, float countdown) {
+        spriteRenderers[index].sprite = PrefabCache.instance.dishIconDict[dishName];
         spriteRenderers[index].enabled = true;
         countdowns[index] = countdown;
         countdownTexts[index].text = ((int) countdown).ToString();

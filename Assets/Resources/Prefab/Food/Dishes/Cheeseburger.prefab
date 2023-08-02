@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b23a86718b0e440408030a40c979c621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dishName: Cheeseburger
+  dishName: 2
   foodType: 0
   ingredientsList: 020000000400000011000000
   description: Buns, cheese, and a patty
