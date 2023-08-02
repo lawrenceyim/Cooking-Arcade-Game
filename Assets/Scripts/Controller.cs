@@ -12,10 +12,68 @@ public class Controller : MonoBehaviour
     [SerializeField] OrderManager orderManager;
     [SerializeField] OrderUI orderUI;
 
+    // Cooking
+    public void AddDishToCookingPanel(int index, GameObject dish) {
+        cooking.AddDish(index, dish);
+    }
+
+    public void AddIngredientToDish(Recipe.Ingredients ingredients) {
+        cooking.MakeIngredientVisible(ingredients);
+    }
+
+    public void ChangeDishBeingWorkedOn(int index) {
+        cooking.ChangeDish(index);        
+    }
+    
+    public bool IngredientAlreadyAdded(Recipe.Ingredients ingredient) {
+        return cooking.IngredientAlreadyAdded(ingredient);
+    }
+
+    public bool IsDishComplete() {
+        return cooking.IsDishComplete();
+    }
+    
+    public void RemoveDishFromCookingPanel(int index) {
+        cooking.RemoveDish(index);
+    }
+
+    public void ResetDishBeingWorkedOn(int index) {
+        cooking.ResetDish(index);
+    }
+
+    // CookingUI
+    public void ClearCookingButtons() {
+        cookingUI.DeactivateButtons();
+    }
+
+    public void UpdateCookingButtons(Dish dish, int index) {
+        cookingUI.UpdateButtons(dish, index);
+    }
+
+    // CustomerSpawner
+    public bool CheckIfCustomerCountIsZero() {
+        return customerSpawner.NoCustomersLeft();
+    }
+
+    // DataUI
     public float GetTimeLeft() {
         return dataUI.GetTimeLeft();
     }
 
+    public void UpdateMoneyUI() {
+        dataUI.UpdateMoneyUI();
+    }
+
+    // Description
+    public void ClearDescriptionPanel() {
+        description.ClearOrderDescription();
+    }
+
+    public void SetOrderDescription(Dish dish) {
+        description.SetOrderDescription(dish);
+    }
+
+    // OrderManager
     public bool OrderSlotIsOccupied(int index) {
         return orderManager.HasOrder(index);
     }
@@ -24,68 +82,16 @@ public class Controller : MonoBehaviour
         orderManager.RemoveOrder(index);
     }
 
-    public void SetOrderDescription(Dish dish) {
-        description.SetOrderDescription(dish);
-    }
-
-    public void UpdateCookingButtons(Dish dish, int index) {
-        cookingUI.UpdateButtons(dish, index);
-    }
-
-    public void ChangeDishBeingWorkedOn(int index) {
-        cooking.ChangeDish(index);        
-    }
-
-    public void AddOrderToOrderSlot(int index, Recipe.DishName dishName, float countdown) {
-        orderUI.SetOrderSlot(index, dishName, countdown);
-    }
-
-    public void AddDishToCookingPanel(int index, GameObject dish) {
-        cooking.AddDish(index, dish);
-    }
-
-    public void RemoveDishFromCookingPanel(int index) {
-        cooking.RemoveDish(index);
-    }
-
-    public void ResetOrderSlot(int index) {
-        orderUI.ResetOrderSlot(index);
-    }
-
-    public void ClearDescriptionPanel() {
-        description.ClearOrderDescription();
-    }
-
-    public void ClearCookingButtons() {
-        cookingUI.DeactivateButtons();
-    }
-
-    public void UpdateMoneyUI() {
-        dataUI.UpdateMoneyUI();
-    }
-
-    public bool IsDishComplete() {
-        return cooking.IsDishComplete();
-    }
-
     public void ServeTheDish() {
         orderManager.OrderServed();
     }
 
-
-    public void ResetDishBeingWorkedOn(int index) {
-        cooking.ResetDish(index);
+    // OrderUI
+    public void AddOrderToOrderSlot(int index, Recipe.DishName dishName, float countdown) {
+        orderUI.SetOrderSlot(index, dishName, countdown);
     }
 
-    public bool IngredientAlreadyAdded(Recipe.Ingredients ingredient) {
-        return cooking.IngredientAlreadyAdded(ingredient);
-    }
-
-    public void AddIngredientToDish(Recipe.Ingredients ingredients) {
-        cooking.MakeIngredientVisible(ingredients);
-    }
-
-    public bool CheckIfCustomerCountIsZero() {
-        return customerSpawner.NoCustomersLeft();
+    public void ResetOrderSlot(int index) {
+        orderUI.ResetOrderSlot(index);
     }
 }
