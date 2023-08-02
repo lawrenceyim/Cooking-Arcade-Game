@@ -5,18 +5,16 @@ using TMPro;
 
 public class DataUI : MonoBehaviour
 {
+    [SerializeField] Controller controller;
+
     [SerializeField] TextMeshPro moneyUI;
     [SerializeField] TextMeshPro timerUI;
     private float timeLeft;
-    public delegate bool CustomerSpawnerDelegate();
-    CustomerSpawnerDelegate noCustomersLeft;
-
 
     void Start()
     {
         UpdateMoneyUI();
         timeLeft = 300f;
-        noCustomersLeft = GameObject.Find("LevelManager").GetComponent<CustomerSpawner>().NoCustomersLeft;
     }
 
     void Update()
@@ -28,7 +26,7 @@ public class DataUI : MonoBehaviour
                 timerUI.text = "0";
             }
         } else {
-            if (noCustomersLeft()) {
+            if (controller.CheckIfCustomerCountIsZero()) {
                 EndLevel();
             }
         }

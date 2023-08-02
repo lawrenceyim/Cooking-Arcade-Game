@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Cooking : MonoBehaviour
 {
+    [SerializeField] Controller controller;
+
     OrderManager orderManager;
     GameObject[] dishes = new GameObject[6];
     int[] ingredientsAdded = new int[6];
     int[] ingredientsNeeded = new int[6];
     int currentIndex = 0;
-
-    private void Start() {
-        orderManager = GameObject.Find("LevelManager").GetComponent<OrderManager>();
-    }
 
     public void ResetDish(int index) {
         for (int i = 0; i < dishes[index].transform.childCount; i++) {

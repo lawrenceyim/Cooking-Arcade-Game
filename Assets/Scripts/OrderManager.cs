@@ -5,30 +5,16 @@ using UnityEngine;
 
 public class OrderManager : MonoBehaviour
 {
+    [SerializeField] Controller controller;
     int numberOfOrders = 6;
     Dish[] orders;
     GameObject[] customers;
-    Description descriptionScript;
-    OrderUI orderUIScript;
-    public delegate void CookingUIDelegate(Dish name, int index);
-    CookingUIDelegate updateCookingUI;
-    public delegate void CookingUIResetDelegate();
-    CookingUIResetDelegate resetCookingUI;
     int currentIndex;
-    Cooking cookingScript;
-    DataUI dataUI;
-
 
     void Start()
     {   
         orders = new Dish[numberOfOrders];
         customers = new GameObject[numberOfOrders];
-        descriptionScript = GameObject.Find("DescriptionPanel").GetComponent<Description>();
-        orderUIScript = GameObject.Find("OrderPanel").GetComponent<OrderUI>();
-        updateCookingUI = GameObject.Find("CookingPanel").GetComponent<CookingUI>().UpdateButtons;
-        resetCookingUI = GameObject.Find("CookingPanel").GetComponent<CookingUI>().DeactivateButtons;
-        cookingScript = GameObject.Find("DishPanel").GetComponent<Cooking>();
-        dataUI = GameObject.Find("DataPanel").GetComponent<DataUI>();
     }
 
     private void Update() {
@@ -42,14 +28,14 @@ public class OrderManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha0 + i) && orders[i - 1] != null)
             {
                 currentIndex = i - 1;
-                descriptionScript.SetOrderDescription(orders[i - 1]);
-                updateCookingUI(orders[i - 1], currentIndex);
-                cookingScript.ChangeDish(currentIndex);
+                controller.SetOrderDescription(orders[i - 1]);
+                controller.UpdateCookingButtons(orders[i - 1], currentIndex);
+                controller.ChangeDishBeingWorkedOn(currentIndex);
             }
         }
     }
 
-    public bool hasEmptyOrderSlot() {
+    public bool HasEmptyOrderSlot() {
         for (int i = 0; i < numberOfOrders; i++) {
             if (orders[i] == null) {
                 return true;
@@ -62,9 +48,9 @@ public class OrderManager : MonoBehaviour
         for (int i = 0; i < numberOfOrders; i++) {
             if (orders[i] == null) {
                 orders[i] = Recipe.SelectRandomRecipe();
-                orderUIScript.SetOrderSlot(i, orders[i].dishName, 30f);
+                controller.AddOrderToOrderSlot(i, orders[i].dishName, 30f);
                 customers[i] = customer;
-                cookingScript.AddDish(i, Instantiate(PrefabCache.instance.dishDict[orders[i].dishName], new Vector3(0f, 0f, 0f), Quaternion.identity));
+                controller.AddDishToCookingPanel(i, Instantiate(PrefabCache.instance.dishDict[orders[i].dishName], new Vector3(0f, 0f, 0f), Quaternion.identity));
                 break;
             }
         }
@@ -74,18 +60,18 @@ public class OrderManager : MonoBehaviour
         customers[orderIndex].GetComponent<Customer>().ChangeState();
         orders[orderIndex] = null;
         customers[orderIndex] = null;
-        cookingScript.RemoveDish(orderIndex);
-        orderUIScript.ResetOrderSlot(orderIndex);
+        controller.RemoveDishFromCookingPanel(orderIndex);
+        controller.ResetOrderSlot(orderIndex);
         if (orderIndex == currentIndex) {
-            descriptionScript.ClearOrderDescription();
-            resetCookingUI();
+            controller.ClearDescriptionPanel();
+            controller.ClearCookingButtons();
         }
     }
 
     public void OrderServed() {
         AudioManager.instance.PlayCoinSound();
         PlayerData.money += orders[currentIndex].sellingPrice;
-        dataUI.UpdateMoneyUI();
+        controller.UpdateMoneyUI();
         RemoveOrder(currentIndex);
     }
 

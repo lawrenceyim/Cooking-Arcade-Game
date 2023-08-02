@@ -16,7 +16,7 @@ public class Customer : MonoBehaviour
     float speed = 3f;
     State currentState = State.Walking;
     Timer timer;
-    Action callback;
+    Action DecreaseCustomerCount;
     bool shiftUp;
     float yUp;
     float yDown;
@@ -47,7 +47,7 @@ public class Customer : MonoBehaviour
                 MoveX();
                 MoveY();
                 if (transform.position.x >= 9f) {
-                    callback();
+                    DecreaseCustomerCount();
                     Destroy(gameObject);
                 }
                 break;
@@ -86,6 +86,6 @@ public class Customer : MonoBehaviour
     }
 
     public void SetDelegate(Action action) {
-        callback = action;
+        DecreaseCustomerCount = action;
     }
 }

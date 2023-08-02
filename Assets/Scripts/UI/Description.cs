@@ -6,6 +6,7 @@ using TMPro;
 
 public class Description : MonoBehaviour
 {
+    [SerializeField] Controller controller;
     [SerializeField] TextMeshPro orderName;
     [SerializeField] TextMeshPro orderDescription;
     [SerializeField] TextMeshPro OrderCountdown;

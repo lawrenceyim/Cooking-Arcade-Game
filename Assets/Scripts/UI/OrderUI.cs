@@ -5,11 +5,11 @@ using TMPro;
 
 public class OrderUI : MonoBehaviour
 {
+    [SerializeField] Controller controller;
     [SerializeField] GameObject[] orderBlocks;
     float[] countdowns; 
     SpriteRenderer[] spriteRenderers;
     TextMeshPro[] countdownTexts;
-    OrderManager orderManager;
 
     void Start()
     {
@@ -22,18 +22,17 @@ public class OrderUI : MonoBehaviour
             countdownTexts[i] = orderBlocks[i].transform.Find("Timer").gameObject.transform.Find("Countdown").GetComponent<TextMeshPro>();
             countdownTexts[i].text = "";
         }
-        orderManager = GameObject.Find("LevelManager").GetComponent<OrderManager>();
     }
 
     void Update()
     {
         for (int i = 0; i < orderBlocks.Length; i++) {
-            if (orderManager.HasOrder(i)) {
+            if (controller.OrderSlotIsOccupied(i)) {
                 countdowns[i] -= Time.deltaTime;
                 countdownTexts[i].text = ((int)countdowns[i]).ToString();
                 if (countdowns[i] <= 0) {
                     ResetOrderSlot(i);
-                    orderManager.RemoveOrder(i);
+                    controller.RemoveOrderFromOrderSlot(i);
                 }
             } 
         }

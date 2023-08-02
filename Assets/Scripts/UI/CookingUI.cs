@@ -6,21 +6,17 @@ using TMPro;
 
 public class CookingUI : MonoBehaviour
 {   
+    [SerializeField] Controller controller;
     [SerializeField] GameObject[] cookingSlots;
     [SerializeField] SpriteRenderer[] iconSpriteRenderers;
     TextMeshPro[] buttonKeys;
     Dictionary<KeyCode, Recipe.Ingredients> availableKeys;
-    DataUI dataUI;
-    Cooking cookingScript;
     int currentIndex;
     List<Recipe.Ingredients> neededForDish;
     Dish dish;
-    [SerializeField] OrderManager orderManager;
 
     void Start()
     {
-        cookingScript = GameObject.Find("DishPanel").GetComponent<Cooking>();
-        dataUI = GameObject.Find("DataPanel").GetComponent<DataUI>();
         availableKeys = new Dictionary<KeyCode, Recipe.Ingredients>();
         buttonKeys = new TextMeshPro[cookingSlots.Length];
         for (int i = 0; i < cookingSlots.Length; i++) {
@@ -57,9 +53,9 @@ public class CookingUI : MonoBehaviour
 
     void ProcessInput() {
         if (availableKeys == null) return;
-        if (cookingScript.IsDishComplete()) {
+        if (controller.IsDishComplete()) {
             if (Input.GetKeyDown(KeyCode.Space)) {
-                orderManager.OrderServed();
+                controller.ServeTheDish();
             }
             return;
         }
@@ -69,16 +65,16 @@ public class CookingUI : MonoBehaviour
                 if (!neededForDish.Contains(ingredient)) {
                     AudioManager.instance.PlayTrashSound();
                     Debug.Log("Wrong ingredient. Dish scrapped");
-                    cookingScript.ResetDish(currentIndex);
+                    controller.ResetDishBeingWorkedOn(currentIndex);
                 } 
                 if (!PlayerData.HasEnoughMoney(Recipe.ingredientCost[ingredient])) {
                     continue;
                 }
-                if (!cookingScript.IngredientAlreadyAdded(ingredient)) {
+                if (!controller.IngredientAlreadyAdded(ingredient)) {
                     AudioManager.instance.PlayAddIngredientSound();
                     PlayerData.money -= Recipe.ingredientCost[ingredient];
-                    dataUI.UpdateMoneyUI();
-                    cookingScript.MakeIngredientVisible(ingredient);
+                    controller.UpdateMoneyUI();
+                    controller.AddIngredientToDish(ingredient);
                     continue;
                 } 
             }

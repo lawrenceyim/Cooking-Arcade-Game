@@ -5,22 +5,18 @@ using UnityEngine;
 
 public class CustomerSpawner : MonoBehaviour
 {
+    [SerializeField] Controller controller;
     float spawnCooldown = 5f;
-    OrderManager orderManager;
     Vector3 spawnPosition = new Vector3(-10f, .4f, 9f);
     Timer timer;
     [SerializeField] int customerCount = 0;
     int customerLimit = 6;
-    public delegate float DataDelegate();
-    public DataDelegate checkTimeLeft;
 
     void Start()
     {
-        orderManager = GetComponent<OrderManager>();
         timer = gameObject.AddComponent<Timer>();
         SpawnCustomer();
         InvokeNextCustomerSpawn();
-        checkTimeLeft = GameObject.Find("DataPanel").GetComponent<DataUI>().GetTimeLeft;
     }
 
     // Spawns a customer and sets a timer to spawn the next customer recursively
@@ -29,7 +25,7 @@ public class CustomerSpawner : MonoBehaviour
             if (customerCount < customerLimit) {
                 SpawnCustomer();
             }
-            if (checkTimeLeft() > 5) {
+            if (controller.GetTimeLeft() > 5) {
                 InvokeNextCustomerSpawn();
             } 
         });

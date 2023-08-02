@@ -436,6 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b6d875de0ace148af9a3e2975df9fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 1229866059}
 --- !u!1 &171771909
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258eb3e2f4b87d744912bc0cc132bc10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 1229866059}
   orderBlocks:
   - {fileID: 1544583617}
   - {fileID: 973304517}
@@ -676,6 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2766f1de42d2b0242a2a75e19406608e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 1229866059}
   cookingSlots:
   - {fileID: 1778496237}
   - {fileID: 404469066}
@@ -698,7 +701,6 @@ MonoBehaviour:
   - {fileID: 1448157089}
   - {fileID: 333981135}
   - {fileID: 39673389}
-  orderManager: {fileID: 1229866053}
 --- !u!1 &268560516
 GameObject:
   m_ObjectHideFlags: 0
@@ -2292,7 +2294,7 @@ GameObject:
   - component: {fileID: 1229866053}
   - component: {fileID: 1229866055}
   - component: {fileID: 1229866056}
-  - component: {fileID: 1229866058}
+  - component: {fileID: 1229866059}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: LevelManager
@@ -2312,6 +2314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1404591e759fe5841a00d08ea77fe979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 1229866059}
 --- !u!4 &1229866054
 Transform:
   m_ObjectHideFlags: 0
@@ -2339,6 +2342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60f6722f854bc2b409ae4ecddd16f20a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 1229866059}
   customerCount: 0
 --- !u!114 &1229866056
 MonoBehaviour:
@@ -2352,7 +2356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55beab51fb5e9814b869c0da4375b783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1229866058
+--- !u!114 &1229866059
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2361,9 +2365,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1229866052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cb4b637466167643b0e34181fc41219, type: 3}
+  m_Script: {fileID: 11500000, guid: f1e7ef10253035d4883badc92cf885a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooking: {fileID: 151786574}
+  cookingUI: {fileID: 226925061}
+  customerSpawner: {fileID: 1229866055}
+  dataUI: {fileID: 1781199358}
+  description: {fileID: 1627075793}
+  orderManager: {fileID: 1229866053}
+  orderUI: {fileID: 219725137}
 --- !u!1 &1241273758 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3499354266210521290, guid: 78e03e8cac9ee7e4db5a0f2adbdb3e6a, type: 3}
@@ -3001,6 +3012,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3499354266210521290, guid: 78e03e8cac9ee7e4db5a0f2adbdb3e6a, type: 3}
   m_PrefabInstance: {fileID: 532326412}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1627075793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2056050586845743824, guid: 6e3cf3c1b6df92f46896ec04f85ae334, type: 3}
+  m_PrefabInstance: {fileID: 2056050588298684718}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd427a477ff3c154badb8f6891995d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1778496237 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1186839277581124416, guid: 87844d1ad3073804faa082e26ee51fad, type: 3}
@@ -3105,6 +3127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b820d7b9869967942a9c0ff596efa5d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 1229866059}
   moneyUI: {fileID: 1368201237}
   timerUI: {fileID: 1935824906}
 --- !u!1001 &1821323694
@@ -3704,6 +3727,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2056050586845743824, guid: 6e3cf3c1b6df92f46896ec04f85ae334, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1229866059}
     - target: {fileID: 2056050586845743827, guid: 6e3cf3c1b6df92f46896ec04f85ae334, type: 3}
       propertyPath: m_Name
       value: DescriptionPanel
