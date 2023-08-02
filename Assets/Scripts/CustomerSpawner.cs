@@ -7,7 +7,7 @@ public class CustomerSpawner : MonoBehaviour
 {
     float spawnCooldown = 5f;
     OrderManager orderManager;
-    Vector3 spawnPosition = new Vector3(-10f, .6f, 9f);
+    Vector3 spawnPosition = new Vector3(-10f, .4f, 9f);
     Timer timer;
     [SerializeField] int customerCount = 0;
     int customerLimit = 6;
