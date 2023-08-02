@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b23a86718b0e440408030a40c979c621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dishName: The Works
+  dishName: 0
   foodType: 0
   ingredientsList: 020000000a0000001100000017000000040000000f000000
   description: Buns, patty, cheese, lettuce, tomatoes, and onions
@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3399621231210972532, guid: 2dbc3f8d6c8da2c4784b46a11bf2c949, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3399621231210972532, guid: 2dbc3f8d6c8da2c4784b46a11bf2c949, type: 3}
       propertyPath: m_LocalPosition.z
@@ -132,6 +132,10 @@ PrefabInstance:
     - target: {fileID: 962702416358628077, guid: e26a20aacfa2ec7408cf556f0c748cb3, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: e26a20aacfa2ec7408cf556f0c748cb3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3681104365656244236, guid: e26a20aacfa2ec7408cf556f0c748cb3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -221,7 +225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8992369424686785229, guid: 849bc33240efb83479c1fd446b665e38, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8992369424686785229, guid: 849bc33240efb83479c1fd446b665e38, type: 3}
       propertyPath: m_LocalPosition.z
@@ -287,7 +291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8992369424686785229, guid: d59a6edbc8f0d484083bc5d9107b3817, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8992369424686785229, guid: d59a6edbc8f0d484083bc5d9107b3817, type: 3}
       propertyPath: m_LocalPosition.z
@@ -353,7 +357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8992369424686785229, guid: 5aff3a98392cd994f9c19f9715948f95, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 8992369424686785229, guid: 5aff3a98392cd994f9c19f9715948f95, type: 3}
       propertyPath: m_LocalPosition.z
@@ -419,7 +423,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8992369424686785229, guid: e6322d42bcdc8af46a9622677f72d0c5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8992369424686785229, guid: e6322d42bcdc8af46a9622677f72d0c5, type: 3}
       propertyPath: m_LocalPosition.z

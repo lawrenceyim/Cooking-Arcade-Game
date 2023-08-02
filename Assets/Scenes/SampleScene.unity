@@ -311,8 +311,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1586785995}
   - {fileID: 226925060}
+  - {fileID: 1586785995}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -698,6 +698,7 @@ MonoBehaviour:
   - {fileID: 1448157089}
   - {fileID: 333981135}
   - {fileID: 39673389}
+  orderManager: {fileID: 1229866053}
 --- !u!1 &268560516
 GameObject:
   m_ObjectHideFlags: 0

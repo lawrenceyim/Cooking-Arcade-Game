@@ -49,10 +49,6 @@ public class Cooking : MonoBehaviour
                 break;
             }
         }
-        if (IsDishComplete()) {
-            Debug.Log("Dish completed");
-            StartCoroutine(wait());
-        }
     }
 
     public void ChangeDish(int index) {
@@ -71,11 +67,5 @@ public class Cooking : MonoBehaviour
         }
         return false;
     } 
-
-    IEnumerator wait() {
-        yield return new WaitForSecondsRealtime(.1f);
-        RemoveDish(currentIndex);
-        orderManager.OrderServed();
-    }
 }
 

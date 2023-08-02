@@ -5,7 +5,7 @@ using UnityEngine;
 using TMPro;
 
 public class CookingUI : MonoBehaviour
-{
+{   
     [SerializeField] GameObject[] cookingSlots;
     [SerializeField] SpriteRenderer[] iconSpriteRenderers;
     TextMeshPro[] buttonKeys;
@@ -15,6 +15,7 @@ public class CookingUI : MonoBehaviour
     int currentIndex;
     List<Recipe.Ingredients> neededForDish;
     Dish dish;
+    [SerializeField] OrderManager orderManager;
 
     void Start()
     {
@@ -56,6 +57,12 @@ public class CookingUI : MonoBehaviour
 
     void ProcessInput() {
         if (availableKeys == null) return;
+        if (cookingScript.IsDishComplete()) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                orderManager.OrderServed();
+            }
+            return;
+        }
         foreach (KeyCode key in availableKeys.Keys) {
             if (Input.GetKeyDown(key)) {
                 Recipe.Ingredients ingredient = availableKeys[key];
