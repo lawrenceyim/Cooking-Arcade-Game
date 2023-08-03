@@ -36,6 +36,7 @@ public class CustomerSpawner : MonoBehaviour
         int randomCustomerIndex = UnityEngine.Random.Range(0, PrefabCache.instance.customerPrefab.Length);
         GameObject customer = Instantiate(PrefabCache.instance.customerPrefab[randomCustomerIndex], spawnPosition, Quaternion.identity);
         customer.GetComponent<Customer>().SetDelegate(DecreaseCustomerCount);
+        customer.GetComponent<Customer>().controller = controller;
     }
 
     public void IncreaseCustomerCount() {

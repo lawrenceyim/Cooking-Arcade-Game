@@ -74,6 +74,10 @@ public class Controller : MonoBehaviour
     }
 
     // OrderManager
+    public void AddCustomerOrder(GameObject customer) {
+        orderManager.AddOrder(customer);
+    }
+
     public bool OrderSlotIsOccupied(int index) {
         return orderManager.HasOrder(index);
     }

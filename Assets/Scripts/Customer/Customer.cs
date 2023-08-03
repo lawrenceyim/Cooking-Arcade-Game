@@ -11,6 +11,7 @@ public class Customer : MonoBehaviour
         Leaving
     }
 
+    public Controller controller;
     Vector3 target;
     float orderPosition;
     float speed = 3f;
@@ -79,7 +80,7 @@ public class Customer : MonoBehaviour
     public void ChangeState() {
         if (currentState == State.Walking) {
             currentState = State.Waiting;
-            GameObject.Find("LevelManager").GetComponent<OrderManager>().AddOrder(gameObject);
+            controller.AddCustomerOrder(gameObject);
         } else {
             currentState = State.Leaving;
         }
