@@ -9,11 +9,14 @@ public class CustomerSpawner : MonoBehaviour
     float spawnCooldown = 5f;
     Vector3 spawnPosition = new Vector3(-10f, .4f, 9f);
     Timer timer;
-    [SerializeField] int customerCount = 0;
+    int customerCount = 0;
     int customerLimit = 6;
 
     void Start()
     {
+        if (controller == null) {
+            Debug.LogError("controller script is null");
+        }
         timer = gameObject.AddComponent<Timer>();
         SpawnCustomer();
         InvokeNextCustomerSpawn();

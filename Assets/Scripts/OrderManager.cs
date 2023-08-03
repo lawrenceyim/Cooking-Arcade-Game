@@ -13,6 +13,9 @@ public class OrderManager : MonoBehaviour
 
     void Start()
     {   
+        if (controller == null) {
+            Debug.LogError("controller script is null");
+        }
         orders = new Dish[numberOfOrders];
         customers = new GameObject[numberOfOrders];
     }

@@ -20,6 +20,9 @@ public class OrderUI : MonoBehaviour
 
     void Start()
     {
+        if (controller == null) {
+            Debug.LogError("controller script is null");
+        }
         timeLeft = new float[orderBlocks.Length];
         startingTime = new float[orderBlocks.Length];
         for (int i = 0; i < orderBlocks.Length; i++) {

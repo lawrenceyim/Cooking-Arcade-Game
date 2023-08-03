@@ -17,6 +17,9 @@ public class CookingUI : MonoBehaviour
 
     void Start()
     {
+        if (controller == null) {
+            Debug.LogError("controller script is null");
+        }
         availableKeys = new Dictionary<KeyCode, Recipe.Ingredients>();
         buttonKeys = new TextMeshPro[cookingSlots.Length];
         for (int i = 0; i < cookingSlots.Length; i++) {

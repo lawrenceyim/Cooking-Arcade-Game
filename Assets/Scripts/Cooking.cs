@@ -12,6 +12,13 @@ public class Cooking : MonoBehaviour
     int[] ingredientsNeeded = new int[6];
     int currentIndex = 0;
 
+
+    private void Start() {
+        if (controller == null) {
+            Debug.LogError("controller script is null");
+        }
+    }
+    
     public void ResetDish(int index) {
         for (int i = 0; i < dishes[index].transform.childCount; i++) {
             dishes[index].transform.GetChild(i).gameObject.SetActive(false);

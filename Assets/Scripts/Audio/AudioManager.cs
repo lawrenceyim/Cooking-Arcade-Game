@@ -18,6 +18,21 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start() {
+        if (addIngredient == null) {
+            Debug.LogError("addIngredient audioclip is null");
+        }
+        if (coinSound == null) {
+            Debug.LogError("coinSound audioclip is null");
+        }
+        if (trashSound == null) {
+            Debug.LogError("trashSound audioclip is null");
+        }
+        if (audioSource == null) {
+            Debug.LogError("audiosource is null");
+        }
+    }
+
     public void PlayAddIngredientSound() {
         audioSource.clip = addIngredient;
         audioSource.Play();

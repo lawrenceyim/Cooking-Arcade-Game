@@ -25,6 +25,9 @@ public class Customer : MonoBehaviour
 
     void Start()
     {
+        if (controller == null) {
+            Debug.LogError("controller script is null");
+        }
         shiftUp = true;
         target = transform.position;
         target.x = -target.x + 1;

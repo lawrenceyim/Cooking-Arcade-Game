@@ -12,6 +12,9 @@ public class Description : MonoBehaviour
     [SerializeField] TextMeshPro OrderCountdown;
 
     private void Start() {
+        if (controller == null) {
+            Debug.LogError("controller script is null");
+        }
         orderName.text = "";
         orderDescription.text = "";
     }

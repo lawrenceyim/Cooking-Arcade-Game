@@ -13,6 +13,9 @@ public class DataUI : MonoBehaviour
 
     void Start()
     {
+        if (controller == null) {
+            Debug.LogError("controller script is null");
+        }
         UpdateMoneyUI();
         timeLeft = 300f;
     }

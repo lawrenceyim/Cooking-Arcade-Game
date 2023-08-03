@@ -12,6 +12,30 @@ public class Controller : MonoBehaviour
     [SerializeField] OrderManager orderManager;
     [SerializeField] OrderUI orderUI;
 
+    void Start() {
+        if (cooking == null ) {
+            Debug.LogError("cooking script is null");
+        }
+        if (cookingUI == null ) {
+            Debug.LogError("cookingUI script is null");
+        }
+        if (customerSpawner == null ) {
+            Debug.LogError("customerSpawner script is null");
+        }
+        if (dataUI == null ) {
+            Debug.LogError("dataUI script is null");
+        }
+        if (description == null ) {
+            Debug.LogError("description script is null");
+        }
+        if (orderManager == null ) {
+            Debug.LogError("orderManager script is null");
+        }
+        if (orderUI == null ) {
+            Debug.LogError("orderUI script is null");
+        }
+    }
+
     // Cooking
     public void AddDishToCookingPanel(int index, GameObject dish) {
         cooking.AddDish(index, dish);
