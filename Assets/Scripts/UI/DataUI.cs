@@ -49,6 +49,9 @@ public class DataUI : MonoBehaviour
     }
 
     void EndLevel() {
-
+        PlayerData.IncrementDay();
+        PlayerData.SaveData();
+        // Open a menu that displays stats for the day and give option to return to main menu, quit game,
+        // or start next day. Should indicate to player that the game has been saved as well
     }
 }
