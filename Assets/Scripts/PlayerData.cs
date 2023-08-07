@@ -6,40 +6,33 @@ using UnityEngine;
 public static class PlayerData
 {
     public static int money;
+    public static int day;
 
     [RuntimeInitializeOnLoadMethod]
     static void RunOnGameStart()
     {
-        if (File.Exists(Application.dataPath + "/save.txt")) {
-            LoadData();
-        } else {
-            ResetSave();
-        }
+        LoadData();
     }
 
     public static void SaveData() {
-        SaveObject saveObject = new SaveObject();
-        saveObject.money = money;
-        string json = JsonUtility.ToJson(saveObject);
-        File.WriteAllText(Application.dataPath + "/save.txt", json);
+        ES3.Save("money", money);
+        ES3.Save("day", day);
     }
 
     public static void LoadData() {
-        string saveString = File.ReadAllText(Application.dataPath + "/save.txt");
-        SaveObject saveObject = JsonUtility.FromJson<SaveObject>(saveString);
-        money = saveObject.money;
+        money = ES3.Load("money", 1000);
+        day = ES3.Load("day", 1);
     }
 
     public static void ResetSave() {
-        money = 100;
-        SaveData();
-    }
-
-    private class SaveObject {
-        public int money;
+        ES3.DeleteFile("save.es3");
     }
 
     public static bool HasEnoughMoney(int amount) {
         return money >= amount;
+    }
+
+    public static void IncrementDay() {
+        day++;
     }
 }

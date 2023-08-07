@@ -6,7 +6,7 @@ using TMPro;
 public class DataUI : MonoBehaviour
 {
     [SerializeField] Controller controller;
-
+    [SerializeField] TextMeshPro dayUI;
     [SerializeField] TextMeshPro moneyUI;
     [SerializeField] TextMeshPro timerUI;
     private float timeLeft;
@@ -17,6 +17,7 @@ public class DataUI : MonoBehaviour
             Debug.LogError("controller script is null");
         }
         UpdateMoneyUI();
+        UpdateDayUI();
         timeLeft = 300f;
     }
 
@@ -37,6 +38,10 @@ public class DataUI : MonoBehaviour
 
     public void UpdateMoneyUI() {
         moneyUI.text = "$" + PlayerData.money.ToString();
+    }
+
+    public void UpdateDayUI() {
+        dayUI.text = "Day " + PlayerData.day.ToString();
     }
 
     public float GetTimeLeft() {

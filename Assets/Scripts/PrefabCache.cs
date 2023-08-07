@@ -36,6 +36,7 @@ public class PrefabCache : MonoBehaviour
             dishIconDict.Add(icon.GetComponent<DishIcon>().dishName, icon.GetComponent<SpriteRenderer>().sprite);
         }
 
+        Recipe.ConvertDictToList();
     }
 
 }

@@ -118,8 +118,7 @@ public static class Recipe
        ingredientCost.Add(Ingredients.tomatoes, 1);
     }
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    private static void ConvertDictToList() {
+    public static void ConvertDictToList() {
         List<GameObject> temp = new List<GameObject>(PrefabCache.instance.dishes);
         foreach (GameObject g in temp) {
             dishList.Add(g.GetComponent<Dish>());
@@ -132,7 +131,6 @@ public static class Recipe
         dishNameString.Add(DishName.ClassicBurger, "Classic Burger");
         dishNameString.Add(DishName.TheWorks, "The Works");
         dishNameString.Add(DishName.Cheeseburger, "CheeseBurger");
-
     }
 
     public static List<Ingredients> GetAllIngredients(Dish dish) {

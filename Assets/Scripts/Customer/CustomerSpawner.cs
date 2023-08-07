@@ -6,7 +6,7 @@ using UnityEngine;
 public class CustomerSpawner : MonoBehaviour
 {
     [SerializeField] Controller controller;
-    float spawnCooldown = 5f;
+    float spawnCooldown = 3f;
     Vector3 spawnPosition = new Vector3(-10f, .4f, 9f);
     Timer timer;
     int customerCount = 0;
