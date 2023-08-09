@@ -1752,14 +1752,13 @@ GameObject:
   - component: {fileID: 1410776892}
   - component: {fileID: 1410776894}
   - component: {fileID: 1410776893}
-  - component: {fileID: 1410776895}
   m_Layer: 5
   m_Name: Panel - Day Over
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1410776892
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1823,20 +1822,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410776891}
   m_CullTransparentMesh: 1
---- !u!114 &1410776895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1410776891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1de52186879bd344e95d5ba3e0e3f5ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  summaryText: {fileID: 299748374}
-  summaryPanel: {fileID: 1410776891}
 --- !u!1 &1478498372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2992,7 +2977,7 @@ PrefabInstance:
     - target: {fileID: 2465027229843031612, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
       propertyPath: endOfDayUI
       value: 
-      objectReference: {fileID: 1410776895}
+      objectReference: {fileID: 7287524167756476318}
     - target: {fileID: 2465027229843031612, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
       propertyPath: description
       value: 
@@ -3423,6 +3408,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 279355814585568771, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7287524167756476314}
+    - targetCorrespondingSourceObject: {fileID: 279355814585568771, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7287524167756476318}
   m_SourcePrefab: {fileID: 100100000, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
 --- !u!224 &7287524167756476312 stripped
 RectTransform:
@@ -3447,6 +3435,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 482613032}
+--- !u!114 &7287524167756476318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7287524167756476313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de52186879bd344e95d5ba3e0e3f5ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  summaryText: {fileID: 299748374}
+  summaryPanel: {fileID: 1410776891}
 --- !u!1001 &8998341452848327247
 PrefabInstance:
   m_ObjectHideFlags: 0
