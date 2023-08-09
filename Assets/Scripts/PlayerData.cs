@@ -7,6 +7,8 @@ public static class PlayerData
 {
     public static int money;
     public static int day;
+    public static int expense;
+    public static int revenue;
 
     [RuntimeInitializeOnLoadMethod]
     static void RunOnGameStart()
@@ -34,5 +36,21 @@ public static class PlayerData
 
     public static void IncrementDay() {
         day++;
+    }
+
+    public static void StartDay() {
+        revenue = 0;
+        expense = 0;
+        Time.timeScale = 1f;
+    }
+
+    public static void IncreaseMoney(int amount) {
+        money += amount;
+        revenue += amount;
+    }
+
+    public static void DecreaseMoney(int amount) {
+        money -= amount;
+        expense -= amount;
     }
 }

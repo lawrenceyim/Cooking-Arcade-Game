@@ -9,6 +9,7 @@ public class Controller : MonoBehaviour
     [SerializeField] CustomerSpawner customerSpawner;
     [SerializeField] DataUI dataUI;
     [SerializeField] Description description;
+    [SerializeField] EndOfDayUI endOfDayUI;
     [SerializeField] OrderManager orderManager;
     [SerializeField] OrderUI orderUI;
 
@@ -95,6 +96,11 @@ public class Controller : MonoBehaviour
 
     public void SetOrderDescription(Dish dish) {
         description.SetOrderDescription(dish);
+    }
+
+    // EndOfDayUI
+    public void UpdateSummary() {
+        endOfDayUI.UpdateSummaryText();
     }
 
     // OrderManager

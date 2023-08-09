@@ -10,15 +10,18 @@ public class DataUI : MonoBehaviour
     [SerializeField] TextMeshPro moneyUI;
     [SerializeField] TextMeshPro timerUI;
     private float timeLeft;
+    private float dayLength = 10f;
+    bool levelRunning;
 
     void Start()
     {
         if (controller == null) {
             Debug.LogError("controller script is null");
         }
+        levelRunning = true;
         UpdateMoneyUI();
         UpdateDayUI();
-        timeLeft = 300f;
+        timeLeft = dayLength;
     }
 
     void Update()
@@ -29,8 +32,9 @@ public class DataUI : MonoBehaviour
             if (timeLeft <= 0) {
                 timerUI.text = "0";
             }
-        } else {
-            if (controller.CheckIfCustomerCountIsZero()) {
+        } else if (levelRunning) {
+            if (controller.CheckIfCustomerCountIsZero() && Time.timeScale > 0) {
+                levelRunning = false;
                 EndLevel();
             }
         }
@@ -49,8 +53,10 @@ public class DataUI : MonoBehaviour
     }
 
     void EndLevel() {
+        Time.timeScale = 0f;
         PlayerData.IncrementDay();
         PlayerData.SaveData();
+        controller.UpdateSummary();
         // Open a menu that displays stats for the day and give option to return to main menu, quit game,
         // or start next day. Should indicate to player that the game has been saved as well
     }

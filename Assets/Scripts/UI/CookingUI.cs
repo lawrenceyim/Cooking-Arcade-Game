@@ -97,7 +97,7 @@ public class CookingUI : MonoBehaviour
                 }
                 else if (!controller.IngredientAlreadyAdded(ingredient)) {
                     AudioManager.instance.PlayAddIngredientSound();
-                    PlayerData.money -= Recipe.ingredientCost[ingredient];
+                    PlayerData.DecreaseMoney(Recipe.ingredientCost[ingredient]);
                     controller.UpdateMoneyUI();
                     controller.AddIngredientToDish(ingredient);
                     buttonSpriteRenderers[keycodeIndex[key]].color = Color.gray;

@@ -73,7 +73,7 @@ public class OrderManager : MonoBehaviour
 
     public void OrderServed() {
         AudioManager.instance.PlayCoinSound();
-        PlayerData.money += orders[currentIndex].sellingPrice;
+        PlayerData.IncreaseMoney(orders[currentIndex].sellingPrice);
         controller.UpdateMoneyUI();
         RemoveOrder(currentIndex);
     }

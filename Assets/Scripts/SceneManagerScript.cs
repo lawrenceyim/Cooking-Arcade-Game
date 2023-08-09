@@ -15,6 +15,7 @@ public class SceneManagerScript : MonoBehaviour
 
     public void LoadGame() {
         Time.timeScale = 1f;
+        PlayerData.StartDay();
         SceneManager.LoadScene("MainLevel");
     }
 
