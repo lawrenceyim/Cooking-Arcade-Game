@@ -1654,6 +1654,22 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 1229866059}
+    - target: {fileID: 3477437861781288073, guid: ce0edeca22b9e394d9831a993d0dc7db, type: 3}
+      propertyPath: originalColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477437861781288073, guid: ce0edeca22b9e394d9831a993d0dc7db, type: 3}
+      propertyPath: originalColor.b
+      value: 0.24705882
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477437861781288073, guid: ce0edeca22b9e394d9831a993d0dc7db, type: 3}
+      propertyPath: originalColor.g
+      value: 0.24705882
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477437861781288073, guid: ce0edeca22b9e394d9831a993d0dc7db, type: 3}
+      propertyPath: originalColor.r
+      value: 0.43529412
+      objectReference: {fileID: 0}
     - target: {fileID: 5152362211083013144, guid: ce0edeca22b9e394d9831a993d0dc7db, type: 3}
       propertyPath: m_RootOrder
       value: 6
