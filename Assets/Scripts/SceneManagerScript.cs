@@ -9,10 +9,12 @@ public class SceneManagerScript : MonoBehaviour
         ES3.DeleteFile("SaveFile.es3");
         ES3.Save("money", 1000);
         ES3.Save("day", 1);
-        SceneManager.LoadScene("MainLevel");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("IntroLetter");
     }
 
     public void LoadGame() {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainLevel");
     }
 
@@ -21,6 +23,7 @@ public class SceneManagerScript : MonoBehaviour
     }
     
     public void ReturnToMainMenu() {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 }
