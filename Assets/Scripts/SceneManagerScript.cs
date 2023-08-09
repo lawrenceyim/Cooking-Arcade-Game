@@ -6,9 +6,8 @@ using UnityEngine.SceneManagement;
 public class SceneManagerScript : MonoBehaviour
 {
     public void NewGame() {
-        ES3.DeleteFile("SaveFile.es3");
-        ES3.Save("money", 1000);
-        ES3.Save("day", 1);
+        PlayerData.ResetSave();
+        PlayerData.LoadData();
         Time.timeScale = 1f;
         SceneManager.LoadScene("Intro");
     }
@@ -16,6 +15,7 @@ public class SceneManagerScript : MonoBehaviour
     public void LoadGame() {
         Time.timeScale = 1f;
         PlayerData.StartDay();
+        PlayerData.LoadData();
         SceneManager.LoadScene("MainLevel");
     }
 

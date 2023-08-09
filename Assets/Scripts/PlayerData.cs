@@ -27,7 +27,7 @@ public static class PlayerData
     }
 
     public static void ResetSave() {
-        ES3.DeleteFile("save.es3");
+        ES3.DeleteFile("SaveFile.es3");
     }
 
     public static bool HasEnoughMoney(int amount) {
