@@ -2937,6 +2937,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: PrefabCache
       objectReference: {fileID: 0}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: dishes.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: dishes.Array.data[4]
+      value: 
+      objectReference: {fileID: 4298379781775575330, guid: fc93d4b44061a48478bf1f8d7f9e1b87, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: dishIconPrefab.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: dishIconPrefab.Array.data[4]
+      value: 
+      objectReference: {fileID: 1585247147735194754, guid: 6342a0f481a484b4e9bb3d258fddf6ba, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: ingredientIconPrefab.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: ingredientIconPrefab.Array.data[7]
+      value: 
+      objectReference: {fileID: 6767358900033959072, guid: c0d1d0285c958b540820ad543f9e03a9, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: ingredientIconPrefab.Array.data[8]
+      value: 
+      objectReference: {fileID: 6767358900033959072, guid: 88706ca4d7ea50f459c24d2274ca7a9c, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: ingredientIconPrefab.Array.data[9]
+      value: 
+      objectReference: {fileID: 6767358900033959072, guid: 0fdec6bc25c6e1b40b40c507bdc8f180, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

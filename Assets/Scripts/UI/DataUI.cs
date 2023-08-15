@@ -10,7 +10,7 @@ public class DataUI : MonoBehaviour
     [SerializeField] TextMeshPro moneyUI;
     [SerializeField] TextMeshPro timerUI;
     private float timeLeft;
-    private float dayLength = 10f;
+    private float dayLength = 30f;
     bool levelRunning;
 
     void Start()

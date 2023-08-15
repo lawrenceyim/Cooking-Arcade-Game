@@ -42,7 +42,8 @@ public static class Recipe
         TheWorks,
         ClassicBurger,
         Cheeseburger,
-        BaconCheeseburger
+        BaconCheeseburger,
+        CheesePizza
     }
 
     public static Dictionary<FoodTypes, List<Ingredients>> ingredientsForFoodType = new Dictionary<FoodTypes, List<Ingredients>>();
@@ -55,8 +56,10 @@ public static class Recipe
     public static void InitializeRecipes() {
         ingredientsForFoodType.Add(FoodTypes.Burger, new List<Ingredients>{Ingredients.bacon, Ingredients.buns,  
             Ingredients.cheese, Ingredients.lettuce, Ingredients.onions, Ingredients.patty, Ingredients.tomatoes});
-        ingredientsForFoodType.Add(FoodTypes.Pizza, new List<Ingredients>{Ingredients.dough, Ingredients.ham, Ingredients.mozzarella, 
-            Ingredients.mushrooms, Ingredients.pepperoni, Ingredients.pineapple, Ingredients.sauce, Ingredients.sausage});
+        // ingredientsForFoodType.Add(FoodTypes.Pizza, new List<Ingredients>{Ingredients.dough, Ingredients.ham, Ingredients.mozzarella, 
+        //     Ingredients.mushrooms, Ingredients.pepperoni, Ingredients.pineapple, Ingredients.sauce, Ingredients.sausage});
+                ingredientsForFoodType.Add(FoodTypes.Pizza, new List<Ingredients>{Ingredients.dough, Ingredients.mozzarella, 
+                Ingredients.sauce});
         ingredientsForFoodType.Add(FoodTypes.Salad, new List<Ingredients>{Ingredients.avocado, Ingredients.bacon, Ingredients.carrots, 
             Ingredients.croutons, Ingredients.cucumbers, Ingredients.eggs, Ingredients.feta, Ingredients.lettuce, 
             Ingredients.olives, Ingredients.onions, Ingredients.parmesan, Ingredients.tomatoes});
@@ -99,12 +102,12 @@ public static class Recipe
        ingredientCost.Add(Ingredients.cheese, 2);
         //ingredientCost.Add(Ingredients.croutons, );
         //ingredientCost.Add(Ingredients.cucumbers, );
-        //ingredientCost.Add(Ingredients.dough, );
+        ingredientCost.Add(Ingredients.dough, 1);
         //ingredientCost.Add(Ingredients.eggs, );
         //ingredientCost.Add(Ingredients.feta, );
        ingredientCost.Add(Ingredients.lettuce, 1);
         //ingredientCost.Add(Ingredients.ham, );
-        //ingredientCost.Add(Ingredients.mozzarella, );
+        ingredientCost.Add(Ingredients.mozzarella, 2);
         //ingredientCost.Add(Ingredients.mushrooms, );
         //ingredientCost.Add(Ingredients.olives, );
        ingredientCost.Add(Ingredients.onions, 1);
@@ -113,7 +116,7 @@ public static class Recipe
         //ingredientCost.Add(Ingredients.pepperoni, );
         //ingredientCost.Add(Ingredients.peppers, );
         //ingredientCost.Add(Ingredients.pineapple, );
-        //ingredientCost.Add(Ingredients.sauce, );
+        ingredientCost.Add(Ingredients.sauce, 1);
         //ingredientCost.Add(Ingredients.sausage, );
        ingredientCost.Add(Ingredients.tomatoes, 1);
     }
@@ -130,7 +133,8 @@ public static class Recipe
         dishNameString.Add(DishName.BaconCheeseburger, "Bacon CheeseBurger");
         dishNameString.Add(DishName.ClassicBurger, "Classic Burger");
         dishNameString.Add(DishName.TheWorks, "The Works");
-        dishNameString.Add(DishName.Cheeseburger, "CheeseBurger");
+        dishNameString.Add(DishName.Cheeseburger, "Cheese Burger");
+        dishNameString.Add(DishName.CheesePizza, "Cheese Pizza");
     }
 
     public static List<Ingredients> GetAllIngredients(Dish dish) {
