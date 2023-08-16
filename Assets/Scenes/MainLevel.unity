@@ -2939,23 +2939,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: dishes.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: dishes.Array.data[4]
       value: 
       objectReference: {fileID: 4298379781775575330, guid: fc93d4b44061a48478bf1f8d7f9e1b87, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: dishes.Array.data[5]
+      value: 
+      objectReference: {fileID: 4298379781775575330, guid: ee58a42e6fa271a4eb879dd9bf8d5263, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: dishIconPrefab.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: dishIconPrefab.Array.data[4]
       value: 
       objectReference: {fileID: 1585247147735194754, guid: 6342a0f481a484b4e9bb3d258fddf6ba, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: dishIconPrefab.Array.data[5]
+      value: 
+      objectReference: {fileID: 1585247147735194754, guid: 88ea18d44993c1845a186705310a6f85, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: ingredientIconPrefab.Array.size
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: ingredientIconPrefab.Array.data[7]
@@ -2969,6 +2977,10 @@ PrefabInstance:
       propertyPath: ingredientIconPrefab.Array.data[9]
       value: 
       objectReference: {fileID: 6767358900033959072, guid: 0fdec6bc25c6e1b40b40c507bdc8f180, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: ingredientIconPrefab.Array.data[10]
+      value: 
+      objectReference: {fileID: 6767358900033959072, guid: 75632bf83fc2b034d8065ae0ed3f5a70, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
