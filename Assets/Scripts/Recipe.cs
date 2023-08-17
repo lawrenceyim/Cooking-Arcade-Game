@@ -8,7 +8,8 @@ public static class Recipe
     public enum Ingredients {
         avocado,
         bacon,
-        buns,
+        bun_bottom,
+        bun_top,
         carrots,
         cheese,
         croutons,
@@ -55,11 +56,11 @@ public static class Recipe
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     public static void InitializeRecipes() {
-        ingredientsForFoodType.Add(FoodTypes.Burger, new List<Ingredients>{Ingredients.bacon, Ingredients.buns,  
+        ingredientsForFoodType.Add(FoodTypes.Burger, new List<Ingredients>{Ingredients.bacon, Ingredients.bun_bottom, Ingredients.bun_top,  
             Ingredients.cheese, Ingredients.lettuce, Ingredients.onions, Ingredients.patty, Ingredients.tomatoes});
         // ingredientsForFoodType.Add(FoodTypes.Pizza, new List<Ingredients>{Ingredients.dough, Ingredients.ham, Ingredients.mozzarella, 
         //     Ingredients.mushrooms, Ingredients.pepperoni, Ingredients.pineapple, Ingredients.sauce, Ingredients.sausage});
-                ingredientsForFoodType.Add(FoodTypes.Pizza, new List<Ingredients>{Ingredients.dough, Ingredients.mozzarella, 
+        ingredientsForFoodType.Add(FoodTypes.Pizza, new List<Ingredients>{Ingredients.dough, Ingredients.mozzarella, 
                 Ingredients.pepperoni, Ingredients.sauce});
         ingredientsForFoodType.Add(FoodTypes.Salad, new List<Ingredients>{Ingredients.avocado, Ingredients.bacon, Ingredients.carrots, 
             Ingredients.croutons, Ingredients.cucumbers, Ingredients.eggs, Ingredients.feta, Ingredients.lettuce, 
@@ -70,7 +71,8 @@ public static class Recipe
     private static void InitializeKeys() {
         keyMapping.Add(Ingredients.avocado, KeyCode.A);
         keyMapping.Add(Ingredients.bacon, KeyCode.B);
-        keyMapping.Add(Ingredients.buns, KeyCode.D);
+        keyMapping.Add(Ingredients.bun_bottom, KeyCode.S);
+        keyMapping.Add(Ingredients.bun_top, KeyCode.W);
         keyMapping.Add(Ingredients.carrots, KeyCode.C);
         keyMapping.Add(Ingredients.cheese, KeyCode.C);
         keyMapping.Add(Ingredients.croutons, KeyCode.D);
@@ -98,7 +100,8 @@ public static class Recipe
     private static void InitializePrice() {
         //ingredientCost.Add(Ingredients.avocado, );
        ingredientCost.Add(Ingredients.bacon, 3);
-       ingredientCost.Add(Ingredients.buns, 1);
+       ingredientCost.Add(Ingredients.bun_bottom, 1);
+       ingredientCost.Add(Ingredients.bun_top, 1);
         //ingredientCost.Add(Ingredients.carrots, );
        ingredientCost.Add(Ingredients.cheese, 2);
         //ingredientCost.Add(Ingredients.croutons, );
