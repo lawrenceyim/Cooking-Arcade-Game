@@ -50,7 +50,7 @@ MonoBehaviour:
   dishName: 4
   foodType: 1
   ingredientsList: 07000000150000000c000000
-  description: Dough, Sauce, Mozzarella
+  description: Dough->Sauce->Mozzarella
   sellingPrice: 10
 --- !u!1001 &2596800683253790142
 PrefabInstance:

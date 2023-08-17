@@ -52,8 +52,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dishName: 0
   foodType: 0
-  ingredientsList: 020000000a0000001100000017000000040000000f000000
-  description: Buns, patty, cheese, lettuce, tomatoes, and onions
+  ingredientsList: 020000001100000004000000170000000a0000000f000000
+  description: Buns->Patty->Cheese->Tomatoes->Lettuce->Onions
   sellingPrice: 15
 --- !u!1001 &2128031722472741414
 PrefabInstance:

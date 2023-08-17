@@ -51,7 +51,7 @@ MonoBehaviour:
   dishName: 5
   foodType: 1
   ingredientsList: 07000000150000000c00000012000000
-  description: Dough, Sauce, Mozzarella, Pepperoni
+  description: Dough->Sauce->Mozzarella->Pepperoni
   sellingPrice: 12
 --- !u!1001 &620458531638414435
 PrefabInstance:

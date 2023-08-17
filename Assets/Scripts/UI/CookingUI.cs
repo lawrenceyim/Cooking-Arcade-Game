@@ -12,12 +12,13 @@ public class CookingUI : MonoBehaviour
     SpriteRenderer[] buttonSpriteRenderers;
     TextMeshPro[] buttonKeys;
     Dictionary<KeyCode, Recipe.Ingredients> availableKeys;
-    int currentIndex;
     List<Recipe.Ingredients> neededForDish;
     Dish dish;
     Dictionary<KeyCode, int> keycodeIndex;
     bool[,] grayKeys;
     [SerializeField] Color originalColor;
+    int currentIndex;
+    int[] currentIngredient;
 
 
     void Start()
@@ -25,6 +26,7 @@ public class CookingUI : MonoBehaviour
         if (controller == null) {
             Debug.LogError("controller script is null");
         }
+        currentIngredient = new int[6];
         availableKeys = new Dictionary<KeyCode, Recipe.Ingredients>();
         buttonKeys = new TextMeshPro[cookingSlots.Length];
         buttonSpriteRenderers = new SpriteRenderer[cookingSlots.Length];
@@ -76,6 +78,7 @@ public class CookingUI : MonoBehaviour
                 for (int i = 0; i < cookingSlots.Length; i++) {
                     grayKeys[currentIndex, i] = false;
                 }
+                currentIngredient[currentIndex] = 0;
                 controller.ServeTheDish();
             }
             return;
@@ -84,14 +87,10 @@ public class CookingUI : MonoBehaviour
             if (Input.GetKeyDown(key)) {
                 Recipe.Ingredients ingredient = availableKeys[key];
                 if (!neededForDish.Contains(ingredient)) {
-                    AudioManager.instance.PlayTrashSound();
-                    Debug.Log("Wrong ingredient. Dish scrapped");
-                    controller.ResetDishBeingWorkedOn(currentIndex);
-                    for (int i = 0; i < availableKeys.Count; i++) {
-                        buttonSpriteRenderers[i].color = Color.red;
-                        grayKeys[currentIndex, i] = false;
-                    }
-                } 
+                    ResetDishAndButtons();
+                } else if (ingredient != dish.ingredientsList[currentIngredient[currentIndex]]) {
+                    ResetDishAndButtons();
+                }
                 else if (!PlayerData.HasEnoughMoney(Recipe.ingredientCost[ingredient])) {
                     continue;
                 }
@@ -102,9 +101,20 @@ public class CookingUI : MonoBehaviour
                     controller.AddIngredientToDish(ingredient);
                     buttonSpriteRenderers[keycodeIndex[key]].color = Color.gray;
                     grayKeys[currentIndex, keycodeIndex[key]] = true;
+                    currentIngredient[currentIndex]++;
                     continue;
                 } 
             }
+        }
+    }
+
+    private void ResetDishAndButtons() {
+        AudioManager.instance.PlayTrashSound();
+        currentIngredient[currentIndex] = 0;
+        controller.ResetDishBeingWorkedOn(currentIndex);
+        for (int i = 0; i < availableKeys.Count; i++) {
+            buttonSpriteRenderers[i].color = Color.red;
+            grayKeys[currentIndex, i] = false;
         }
     }
 }

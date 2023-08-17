@@ -49,8 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dishName: 2
   foodType: 0
-  ingredientsList: 020000000400000011000000
-  description: Buns, cheese, and a patty
+  ingredientsList: 020000001100000004000000
+  description: Buns->Patty->Cheese
   sellingPrice: 10
 --- !u!1001 &2451879261708973833
 PrefabInstance:

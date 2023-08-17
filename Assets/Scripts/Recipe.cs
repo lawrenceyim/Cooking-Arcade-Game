@@ -82,8 +82,8 @@ public static class Recipe
         keyMapping.Add(Ingredients.ham, KeyCode.H);
         keyMapping.Add(Ingredients.mozzarella, KeyCode.C);
         keyMapping.Add(Ingredients.mushrooms, KeyCode.M);
-        keyMapping.Add(Ingredients.olives, KeyCode.O);
-        keyMapping.Add(Ingredients.onions, KeyCode.N);
+        keyMapping.Add(Ingredients.olives, KeyCode.N);
+        keyMapping.Add(Ingredients.onions, KeyCode.O);
         keyMapping.Add(Ingredients.parmesan, KeyCode.J);
         keyMapping.Add(Ingredients.patty, KeyCode.P);
         keyMapping.Add(Ingredients.pepperoni, KeyCode.P);

@@ -50,8 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dishName: 1
   foodType: 0
-  ingredientsList: 020000000a0000001100000017000000
-  description: Buns, patty, lettuce, and tomatoes
+  ingredientsList: 0200000011000000170000000a000000
+  description: Buns->Patty->Tomatoes->Lettuce
   sellingPrice: 10
 --- !u!1001 &2451879261708973833
 PrefabInstance:
@@ -215,11 +215,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8992369424686785229, guid: 5aff3a98392cd994f9c19f9715948f95, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8992369424686785229, guid: 5aff3a98392cd994f9c19f9715948f95, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 8992369424686785229, guid: 5aff3a98392cd994f9c19f9715948f95, type: 3}
       propertyPath: m_LocalRotation.w
