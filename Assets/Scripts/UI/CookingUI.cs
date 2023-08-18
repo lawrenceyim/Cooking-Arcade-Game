@@ -9,6 +9,7 @@ public class CookingUI : MonoBehaviour
     [SerializeField] Controller controller;
     [SerializeField] GameObject[] cookingSlots;
     [SerializeField] SpriteRenderer[] iconSpriteRenderers;
+    [SerializeField] GameObject spacebarServerIndicator;
     SpriteRenderer[] buttonSpriteRenderers;
     TextMeshPro[] buttonKeys;
     Dictionary<KeyCode, Recipe.Ingredients> availableKeys;
@@ -35,6 +36,7 @@ public class CookingUI : MonoBehaviour
             buttonSpriteRenderers[i] = cookingSlots[i].GetComponent<SpriteRenderer>();
             buttonKeys[i] = cookingSlots[i].transform.Find("Button").transform.Find("Text").GetComponent<TextMeshPro>();
         }
+        spacebarServerIndicator.SetActive(false);
         DeactivateButtons();
     }
 
@@ -43,6 +45,7 @@ public class CookingUI : MonoBehaviour
     }
 
     public void UpdateButtons(Dish dish, int index) {
+        spacebarServerIndicator.SetActive(false);
         DeactivateButtons();
         this.dish = dish;
         currentIndex = index;
@@ -74,7 +77,9 @@ public class CookingUI : MonoBehaviour
     void ProcessInput() {
         if (availableKeys == null) return;
         if (controller.IsDishComplete()) {
+            spacebarServerIndicator.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Space)) {
+                spacebarServerIndicator.SetActive(false);
                 for (int i = 0; i < cookingSlots.Length; i++) {
                     grayKeys[currentIndex, i] = false;
                 }
