@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using TMPro;
 using UnityEngine;
 
 public static class Recipe
@@ -132,12 +134,12 @@ public static class Recipe
         ingredientCost.Add(Ingredients.tomatoes_burger, 1);
     }
 
-    public static void ConvertDictToList() {
-        List<GameObject> temp = new List<GameObject>(PrefabCache.instance.dishes);
-        foreach (GameObject g in temp) {
-            dishList.Add(g.GetComponent<Dish>());
-        }
-    }
+    // public static void ConvertDictToList() {
+    //     List<GameObject> temp = new List<GameObject>(PrefabCache.instance.dishes);
+    //     foreach (GameObject g in temp) {
+    //         dishList.Add(g.GetComponent<Dish>());
+    //     }
+    // }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void InitializeDishNames() {
@@ -168,5 +170,49 @@ public static class Recipe
             keys.Add(keyMapping[ingred[i]], ingred[i]);
         }
         return keys;
+    }
+
+    public static void SetDistList(int day) {
+        dishList = GetNewDishList(day);
+    }              
+
+    public static List<Dish> GetNewDishList(int day) {
+        return day switch {
+            1 => new List<Dish>()   {PrefabCache.instance.dishByDishName[DishName.ClassicBurger]},
+            2 => new List<Dish>()   {PrefabCache.instance.dishByDishName[DishName.ClassicBurger],
+                                    PrefabCache.instance.dishByDishName[DishName.Cheeseburger]},
+            3 => new List<Dish>()   {PrefabCache.instance.dishByDishName[DishName.ClassicBurger],
+                                    PrefabCache.instance.dishByDishName[DishName.Cheeseburger],
+                                    PrefabCache.instance.dishByDishName[DishName.BaconCheeseburger]},
+            4 => new List<Dish>()   {PrefabCache.instance.dishByDishName[DishName.ClassicBurger],
+                                    PrefabCache.instance.dishByDishName[DishName.Cheeseburger],
+                                    PrefabCache.instance.dishByDishName[DishName.BaconCheeseburger]},
+            5 => new List<Dish>()   {PrefabCache.instance.dishByDishName[DishName.ClassicBurger],
+                                    PrefabCache.instance.dishByDishName[DishName.Cheeseburger],
+                                    PrefabCache.instance.dishByDishName[DishName.BaconCheeseburger],
+                                    PrefabCache.instance.dishByDishName[DishName.TheWorks]},
+            6 => new List<Dish>()   {PrefabCache.instance.dishByDishName[DishName.ClassicBurger],
+                                    PrefabCache.instance.dishByDishName[DishName.Cheeseburger],
+                                    PrefabCache.instance.dishByDishName[DishName.BaconCheeseburger],
+                                    PrefabCache.instance.dishByDishName[DishName.TheWorks]},
+            7 => new List<Dish>()   {PrefabCache.instance.dishByDishName[DishName.ClassicBurger],
+                                    PrefabCache.instance.dishByDishName[DishName.Cheeseburger],
+                                    PrefabCache.instance.dishByDishName[DishName.BaconCheeseburger],
+                                    PrefabCache.instance.dishByDishName[DishName.TheWorks]},
+            8 => new List<Dish>()   {PrefabCache.instance.dishByDishName[DishName.CheesePizza]},
+            9 => new List<Dish>()   {PrefabCache.instance.dishByDishName[DishName.CheesePizza],
+                                    PrefabCache.instance.dishByDishName[DishName.PepperoniPizza]},
+            10 => new List<Dish>()  {PrefabCache.instance.dishByDishName[DishName.CheesePizza],
+                                    PrefabCache.instance.dishByDishName[DishName.PepperoniPizza],
+                                    PrefabCache.instance.dishByDishName[DishName.VegetarianPizza]},
+            11 => new List<Dish>()  {PrefabCache.instance.dishByDishName[DishName.CheesePizza],
+                                    PrefabCache.instance.dishByDishName[DishName.PepperoniPizza],
+                                    PrefabCache.instance.dishByDishName[DishName.VegetarianPizza],
+                                    PrefabCache.instance.dishByDishName[DishName.HawaiianPizza]},                    
+
+
+
+            _ => null
+        };
     }
 }

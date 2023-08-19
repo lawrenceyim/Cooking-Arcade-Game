@@ -12,6 +12,7 @@ public class PrefabCache : MonoBehaviour
     public Dictionary<Recipe.DishName, GameObject> dishDict;
     public Dictionary<Recipe.Ingredients, Sprite> iconDict;
     public Dictionary<Recipe.DishName, Sprite> dishIconDict;
+    public Dictionary<Recipe.DishName, Dish> dishByDishName;
 
     private void Awake() {
         if (instance == null) {
@@ -36,7 +37,13 @@ public class PrefabCache : MonoBehaviour
             dishIconDict.Add(icon.GetComponent<DishIcon>().dishName, icon.GetComponent<SpriteRenderer>().sprite);
         }
 
-        Recipe.ConvertDictToList();
+        dishByDishName = new Dictionary<Recipe.DishName, Dish>();
+        foreach (GameObject dish in dishes) {
+            Dish dishScript = dish.GetComponent<Dish>();
+            dishByDishName.Add(dishScript.dishName, dishScript);
+        }
+
+        // Recipe.ConvertDictToList();
     }
 
 }

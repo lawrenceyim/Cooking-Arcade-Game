@@ -17,6 +17,7 @@ public class CustomerSpawner : MonoBehaviour
         if (controller == null) {
             Debug.LogError("controller script is null");
         }
+        Recipe.SetDistList(PlayerData.day);
         timer = gameObject.AddComponent<Timer>();
         SpawnCustomer();
         InvokeNextCustomerSpawn();
