@@ -7,7 +7,9 @@ public static class Recipe
 {
     public enum Ingredients {
         avocado,
-        bacon,
+        bacon_burger,
+        bacon_pizza,
+        bacon_salad,
         bun_bottom,
         bun_top,
         carrots,
@@ -17,12 +19,14 @@ public static class Recipe
         dough,
         eggs,
         feta,
-        lettuce,
+        lettuce_burger,
+        lettuce_salad,
         ham,
         mozzarella,
-        mushrooms,
+        mushrooms_pizza,
         olives,
-        onions,
+        onions_burger,
+        onions_salad,
         parmesan,
         patty, 
         pepperoni,
@@ -30,7 +34,8 @@ public static class Recipe
         pineapple,
         sauce,
         sausage,
-        tomatoes,
+        tomatoes_burger,
+        tomatoes_salad,
     }
 
     public enum FoodTypes {
@@ -45,7 +50,9 @@ public static class Recipe
         Cheeseburger,
         BaconCheeseburger,
         CheesePizza,
-        PepperoniPizza
+        PepperoniPizza,
+        HawaiianPizza,
+        VegetarianPizza,
     }
 
     public static Dictionary<FoodTypes, List<Ingredients>> ingredientsForFoodType = new Dictionary<FoodTypes, List<Ingredients>>();
@@ -56,21 +63,20 @@ public static class Recipe
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     public static void InitializeRecipes() {
-        ingredientsForFoodType.Add(FoodTypes.Burger, new List<Ingredients>{Ingredients.bacon, Ingredients.bun_bottom, Ingredients.bun_top,  
-            Ingredients.cheese, Ingredients.lettuce, Ingredients.onions, Ingredients.patty, Ingredients.tomatoes});
-        // ingredientsForFoodType.Add(FoodTypes.Pizza, new List<Ingredients>{Ingredients.dough, Ingredients.ham, Ingredients.mozzarella, 
-        //     Ingredients.mushrooms, Ingredients.pepperoni, Ingredients.pineapple, Ingredients.sauce, Ingredients.sausage});
-        ingredientsForFoodType.Add(FoodTypes.Pizza, new List<Ingredients>{Ingredients.dough, Ingredients.mozzarella, 
-                Ingredients.pepperoni, Ingredients.sauce});
-        ingredientsForFoodType.Add(FoodTypes.Salad, new List<Ingredients>{Ingredients.avocado, Ingredients.bacon, Ingredients.carrots, 
-            Ingredients.croutons, Ingredients.cucumbers, Ingredients.eggs, Ingredients.feta, Ingredients.lettuce, 
-            Ingredients.olives, Ingredients.onions, Ingredients.parmesan, Ingredients.tomatoes});
+        ingredientsForFoodType.Add(FoodTypes.Burger, new List<Ingredients>{Ingredients.bacon_burger, Ingredients.bun_bottom, Ingredients.bun_top,  
+            Ingredients.cheese, Ingredients.lettuce_burger, Ingredients.onions_burger, Ingredients.patty, Ingredients.tomatoes_burger});
+        ingredientsForFoodType.Add(FoodTypes.Pizza, new List<Ingredients>{Ingredients.bacon_pizza, Ingredients.dough, Ingredients.ham, Ingredients.mozzarella, 
+            Ingredients.mushrooms_pizza, Ingredients.peppers, Ingredients.pepperoni, Ingredients.pineapple, Ingredients.sauce});
+        ingredientsForFoodType.Add(FoodTypes.Salad, new List<Ingredients>{Ingredients.avocado, Ingredients.bacon_pizza, Ingredients.carrots, 
+            Ingredients.croutons, Ingredients.cucumbers, Ingredients.eggs, Ingredients.feta, Ingredients.lettuce_salad, 
+            Ingredients.olives, Ingredients.onions_salad, Ingredients.parmesan, Ingredients.tomatoes_salad});
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void InitializeKeys() {
         keyMapping.Add(Ingredients.avocado, KeyCode.A);
-        keyMapping.Add(Ingredients.bacon, KeyCode.B);
+        keyMapping.Add(Ingredients.bacon_burger, KeyCode.B);
+        keyMapping.Add(Ingredients.bacon_pizza, KeyCode.B);
         keyMapping.Add(Ingredients.bun_bottom, KeyCode.S);
         keyMapping.Add(Ingredients.bun_top, KeyCode.W);
         keyMapping.Add(Ingredients.carrots, KeyCode.C);
@@ -80,12 +86,12 @@ public static class Recipe
         keyMapping.Add(Ingredients.dough, KeyCode.D);
         keyMapping.Add(Ingredients.eggs, KeyCode.E);
         keyMapping.Add(Ingredients.feta, KeyCode.F);
-        keyMapping.Add(Ingredients.lettuce, KeyCode.L);
+        keyMapping.Add(Ingredients.lettuce_burger, KeyCode.L);
         keyMapping.Add(Ingredients.ham, KeyCode.H);
         keyMapping.Add(Ingredients.mozzarella, KeyCode.C);
-        keyMapping.Add(Ingredients.mushrooms, KeyCode.M);
+        keyMapping.Add(Ingredients.mushrooms_pizza, KeyCode.M);
         keyMapping.Add(Ingredients.olives, KeyCode.N);
-        keyMapping.Add(Ingredients.onions, KeyCode.O);
+        keyMapping.Add(Ingredients.onions_burger, KeyCode.O);
         keyMapping.Add(Ingredients.parmesan, KeyCode.J);
         keyMapping.Add(Ingredients.patty, KeyCode.P);
         keyMapping.Add(Ingredients.pepperoni, KeyCode.P);
@@ -93,13 +99,14 @@ public static class Recipe
         keyMapping.Add(Ingredients.pineapple, KeyCode.F);
         keyMapping.Add(Ingredients.sauce, KeyCode.S);
         keyMapping.Add(Ingredients.sausage, KeyCode.R);
-        keyMapping.Add(Ingredients.tomatoes, KeyCode.T);
+        keyMapping.Add(Ingredients.tomatoes_burger, KeyCode.T);
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void InitializePrice() {
         //ingredientCost.Add(Ingredients.avocado, );
-       ingredientCost.Add(Ingredients.bacon, 3);
+       ingredientCost.Add(Ingredients.bacon_burger, 3);
+       ingredientCost.Add(Ingredients.bacon_pizza, 3);
        ingredientCost.Add(Ingredients.bun_bottom, 1);
        ingredientCost.Add(Ingredients.bun_top, 1);
         //ingredientCost.Add(Ingredients.carrots, );
@@ -109,20 +116,20 @@ public static class Recipe
         ingredientCost.Add(Ingredients.dough, 1);
         //ingredientCost.Add(Ingredients.eggs, );
         //ingredientCost.Add(Ingredients.feta, );
-        ingredientCost.Add(Ingredients.lettuce, 1);
-        //ingredientCost.Add(Ingredients.ham, );
+        ingredientCost.Add(Ingredients.lettuce_burger, 1);
+        ingredientCost.Add(Ingredients.ham, 3);
         ingredientCost.Add(Ingredients.mozzarella, 2);
-        //ingredientCost.Add(Ingredients.mushrooms, );
+        ingredientCost.Add(Ingredients.mushrooms_pizza, 2);
         //ingredientCost.Add(Ingredients.olives, );
-        ingredientCost.Add(Ingredients.onions, 1);
+        ingredientCost.Add(Ingredients.onions_burger, 1);
         //ingredientCost.Add(Ingredients.parmesan, );
         ingredientCost.Add(Ingredients.patty, 3);
         ingredientCost.Add(Ingredients.pepperoni, 2);
-        //ingredientCost.Add(Ingredients.peppers, );
-        //ingredientCost.Add(Ingredients.pineapple, );
+        ingredientCost.Add(Ingredients.peppers, 2);
+        ingredientCost.Add(Ingredients.pineapple, 2);
         ingredientCost.Add(Ingredients.sauce, 1);
         //ingredientCost.Add(Ingredients.sausage, );
-        ingredientCost.Add(Ingredients.tomatoes, 1);
+        ingredientCost.Add(Ingredients.tomatoes_burger, 1);
     }
 
     public static void ConvertDictToList() {
@@ -140,6 +147,9 @@ public static class Recipe
         dishNameString.Add(DishName.Cheeseburger, "Cheese Burger");
         dishNameString.Add(DishName.CheesePizza, "Cheese Pizza");
         dishNameString.Add(DishName.PepperoniPizza, "Pepperoni Pizza");
+        dishNameString.Add(DishName.HawaiianPizza, "Hawaiian Pizza");
+        dishNameString.Add(DishName.VegetarianPizza, "Vegetarian Pizza");
+
     }
 
     public static List<Ingredients> GetAllIngredients(Dish dish) {

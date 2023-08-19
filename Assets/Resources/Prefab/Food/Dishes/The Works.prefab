@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dishName: 0
   foodType: 0
-  ingredientsList: 020000001200000005000000180000000b0000001000000003000000
+  ingredientsList: 0400000016000000070000001c0000000d0000001300000005000000
   description: Bottom Bun->Patty->Cheese->Tomatoes->Lettuce->Onions->Top Bun
   sellingPrice: 15
 --- !u!1001 &2128031722472741414
