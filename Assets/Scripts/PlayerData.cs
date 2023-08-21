@@ -51,6 +51,6 @@ public static class PlayerData
 
     public static void DecreaseMoney(int amount) {
         money -= amount;
-        expense -= amount;
+        expense += amount;
     }
 }

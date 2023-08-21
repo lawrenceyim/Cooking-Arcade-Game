@@ -5,15 +5,18 @@ using TMPro;
 
 public class EndOfDayUI : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI summaryText;
     [SerializeField] GameObject summaryPanel;
+    [SerializeField] TextMeshProUGUI summaryAmountText;
+    [SerializeField] TextMeshProUGUI profitAmountText;
+
 
     private void Start() {
         summaryPanel.SetActive(false);
     }
 
     public void UpdateSummaryText() {
-        summaryText.text = $"Revenue: ${PlayerData.revenue}\nExpense: ${-PlayerData.expense}\nProfit: ${PlayerData.revenue + PlayerData.expense}";
+        summaryAmountText.text = $"{PlayerData.revenue}\n{-PlayerData.expense}";
+        profitAmountText.text = $"{PlayerData.revenue - PlayerData.expense}";
         summaryPanel.SetActive(true);
     }
 }
