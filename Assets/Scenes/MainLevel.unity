@@ -7908,6 +7908,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 966297821828325976, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
+      propertyPath: m_Name
+      value: Order Slot Sliders
+      objectReference: {fileID: 0}
     - target: {fileID: 1025111008064459161, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
