@@ -3,21 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class CookingUI : MonoBehaviour
 {   
     [SerializeField] Controller controller;
     [SerializeField] GameObject[] cookingSlots;
-    [SerializeField] SpriteRenderer[] iconSpriteRenderers;
     [SerializeField] GameObject spacebarServerIndicator;
-    SpriteRenderer[] buttonSpriteRenderers;
-    TextMeshPro[] buttonKeys;
+    Image[] ingredientImages;
+    Image[] buttonBackgroundHighlights;
+    TextMeshProUGUI[] buttonKeys;
+    
     Dictionary<KeyCode, Recipe.Ingredients> availableKeys;
     List<Recipe.Ingredients> neededForDish;
     Dish dish;
     Dictionary<KeyCode, int> keycodeIndex;
-    bool[,] grayKeys;
-    [SerializeField] Color originalColor;
+    bool[,] highlightedKeys;
     int currentIndex;
     int[] currentIngredient;
 
@@ -29,12 +30,15 @@ public class CookingUI : MonoBehaviour
         }
         currentIngredient = new int[6];
         availableKeys = new Dictionary<KeyCode, Recipe.Ingredients>();
-        buttonKeys = new TextMeshPro[cookingSlots.Length];
-        buttonSpriteRenderers = new SpriteRenderer[cookingSlots.Length];
-        grayKeys = new bool[6, cookingSlots.Length];
+        buttonKeys = new TextMeshProUGUI[cookingSlots.Length];
+        ingredientImages = new Image[cookingSlots.Length];
+        buttonBackgroundHighlights = new Image[cookingSlots.Length];
+        highlightedKeys = new bool[6, cookingSlots.Length];
+
         for (int i = 0; i < cookingSlots.Length; i++) {
-            buttonSpriteRenderers[i] = cookingSlots[i].GetComponent<SpriteRenderer>();
-            buttonKeys[i] = cookingSlots[i].transform.Find("Button").transform.Find("Text").GetComponent<TextMeshPro>();
+            buttonBackgroundHighlights[i] = cookingSlots[i].transform.Find("Image - Button Highlight").GetComponent<Image>();
+            ingredientImages[i] = cookingSlots[i].transform.Find("Image - Ingredient").GetComponent<Image>();
+            buttonKeys[i] = cookingSlots[i].transform.Find("Text (TMP) - Ingredient Keycode").GetComponent<TextMeshProUGUI>();
         }
         spacebarServerIndicator.SetActive(false);
         DeactivateButtons();
@@ -53,13 +57,13 @@ public class CookingUI : MonoBehaviour
         List<Recipe.Ingredients> ingredients = Recipe.GetAllIngredients(dish);
         keycodeIndex = new Dictionary<KeyCode, int>();
         for (int i = 0; i < ingredients.Count; i++) {
-            buttonSpriteRenderers[i].color = Color.red;
-            iconSpriteRenderers[i].sprite = PrefabCache.instance.iconDict[ingredients[i]];
-            iconSpriteRenderers[i].enabled = true;
+            ingredientImages[i].sprite = PrefabCache.instance.iconDict[ingredients[i]];
+            ingredientImages[i].enabled = true;
+            buttonBackgroundHighlights[i].enabled = false;
             buttonKeys[i].text = Recipe.keyMapping[ingredients[i]].ToString();
             keycodeIndex.Add(Recipe.keyMapping[ingredients[i]], i);
-            if (grayKeys[currentIndex, i]) {
-                buttonSpriteRenderers[i].color = Color.gray;
+            if (highlightedKeys[currentIndex, i]) {
+                buttonBackgroundHighlights[i].enabled = true;
             }
         }
         neededForDish = dish.ingredientsList;
@@ -67,9 +71,9 @@ public class CookingUI : MonoBehaviour
 
     public void DeactivateButtons() {
         for (int i = 0; i < cookingSlots.Length; i++) {
-            iconSpriteRenderers[i].enabled = false;
+            ingredientImages[i].enabled = false;
+            buttonBackgroundHighlights[i].enabled = false;
             buttonKeys[i].text = "";
-            buttonSpriteRenderers[i].color = originalColor;
         }
         availableKeys = null;
     }
@@ -81,7 +85,7 @@ public class CookingUI : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space)) {
                 spacebarServerIndicator.SetActive(false);
                 for (int i = 0; i < cookingSlots.Length; i++) {
-                    grayKeys[currentIndex, i] = false;
+                    highlightedKeys[currentIndex, i] = false;
                 }
                 currentIngredient[currentIndex] = 0;
                 controller.ServeTheDish();
@@ -104,8 +108,8 @@ public class CookingUI : MonoBehaviour
                     PlayerData.DecreaseMoney(Recipe.ingredientCost[ingredient]);
                     controller.UpdateMoneyUI();
                     controller.AddIngredientToDish(ingredient);
-                    buttonSpriteRenderers[keycodeIndex[key]].color = Color.gray;
-                    grayKeys[currentIndex, keycodeIndex[key]] = true;
+                    buttonBackgroundHighlights[keycodeIndex[key]].enabled = true;
+                    highlightedKeys[currentIndex, keycodeIndex[key]] = true;
                     currentIngredient[currentIndex]++;
                     continue;
                 } 
@@ -118,8 +122,8 @@ public class CookingUI : MonoBehaviour
         currentIngredient[currentIndex] = 0;
         controller.ResetDishBeingWorkedOn(currentIndex);
         for (int i = 0; i < availableKeys.Count; i++) {
-            buttonSpriteRenderers[i].color = Color.red;
-            grayKeys[currentIndex, i] = false;
+            buttonBackgroundHighlights[i].enabled = false;
+            highlightedKeys[currentIndex, i] = false;
         }
     }
 }
