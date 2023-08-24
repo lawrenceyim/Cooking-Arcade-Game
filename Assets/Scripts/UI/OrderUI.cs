@@ -14,9 +14,9 @@ public class OrderUI : MonoBehaviour
     [SerializeField] Image[] sliderFillColorImages;
     [SerializeField] Image[] sliderHandleImages;
 
-    Color greenFill = new Color(0, 200, 0, 1);
-    Color yellowFill = new Color(200, 200, 0, 1);
-    Color redFill = new Color(200, 0, 0, 1);
+    Color32 greenFill = new Color32(28, 102, 52, 255);
+    Color32 yellowFill = new Color32(217, 208, 41, 255);
+    Color32 redFill = new Color32(135, 30, 30, 255);
 
     void Start()
     {
