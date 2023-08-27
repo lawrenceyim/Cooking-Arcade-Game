@@ -8176,6 +8176,7 @@ MonoBehaviour:
   summaryPanel: {fileID: 1410776891}
   summaryAmountText: {fileID: 1505923760}
   profitAmountText: {fileID: 2022084576}
+  dayText: {fileID: 580443127}
 --- !u!1001 &8998341452848327247
 PrefabInstance:
   m_ObjectHideFlags: 0

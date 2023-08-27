@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Intro.unity
     guid: 0ba05237fd96ff248b07cb08717954b6
+  - enabled: 1
+    path: Assets/Scenes/PizzaLetter.unity
+    guid: b881a5ea5a0b96f43836b6b7b6bd9db3
   m_configObjects: {}

@@ -217,29 +217,13 @@ GameObject:
   m_Component:
   - component: {fileID: 391279153}
   - component: {fileID: 391279152}
-  - component: {fileID: 391279151}
   m_Layer: 0
-  m_Name: Audio Source - Intro Letter
+  m_Name: Audio Source - Pizza Letter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &391279151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 391279150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd5a9fad55f40f94586f49f799b389c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  partA: {fileID: 8300000, guid: 9eddfaf54a282e04287b481083951750, type: 3}
-  partB: {fileID: 8300000, guid: 0a60a4427bbf05e4b80c02e8b019117d, type: 3}
-  audioSource: {fileID: 391279152}
 --- !u!82 &391279152
 AudioSource:
   m_ObjectHideFlags: 0
@@ -958,15 +942,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "My dear Everett, \n\nI find myself embarking on a most delightful sojourn,
-    and during my absence, I will entrust the care of this fine establishment unto
-    your capable hands. Any profits gained during this period will be yours to revel
-    in.\r\n\nIf my fickle memories still serve, you\u2019ve amassed a tidy sum of
-    near $100,000 in student debts. Not to worry, for this is an opportune occasion
-    to alleviate your burden. Should the fates smile upon you and give you the means
-    to discharge the entire obligation, I will consider relinquishing the reins of
-    this restaurant unto you. For, as the sands of time trickle away, I find myself
-    musing upon retirement\u2026\r\n\n[Press any key to continue]<waitinput>"
+  m_text: "Ah, Everett, my fine apprentice! I do hope that you are faring well.\r\n\nAs
+    for myself, I am happily idling the days away, basking in the embrace of sun
+    kissed shores and glistening sand. Concerns of the dining establishment have
+    fluttered from my mind, that is, until my sojourn led me to a most enchanting
+    Italian pizzeria\u2014sparking a revelation most grand! Did you know that there
+    exists a brick oven tucked away in the recesses of our culinary haven? The notion
+    of augmenting our menu with such delectable pies often flits through my contemplations.
+    Enclosed herewith is a parchment filled with my personal recipes, inspired by
+    my travels thus far. I have every confidence that you will impress our customers
+    with these nouveau offerings.\r\n\n[Press any key to continue]<waitinput>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

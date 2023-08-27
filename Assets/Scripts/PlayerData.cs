@@ -23,7 +23,7 @@ public static class PlayerData
 
     public static void LoadData() {
         money = ES3.Load("money", 1000);
-        day = ES3.Load("day", 1);
+        day = ES3.Load("day", 0);
     }
 
     public static void ResetSave() {
