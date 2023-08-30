@@ -4419,7 +4419,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2465027229843031612, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
   m_PrefabInstance: {fileID: 1758063219140419793}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1284000253}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1e7ef10253035d4883badc92cf885a3, type: 3}
@@ -4695,6 +4695,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277935430}
   m_CullTransparentMesh: 1
+--- !u!1 &1284000253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3363671699382485507, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
+  m_PrefabInstance: {fileID: 1758063219140419793}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1284000258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284000253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 799836d66d94fc84c835c37fcc917cd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 1229866059}
 --- !u!1 &1299512386
 GameObject:
   m_ObjectHideFlags: 0
@@ -4950,6 +4968,7 @@ MonoBehaviour:
   - {fileID: 382337347}
   - {fileID: 409498030}
   spacebarServerIndicator: {fileID: 1983000356}
+  panelGrill: {fileID: 1688113522}
 --- !u!1 &1410776891
 GameObject:
   m_ObjectHideFlags: 0
@@ -5995,6 +6014,82 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658628094}
+  m_CullTransparentMesh: 1
+--- !u!1 &1688113522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1688113523}
+  - component: {fileID: 1688113525}
+  - component: {fileID: 1688113524}
+  m_Layer: 5
+  m_Name: Panel - Grill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1688113523
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688113522}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7287524167756476312}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1688113524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688113522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1688113525
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688113522}
   m_CullTransparentMesh: 1
 --- !u!1 &1690104133
 GameObject:
@@ -7541,6 +7636,18 @@ PrefabInstance:
       value: PrefabCache
       objectReference: {fileID: 0}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: rawPatty
+      value: 
+      objectReference: {fileID: 3254345570939947047, guid: 8551bb081852afd4eb93252dea2cf8b8, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: burntPatty
+      value: 
+      objectReference: {fileID: 5857581459286278150, guid: b3f82e77fd9c8704aaf5ab01a6e907a6, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: cookedPatty
+      value: 
+      objectReference: {fileID: 8129516650189031128, guid: f7cb48a2e2896634fa8135b20f1af9be, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: dishes.Array.size
       value: 8
       objectReference: {fileID: 0}
@@ -7743,6 +7850,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2465027229843031612, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
+      propertyPath: grill
+      value: 
+      objectReference: {fileID: 1284000258}
+    - target: {fileID: 2465027229843031612, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
       propertyPath: dataUI
       value: 
       objectReference: {fileID: 1226756753}
@@ -7817,7 +7928,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3363671699382485507, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1284000258}
   m_SourcePrefab: {fileID: 100100000, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
 --- !u!1001 &3897154270859274236
 PrefabInstance:
@@ -8130,6 +8244,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3922844033613067754, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1369903463}
+    - targetCorrespondingSourceObject: {fileID: 3922844033613067754, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1688113523}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 279355814585568771, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       insertIndex: -1

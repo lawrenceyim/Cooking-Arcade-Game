@@ -10,6 +10,7 @@ public class CookingUI : MonoBehaviour
     [SerializeField] Controller controller;
     [SerializeField] GameObject[] cookingSlots;
     [SerializeField] GameObject spacebarServerIndicator;
+    [SerializeField] GameObject panelGrill;
     Image[] ingredientImages;
     Image[] buttonBackgroundHighlights;
     TextMeshProUGUI[] buttonKeys;
@@ -21,7 +22,7 @@ public class CookingUI : MonoBehaviour
     bool[,] highlightedKeys;
     int currentIndex;
     int[] currentIngredient;
-
+    bool[] grilledAlready;
 
     void Start()
     {
@@ -34,7 +35,8 @@ public class CookingUI : MonoBehaviour
         ingredientImages = new Image[cookingSlots.Length];
         buttonBackgroundHighlights = new Image[cookingSlots.Length];
         highlightedKeys = new bool[6, cookingSlots.Length];
-
+        grilledAlready = new bool[6];
+        panelGrill.SetActive(false);
         for (int i = 0; i < cookingSlots.Length; i++) {
             buttonBackgroundHighlights[i] = cookingSlots[i].transform.Find("Image - Button Highlight").GetComponent<Image>();
             ingredientImages[i] = cookingSlots[i].transform.Find("Image - Ingredient").GetComponent<Image>();
@@ -46,13 +48,27 @@ public class CookingUI : MonoBehaviour
 
     void Update() {
         ProcessInput();
+        if (dish == null) return;
+        if (dish.foodType == Recipe.FoodTypes.Burger && !grilledAlready[currentIndex]) {
+            controller.SetPattyGameObject(currentIndex);
+        }
     }
 
     public void UpdateButtons(Dish dish, int index) {
+        panelGrill.SetActive(false);
         spacebarServerIndicator.SetActive(false);
         DeactivateButtons();
         this.dish = dish;
         currentIndex = index;
+        controller.SetPattyGameObject(currentIndex);
+        if (dish.foodType == Recipe.FoodTypes.Burger) {
+            if (!grilledAlready[currentIndex]) {
+                panelGrill.SetActive(true);
+                SetGrillKeys();
+                return;
+            }
+        }
+
         availableKeys = Recipe.GetCurrentKeys(dish.foodType);
         List<Recipe.Ingredients> ingredients = Recipe.GetAllIngredients(dish);
         keycodeIndex = new Dictionary<KeyCode, int>();
@@ -69,6 +85,18 @@ public class CookingUI : MonoBehaviour
         neededForDish = dish.ingredientsList;
     }
 
+    void SetGrillKeys() {
+        availableKeys = new Dictionary<KeyCode, Recipe.Ingredients>();
+        availableKeys[KeyCode.P] = Recipe.Ingredients.patty;
+        ingredientImages[0].sprite = PrefabCache.instance.iconDict[Recipe.Ingredients.patty];
+        ingredientImages[0].enabled = true;
+        buttonBackgroundHighlights[0].enabled = false;
+        buttonKeys[0].text = "P";
+        keycodeIndex = new Dictionary<KeyCode, int>();
+        keycodeIndex[KeyCode.P] = 0;
+        if (highlightedKeys[currentIndex, 0]) buttonBackgroundHighlights[0].enabled = true;
+    }
+
     public void DeactivateButtons() {
         for (int i = 0; i < cookingSlots.Length; i++) {
             ingredientImages[i].enabled = false;
@@ -79,10 +107,36 @@ public class CookingUI : MonoBehaviour
     }
 
     void ProcessInput() {
+        if (dish == null) return;
+        if (dish.foodType == Recipe.FoodTypes.Burger && !grilledAlready[currentIndex]) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                if (controller.GetPattyStatus(currentIndex) == 2) {
+                    grilledAlready[currentIndex] = true;
+                    controller.SetPattyStatus(currentIndex, 0);
+                    controller.DestroyCurrentPatty();
+                    panelGrill.SetActive(false);
+                    UpdateButtons(dish, currentIndex);
+                } else if (controller.GetPattyStatus(currentIndex) == 3) {
+                    controller.SetPattyStatus(currentIndex, 0);
+                    controller.DestroyCurrentPatty();
+                    highlightedKeys[currentIndex, 0] = false;
+                    buttonBackgroundHighlights[0].enabled = false;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.P) && !highlightedKeys[currentIndex, 0]) {
+                controller.AddPattyToGrill(currentIndex);
+                controller.SetPattyGameObject(currentIndex);
+                highlightedKeys[currentIndex, 0] = true;
+                buttonBackgroundHighlights[0].enabled = true;
+            }
+            return;
+        }
+
         if (availableKeys == null) return;
         if (controller.IsDishComplete()) {
             spacebarServerIndicator.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Space)) {
+                grilledAlready[currentIndex] = false;
                 spacebarServerIndicator.SetActive(false);
                 for (int i = 0; i < cookingSlots.Length; i++) {
                     highlightedKeys[currentIndex, i] = false;
@@ -125,5 +179,9 @@ public class CookingUI : MonoBehaviour
             buttonBackgroundHighlights[i].enabled = false;
             highlightedKeys[currentIndex, i] = false;
         }
+    }
+
+    public void ResetGrill(int index) {
+        grilledAlready[index] = false;
     }
 }

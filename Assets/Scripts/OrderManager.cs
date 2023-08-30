@@ -65,6 +65,7 @@ public class OrderManager : MonoBehaviour
         customers[orderIndex] = null;
         controller.RemoveDishFromCookingPanel(orderIndex);
         controller.ResetOrderSlot(orderIndex);
+        controller.ResetGrill(orderIndex);
         if (orderIndex == currentIndex) {
             controller.ClearDescriptionPanel();
             controller.ClearCookingButtons();

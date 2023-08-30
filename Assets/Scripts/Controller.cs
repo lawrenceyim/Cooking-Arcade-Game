@@ -10,6 +10,7 @@ public class Controller : MonoBehaviour
     [SerializeField] DataUI dataUI;
     [SerializeField] Description description;
     [SerializeField] EndOfDayUI endOfDayUI;
+    [SerializeField] Grill grill;
     [SerializeField] OrderManager orderManager;
     [SerializeField] OrderUI orderUI;
 
@@ -75,6 +76,12 @@ public class Controller : MonoBehaviour
         cookingUI.UpdateButtons(dish, index);
     }
 
+    public void ResetGrill(int index) {
+        cookingUI.ResetGrill(index);
+    }
+
+
+
     // CustomerSpawner
     public bool CheckIfCustomerCountIsZero() {
         return customerSpawner.NoCustomersLeft();
@@ -101,6 +108,39 @@ public class Controller : MonoBehaviour
     // EndOfDayUI
     public void UpdateSummary() {
         endOfDayUI.UpdateSummaryText();
+    }
+
+    // Grill
+    public void AddPattyToGrill(int index) {
+        grill.AddPattyToGrill(index);
+    }
+    
+    public void DestroyCurrentPatty() {
+        grill.DestroyCurrentPatty();
+    }
+
+    public int GetPattyStatus(int index) {
+        return grill.GetPattyStatus(index);
+    }
+    
+    public float GetPattyTimer(int index) {
+        return grill.GetPattyTimer(index);
+    }
+
+    public void InstantiateCurrentPatty(GameObject patty) {
+        grill.InstantiateCurrentPatty(patty);
+    }
+
+    public void RemovePattyFromGrill(int index) {
+        grill.RemovePattyFromGrill(index);
+    }
+
+    public void SetPattyGameObject(int index) {
+        grill.SetPattyGameObject(index);
+    }
+
+    public void SetPattyStatus(int index, int status) {
+        grill.SetPattyStatus(index, status);
     }
 
     // OrderManager
