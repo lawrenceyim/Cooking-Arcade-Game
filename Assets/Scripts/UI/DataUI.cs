@@ -9,6 +9,7 @@ public class DataUI : MonoBehaviour
     [SerializeField] TextMeshPro dayUI;
     [SerializeField] TextMeshPro moneyUI;
     [SerializeField] TextMeshPro timerUI;
+    [SerializeField] GameObject UIDishCard;
     private float timeLeft;
     private float dayLength = 30f;
     bool levelRunning;
@@ -54,6 +55,7 @@ public class DataUI : MonoBehaviour
 
     void EndLevel() {
         Time.timeScale = 0f;
+        UIDishCard.SetActive(false);
         controller.UpdateSummary();
     }
 }

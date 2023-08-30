@@ -8198,6 +8198,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 102198645}
     - target: {fileID: 786458590127582317, guid: 19244c705357dac45bbdbc51fdc887e4, type: 3}
+      propertyPath: UIDishCard
+      value: 
+      objectReference: {fileID: 1555581061}
+    - target: {fileID: 786458590127582317, guid: 19244c705357dac45bbdbc51fdc887e4, type: 3}
       propertyPath: controller
       value: 
       objectReference: {fileID: 1229866059}
