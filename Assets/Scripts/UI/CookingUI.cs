@@ -57,6 +57,10 @@ public class CookingUI : MonoBehaviour
     void Update() {
         ProcessInput();
         if (dish == null) return;
+        ProcessGrilling();
+    }
+
+    public void ProcessGrilling() {
         if (dish.foodType == Recipe.FoodTypes.Burger && !grilledAlready[currentIndex]) {
             controller.SetPattyGameObject(currentIndex);
             DisplayGrillTimer();
