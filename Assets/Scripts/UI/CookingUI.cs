@@ -11,6 +11,9 @@ public class CookingUI : MonoBehaviour
     [SerializeField] GameObject[] cookingSlots;
     [SerializeField] GameObject spacebarServerIndicator;
     [SerializeField] GameObject panelGrill;
+    [SerializeField] GameObject grillTimer;
+    [SerializeField] Slider cookedPattySlider;
+    [SerializeField] Slider burntPattySlider;
     [SerializeField] GameObject transparencyPanel;
     [SerializeField] GameObject UIDishCard;
     [SerializeField] GameObject ingredientCard;
@@ -41,6 +44,7 @@ public class CookingUI : MonoBehaviour
         grilledAlready = new bool[6];
         panelGrill.SetActive(false);
         HideHud();
+        HideGrillTimer();
         for (int i = 0; i < cookingSlots.Length; i++) {
             buttonBackgroundHighlights[i] = cookingSlots[i].transform.Find("Image - Button Highlight").GetComponent<Image>();
             ingredientImages[i] = cookingSlots[i].transform.Find("Image - Ingredient").GetComponent<Image>();
@@ -55,12 +59,14 @@ public class CookingUI : MonoBehaviour
         if (dish == null) return;
         if (dish.foodType == Recipe.FoodTypes.Burger && !grilledAlready[currentIndex]) {
             controller.SetPattyGameObject(currentIndex);
+            DisplayGrillTimer();
         }
     }
 
     public void UpdateButtons(Dish dish, int index) {
         DisplayHud();
         panelGrill.SetActive(false);
+        HideGrillTimer();
         spacebarServerIndicator.SetActive(false);
         DeactivateButtons();
         this.dish = dish;
@@ -120,12 +126,16 @@ public class CookingUI : MonoBehaviour
                     controller.SetPattyStatus(currentIndex, 0);
                     controller.DestroyCurrentPatty();
                     panelGrill.SetActive(false);
+                    HideGrillTimer();
                     UpdateButtons(dish, currentIndex);
                 } else if (controller.GetPattyStatus(currentIndex) == 3) {
                     controller.SetPattyStatus(currentIndex, 0);
                     controller.DestroyCurrentPatty();
                     highlightedKeys[currentIndex, 0] = false;
                     buttonBackgroundHighlights[0].enabled = false;
+                    cookedPattySlider.value = 0f;
+                    burntPattySlider.value = 0f;
+                    grillTimer.SetActive(false);
                 }
             }
             if (Input.GetKeyDown(KeyCode.P) && !highlightedKeys[currentIndex, 0]) {
@@ -133,6 +143,8 @@ public class CookingUI : MonoBehaviour
                 controller.SetPattyGameObject(currentIndex);
                 highlightedKeys[currentIndex, 0] = true;
                 buttonBackgroundHighlights[0].enabled = true;
+                grillTimer.SetActive(true);
+                DisplayGrillTimer();
             }
             return;
         }
@@ -200,5 +212,29 @@ public class CookingUI : MonoBehaviour
         transparencyPanel.SetActive(false);
         UIDishCard.SetActive(false);
         ingredientCard.SetActive(false);        
+    }
+
+    public void DisplayGrillTimer() {
+        if (controller.GetPattyStatus(currentIndex) == 0) {
+            return;
+        }
+        grillTimer.SetActive(true);
+        if (controller.GetPattyStatus(currentIndex) == 3) {
+            cookedPattySlider.value = 1;
+            burntPattySlider.value = 1;
+        }
+        else if (controller.GetPattyStatus(currentIndex) == 2) {
+            cookedPattySlider.value = 1;
+            burntPattySlider.value = (5 - controller.GetPattyTimer(currentIndex)) / 5.0f;
+        } else {
+            cookedPattySlider.value = (5 - controller.GetPattyTimer(currentIndex)) / 5.0f;
+            burntPattySlider.value = 0;
+        }
+    }
+
+    public void HideGrillTimer() {
+        cookedPattySlider.value = 0;
+        burntPattySlider.value = 0;
+        grillTimer.SetActive(false);
     }
 }
