@@ -45,7 +45,7 @@ public class Grill : MonoBehaviour
     }
 
     public void InstantiateCurrentPatty(GameObject patty) {
-        currentPatty = Instantiate(patty, new Vector3(0,0,-5), Quaternion.identity);
+        currentPatty = Instantiate(patty, new Vector3(0,1,-5), Quaternion.identity);
     }
 
     public void DestroyCurrentPatty() {
