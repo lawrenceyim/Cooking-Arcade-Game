@@ -72,6 +72,10 @@ public class Controller : MonoBehaviour
         cookingUI.DeactivateButtons();
     }
 
+    public void HideHud() {
+        cookingUI.HideHud();
+    }
+
     public void UpdateCookingButtons(Dish dish, int index) {
         cookingUI.UpdateButtons(dish, index);
     }
@@ -79,8 +83,6 @@ public class Controller : MonoBehaviour
     public void ResetGrill(int index) {
         cookingUI.ResetGrill(index);
     }
-
-
 
     // CustomerSpawner
     public bool CheckIfCustomerCountIsZero() {

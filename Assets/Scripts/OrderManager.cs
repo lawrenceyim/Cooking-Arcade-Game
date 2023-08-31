@@ -70,6 +70,7 @@ public class OrderManager : MonoBehaviour
             controller.ClearDescriptionPanel();
             controller.ClearCookingButtons();
         }
+        controller.HideHud();
     }
 
     public void OrderServed() {

@@ -11,6 +11,9 @@ public class CookingUI : MonoBehaviour
     [SerializeField] GameObject[] cookingSlots;
     [SerializeField] GameObject spacebarServerIndicator;
     [SerializeField] GameObject panelGrill;
+    [SerializeField] GameObject transparencyPanel;
+    [SerializeField] GameObject UIDishCard;
+    [SerializeField] GameObject ingredientCard;
     Image[] ingredientImages;
     Image[] buttonBackgroundHighlights;
     TextMeshProUGUI[] buttonKeys;
@@ -37,6 +40,7 @@ public class CookingUI : MonoBehaviour
         highlightedKeys = new bool[6, cookingSlots.Length];
         grilledAlready = new bool[6];
         panelGrill.SetActive(false);
+        HideHud();
         for (int i = 0; i < cookingSlots.Length; i++) {
             buttonBackgroundHighlights[i] = cookingSlots[i].transform.Find("Image - Button Highlight").GetComponent<Image>();
             ingredientImages[i] = cookingSlots[i].transform.Find("Image - Ingredient").GetComponent<Image>();
@@ -55,6 +59,7 @@ public class CookingUI : MonoBehaviour
     }
 
     public void UpdateButtons(Dish dish, int index) {
+        DisplayHud();
         panelGrill.SetActive(false);
         spacebarServerIndicator.SetActive(false);
         DeactivateButtons();
@@ -183,5 +188,17 @@ public class CookingUI : MonoBehaviour
 
     public void ResetGrill(int index) {
         grilledAlready[index] = false;
+    }
+
+    public void DisplayHud() {
+        transparencyPanel.SetActive(true);
+        UIDishCard.SetActive(true);
+        ingredientCard.SetActive(true);
+    }
+
+    public void HideHud() {
+        transparencyPanel.SetActive(false);
+        UIDishCard.SetActive(false);
+        ingredientCard.SetActive(false);        
     }
 }
