@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Properties;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] Slider volumeSlider;
     bool paused;
     
     private void Start() {
         pauseMenu.SetActive(false);
+        volumeSlider.value = PlayerData.volumeSetting;
     }
 
     void Update()
@@ -23,7 +27,11 @@ public class PauseMenu : MonoBehaviour
                 Time.timeScale = 0f;
                 pauseMenu.SetActive(true);
             }
-        }        
+        } 
+        if (PlayerData.volumeSetting != volumeSlider.value) {
+            PlayerData.volumeSetting = volumeSlider.value;    
+            ES3.Save("volumeSetting", PlayerData.volumeSetting);
+        }
     }
 
     public void ResumeGame() {
