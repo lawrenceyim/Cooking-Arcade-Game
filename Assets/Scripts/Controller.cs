@@ -13,6 +13,7 @@ public class Controller : MonoBehaviour
     [SerializeField] Grill grill;
     [SerializeField] OrderManager orderManager;
     [SerializeField] OrderUI orderUI;
+    [SerializeField] Oven oven;
 
     void Start() {
         if (cooking == null ) {
@@ -82,6 +83,14 @@ public class Controller : MonoBehaviour
 
     public void ResetGrill(int index) {
         cookingUI.ResetGrill(index);
+    }
+
+    public void ResetOven(int index) {
+        cookingUI.ResetOven(index);
+    }
+
+    public void HideStations() {
+        cookingUI.HideStations();
     }
 
     // CustomerSpawner
@@ -169,5 +178,38 @@ public class Controller : MonoBehaviour
 
     public void ResetOrderSlot(int index) {
         orderUI.ResetOrderSlot(index);
+    }
+
+    // Oven
+    public void AddPizzaToGrill(int index) {
+        oven.AddPizzaToGrill(index);
+    }
+
+    public void RemovePizzaFromGrill(int index) {
+        oven.RemovePizzaFromGrill(index);
+    }
+
+    public void InstantiatecurrentPizza(GameObject pizza) {
+        oven.InstantiatecurrentPizza(pizza);
+    }
+
+    public void DestroyCurrentPizza() {
+        oven.DestroyCurrentPizza();
+    }
+
+    public int GetPizzaStatus(int index) {
+        return oven.GetPizzaStatus(index);
+    }
+    
+    public float GetPizzaTimer(int index) {
+        return oven.GetPizzaStatus(index);
+    }
+
+    public void SetPizzaStatus(int index, int status) {
+        oven.SetPizzaStatus(index, status);
+    }
+
+    public void SetPizzaGameObject(int index) {
+        oven.SetPizzaGameObject(index);
     }
 }

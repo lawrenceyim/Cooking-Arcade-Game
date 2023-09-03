@@ -9,11 +9,16 @@ public class CookingUI : MonoBehaviour
 {   
     [SerializeField] Controller controller;
     [SerializeField] GameObject[] cookingSlots;
-    [SerializeField] GameObject spacebarServerIndicator;
+    [SerializeField] GameObject panelSpaceBar;
+    [SerializeField] TextMeshProUGUI panelSpaceBarText;
     [SerializeField] GameObject panelGrill;
     [SerializeField] GameObject grillTimer;
+    [SerializeField] GameObject panelOven;
+    [SerializeField] GameObject ovenTimer;
     [SerializeField] Slider cookedPattySlider;
     [SerializeField] Slider burntPattySlider;
+    [SerializeField] Slider cookedPizzaSlider;
+    [SerializeField] Slider burntPizzaSlider;
     [SerializeField] GameObject transparencyPanel;
     [SerializeField] GameObject UIDishCard;
     [SerializeField] GameObject ingredientCard;
@@ -29,6 +34,7 @@ public class CookingUI : MonoBehaviour
     int currentIndex;
     int[] currentIngredient;
     bool[] grilledAlready;
+    bool[] readyToBakePizza;
 
     void Start()
     {
@@ -42,7 +48,9 @@ public class CookingUI : MonoBehaviour
         buttonBackgroundHighlights = new Image[cookingSlots.Length];
         highlightedKeys = new bool[6, cookingSlots.Length];
         grilledAlready = new bool[6];
+        readyToBakePizza = new bool[6];
         panelGrill.SetActive(false);
+        panelOven.SetActive(false);
         HideHud();
         HideGrillTimer();
         for (int i = 0; i < cookingSlots.Length; i++) {
@@ -50,7 +58,7 @@ public class CookingUI : MonoBehaviour
             ingredientImages[i] = cookingSlots[i].transform.Find("Image - Ingredient").GetComponent<Image>();
             buttonKeys[i] = cookingSlots[i].transform.Find("Text (TMP) - Ingredient Keycode").GetComponent<TextMeshProUGUI>();
         }
-        spacebarServerIndicator.SetActive(false);
+        panelSpaceBar.SetActive(false);
         DeactivateButtons();
     }
 
@@ -58,6 +66,7 @@ public class CookingUI : MonoBehaviour
         ProcessInput();
         if (dish == null) return;
         ProcessGrilling();
+        ProcessBakingPizza();
     }
 
     public void ProcessGrilling() {
@@ -67,19 +76,36 @@ public class CookingUI : MonoBehaviour
         }
     }
 
+    public void ProcessBakingPizza() {
+        if (dish.foodType == Recipe.FoodTypes.Pizza && readyToBakePizza[currentIndex]) {
+            SetOvenKeys();
+            controller.SetPizzaGameObject(currentIndex);
+            // DisplayOvenTimer();
+        }
+    }
+
     public void UpdateButtons(Dish dish, int index) {
         DisplayHud();
         panelGrill.SetActive(false);
+        panelOven.SetActive(false);
         HideGrillTimer();
-        spacebarServerIndicator.SetActive(false);
+        // HideOvenTimer();
+        panelSpaceBar.SetActive(false);
         DeactivateButtons();
         this.dish = dish;
         currentIndex = index;
-        controller.SetPattyGameObject(currentIndex);
         if (dish.foodType == Recipe.FoodTypes.Burger) {
+            controller.SetPattyGameObject(currentIndex);
             if (!grilledAlready[currentIndex]) {
                 panelGrill.SetActive(true);
                 SetGrillKeys();
+                return;
+            }
+        } else if (dish.foodType == Recipe.FoodTypes.Pizza) {
+            controller.SetPizzaGameObject(currentIndex);
+            if (readyToBakePizza[currentIndex]) {
+                panelOven.SetActive(true);
+                SetOvenKeys();
                 return;
             }
         }
@@ -112,6 +138,22 @@ public class CookingUI : MonoBehaviour
         if (highlightedKeys[currentIndex, 0]) buttonBackgroundHighlights[0].enabled = true;
     }
 
+    public void SetOvenKeys() {
+        ingredientCard.SetActive(false);
+        if (controller.GetPizzaStatus(currentIndex) == 1) {
+            return;
+        }
+        panelSpaceBar.SetActive(true);
+        if (controller.GetPizzaStatus(currentIndex) == 0) {
+            panelSpaceBarText.text = "Press space to put pizza in the oven";
+        } else if (controller.GetPizzaStatus(currentIndex) == 2) {
+            panelSpaceBarText.text = "Press space to put serve pizza";
+        } else if (controller.GetPizzaStatus(currentIndex) == 3) {
+            panelSpaceBarText.text = "Press space to discard burnt pizza";
+        }
+
+    }
+
     public void DeactivateButtons() {
         for (int i = 0; i < cookingSlots.Length; i++) {
             ingredientImages[i].enabled = false;
@@ -137,8 +179,6 @@ public class CookingUI : MonoBehaviour
                     controller.DestroyCurrentPatty();
                     highlightedKeys[currentIndex, 0] = false;
                     buttonBackgroundHighlights[0].enabled = false;
-                    cookedPattySlider.value = 0f;
-                    burntPattySlider.value = 0f;
                     grillTimer.SetActive(false);
                 }
             }
@@ -147,18 +187,50 @@ public class CookingUI : MonoBehaviour
                 controller.SetPattyGameObject(currentIndex);
                 highlightedKeys[currentIndex, 0] = true;
                 buttonBackgroundHighlights[0].enabled = true;
-                grillTimer.SetActive(true);
                 DisplayGrillTimer();
+            }
+            return;
+        }
+        if (dish.foodType == Recipe.FoodTypes.Pizza && readyToBakePizza[currentIndex]) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                if (controller.GetPizzaStatus(currentIndex) == 0) {
+                    controller.AddPizzaToGrill(currentIndex);
+                    controller.SetPizzaGameObject(currentIndex);
+                    panelSpaceBar.SetActive(false);
+                    // DisplayOvenTimer(true);
+                } else if (controller.GetPizzaStatus(currentIndex) == 2) {
+                    readyToBakePizza[currentIndex] = false;
+                    ResetOven(currentIndex);
+                    controller.DestroyCurrentPizza();
+                    controller.RemovePizzaFromGrill(currentIndex);
+                    panelOven.SetActive(false);
+                    panelSpaceBar.SetActive(false);
+                    // HideOvenTimer();
+                    controller.ServeTheDish();
+                } else if (controller.GetPizzaStatus(currentIndex) == 3) {
+                    controller.DestroyCurrentPizza();
+                    controller.RemovePizzaFromGrill(currentIndex);
+                    // ovenTimer.SetActive(false);
+                }
             }
             return;
         }
 
         if (availableKeys == null) return;
         if (controller.IsDishComplete()) {
-            spacebarServerIndicator.SetActive(true);
+            if (dish.foodType == Recipe.FoodTypes.Pizza) {
+                ResetDishAndButtons();
+                readyToBakePizza[currentIndex] = true;
+                panelOven.SetActive(true);
+                SetOvenKeys();
+                controller.ResetDishBeingWorkedOn(currentIndex);
+                return;
+            }
+            panelSpaceBar.SetActive(true);
+            panelSpaceBarText.text = "Press space to serve";
             if (Input.GetKeyDown(KeyCode.Space)) {
                 grilledAlready[currentIndex] = false;
-                spacebarServerIndicator.SetActive(false);
+                panelSpaceBar.SetActive(false);
                 for (int i = 0; i < cookingSlots.Length; i++) {
                     highlightedKeys[currentIndex, i] = false;
                 }
@@ -171,9 +243,9 @@ public class CookingUI : MonoBehaviour
             if (Input.GetKeyDown(key)) {
                 Recipe.Ingredients ingredient = availableKeys[key];
                 if (!neededForDish.Contains(ingredient)) {
-                    ResetDishAndButtons();
+                    DiscardDish();
                 } else if (ingredient != dish.ingredientsList[currentIngredient[currentIndex]]) {
-                    ResetDishAndButtons();
+                    DiscardDish();
                 }
                 else if (!PlayerData.HasEnoughMoney(Recipe.ingredientCost[ingredient])) {
                     continue;
@@ -192,8 +264,12 @@ public class CookingUI : MonoBehaviour
         }
     }
 
-    private void ResetDishAndButtons() {
+    public void DiscardDish() {
         AudioManager.instance.PlayTrashSound();
+        ResetDishAndButtons();
+    }
+
+    private void ResetDishAndButtons() {
         currentIngredient[currentIndex] = 0;
         controller.ResetDishBeingWorkedOn(currentIndex);
         for (int i = 0; i < availableKeys.Count; i++) {
@@ -206,6 +282,10 @@ public class CookingUI : MonoBehaviour
         grilledAlready[index] = false;
     }
 
+    public void ResetOven(int index) {
+        readyToBakePizza[index] = false;
+    }
+
     public void DisplayHud() {
         transparencyPanel.SetActive(true);
         UIDishCard.SetActive(true);
@@ -216,10 +296,12 @@ public class CookingUI : MonoBehaviour
         transparencyPanel.SetActive(false);
         UIDishCard.SetActive(false);
         ingredientCard.SetActive(false);        
+        panelSpaceBar.SetActive(false);
     }
 
     public void DisplayGrillTimer() {
         if (controller.GetPattyStatus(currentIndex) == 0) {
+            grillTimer.SetActive(false);
             return;
         }
         grillTimer.SetActive(true);
@@ -236,9 +318,44 @@ public class CookingUI : MonoBehaviour
         }
     }
 
+    public void DisplayOvenTimer() {
+        if (controller.GetPizzaStatus(currentIndex) == 0) {
+            ovenTimer.SetActive(true);
+            return;
+        }
+        ovenTimer.SetActive(true);
+        if (controller.GetPizzaStatus(currentIndex) == 3) {
+            cookedPizzaSlider.value = 1;
+            burntPizzaSlider.value = 1;
+        } else if (controller.GetPizzaStatus(currentIndex) == 2) {
+            cookedPizzaSlider.value = 1;
+            burntPizzaSlider.value = (5 - controller.GetPizzaTimer(currentIndex)) / 5.0f;
+        } else {
+            cookedPizzaSlider.value = (5 - controller.GetPizzaTimer(currentIndex)) / 5.0f;
+            burntPizzaSlider.value = 0;
+        }
+    }
+
     public void HideGrillTimer() {
         cookedPattySlider.value = 0;
         burntPattySlider.value = 0;
         grillTimer.SetActive(false);
+    }
+
+    public void HideStations() {
+        grillTimer.SetActive(false);
+        // ovenTimer.SetActive(false);
+        panelGrill.SetActive(false);
+        panelOven.SetActive(false);
+        panelSpaceBar.SetActive(false);
+    }
+
+    public void HideOvenTimer() {
+        cookedPizzaSlider.value = 0;
+        burntPizzaSlider.value = 0;
+    }
+
+    public void ClearVisuals() {
+
     }
 }

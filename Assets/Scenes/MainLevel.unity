@@ -2007,7 +2007,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2489,7 +2489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &482613033
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4710,7 +4710,7 @@ GameObject:
   - component: {fileID: 1241766977}
   - component: {fileID: 1241766976}
   m_Layer: 5
-  m_Name: Text (TMP) - Serve Dish
+  m_Name: Text (TMP) - Spacebar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4986,6 +4986,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1229866059}
+--- !u!114 &1284000259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284000253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24fdbdd907ad6894288242196e8a2ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 1229866059}
 --- !u!1 &1299512386
 GameObject:
   m_ObjectHideFlags: 0
@@ -5133,7 +5146,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5750,6 +5763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a710069c8aae4594fa0ae975e5cd98c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMusic: 0
   audioSource: {fileID: 1489147724}
 --- !u!1 &1505923758
 GameObject:
@@ -6721,6 +6735,90 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672811900}
   m_CullTransparentMesh: 1
+--- !u!1 &1673268508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1673268510}
+  - component: {fileID: 1673268509}
+  m_Layer: 0
+  m_Name: Square - Oven
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1673268509
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673268508}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 3d09c4314fbf2714b9c92767b2a4bead, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1673268510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673268508}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1690104133
 GameObject:
   m_ObjectHideFlags: 0
@@ -7900,7 +7998,7 @@ GameObject:
   - component: {fileID: 1983000359}
   - component: {fileID: 1983000358}
   m_Layer: 5
-  m_Name: Panel - Serve
+  m_Name: Panel - Spacebar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7924,7 +8022,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1983000358
@@ -8281,7 +8379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &2071342167
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8506,6 +8604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a710069c8aae4594fa0ae975e5cd98c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMusic: 0
   audioSource: {fileID: 2112143717}
 --- !u!114 &2127695866 stripped
 MonoBehaviour:
@@ -8663,13 +8762,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3254345570939947047, guid: 8551bb081852afd4eb93252dea2cf8b8, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: rawPizza
+      value: 
+      objectReference: {fileID: 1809106276328976279, guid: 45434b353a867394a89214a3bd4c2fc3, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: burntPatty
       value: 
       objectReference: {fileID: 5857581459286278150, guid: b3f82e77fd9c8704aaf5ab01a6e907a6, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: burntPizza
+      value: 
+      objectReference: {fileID: 8830463734919326380, guid: 667675c9da4eb434c9fecf9626266f96, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: cookedPatty
       value: 
       objectReference: {fileID: 8129516650189031128, guid: f7cb48a2e2896634fa8135b20f1af9be, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: cookedPizza
+      value: 
+      objectReference: {fileID: 8544919944364365070, guid: 940688231487bf54daf8d73ba9548101, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: dishes.Array.size
       value: 8
@@ -8873,6 +8984,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2465027229843031612, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
+      propertyPath: oven
+      value: 
+      objectReference: {fileID: 1284000259}
+    - target: {fileID: 2465027229843031612, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
       propertyPath: grill
       value: 
       objectReference: {fileID: 1284000258}
@@ -8955,6 +9070,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3363671699382485507, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1284000258}
+    - targetCorrespondingSourceObject: {fileID: 3363671699382485507, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1284000259}
   m_SourcePrefab: {fileID: 100100000, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
 --- !u!1001 &3897154270859274236
 PrefabInstance:
@@ -9363,13 +9481,13 @@ PrefabInstance:
       addedObject: {fileID: 1410776892}
     - targetCorrespondingSourceObject: {fileID: 3922844033613067754, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1983000357}
-    - targetCorrespondingSourceObject: {fileID: 3922844033613067754, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1555581062}
     - targetCorrespondingSourceObject: {fileID: 3922844033613067754, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1369903463}
+    - targetCorrespondingSourceObject: {fileID: 3922844033613067754, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1983000357}
     - targetCorrespondingSourceObject: {fileID: 3922844033613067754, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1036766641}
@@ -9469,11 +9587,16 @@ MonoBehaviour:
   - {fileID: 641537015}
   - {fileID: 382337347}
   - {fileID: 409498030}
-  spacebarServerIndicator: {fileID: 1983000356}
+  panelSpaceBar: {fileID: 1983000356}
+  panelSpaceBarText: {fileID: 1241766976}
   panelGrill: {fileID: 2071342166}
   grillTimer: {fileID: 1036766640}
+  panelOven: {fileID: 1673268508}
+  ovenTimer: {fileID: 0}
   cookedPattySlider: {fileID: 2036603415}
   burntPattySlider: {fileID: 1408430892}
+  cookedPizzaSlider: {fileID: 0}
+  burntPizzaSlider: {fileID: 0}
   transparencyPanel: {fileID: 1482295981}
   UIDishCard: {fileID: 1555581061}
   ingredientCard: {fileID: 1369903462}

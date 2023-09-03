@@ -65,10 +65,19 @@ public class OrderManager : MonoBehaviour
         customers[orderIndex] = null;
         controller.RemoveDishFromCookingPanel(orderIndex);
         controller.ResetOrderSlot(orderIndex);
+
         controller.ResetGrill(orderIndex);
+        controller.RemovePattyFromGrill(orderIndex);
+
+        controller.ResetOven(orderIndex);
+        controller.RemovePizzaFromGrill(orderIndex);
+
         if (orderIndex == currentIndex) {
             controller.ClearDescriptionPanel();
             controller.ClearCookingButtons();
+            controller.DestroyCurrentPatty();
+            controller.DestroyCurrentPizza();
+            controller.HideStations();
         }
         controller.HideHud();
     }
