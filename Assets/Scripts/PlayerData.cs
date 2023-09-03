@@ -9,6 +9,7 @@ public static class PlayerData
     public static int day;
     public static int expense;
     public static int revenue;
+    public static float volumeSetting;
 
     [RuntimeInitializeOnLoadMethod]
     static void RunOnGameStart()
@@ -24,6 +25,7 @@ public static class PlayerData
     public static void LoadData() {
         money = ES3.Load("money", 1000);
         day = ES3.Load("day", 0);
+        volumeSetting = ES3.Load("volumeSetting", .1f);
     }
 
     public static void ResetSave() {
