@@ -181,16 +181,16 @@ public class Controller : MonoBehaviour
     }
 
     // Oven
-    public void AddPizzaToGrill(int index) {
-        oven.AddPizzaToGrill(index);
+    public void AddPizzaToOven(int index) {
+        oven.AddPizzaToOven(index);
     }
 
-    public void RemovePizzaFromGrill(int index) {
-        oven.RemovePizzaFromGrill(index);
+    public void RemovePizzaFromOven(int index) {
+        oven.RemovePizzaFromOven(index);
     }
 
-    public void InstantiatecurrentPizza(GameObject pizza) {
-        oven.InstantiatecurrentPizza(pizza);
+    public void InstantiateCurrentPizza(GameObject pizza) {
+        oven.InstantiateCurrentPizza(pizza);
     }
 
     public void DestroyCurrentPizza() {
@@ -202,7 +202,7 @@ public class Controller : MonoBehaviour
     }
     
     public float GetPizzaTimer(int index) {
-        return oven.GetPizzaStatus(index);
+        return oven.GetPizzaTimer(index);
     }
 
     public void SetPizzaStatus(int index, int status) {

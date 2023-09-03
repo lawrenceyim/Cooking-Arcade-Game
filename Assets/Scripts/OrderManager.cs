@@ -70,7 +70,7 @@ public class OrderManager : MonoBehaviour
         controller.RemovePattyFromGrill(orderIndex);
 
         controller.ResetOven(orderIndex);
-        controller.RemovePizzaFromGrill(orderIndex);
+        controller.RemovePizzaFromOven(orderIndex);
 
         if (orderIndex == currentIndex) {
             controller.ClearDescriptionPanel();

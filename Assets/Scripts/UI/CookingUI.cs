@@ -80,17 +80,13 @@ public class CookingUI : MonoBehaviour
         if (dish.foodType == Recipe.FoodTypes.Pizza && readyToBakePizza[currentIndex]) {
             SetOvenKeys();
             controller.SetPizzaGameObject(currentIndex);
-            // DisplayOvenTimer();
+            DisplayOvenTimer();
         }
     }
 
     public void UpdateButtons(Dish dish, int index) {
         DisplayHud();
-        panelGrill.SetActive(false);
-        panelOven.SetActive(false);
-        HideGrillTimer();
-        // HideOvenTimer();
-        panelSpaceBar.SetActive(false);
+        HideStations();
         DeactivateButtons();
         this.dish = dish;
         currentIndex = index;
@@ -194,23 +190,23 @@ public class CookingUI : MonoBehaviour
         if (dish.foodType == Recipe.FoodTypes.Pizza && readyToBakePizza[currentIndex]) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 if (controller.GetPizzaStatus(currentIndex) == 0) {
-                    controller.AddPizzaToGrill(currentIndex);
+                    controller.AddPizzaToOven(currentIndex);
                     controller.SetPizzaGameObject(currentIndex);
                     panelSpaceBar.SetActive(false);
-                    // DisplayOvenTimer(true);
+                    DisplayOvenTimer();
                 } else if (controller.GetPizzaStatus(currentIndex) == 2) {
                     readyToBakePizza[currentIndex] = false;
                     ResetOven(currentIndex);
                     controller.DestroyCurrentPizza();
-                    controller.RemovePizzaFromGrill(currentIndex);
+                    controller.RemovePizzaFromOven(currentIndex);
                     panelOven.SetActive(false);
                     panelSpaceBar.SetActive(false);
-                    // HideOvenTimer();
+                    HideOvenTimer();
                     controller.ServeTheDish();
                 } else if (controller.GetPizzaStatus(currentIndex) == 3) {
                     controller.DestroyCurrentPizza();
-                    controller.RemovePizzaFromGrill(currentIndex);
-                    // ovenTimer.SetActive(false);
+                    controller.RemovePizzaFromOven(currentIndex);
+                    ovenTimer.SetActive(false);
                 }
             }
             return;
@@ -320,7 +316,7 @@ public class CookingUI : MonoBehaviour
 
     public void DisplayOvenTimer() {
         if (controller.GetPizzaStatus(currentIndex) == 0) {
-            ovenTimer.SetActive(true);
+            ovenTimer.SetActive(false);
             return;
         }
         ovenTimer.SetActive(true);
@@ -344,7 +340,7 @@ public class CookingUI : MonoBehaviour
 
     public void HideStations() {
         grillTimer.SetActive(false);
-        // ovenTimer.SetActive(false);
+        ovenTimer.SetActive(false);
         panelGrill.SetActive(false);
         panelOven.SetActive(false);
         panelSpaceBar.SetActive(false);

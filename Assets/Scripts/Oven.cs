@@ -34,17 +34,17 @@ public class Oven : MonoBehaviour
         }
     }
 
-    public void AddPizzaToGrill(int index) {
+    public void AddPizzaToOven(int index) {
         pizzaStatus[index] = 1;
         cookingTimer[index] = cookingTime;
     }
 
-    public void RemovePizzaFromGrill(int index) {
+    public void RemovePizzaFromOven(int index) {
         pizzaStatus[index] = 0;
         cookingTimer[index] = 0;
     }
 
-    public void InstantiatecurrentPizza(GameObject pizza) {
+    public void InstantiateCurrentPizza(GameObject pizza) {
         if (pizza == PrefabCache.instance.burntPizza) {
             currentPizza = Instantiate(pizza, new Vector3(0, 1, -5), Quaternion.identity);
             return;
@@ -79,17 +79,17 @@ public class Oven : MonoBehaviour
         } else if (pizzaStatus[index] == 1) {
             if (currentPizza != PrefabCache.instance.rawPizza) {
                 DestroyCurrentPizza();
-                InstantiatecurrentPizza(PrefabCache.instance.rawPizza);
+                InstantiateCurrentPizza(PrefabCache.instance.rawPizza);
             }
         } else if (pizzaStatus[index] == 2) {
             if (currentPizza != PrefabCache.instance.cookedPizza) {
                 DestroyCurrentPizza();
-                InstantiatecurrentPizza(PrefabCache.instance.cookedPizza);
+                InstantiateCurrentPizza(PrefabCache.instance.cookedPizza);
             }
         } else if (pizzaStatus[index] == 3) {
             if (currentPizza != PrefabCache.instance.burntPizza) {
                 DestroyCurrentPizza();
-                InstantiatecurrentPizza(PrefabCache.instance.burntPizza);
+                InstantiateCurrentPizza(PrefabCache.instance.burntPizza);
             }
         }
     }

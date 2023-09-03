@@ -3236,7 +3236,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &785102401
 GameObject:
@@ -4125,7 +4125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1036766641
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4145,7 +4145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -150}
   m_SizeDelta: {x: 276, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1036766642
@@ -4433,7 +4433,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5352,7 +5352,7 @@ GameObject:
   - component: {fileID: 1408430891}
   - component: {fileID: 1408430892}
   m_Layer: 5
-  m_Name: Slider -Burnt Patty
+  m_Name: Slider -Burnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5687,7 +5687,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1482295983
 SpriteRenderer:
@@ -6751,7 +6751,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1673268509
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6817,7 +6817,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1690104133
 GameObject:
@@ -7524,7 +7524,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7810,7 +7810,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1955563183
 GameObject:
@@ -8003,7 +8003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1983000357
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8022,7 +8022,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -200}
+  m_AnchoredPosition: {x: 0, y: 400}
   m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1983000358
@@ -8209,7 +8209,7 @@ GameObject:
   - component: {fileID: 2036603414}
   - component: {fileID: 2036603415}
   m_Layer: 5
-  m_Name: Slider - Cooked Patty
+  m_Name: 'Slider - Cooked '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8445,7 +8445,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2085805154
 GameObject:
@@ -8699,7 +8699,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &746143236975394550
 PrefabInstance:
@@ -8711,7 +8711,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 645328345452959012, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 645328345452959012, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9088,7 +9088,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4932386276368083180, guid: 81c0224372cb43e49b9d536ef677f232, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4932386276368083180, guid: 81c0224372cb43e49b9d536ef677f232, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9271,7 +9271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3922844033613067754, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3922844033613067754, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       propertyPath: m_AnchorMax.x
@@ -9490,10 +9490,10 @@ PrefabInstance:
       addedObject: {fileID: 1983000357}
     - targetCorrespondingSourceObject: {fileID: 3922844033613067754, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1036766641}
+      addedObject: {fileID: 482613033}
     - targetCorrespondingSourceObject: {fileID: 3922844033613067754, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 482613033}
+      addedObject: {fileID: 1036766641}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 279355814585568771, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       insertIndex: -1
@@ -9592,11 +9592,11 @@ MonoBehaviour:
   panelGrill: {fileID: 2071342166}
   grillTimer: {fileID: 1036766640}
   panelOven: {fileID: 1673268508}
-  ovenTimer: {fileID: 0}
+  ovenTimer: {fileID: 1036766640}
   cookedPattySlider: {fileID: 2036603415}
   burntPattySlider: {fileID: 1408430892}
-  cookedPizzaSlider: {fileID: 0}
-  burntPizzaSlider: {fileID: 0}
+  cookedPizzaSlider: {fileID: 2036603415}
+  burntPizzaSlider: {fileID: 1408430892}
   transparencyPanel: {fileID: 1482295981}
   UIDishCard: {fileID: 1555581061}
   ingredientCard: {fileID: 1369903462}
@@ -9658,7 +9658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4782197583168196663, guid: 19244c705357dac45bbdbc51fdc887e4, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4782197583168196663, guid: 19244c705357dac45bbdbc51fdc887e4, type: 3}
       propertyPath: m_LocalPosition.x
