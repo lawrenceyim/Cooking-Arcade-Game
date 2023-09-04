@@ -10,19 +10,18 @@ public class VolumeSetting : MonoBehaviour
     void Start()
     {
         if (isMusic) {
-            audioSource.volume = PlayerData.volumeSetting / 5;        
+            audioSource.volume = PlayerData.musicVolumeSetting;        
         } else {
-            audioSource.volume = PlayerData.volumeSetting;        
+            audioSource.volume = PlayerData.soundEffectVolumeSetting;        
         }
     }
 
     void Update()
     {
-        if (audioSource.volume == PlayerData.volumeSetting) return;
         if (isMusic) {
-            audioSource.volume = PlayerData.volumeSetting / 2;        
+            audioSource.volume = PlayerData.musicVolumeSetting;        
         } else {
-            audioSource.volume = PlayerData.volumeSetting;        
-        }  
+            audioSource.volume = PlayerData.soundEffectVolumeSetting;        
+        }
     }
 }

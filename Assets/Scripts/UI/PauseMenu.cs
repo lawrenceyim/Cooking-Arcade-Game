@@ -7,12 +7,10 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
-    [SerializeField] Slider volumeSlider;
     bool paused;
     
     private void Start() {
         pauseMenu.SetActive(false);
-        volumeSlider.value = PlayerData.volumeSetting;
     }
 
     void Update()
@@ -28,10 +26,6 @@ public class PauseMenu : MonoBehaviour
                 pauseMenu.SetActive(true);
             }
         } 
-        if (PlayerData.volumeSetting != volumeSlider.value) {
-            PlayerData.volumeSetting = volumeSlider.value;    
-            ES3.Save("volumeSetting", PlayerData.volumeSetting);
-        }
     }
 
     public void ResumeGame() {

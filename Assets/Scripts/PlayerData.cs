@@ -9,7 +9,9 @@ public static class PlayerData
     public static int day;
     public static int expense;
     public static int revenue;
-    public static float volumeSetting;
+    public static float musicVolumeSetting;
+    public static float soundEffectVolumeSetting;
+
 
     [RuntimeInitializeOnLoadMethod]
     static void RunOnGameStart()
@@ -25,7 +27,8 @@ public static class PlayerData
     public static void LoadData() {
         money = ES3.Load("money", 1000);
         day = ES3.Load("day", 0);
-        volumeSetting = ES3.Load("volumeSetting", .1f);
+        musicVolumeSetting = ES3.Load("musicVolumeSetting", .1f);
+        soundEffectVolumeSetting = ES3.Load("soundEffectVolumeSetting", .2f);
     }
 
     public static void ResetSave() {
