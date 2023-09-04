@@ -49,4 +49,9 @@ public class SceneManagerScript : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("PizzaLetter");
     }
+
+    public void LoadOptions() {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Options");
+    }
 }

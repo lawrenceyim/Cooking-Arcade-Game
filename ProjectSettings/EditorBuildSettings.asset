@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PizzaLetter.unity
     guid: b881a5ea5a0b96f43836b6b7b6bd9db3
+  - enabled: 1
+    path: Assets/Scenes/Options.unity
+    guid: 6a162e752f95751498c69585637616a2
   m_configObjects: {}

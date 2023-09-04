@@ -257,7 +257,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Exit Game
+  m_text: Options
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 480b4221611524b49afca72f2a1c12c8, type: 2}
   m_sharedMaterial: {fileID: -6659782573668046507, guid: 480b4221611524b49afca72f2a1c12c8, type: 2}
@@ -645,7 +645,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Options
+  m_text: Load Game
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 480b4221611524b49afca72f2a1c12c8, type: 2}
   m_sharedMaterial: {fileID: -6659782573668046507, guid: 480b4221611524b49afca72f2a1c12c8, type: 2}
@@ -1337,7 +1337,7 @@ GameObject:
   - component: {fileID: 1970797612}
   - component: {fileID: 1970797615}
   m_Layer: 5
-  m_Name: Button -Exit Game
+  m_Name: Button - Options
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1410,7 +1410,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1970797615}
         m_TargetAssemblyTypeName: SceneManagerScript, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: LoadOptions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
