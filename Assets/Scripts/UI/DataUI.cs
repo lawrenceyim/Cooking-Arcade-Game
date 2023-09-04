@@ -11,7 +11,7 @@ public class DataUI : MonoBehaviour
     [SerializeField] TextMeshPro timerUI;
     [SerializeField] GameObject UIDishCard;
     private float timeLeft;
-    private float dayLength = 30f;
+    private float dayLength = 60 * 5f;
     bool levelRunning;
 
     void Start()
