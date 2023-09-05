@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class EndOfDayButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class HoverOverSpriteChange : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Sprite originalSprite;
     [SerializeField] Sprite hoverOverSprite;

@@ -9291,11 +9291,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3922844033613067754, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 17.8
       objectReference: {fileID: 0}
     - target: {fileID: 3922844033613067754, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1080
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3922844033613067754, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       propertyPath: m_LocalScale.x
