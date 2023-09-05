@@ -26,7 +26,7 @@ public static class PlayerData
 
     public static void LoadData() {
         money = ES3.Load("money", 1000);
-        day = ES3.Load("day", 0);
+        day = ES3.Load("day", 1);
         musicVolumeSetting = ES3.Load("musicVolumeSetting", .1f);
         soundEffectVolumeSetting = ES3.Load("soundEffectVolumeSetting", .2f);
     }

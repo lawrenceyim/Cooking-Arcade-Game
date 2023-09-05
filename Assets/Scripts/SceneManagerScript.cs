@@ -31,8 +31,6 @@ public class SceneManagerScript : MonoBehaviour
     }
 
     public void StartNextDay() {
-        // PlayerData.IncrementDay();
-        // PlayerData.SaveData();
         LoadGame();
     }
 
