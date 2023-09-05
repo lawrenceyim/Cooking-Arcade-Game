@@ -11,7 +11,7 @@ public static class PlayerData
     public static int revenue;
     public static float musicVolumeSetting;
     public static float soundEffectVolumeSetting;
-
+    public static int defaultMoney = 1000;
 
     [RuntimeInitializeOnLoadMethod]
     static void RunOnGameStart()
@@ -22,17 +22,21 @@ public static class PlayerData
     public static void SaveData() {
         ES3.Save("money", money);
         ES3.Save("day", day);
+        ES3.Save("musicVolumeSetting", musicVolumeSetting);
+        ES3.Save("soundEffectVolumeSetting", soundEffectVolumeSetting);
     }
 
     public static void LoadData() {
-        money = ES3.Load("money", 1000);
+        money = ES3.Load("money", defaultMoney);
         day = ES3.Load("day", 1);
         musicVolumeSetting = ES3.Load("musicVolumeSetting", .1f);
         soundEffectVolumeSetting = ES3.Load("soundEffectVolumeSetting", .2f);
     }
 
     public static void ResetSave() {
-        ES3.DeleteFile("SaveFile.es3");
+        // ES3.DeleteFile("SaveFile.es3");
+        ES3.Save("money", defaultMoney);
+        ES3.Save("day", 1);
     }
 
     public static bool HasEnoughMoney(int amount) {
