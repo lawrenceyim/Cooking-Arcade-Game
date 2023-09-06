@@ -12,11 +12,14 @@ public static class PlayerData
     public static float musicVolumeSetting;
     public static float soundEffectVolumeSetting;
     public static int defaultMoney = 1000;
+    public static int xResolution;
+    public static int yResolution;
 
     [RuntimeInitializeOnLoadMethod]
     static void RunOnGameStart()
     {
         LoadData();
+        Screen.SetResolution(xResolution, yResolution, false);
     }
 
     public static void SaveData() {
@@ -24,6 +27,8 @@ public static class PlayerData
         ES3.Save("day", day);
         ES3.Save("musicVolumeSetting", musicVolumeSetting);
         ES3.Save("soundEffectVolumeSetting", soundEffectVolumeSetting);
+        ES3.Save("xResolution", xResolution);
+        ES3.Save("yResolution", yResolution);
     }
 
     public static void LoadData() {
@@ -31,6 +36,8 @@ public static class PlayerData
         day = ES3.Load("day", 1);
         musicVolumeSetting = ES3.Load("musicVolumeSetting", .1f);
         soundEffectVolumeSetting = ES3.Load("soundEffectVolumeSetting", .2f);
+        xResolution = ES3.Load("xResolution", 1280);
+        yResolution = ES3.Load("yResolution", 720);
     }
 
     public static void ResetSave() {
