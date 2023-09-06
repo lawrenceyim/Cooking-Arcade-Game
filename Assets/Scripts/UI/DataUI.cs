@@ -8,7 +8,7 @@ public class DataUI : MonoBehaviour
     [SerializeField] Controller controller;
     [SerializeField] TextMeshPro dayUI;
     [SerializeField] TextMeshPro moneyUI;
-    [SerializeField] TextMeshPro timerUI;
+    // [SerializeField] TextMeshPro timerUI;
     [SerializeField] GameObject UIDishCard;
     private float timeLeft;
     private float dayLength = 60 * 5f;
@@ -28,11 +28,11 @@ public class DataUI : MonoBehaviour
     void Update()
     {
         if (timeLeft > 0) {
-            timeLeft -= Time.deltaTime;
-            timerUI.text = ((int) timeLeft).ToString();
-            if (timeLeft <= 0) {
-                timerUI.text = "0";
-            }
+            // timeLeft -= Time.deltaTime;
+            // timerUI.text = ((int) timeLeft).ToString();
+            // if (timeLeft <= 0) {
+            //     timerUI.text = "0";
+            // }
         } else if (levelRunning) {
             if (controller.CheckIfCustomerCountIsZero() && Time.timeScale > 0) {
                 levelRunning = false;
@@ -42,7 +42,7 @@ public class DataUI : MonoBehaviour
     }
 
     public void UpdateMoneyUI() {
-        moneyUI.text = "$" + PlayerData.money.ToString();
+        moneyUI.text = PlayerData.money.ToString();
     }
 
     public void UpdateDayUI() {

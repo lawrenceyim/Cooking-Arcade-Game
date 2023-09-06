@@ -10,7 +10,7 @@ public class CookingUI : MonoBehaviour
     [SerializeField] Controller controller;
     [SerializeField] GameObject[] cookingSlots;
     [SerializeField] GameObject panelSpaceBar;
-    [SerializeField] TextMeshProUGUI panelSpaceBarText;
+    [SerializeField] TextMeshPro panelSpaceBarText;
     [SerializeField] GameObject panelGrill;
     [SerializeField] GameObject grillTimer;
     [SerializeField] GameObject panelOven;
@@ -73,6 +73,11 @@ public class CookingUI : MonoBehaviour
         if (dish.foodType == Recipe.FoodTypes.Burger && !grilledAlready[currentIndex]) {
             controller.SetPattyGameObject(currentIndex);
             DisplayGrillTimer();
+            if (controller.GetPattyStatus(currentIndex) == 2) {
+                DisplaySpaceBar("Press space to take cooked patty off the grill");
+            } else if (controller.GetPattyStatus(currentIndex) == 3) {
+                DisplaySpaceBar("Press space to discard burnt patty");
+            }
         }
     }
 
@@ -139,13 +144,12 @@ public class CookingUI : MonoBehaviour
         if (controller.GetPizzaStatus(currentIndex) == 1) {
             return;
         }
-        panelSpaceBar.SetActive(true);
         if (controller.GetPizzaStatus(currentIndex) == 0) {
-            panelSpaceBarText.text = "Press space to put pizza in the oven";
+            DisplaySpaceBar("Press space to put pizza in the oven");
         } else if (controller.GetPizzaStatus(currentIndex) == 2) {
-            panelSpaceBarText.text = "Press space to put serve pizza";
+            DisplaySpaceBar("Press space to put serve pizza");
         } else if (controller.GetPizzaStatus(currentIndex) == 3) {
-            panelSpaceBarText.text = "Press space to discard burnt pizza";
+            DisplaySpaceBar("Press space to discard burnt pizza");
         }
 
     }
@@ -168,6 +172,7 @@ public class CookingUI : MonoBehaviour
                     controller.SetPattyStatus(currentIndex, 0);
                     controller.DestroyCurrentPatty();
                     panelGrill.SetActive(false);
+                    panelSpaceBar.SetActive(false);
                     HideGrillTimer();
                     UpdateButtons(dish, currentIndex);
                 } else if (controller.GetPattyStatus(currentIndex) == 3) {
@@ -183,6 +188,7 @@ public class CookingUI : MonoBehaviour
                 controller.SetPattyGameObject(currentIndex);
                 highlightedKeys[currentIndex, 0] = true;
                 buttonBackgroundHighlights[0].enabled = true;
+                panelSpaceBar.SetActive(false);
                 DisplayGrillTimer();
             }
             return;
@@ -222,8 +228,7 @@ public class CookingUI : MonoBehaviour
                 controller.ResetDishBeingWorkedOn(currentIndex);
                 return;
             }
-            panelSpaceBar.SetActive(true);
-            panelSpaceBarText.text = "Press space to serve";
+            DisplaySpaceBar("Press space to serve");
             if (Input.GetKeyDown(KeyCode.Space)) {
                 grilledAlready[currentIndex] = false;
                 panelSpaceBar.SetActive(false);
@@ -349,6 +354,11 @@ public class CookingUI : MonoBehaviour
     public void HideOvenTimer() {
         cookedPizzaSlider.value = 0;
         burntPizzaSlider.value = 0;
+    }
+
+    public void DisplaySpaceBar(string message) {
+        panelSpaceBarText.text = message;
+        panelSpaceBar.SetActive(true);
     }
 
     public void ClearVisuals() {
