@@ -81,6 +81,10 @@ public class Controller : MonoBehaviour
         cookingUI.UpdateButtons(dish, index);
     }
 
+     public void ResetCookingUI(int index) {
+        cookingUI.ResetCookingUI(index);
+     }
+
     public void ResetGrill(int index) {
         cookingUI.ResetGrill(index);
     }

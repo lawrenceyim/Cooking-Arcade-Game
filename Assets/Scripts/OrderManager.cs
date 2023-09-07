@@ -63,13 +63,12 @@ public class OrderManager : MonoBehaviour
         customers[orderIndex].GetComponent<Customer>().ChangeState();
         orders[orderIndex] = null;
         customers[orderIndex] = null;
+        controller.ResetCookingUI(orderIndex);
+        
         controller.RemoveDishFromCookingPanel(orderIndex);
         controller.ResetOrderSlot(orderIndex);
 
-        controller.ResetGrill(orderIndex);
         controller.RemovePattyFromGrill(orderIndex);
-
-        controller.ResetOven(orderIndex);
         controller.RemovePizzaFromOven(orderIndex);
 
         if (orderIndex == currentIndex) {
@@ -78,8 +77,8 @@ public class OrderManager : MonoBehaviour
             controller.DestroyCurrentPatty();
             controller.DestroyCurrentPizza();
             controller.HideStations();
+            controller.HideHud();
         }
-        controller.HideHud();
     }
 
     public void OrderServed() {

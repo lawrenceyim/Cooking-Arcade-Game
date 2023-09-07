@@ -96,15 +96,15 @@ public class CookingUI : MonoBehaviour
         this.dish = dish;
         currentIndex = index;
         if (dish.foodType == Recipe.FoodTypes.Burger) {
-            controller.SetPattyGameObject(currentIndex);
             if (!grilledAlready[currentIndex]) {
+                controller.SetPattyGameObject(currentIndex);
                 panelGrill.SetActive(true);
                 SetGrillKeys();
                 return;
             }
         } else if (dish.foodType == Recipe.FoodTypes.Pizza) {
-            controller.SetPizzaGameObject(currentIndex);
             if (readyToBakePizza[currentIndex]) {
+                controller.SetPizzaGameObject(currentIndex);
                 panelOven.SetActive(true);
                 SetOvenKeys();
                 return;
@@ -354,6 +354,7 @@ public class CookingUI : MonoBehaviour
     public void HideOvenTimer() {
         cookedPizzaSlider.value = 0;
         burntPizzaSlider.value = 0;
+        ovenTimer.SetActive(false);
     }
 
     public void DisplaySpaceBar(string message) {
@@ -361,7 +362,12 @@ public class CookingUI : MonoBehaviour
         panelSpaceBar.SetActive(true);
     }
 
-    public void ClearVisuals() {
-
+    public void ResetCookingUI(int index) {
+        for (int i = 0; i < cookingSlots.Length; i++) {
+            highlightedKeys[currentIndex, i] = false;
+        }
+        currentIngredient[index] = 0;
+        grilledAlready[index] = false;
+        readyToBakePizza[index] = false;
     }
 }
