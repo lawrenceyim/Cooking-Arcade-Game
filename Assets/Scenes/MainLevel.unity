@@ -9700,6 +9700,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3559938386473186793, guid: 81c0224372cb43e49b9d536ef677f232, type: 3}
+      propertyPath: grillingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d497ed128e865114dbc0e83c7d402d6c, type: 3}
     - target: {fileID: 3877093442793720986, guid: 81c0224372cb43e49b9d536ef677f232, type: 3}
       propertyPath: m_Volume
       value: 0.1

@@ -73,6 +73,8 @@ public class CookingUI : MonoBehaviour
         if (dish.foodType == Recipe.FoodTypes.Burger && !grilledAlready[currentIndex]) {
             controller.SetPattyGameObject(currentIndex);
             DisplayGrillTimer();
+            if (controller.GetPattyStatus(currentIndex) == 0) return;
+            AudioManager.instance.PlayGrillingSound();
             if (controller.GetPattyStatus(currentIndex) == 2) {
                 DisplaySpaceBar("Press space to take cooked patty off the grill");
             } else if (controller.GetPattyStatus(currentIndex) == 3) {
@@ -92,7 +94,10 @@ public class CookingUI : MonoBehaviour
     public void UpdateButtons(Dish dish, int index) {
         DisplayHud();
         HideStations();
+        controller.DestroyCurrentPatty();
+        controller.DestroyCurrentPizza();
         DeactivateButtons();
+        AudioManager.instance.StopPlayingSound();
         this.dish = dish;
         currentIndex = index;
         if (dish.foodType == Recipe.FoodTypes.Burger) {
@@ -168,6 +173,7 @@ public class CookingUI : MonoBehaviour
         if (dish.foodType == Recipe.FoodTypes.Burger && !grilledAlready[currentIndex]) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 if (controller.GetPattyStatus(currentIndex) == 2) {
+                    AudioManager.instance.StopPlayingSound();
                     grilledAlready[currentIndex] = true;
                     controller.SetPattyStatus(currentIndex, 0);
                     controller.DestroyCurrentPatty();
@@ -176,6 +182,7 @@ public class CookingUI : MonoBehaviour
                     HideGrillTimer();
                     UpdateButtons(dish, currentIndex);
                 } else if (controller.GetPattyStatus(currentIndex) == 3) {
+                    AudioManager.instance.StopPlayingSound();
                     controller.SetPattyStatus(currentIndex, 0);
                     controller.DestroyCurrentPatty();
                     highlightedKeys[currentIndex, 0] = false;

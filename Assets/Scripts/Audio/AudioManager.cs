@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip addIngredient;
     [SerializeField] AudioClip coinSound;
     [SerializeField] AudioClip trashSound;
+    [SerializeField] AudioClip grillingSound;
     [SerializeField] AudioSource audioSource;
 
     private void Awake() {
@@ -34,17 +35,31 @@ public class AudioManager : MonoBehaviour
     }
 
     public void PlayAddIngredientSound() {
+        audioSource.loop = false;
         audioSource.clip = addIngredient;
         audioSource.Play();
     }
 
     public void PlayCoinSound() {
+        audioSource.loop = false;
         audioSource.clip = coinSound;
         audioSource.Play();
     }
 
     public void PlayTrashSound() {
+        audioSource.loop = false;
         audioSource.clip = trashSound;
         audioSource.Play();
+    }
+
+    public void PlayGrillingSound() {
+        if (audioSource.clip == grillingSound && audioSource.isPlaying) return;
+        audioSource.loop = true;
+        audioSource.clip = grillingSound;
+        audioSource.Play();
+    }
+
+    public void StopPlayingSound() {
+        audioSource.Stop();
     }
 }
