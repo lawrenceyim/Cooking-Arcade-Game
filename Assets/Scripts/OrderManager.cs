@@ -1,15 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class OrderManager : MonoBehaviour
 {
     [SerializeField] Controller controller;
+    [SerializeField] TextMeshProUGUI[] orderNumberText;
+    Color highlightedColor = Color.yellow;
+    Color regularColor = Color.white;
+
     int numberOfOrders = 6;
     Dish[] orders;
     GameObject[] customers;
-    int currentIndex;
+    int currentIndex = -1;
 
     void Start()
     {   
@@ -28,12 +33,14 @@ public class OrderManager : MonoBehaviour
         // Detect numeric key press
         for (int i = 1; i <= numberOfOrders; i++)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha0 + i) && orders[i - 1] != null)
+            if (Input.GetKeyDown(KeyCode.Alpha0 + i) && orders[i - 1] != null && currentIndex != i - 1)
             {
                 currentIndex = i - 1;
                 controller.SetOrderDescription(orders[i - 1]);
                 controller.UpdateCookingButtons(orders[i - 1], currentIndex);
                 controller.ChangeDishBeingWorkedOn(currentIndex);
+                ResetOrderNumberColor();
+                HightlightOrderNumber(currentIndex);
             }
         }
     }
@@ -72,23 +79,38 @@ public class OrderManager : MonoBehaviour
         controller.RemovePizzaFromOven(orderIndex);
 
         if (orderIndex == currentIndex) {
+            AudioManager.instance.StopPlayingSound();
             controller.ClearDescriptionPanel();
             controller.ClearCookingButtons();
             controller.DestroyCurrentPatty();
             controller.DestroyCurrentPizza();
             controller.HideStations();
             controller.HideHud();
+            ResetOrderNumberColor();
         }
+        currentIndex = -1;
     }
 
     public void OrderServed() {
-        AudioManager.instance.PlayCoinSound();
         PlayerData.IncreaseMoney(orders[currentIndex].sellingPrice);
         controller.UpdateMoneyUI();
         RemoveOrder(currentIndex);
+        ResetOrderNumberColor();
+        AudioManager.instance.PlayCoinSound();
+
     }
 
     public bool HasOrder(int index) {
         return orders[index] != null;
+    }
+
+    public void ResetOrderNumberColor() {
+        for (int i = 0; i < numberOfOrders; i++) {
+            orderNumberText[i].color = regularColor;
+        }
+    }
+
+    public void HightlightOrderNumber(int orderIndex) {
+        orderNumberText[orderIndex].color = highlightedColor;
     }
 }

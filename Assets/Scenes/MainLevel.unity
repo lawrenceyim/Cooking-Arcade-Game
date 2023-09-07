@@ -393,6 +393,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4156658}
   m_CullTransparentMesh: 1
+--- !u!114 &37304589 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6742629019792439028, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
+  m_PrefabInstance: {fileID: 7287524167756476311}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &80936985
 GameObject:
   m_ObjectHideFlags: 0
@@ -2662,6 +2673,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452834777}
   m_CullTransparentMesh: 1
+--- !u!114 &454185565 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2498625743072911692, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
+  m_PrefabInstance: {fileID: 7287524167756476311}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &479939703
 GameObject:
   m_ObjectHideFlags: 0
@@ -3504,6 +3526,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &763364438 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3680636681844738067, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
+  m_PrefabInstance: {fileID: 7287524167756476311}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &785102401
 GameObject:
   m_ObjectHideFlags: 0
@@ -3961,6 +3994,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868841057}
   m_CullTransparentMesh: 1
+--- !u!114 &885919219 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1938545898458259037, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
+  m_PrefabInstance: {fileID: 7287524167756476311}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &918704806
 GameObject:
   m_ObjectHideFlags: 0
@@ -5534,6 +5578,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1369903462}
   m_CullTransparentMesh: 1
+--- !u!114 &1403056050 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3995755470068406686, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
+  m_PrefabInstance: {fileID: 7287524167756476311}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1408430890
 GameObject:
   m_ObjectHideFlags: 0
@@ -6133,6 +6188,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1510359074 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 198395735477967847, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
+  m_PrefabInstance: {fileID: 7287524167756476311}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1529713345
 GameObject:
   m_ObjectHideFlags: 0
@@ -9681,6 +9747,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7993866207745430254, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
+      propertyPath: orderNumberText.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7993866207745430254, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
+      propertyPath: orderNumberText.Array.data[0]
+      value: 
+      objectReference: {fileID: 1403056050}
+    - target: {fileID: 7993866207745430254, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
+      propertyPath: orderNumberText.Array.data[1]
+      value: 
+      objectReference: {fileID: 763364438}
+    - target: {fileID: 7993866207745430254, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
+      propertyPath: orderNumberText.Array.data[2]
+      value: 
+      objectReference: {fileID: 885919219}
+    - target: {fileID: 7993866207745430254, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
+      propertyPath: orderNumberText.Array.data[3]
+      value: 
+      objectReference: {fileID: 454185565}
+    - target: {fileID: 7993866207745430254, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
+      propertyPath: orderNumberText.Array.data[4]
+      value: 
+      objectReference: {fileID: 1510359074}
+    - target: {fileID: 7993866207745430254, guid: cc820cf7a422e2147a96668c1d08e100, type: 3}
+      propertyPath: orderNumberText.Array.data[5]
+      value: 
+      objectReference: {fileID: 37304589}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9807,6 +9901,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 640927642164938270, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
+      propertyPath: m_Name
+      value: Text (TMP) - OrderSlot 4
+      objectReference: {fileID: 0}
     - target: {fileID: 966297821828325976, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       propertyPath: m_Name
       value: Order Slot Sliders
@@ -9823,6 +9921,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1207746096244229028, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
+      propertyPath: m_Name
+      value: Text (TMP) - OrderSlot 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1908142483849265354, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -9854,6 +9956,10 @@ PrefabInstance:
     - target: {fileID: 2498625743072911692, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920929011177913525, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
+      propertyPath: m_Name
+      value: Text (TMP) - OrderSlot 3
       objectReference: {fileID: 0}
     - target: {fileID: 3148013029037691710, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       propertyPath: m_AnchorMax.x
@@ -9991,6 +10097,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4121321536550688234, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
+      propertyPath: m_Name
+      value: Text (TMP) - OrderSlot 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4185854255190964833, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -9998,6 +10108,10 @@ PrefabInstance:
     - target: {fileID: 4185854255190964833, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419748638413407335, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
+      propertyPath: m_Name
+      value: Text (TMP) - OrderSlot 0
       objectReference: {fileID: 0}
     - target: {fileID: 4635902080770072871, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       propertyPath: controller
@@ -10038,6 +10152,10 @@ PrefabInstance:
     - target: {fileID: 5866953945882852490, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6320660013036759821, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
+      propertyPath: m_Name
+      value: Text (TMP) - OrderSlot 5
       objectReference: {fileID: 0}
     - target: {fileID: 6742629019792439028, guid: 3fefc66fb3813db439b9cb1582723358, type: 3}
       propertyPath: m_fontAsset
