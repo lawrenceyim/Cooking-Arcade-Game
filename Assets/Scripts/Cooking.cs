@@ -10,7 +10,7 @@ public class Cooking : MonoBehaviour
     GameObject[] dishes = new GameObject[6];
     int[] ingredientsAdded = new int[6];
     int[] ingredientsNeeded = new int[6];
-    int currentIndex = 0;
+    int currentIndex = -1;
 
 
     private void Start() {
@@ -20,9 +20,12 @@ public class Cooking : MonoBehaviour
     }
     
     public void ResetDish(int index) {
+        ingredientsAdded[index] = 0;
         for (int i = 0; i < dishes[index].transform.childCount; i++) {
             dishes[index].transform.GetChild(i).gameObject.SetActive(false);
-            ingredientsAdded[index] = 0;
+        }
+        if (index == currentIndex && dishes[index].GetComponent<Dish>().foodType == Recipe.FoodTypes.Salad) {
+            dishes[index].transform.GetChild(0).gameObject.SetActive(true);
         }
     }
 
@@ -36,7 +39,6 @@ public class Cooking : MonoBehaviour
     public void AddDish(int index, GameObject dish) {
         dishes[index] = dish;
         ResetDish(index);
-        dishes[index].SetActive(false);
         ingredientsAdded[index] = 0;
         List<Recipe.Ingredients> temp = dish.GetComponent<Dish>().ingredientsList;
         ingredientsNeeded[index] = temp.Count;
@@ -48,7 +50,12 @@ public class Cooking : MonoBehaviour
 
     public void MakeIngredientVisible(Recipe.Ingredients ingredient) {
         for (int i = 0; i < dishes[currentIndex].transform.childCount; i++) {
-            if (dishes[currentIndex].transform.GetChild(i).gameObject.GetComponent<Ingredient>().ingredient == ingredient) {
+            Ingredient tempIngredient = dishes[currentIndex].transform.GetChild(i).gameObject.GetComponent<Ingredient>();
+            if (tempIngredient == null) {
+                // dishes[currentIndex].transform.GetChild(i).gameObject.SetActive(true);
+                continue;
+            }
+            if (tempIngredient.ingredient == ingredient) {
                 dishes[currentIndex].transform.GetChild(i).gameObject.SetActive(true);
                 ingredientsAdded[currentIndex]++;
                 break;
@@ -57,16 +64,20 @@ public class Cooking : MonoBehaviour
     }
 
     public void ChangeDish(int index) {
-        if (dishes[currentIndex] != null)
+        if (currentIndex >= 0 && dishes[currentIndex] != null) {
             dishes[currentIndex].SetActive(false);
+        }
         currentIndex = index;
         dishes[currentIndex].SetActive(true);
+        if (index == currentIndex && dishes[index].GetComponent<Dish>().foodType == Recipe.FoodTypes.Salad) {
+            dishes[index].transform.GetChild(0).gameObject.SetActive(true);
+        }
     }
 
     public bool IngredientAlreadyAdded(Recipe.Ingredients ingredient) {
         for (int i = 0; i < dishes[currentIndex].transform.childCount; i++) {
             GameObject ingred = dishes[currentIndex].transform.GetChild(i).gameObject;
-            if (ingred.activeSelf && ingred.GetComponent<Ingredient>().ingredient == ingredient) {
+            if (ingred.activeSelf && ingred.GetComponent<Ingredient>() != null && ingred.GetComponent<Ingredient>().ingredient == ingredient) {
                 return true;
             }
         }

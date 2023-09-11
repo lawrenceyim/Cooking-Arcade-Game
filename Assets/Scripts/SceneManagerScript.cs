@@ -19,6 +19,7 @@ public class SceneManagerScript : MonoBehaviour
     }
 
     public void LoadGame() {
+        PlayerData.LoadData();
         Time.timeScale = 1f;
         if (PlayerData.day == 8 && !pizzaLetterIntroPlayed) {
             ES3.Save("pizzaLetterIntroPlayed", true);
@@ -26,7 +27,6 @@ public class SceneManagerScript : MonoBehaviour
             return;
         }
         PlayerData.StartDay();
-        PlayerData.LoadData();
         SceneManager.LoadScene("MainLevel");
     }
 

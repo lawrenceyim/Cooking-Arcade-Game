@@ -49,8 +49,7 @@ public class CookingUI : MonoBehaviour
         highlightedKeys = new bool[6, cookingSlots.Length];
         grilledAlready = new bool[6];
         readyToBakePizza = new bool[6];
-        panelGrill.SetActive(false);
-        panelOven.SetActive(false);
+        HideStations();
         HideHud();
         HideGrillTimer();
         for (int i = 0; i < cookingSlots.Length; i++) {
@@ -94,8 +93,6 @@ public class CookingUI : MonoBehaviour
     public void UpdateButtons(Dish dish, int index) {
         DisplayHud();
         HideStations();
-        controller.DestroyCurrentPatty();
-        controller.DestroyCurrentPizza();
         DeactivateButtons();
         AudioManager.instance.StopPlayingSound();
         this.dish = dish;
@@ -351,6 +348,8 @@ public class CookingUI : MonoBehaviour
     }
 
     public void HideStations() {
+        controller.DestroyCurrentPatty();
+        controller.DestroyCurrentPizza();
         grillTimer.SetActive(false);
         ovenTimer.SetActive(false);
         panelGrill.SetActive(false);
