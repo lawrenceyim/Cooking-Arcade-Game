@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dishName: 6
   foodType: 1
-  ingredientsList: 0a0000001a000000100000000f00000019000000
+  ingredientsList: 0b0000001b00000011000000100000001a000000
   description: Dough->Sauce->Mozzarella->Ham->Pineapple
   sellingPrice: 16
 --- !u!1001 &1434415259479421419

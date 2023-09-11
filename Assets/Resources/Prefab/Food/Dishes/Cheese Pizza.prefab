@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dishName: 4
   foodType: 1
-  ingredientsList: 0a0000001a00000010000000
+  ingredientsList: 0b0000001b00000011000000
   description: Dough->Sauce->Mozzarella
   sellingPrice: 10
 --- !u!1001 &2596800683253790142
