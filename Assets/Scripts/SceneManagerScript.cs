@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class SceneManagerScript : MonoBehaviour
 {
     bool pizzaLetterIntroPlayed;
+    bool saladLetterIntroPlayed;
 
     private void Start() {
         pizzaLetterIntroPlayed = ES3.Load("pizzaLetterIntroPlayed", false);
+        saladLetterIntroPlayed = ES3.Load("saladLetterIntroPlayed", false);
     }
 
     public void NewGame() {
@@ -24,6 +26,11 @@ public class SceneManagerScript : MonoBehaviour
         if (PlayerData.day == 8 && !pizzaLetterIntroPlayed) {
             ES3.Save("pizzaLetterIntroPlayed", true);
             SceneManager.LoadScene("PizzaLetter");
+            return;
+        }
+        if (PlayerData.day == 15 && !saladLetterIntroPlayed) {
+            ES3.Save("saladLetterIntroPlayed", true);
+            SceneManager.LoadScene("SaladLetter");
             return;
         }
         PlayerData.StartDay();
@@ -46,6 +53,11 @@ public class SceneManagerScript : MonoBehaviour
     public void LoadPizzaLetter() {
         Time.timeScale = 1f;
         SceneManager.LoadScene("PizzaLetter");
+    }
+
+    public void LoadSaladLetter() {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("SaladLetter");
     }
 
     public void LoadOptions() {

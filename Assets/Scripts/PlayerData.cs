@@ -44,6 +44,8 @@ public static class PlayerData
         // ES3.DeleteFile("SaveFile.es3");
         ES3.Save("money", defaultMoney);
         ES3.Save("day", 1);
+        ES3.Save("pizzaLetterIntroPlayed", false);
+        ES3.Save("saladLetterIntroPlayed", false);
     }
 
     public static bool HasEnoughMoney(int amount) {

@@ -9408,15 +9408,15 @@ PrefabInstance:
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: ingredientIconPrefab.Array.data[22]
       value: 
-      objectReference: {fileID: 6767358900033959072, guid: 0cf81b507eda7bf4883dc7df5ffc5541, type: 3}
+      objectReference: {fileID: 6767358900033959072, guid: 6e2dd974cb9f31643b8f519fe2f7cbab, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: ingredientIconPrefab.Array.data[23]
       value: 
-      objectReference: {fileID: 6767358900033959072, guid: 6e2dd974cb9f31643b8f519fe2f7cbab, type: 3}
+      objectReference: {fileID: 6767358900033959072, guid: dead0872852c3b7478de86e11a517f15, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: ingredientIconPrefab.Array.data[24]
       value: 
-      objectReference: {fileID: 6767358900033959072, guid: dead0872852c3b7478de86e11a517f15, type: 3}
+      objectReference: {fileID: 6767358900033959072, guid: 603fc6be1863d5d43891c3c0dfd972dd, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: ingredientIconPrefab.Array.data[25]
       value: 
