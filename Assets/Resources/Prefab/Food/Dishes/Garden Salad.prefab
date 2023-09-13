@@ -1,0 +1,386 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4298379781775575330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8878070777042268997}
+  - component: {fileID: -8161842669009784865}
+  m_Layer: 0
+  m_Name: Garden Salad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8878070777042268997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4298379781775575330}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5469602659849577430}
+  - {fileID: 205575322448439520}
+  - {fileID: 7962925571502528361}
+  - {fileID: 7498863907972478950}
+  - {fileID: 958392890624473655}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8161842669009784865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4298379781775575330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23a86718b0e440408030a40c979c621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dishName: 9
+  foodType: 2
+  ingredientsList: 0f0000001e0000000a00000006000000
+  description: Lettuce->Tomatoes->Cucumbers->Carrots
+  sellingPrice: 15
+--- !u!1001 &4734491291099354
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8878070777042268997}
+    m_Modifications:
+    - target: {fileID: 962702416358628077, guid: 7b6d98e65ea592b4bb7c3f4b48632065, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 7b6d98e65ea592b4bb7c3f4b48632065, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 7b6d98e65ea592b4bb7c3f4b48632065, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 7b6d98e65ea592b4bb7c3f4b48632065, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 7b6d98e65ea592b4bb7c3f4b48632065, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 7b6d98e65ea592b4bb7c3f4b48632065, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 7b6d98e65ea592b4bb7c3f4b48632065, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 7b6d98e65ea592b4bb7c3f4b48632065, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 7b6d98e65ea592b4bb7c3f4b48632065, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 7b6d98e65ea592b4bb7c3f4b48632065, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 7b6d98e65ea592b4bb7c3f4b48632065, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787323646652377473, guid: 7b6d98e65ea592b4bb7c3f4b48632065, type: 3}
+      propertyPath: m_Name
+      value: Carrots Salad
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7b6d98e65ea592b4bb7c3f4b48632065, type: 3}
+--- !u!4 &958392890624473655 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 962702416358628077, guid: 7b6d98e65ea592b4bb7c3f4b48632065, type: 3}
+  m_PrefabInstance: {fileID: 4734491291099354}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1118701496999309837
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8878070777042268997}
+    m_Modifications:
+    - target: {fileID: 962702416358628077, guid: 1f388c95638e3be4c97a7b8b825467df, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 1f388c95638e3be4c97a7b8b825467df, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 1f388c95638e3be4c97a7b8b825467df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 1f388c95638e3be4c97a7b8b825467df, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 1f388c95638e3be4c97a7b8b825467df, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 1f388c95638e3be4c97a7b8b825467df, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 1f388c95638e3be4c97a7b8b825467df, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 1f388c95638e3be4c97a7b8b825467df, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 1f388c95638e3be4c97a7b8b825467df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 1f388c95638e3be4c97a7b8b825467df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 1f388c95638e3be4c97a7b8b825467df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787323646652377473, guid: 1f388c95638e3be4c97a7b8b825467df, type: 3}
+      propertyPath: m_Name
+      value: Lettuce Salad
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1f388c95638e3be4c97a7b8b825467df, type: 3}
+--- !u!4 &205575322448439520 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 962702416358628077, guid: 1f388c95638e3be4c97a7b8b825467df, type: 3}
+  m_PrefabInstance: {fileID: 1118701496999309837}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5096907221081192763
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8878070777042268997}
+    m_Modifications:
+    - target: {fileID: 962702416358628077, guid: 105e16a3b4215bc4bb5dea1dcf25a896, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 105e16a3b4215bc4bb5dea1dcf25a896, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 105e16a3b4215bc4bb5dea1dcf25a896, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 105e16a3b4215bc4bb5dea1dcf25a896, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 105e16a3b4215bc4bb5dea1dcf25a896, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 105e16a3b4215bc4bb5dea1dcf25a896, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 105e16a3b4215bc4bb5dea1dcf25a896, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 105e16a3b4215bc4bb5dea1dcf25a896, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 105e16a3b4215bc4bb5dea1dcf25a896, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 105e16a3b4215bc4bb5dea1dcf25a896, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: 105e16a3b4215bc4bb5dea1dcf25a896, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787323646652377473, guid: 105e16a3b4215bc4bb5dea1dcf25a896, type: 3}
+      propertyPath: m_Name
+      value: Salad Bowl
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 105e16a3b4215bc4bb5dea1dcf25a896, type: 3}
+--- !u!4 &5469602659849577430 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 962702416358628077, guid: 105e16a3b4215bc4bb5dea1dcf25a896, type: 3}
+  m_PrefabInstance: {fileID: 5096907221081192763}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7196130022979997060
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8878070777042268997}
+    m_Modifications:
+    - target: {fileID: 962702416358628077, guid: e297e6182fbeb564d9705edc15d5cb84, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: e297e6182fbeb564d9705edc15d5cb84, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: e297e6182fbeb564d9705edc15d5cb84, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: e297e6182fbeb564d9705edc15d5cb84, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: e297e6182fbeb564d9705edc15d5cb84, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: e297e6182fbeb564d9705edc15d5cb84, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: e297e6182fbeb564d9705edc15d5cb84, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: e297e6182fbeb564d9705edc15d5cb84, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: e297e6182fbeb564d9705edc15d5cb84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: e297e6182fbeb564d9705edc15d5cb84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: e297e6182fbeb564d9705edc15d5cb84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787323646652377473, guid: e297e6182fbeb564d9705edc15d5cb84, type: 3}
+      propertyPath: m_Name
+      value: Tomatoes Salad
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e297e6182fbeb564d9705edc15d5cb84, type: 3}
+--- !u!4 &7962925571502528361 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 962702416358628077, guid: e297e6182fbeb564d9705edc15d5cb84, type: 3}
+  m_PrefabInstance: {fileID: 7196130022979997060}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7299600803030183179
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8878070777042268997}
+    m_Modifications:
+    - target: {fileID: 962702416358628077, guid: cfb6c60dbc4e8b746ab8778668df08cf, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: cfb6c60dbc4e8b746ab8778668df08cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: cfb6c60dbc4e8b746ab8778668df08cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: cfb6c60dbc4e8b746ab8778668df08cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: cfb6c60dbc4e8b746ab8778668df08cf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: cfb6c60dbc4e8b746ab8778668df08cf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: cfb6c60dbc4e8b746ab8778668df08cf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: cfb6c60dbc4e8b746ab8778668df08cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: cfb6c60dbc4e8b746ab8778668df08cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: cfb6c60dbc4e8b746ab8778668df08cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962702416358628077, guid: cfb6c60dbc4e8b746ab8778668df08cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787323646652377473, guid: cfb6c60dbc4e8b746ab8778668df08cf, type: 3}
+      propertyPath: m_Name
+      value: Cucumber Salad
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cfb6c60dbc4e8b746ab8778668df08cf, type: 3}
+--- !u!4 &7498863907972478950 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 962702416358628077, guid: cfb6c60dbc4e8b746ab8778668df08cf, type: 3}
+  m_PrefabInstance: {fileID: 7299600803030183179}
+  m_PrefabAsset: {fileID: 0}

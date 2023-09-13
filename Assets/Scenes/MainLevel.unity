@@ -9255,7 +9255,7 @@ PrefabInstance:
       objectReference: {fileID: 8544919944364365070, guid: 940688231487bf54daf8d73ba9548101, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: dishes.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: dishes.Array.data[0]
@@ -9292,10 +9292,10 @@ PrefabInstance:
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: dishes.Array.data[9]
       value: 
-      objectReference: {fileID: 4298379781775575330, guid: 3b32176f6467bf9408298ce899ec8ed9, type: 3}
+      objectReference: {fileID: 4298379781775575330, guid: 586a1746285487a43abd2327c6aeaca2, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: dishIconPrefab.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: dishIconPrefab.Array.data[4]
@@ -9317,6 +9317,10 @@ PrefabInstance:
       propertyPath: dishIconPrefab.Array.data[8]
       value: 
       objectReference: {fileID: 1585247147735194754, guid: 96b48f2a896adcc42af54f012936055e, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: dishIconPrefab.Array.data[9]
+      value: 
+      objectReference: {fileID: 1585247147735194754, guid: d4841228ce43ea34f87a830e4c3798ea, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: ingredientIconPrefab.Array.size
       value: 25
