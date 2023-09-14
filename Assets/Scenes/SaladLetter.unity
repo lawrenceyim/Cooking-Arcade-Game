@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 391279152}
   - component: {fileID: 391279154}
   m_Layer: 0
-  m_Name: Audio Source - Pizza Letter
+  m_Name: Audio Source - Salad Letter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,7 +235,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: dc1ee6f28fdcad4469573e3129529b16, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.1
   m_Pitch: 1
@@ -1125,7 +1125,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitForNormalChars: 0.055
-  waitLong: 0.8
+  waitLong: 0.5
   waitMiddle: 0.2
   avoidMultiplePunctuactionWait: 0
   waitForNewLines: 1
