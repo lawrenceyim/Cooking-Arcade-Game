@@ -58,8 +58,9 @@ public static class Recipe
         VegetarianPizza,
         CaesarSalad,
         GardenSalad,
+        ChickenSalad,
+
         // GreekSalad,
-        // ChickenSalad,
         // MeatLoversPizza
     }
 
@@ -76,7 +77,7 @@ public static class Recipe
         ingredientsForFoodType.Add(FoodTypes.Pizza, new List<Ingredients>{Ingredients.bacon_pizza, Ingredients.dough, Ingredients.ham, Ingredients.mozzarella, 
             Ingredients.mushrooms_pizza, Ingredients.peppers, Ingredients.pepperoni, Ingredients.pineapple, Ingredients.sauce});
         ingredientsForFoodType.Add(FoodTypes.Salad, new List<Ingredients>{Ingredients.bacon_salad, Ingredients.carrots, Ingredients.chicken,
-            Ingredients.croutons, Ingredients.cucumbers, Ingredients.lettuce_salad, Ingredients.olives, Ingredients.tomatoes_salad});
+            Ingredients.croutons, Ingredients.cucumbers, Ingredients.lettuce_salad, Ingredients.olives, Ingredients.onions_salad, Ingredients.tomatoes_salad});
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -102,6 +103,7 @@ public static class Recipe
         keyMapping.Add(Ingredients.mushrooms_pizza, KeyCode.M);
         keyMapping.Add(Ingredients.olives, KeyCode.O);
         keyMapping.Add(Ingredients.onions_burger, KeyCode.O);
+        keyMapping.Add(Ingredients.onions_salad, KeyCode.N);
         keyMapping.Add(Ingredients.parmesan, KeyCode.J);
         keyMapping.Add(Ingredients.patty, KeyCode.P);
         keyMapping.Add(Ingredients.pepperoni, KeyCode.P);
@@ -132,6 +134,7 @@ public static class Recipe
         ingredientCost.Add(Ingredients.mushrooms_pizza, 2);
         ingredientCost.Add(Ingredients.olives, 1);
         ingredientCost.Add(Ingredients.onions_burger, 1);
+        ingredientCost.Add(Ingredients.onions_salad, 1);
         ingredientCost.Add(Ingredients.patty, 3);
         ingredientCost.Add(Ingredients.pepperoni, 2);
         ingredientCost.Add(Ingredients.peppers, 2);
@@ -153,6 +156,8 @@ public static class Recipe
         dishNameString.Add(DishName.VegetarianPizza, "Vegetarian Pizza");
         dishNameString.Add(DishName.CaesarSalad, "Caesar Salad");
         dishNameString.Add(DishName.GardenSalad, "Garden Salad");
+        dishNameString.Add(DishName.ChickenSalad, "Chicken Salad");
+
     }
 
     public static List<Ingredients> GetAllIngredients(Dish dish) {
@@ -248,8 +253,13 @@ public static class Recipe
                                     PrefabCache.instance.dishByDishName[DishName.BaconCheeseburger],
                                     PrefabCache.instance.dishByDishName[DishName.TheWorks]},     
             15 => new List<Dish>() {PrefabCache.instance.dishByDishName[DishName.CaesarSalad]},
+            
             16 => new List<Dish>() {PrefabCache.instance.dishByDishName[DishName.CaesarSalad],
                                     PrefabCache.instance.dishByDishName[DishName.GardenSalad]},
+
+            17 => new List<Dish>() {PrefabCache.instance.dishByDishName[DishName.CaesarSalad],
+                                    PrefabCache.instance.dishByDishName[DishName.GardenSalad],
+                                    PrefabCache.instance.dishByDishName[DishName.ChickenSalad]},
             _ => null
         };
     }
