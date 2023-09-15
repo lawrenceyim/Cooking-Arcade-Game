@@ -59,8 +59,7 @@ public static class Recipe
         CaesarSalad,
         GardenSalad,
         ChickenSalad,
-
-        // GreekSalad,
+        GreekSalad,
         // MeatLoversPizza
     }
 
@@ -157,7 +156,7 @@ public static class Recipe
         dishNameString.Add(DishName.CaesarSalad, "Caesar Salad");
         dishNameString.Add(DishName.GardenSalad, "Garden Salad");
         dishNameString.Add(DishName.ChickenSalad, "Chicken Salad");
-
+        dishNameString.Add(DishName.GreekSalad, "Greek Salad");
     }
 
     public static List<Ingredients> GetAllIngredients(Dish dish) {
@@ -260,6 +259,11 @@ public static class Recipe
             17 => new List<Dish>() {PrefabCache.instance.dishByDishName[DishName.CaesarSalad],
                                     PrefabCache.instance.dishByDishName[DishName.GardenSalad],
                                     PrefabCache.instance.dishByDishName[DishName.ChickenSalad]},
+ 
+            18 => new List<Dish>() {PrefabCache.instance.dishByDishName[DishName.CaesarSalad],
+                                    PrefabCache.instance.dishByDishName[DishName.GardenSalad],
+                                    PrefabCache.instance.dishByDishName[DishName.ChickenSalad],
+                                    PrefabCache.instance.dishByDishName[DishName.GreekSalad]},
             _ => null
         };
     }
