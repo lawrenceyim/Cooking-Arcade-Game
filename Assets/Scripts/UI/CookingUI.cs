@@ -35,6 +35,7 @@ public class CookingUI : MonoBehaviour
     int[] currentIngredient;
     bool[] grilledAlready;
     bool[] readyToBakePizza;
+    bool[] dressingReady;
 
     void Start()
     {
@@ -49,6 +50,7 @@ public class CookingUI : MonoBehaviour
         highlightedKeys = new bool[6, cookingSlots.Length];
         grilledAlready = new bool[6];
         readyToBakePizza = new bool[6];
+        dressingReady = new bool[6];
         HideStations();
         HideHud();
         HideGrillTimer();
@@ -291,6 +293,10 @@ public class CookingUI : MonoBehaviour
         readyToBakePizza[index] = false;
     }
 
+    public void ResetDressing(int index) {
+        dressingReady[index] = false;
+    }
+
     public void DisplayHud() {
         transparencyPanel.SetActive(true);
         UIDishCard.SetActive(true);
@@ -350,6 +356,7 @@ public class CookingUI : MonoBehaviour
     public void HideStations() {
         controller.DestroyCurrentPatty();
         controller.DestroyCurrentPizza();
+        controller.DestroyCurrentDressing();
         grillTimer.SetActive(false);
         ovenTimer.SetActive(false);
         panelGrill.SetActive(false);
@@ -375,5 +382,6 @@ public class CookingUI : MonoBehaviour
         currentIngredient[index] = 0;
         grilledAlready[index] = false;
         readyToBakePizza[index] = false;
+        dressingReady[index] = false;
     }
 }

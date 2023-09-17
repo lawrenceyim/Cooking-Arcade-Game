@@ -15,6 +15,16 @@ public class PrefabCache : MonoBehaviour
     [SerializeField] public GameObject rawPizza;
     [SerializeField] public GameObject cookedPizza;
     [SerializeField] public GameObject burntPizza;
+    [SerializeField] public GameObject lessRanch;
+    [SerializeField] public GameObject regularRanch;
+    [SerializeField] public GameObject extraRanch;
+    [SerializeField] public GameObject lessThousand;
+    [SerializeField] public GameObject regularThousand;
+    [SerializeField] public GameObject extraThousand;
+    [SerializeField] public GameObject lessVinagriatte;
+    [SerializeField] public GameObject regularVinagriatte;
+    [SerializeField] public GameObject extraVinagriatte;
+
 
     public Dictionary<Recipe.DishName, GameObject> dishDict;
     public Dictionary<Recipe.Ingredients, Sprite> iconDict;

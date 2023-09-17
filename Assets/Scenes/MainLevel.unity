@@ -9238,6 +9238,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1809106276328976279, guid: 45434b353a867394a89214a3bd4c2fc3, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: lessRanch
+      value: 
+      objectReference: {fileID: 4112930861216987707, guid: 63e8fa6f4d83d614bb91f2a3f19b217b, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: burntPatty
       value: 
       objectReference: {fileID: 5857581459286278150, guid: b3f82e77fd9c8704aaf5ab01a6e907a6, type: 3}
@@ -9245,6 +9249,10 @@ PrefabInstance:
       propertyPath: burntPizza
       value: 
       objectReference: {fileID: 8830463734919326380, guid: 667675c9da4eb434c9fecf9626266f96, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: extraRanch
+      value: 
+      objectReference: {fileID: 386231782091176928, guid: b9e2504de6d773c40bdf307481a05c18, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: cookedPatty
       value: 
@@ -9254,9 +9262,37 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8544919944364365070, guid: 940688231487bf54daf8d73ba9548101, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: lessThousand
+      value: 
+      objectReference: {fileID: 2159049054563590125, guid: 1f383650de15fab4eafa02fbdc8d5f54, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: regularRanch
+      value: 
+      objectReference: {fileID: 9103849741867317605, guid: acf2ab79e05c7bd44b6fdac04afba764, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: extraThousand
+      value: 
+      objectReference: {fileID: 1944736865658789876, guid: 9eeb623edff22b94dbc40d35ef542909, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: lessVinagriatte
+      value: 
+      objectReference: {fileID: 2238857170833610035, guid: 88e9f78943b539c46bad1487a31a950c, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: regularThousand
+      value: 
+      objectReference: {fileID: 2411569672652484793, guid: 4da9be45e921cb24abc5975c8c14e299, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: extraVinagriatte
+      value: 
+      objectReference: {fileID: 7837100788635962911, guid: fe38980148a6fec428afa561f7de3107, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: dishes.Array.size
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: regularVinagriatte
+      value: 
+      objectReference: {fileID: 686852988318791630, guid: cf26d37d1c31e374297f94abfd3e8c68, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: dishes.Array.data[0]
       value: 
@@ -9339,7 +9375,7 @@ PrefabInstance:
       objectReference: {fileID: 1585247147735194754, guid: e8932af44ad4c354db3d1b2c72ff2c54, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: ingredientIconPrefab.Array.size
-      value: 26
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: ingredientIconPrefab.Array.data[1]
@@ -9441,6 +9477,18 @@ PrefabInstance:
       propertyPath: ingredientIconPrefab.Array.data[25]
       value: 
       objectReference: {fileID: 6767358900033959072, guid: 7c1a5a9c01e307b4eb97c856927f7d7a, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: ingredientIconPrefab.Array.data[26]
+      value: 
+      objectReference: {fileID: 6767358900033959072, guid: 3786f57fb86ad214c91b16ce2c4fd2b8, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: ingredientIconPrefab.Array.data[27]
+      value: 
+      objectReference: {fileID: 6767358900033959072, guid: 74019e714dae1174f9abbe04e4f1032c, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: ingredientIconPrefab.Array.data[28]
+      value: 
+      objectReference: {fileID: 6767358900033959072, guid: b5424bd44e42a514dbcdf74a1d96c624, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

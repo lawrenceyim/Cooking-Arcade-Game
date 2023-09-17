@@ -39,12 +39,16 @@ public static class Recipe
         sausage,
         tomatoes_burger,
         tomatoes_salad,
+        Ranch,
+        ThousandIsland,
+        Vinaigrette
     }
 
     public enum FoodTypes {
         Burger,
         Pizza, 
-        Salad
+        Salad,
+        Dressing
     }
 
     public enum DishName {
@@ -77,6 +81,7 @@ public static class Recipe
             Ingredients.mushrooms_pizza, Ingredients.peppers, Ingredients.pepperoni, Ingredients.pineapple, Ingredients.sauce});
         ingredientsForFoodType.Add(FoodTypes.Salad, new List<Ingredients>{Ingredients.bacon_salad, Ingredients.carrots, Ingredients.chicken,
             Ingredients.croutons, Ingredients.cucumbers, Ingredients.lettuce_salad, Ingredients.olives, Ingredients.onions_salad, Ingredients.tomatoes_salad});
+        ingredientsForFoodType.Add(FoodTypes.Dressing, new List<Ingredients>{Ingredients.Ranch, Ingredients.ThousandIsland, Ingredients.Vinaigrette});
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -112,6 +117,9 @@ public static class Recipe
         keyMapping.Add(Ingredients.sausage, KeyCode.R);
         keyMapping.Add(Ingredients.tomatoes_burger, KeyCode.T);
         keyMapping.Add(Ingredients.tomatoes_salad, KeyCode.T);
+        keyMapping.Add(Ingredients.Ranch, KeyCode.R);
+        keyMapping.Add(Ingredients.ThousandIsland, KeyCode.T);
+        keyMapping.Add(Ingredients.Vinaigrette, KeyCode.V);
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]

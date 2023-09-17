@@ -9,6 +9,7 @@ public class Controller : MonoBehaviour
     [SerializeField] CustomerSpawner customerSpawner;
     [SerializeField] DataUI dataUI;
     [SerializeField] Description description;
+    [SerializeField] Dressing dressing;
     [SerializeField] EndOfDayUI endOfDayUI;
     [SerializeField] Grill grill;
     [SerializeField] OrderManager orderManager;
@@ -118,6 +119,47 @@ public class Controller : MonoBehaviour
 
     public void SetOrderDescription(Dish dish) {
         description.SetOrderDescription(dish);
+    }
+
+    // Dressing
+    public void RemoveDressing(int index) {
+        dressing.RemoveDressing(index);
+    }
+
+    public void DestroyCurrentDressing() {
+        dressing.DestroyCurrentDressing();
+    }
+
+    public void DestroyCurrentRanch() {
+        dressing.DestroyCurrentRanch();
+    }
+
+    public void DestroyCurrentThousand() {
+        dressing.DestroyCurrentThousand();
+    }
+
+    public void DestroyCurrentVinagriatte() {
+        dressing.DestroyCurrentVinagriatte();
+    }
+
+    public void AddRanch(int index, float amount) {
+        dressing.AddRanch(index, amount);
+    }
+
+    public void AddThousand(int index, float amount) {
+        dressing.AddThousand(index, amount);
+    }
+
+    public void AddVinagriatte(int index, float amount) {
+        dressing.AddVinagriatte(index, amount);
+    }
+
+    public void SetCurrentDressingObject(int index, string type) {
+        dressing.SetCurrentDressingObject(index, type);
+    }
+
+    public bool SauceMatchesOrder(int ranchStatus, int thousandStatus, int vinagriatteStatus) {
+        return dressing.SauceMatchesOrder(ranchStatus, thousandStatus, vinagriatteStatus);
     }
 
     // EndOfDayUI
