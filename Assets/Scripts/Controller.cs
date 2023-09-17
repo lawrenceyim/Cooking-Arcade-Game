@@ -117,13 +117,25 @@ public class Controller : MonoBehaviour
         description.ClearOrderDescription();
     }
 
+    public void SetDescription(string desc) {
+        description.SetDescription(desc);
+    }
+
     public void SetOrderDescription(Dish dish) {
         description.SetOrderDescription(dish);
     }
 
     // Dressing
-    public void RemoveDressing(int index) {
-        dressing.RemoveDressing(index);
+    public void AddRanch(int index, float amount) {
+        dressing.AddRanch(index, amount);
+    }
+
+    public void AddThousand(int index, float amount) {
+        dressing.AddThousand(index, amount);
+    }
+
+    public void AddVinaigrette(int index, float amount) {
+        dressing.AddVinaigrette(index, amount);
     }
 
     public void DestroyCurrentDressing() {
@@ -138,20 +150,24 @@ public class Controller : MonoBehaviour
         dressing.DestroyCurrentThousand();
     }
 
-    public void DestroyCurrentVinagriatte() {
-        dressing.DestroyCurrentVinagriatte();
+    public void DestroyCurrentVinaigrette() {
+        dressing.DestroyCurrentVinaigrette();
     }
 
-    public void AddRanch(int index, float amount) {
-        dressing.AddRanch(index, amount);
+    public float GetRanchAmount(int index) {
+        return dressing.GetRanchAmount(index);
     }
 
-    public void AddThousand(int index, float amount) {
-        dressing.AddThousand(index, amount);
+    public float GetThousandAmount(int index) {
+        return dressing.GetThousandAmount(index);
     }
 
-    public void AddVinagriatte(int index, float amount) {
-        dressing.AddVinagriatte(index, amount);
+    public float GetVinaigretteAmount(int index) {
+        return dressing.GetVinaigretteAmount(index);
+    }
+    
+    public void RemoveDressing(int index) {
+        dressing.RemoveDressing(index);
     }
 
     public void SetCurrentDressingObject(int index, string type) {

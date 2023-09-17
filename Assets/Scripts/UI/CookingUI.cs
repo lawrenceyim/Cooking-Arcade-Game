@@ -22,10 +22,11 @@ public class CookingUI : MonoBehaviour
     [SerializeField] GameObject transparencyPanel;
     [SerializeField] GameObject UIDishCard;
     [SerializeField] GameObject ingredientCard;
+    [SerializeField] GameObject dressingProgessBar;
+    [SerializeField] Slider dressingSlider;
     Image[] ingredientImages;
     Image[] buttonBackgroundHighlights;
     TextMeshProUGUI[] buttonKeys;
-    
     Dictionary<KeyCode, Recipe.Ingredients> availableKeys;
     List<Recipe.Ingredients> neededForDish;
     Dish dish;
@@ -36,6 +37,7 @@ public class CookingUI : MonoBehaviour
     bool[] grilledAlready;
     bool[] readyToBakePizza;
     bool[] dressingReady;
+    int[] dressingOrdered;
 
     void Start()
     {
@@ -51,9 +53,11 @@ public class CookingUI : MonoBehaviour
         grilledAlready = new bool[6];
         readyToBakePizza = new bool[6];
         dressingReady = new bool[6];
+        dressingOrdered = new int[6];
         HideStations();
         HideHud();
         HideGrillTimer();
+        HideDressingProgressBar();
         for (int i = 0; i < cookingSlots.Length; i++) {
             buttonBackgroundHighlights[i] = cookingSlots[i].transform.Find("Image - Button Highlight").GetComponent<Image>();
             ingredientImages[i] = cookingSlots[i].transform.Find("Image - Ingredient").GetComponent<Image>();
@@ -68,6 +72,7 @@ public class CookingUI : MonoBehaviour
         if (dish == null) return;
         ProcessGrilling();
         ProcessBakingPizza();
+        ProcessDressing();
     }
 
     public void ProcessGrilling() {
@@ -92,6 +97,12 @@ public class CookingUI : MonoBehaviour
         }
     }
 
+    public void ProcessDressing() {
+        if (dish.foodType == Recipe.FoodTypes.Salad && dressingReady[currentIndex]) {
+            DisplayDressingProgressBar();
+        }
+    }
+
     public void UpdateButtons(Dish dish, int index) {
         DisplayHud();
         HideStations();
@@ -112,6 +123,11 @@ public class CookingUI : MonoBehaviour
                 panelOven.SetActive(true);
                 SetOvenKeys();
                 return;
+            }
+        } else if (dish.foodType == Recipe.FoodTypes.Salad) {
+            if (dressingReady[currentIndex]) {
+                controller.SetCurrentDressingObject(currentIndex, GetDressingOrdered());
+                SetDressingKeys();
             }
         }
 
@@ -141,6 +157,19 @@ public class CookingUI : MonoBehaviour
         keycodeIndex = new Dictionary<KeyCode, int>();
         keycodeIndex[KeyCode.P] = 0;
         if (highlightedKeys[currentIndex, 0]) buttonBackgroundHighlights[0].enabled = true;
+    }
+
+    void SetDressingKeys() {
+        availableKeys = new Dictionary<KeyCode, Recipe.Ingredients>();
+        availableKeys[KeyCode.R] = Recipe.Ingredients.Ranch;
+        availableKeys[KeyCode.T] = Recipe.Ingredients.ThousandIsland;
+        availableKeys[KeyCode.V] = Recipe.Ingredients.Vinaigrette;
+        ingredientImages[0].sprite = PrefabCache.instance.iconDict[Recipe.Ingredients.Ranch];
+        buttonBackgroundHighlights[0].enabled = false;
+        ingredientImages[1].sprite = PrefabCache.instance.iconDict[Recipe.Ingredients.ThousandIsland];
+        buttonBackgroundHighlights[1].enabled = false;
+        ingredientImages[2].sprite = PrefabCache.instance.iconDict[Recipe.Ingredients.Vinaigrette];
+        buttonBackgroundHighlights[2].enabled = false;
     }
 
     public void SetOvenKeys() {
@@ -223,7 +252,27 @@ public class CookingUI : MonoBehaviour
             }
             return;
         }
-
+        if (dish.foodType == Recipe.FoodTypes.Salad && dressingReady[currentIndex]) {
+            if (Input.GetKey(KeyCode.R)) {
+                controller.AddRanch(currentIndex, Time.deltaTime);
+                buttonBackgroundHighlights[0].enabled = true;
+            } else if (!Input.GetKey(KeyCode.R)) {
+                buttonBackgroundHighlights[0].enabled = false;
+            } 
+            if (Input.GetKey(KeyCode.T)) {
+                controller.AddThousand(currentIndex, Time.deltaTime);
+                buttonBackgroundHighlights[1].enabled = true;
+            } else if (!Input.GetKey(KeyCode.T)) {
+                buttonBackgroundHighlights[1].enabled = false;
+            }
+            if (Input.GetKey(KeyCode.V)) {
+                controller.AddVinaigrette(currentIndex, Time.deltaTime);
+                buttonBackgroundHighlights[2].enabled = true;
+            } else if (!Input.GetKey(KeyCode.V)) {
+                buttonBackgroundHighlights[2].enabled = false;
+            }
+        }
+    
         if (availableKeys == null) return;
         if (controller.IsDishComplete()) {
             if (dish.foodType == Recipe.FoodTypes.Pizza) {
@@ -347,6 +396,17 @@ public class CookingUI : MonoBehaviour
         }
     }
 
+    public void DisplayDressingProgressBar() {
+        dressingProgessBar.SetActive(true);
+        if (dressingOrdered[currentIndex] <= 2) {
+            dressingSlider.value = controller.GetRanchAmount(currentIndex) / 3.5f;
+        } else if (dressingOrdered[currentIndex] <= 5) {
+            dressingSlider.value = controller.GetThousandAmount(currentIndex) / 3.5f;
+        } else if (dressingOrdered[currentIndex] <= 8) {
+            dressingSlider.value = controller.GetVinaigretteAmount(currentIndex) / 3.5f;
+        }
+    }
+
     public void HideGrillTimer() {
         cookedPattySlider.value = 0;
         burntPattySlider.value = 0;
@@ -359,6 +419,7 @@ public class CookingUI : MonoBehaviour
         controller.DestroyCurrentDressing();
         grillTimer.SetActive(false);
         ovenTimer.SetActive(false);
+        dressingProgessBar.SetActive(false);
         panelGrill.SetActive(false);
         panelOven.SetActive(false);
         panelSpaceBar.SetActive(false);
@@ -368,6 +429,11 @@ public class CookingUI : MonoBehaviour
         cookedPizzaSlider.value = 0;
         burntPizzaSlider.value = 0;
         ovenTimer.SetActive(false);
+    }
+
+    public void HideDressingProgressBar() {
+        dressingSlider.value = 0;
+        dressingProgessBar.SetActive(false);
     }
 
     public void DisplaySpaceBar(string message) {
@@ -383,5 +449,36 @@ public class CookingUI : MonoBehaviour
         grilledAlready[index] = false;
         readyToBakePizza[index] = false;
         dressingReady[index] = false;
+    }
+
+    public void SetDressingOrdered(int index) {
+        dressingOrdered[index] = UnityEngine.Random.Range(0, 9);
+    }
+
+    public void SetDressingDescription() {
+        if (dressingOrdered[currentIndex] == 0) {
+            controller.SetDescription("Little bit of Ranch");
+        } else if (dressingOrdered[currentIndex] == 1) {
+            controller.SetDescription("Moderate amount of Ranch");
+        } else if (dressingOrdered[currentIndex] == 2) {
+            controller.SetDescription("Lot of Ranch");
+        }else if (dressingOrdered[currentIndex] == 3) {
+            controller.SetDescription("Little bit of Thousand Island sauce");
+        }else if (dressingOrdered[currentIndex] == 4) {
+            controller.SetDescription("Moderate amount of Thousand Island sauce");
+        }else if (dressingOrdered[currentIndex] == 5) {
+            controller.SetDescription("Lot of Thousand Island sauce");
+        }else if (dressingOrdered[currentIndex] == 6) {
+            controller.SetDescription("Little bit of Vinaigrette");
+        }else if (dressingOrdered[currentIndex] == 7) {
+            controller.SetDescription("Moderate amount of Vinaigrette");
+        }else if (dressingOrdered[currentIndex] == 8) {
+            controller.SetDescription("Lot of Vinaigrette");
+        }
+    }
+    public string GetDressingOrdered () {
+        if (dressingOrdered[currentIndex] <= 2) return "Ranch";
+        else if (dressingOrdered[currentIndex] <= 5) return "Thousand";
+        else return "Vinaigrette";
     }
 }

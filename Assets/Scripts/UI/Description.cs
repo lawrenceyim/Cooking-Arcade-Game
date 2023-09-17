@@ -23,13 +23,17 @@ public class Description : MonoBehaviour
         orderDescription.text = dish.description;
     }
 
+    public void SetDescription(string desc) {
+        orderName.text = "";
+        orderDescription.text = desc;
+    }
+
     public void ClearOrderDescription() {
         orderName.text = "";
         orderDescription.text = "";
     }
 
     void Update() {
-        // countdown -= Time.deltaTime;
-        // OrderCountdown.text = ((int) countdown).ToString();
+        
     }
 }
