@@ -307,7 +307,7 @@ public class CookingUI : MonoBehaviour
                 controller.ResetDishBeingWorkedOn(currentIndex);
                 return;
             }
-            if (dish.foodType == Recipe.FoodTypes.Salad) {
+            if (dish.foodType == Recipe.FoodTypes.Salad && !dressingReady[currentIndex]) {
                 SetDressingOrdered(currentIndex);
                 DeactivateButtons();
                 SetDressingKeys();
@@ -324,6 +324,7 @@ public class CookingUI : MonoBehaviour
                 }
                 currentIngredient[currentIndex] = 0;
                 controller.ServeTheDish();
+                return;
             }
             return;
         }
@@ -478,12 +479,13 @@ public class CookingUI : MonoBehaviour
             highlightedKeys[currentIndex, i] = false;
         }
         currentIngredient[index] = 0;
-        grilledAlready[index] = false;
-        readyToBakePizza[index] = false;
-        dressingReady[index] = false;
+        ResetGrill(index);
+        ResetOven(index);
+        ResetDressing(index);
     }
 
     public void SetDressingOrdered(int index) {
+        Debug.Log("Setting dressing ordered for " + index.ToString());
         dressingOrdered[index] = (int) UnityEngine.Random.Range(0, 9);
     }
 

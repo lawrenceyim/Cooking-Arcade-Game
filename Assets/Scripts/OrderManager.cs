@@ -67,6 +67,7 @@ public class OrderManager : MonoBehaviour
     }
 
     public void RemoveOrder(int orderIndex) {
+        Debug.Log("Removing order " + orderIndex.ToString());
         customers[orderIndex].GetComponent<Customer>().ChangeState();
         orders[orderIndex] = null;
         customers[orderIndex] = null;
@@ -77,9 +78,7 @@ public class OrderManager : MonoBehaviour
 
         controller.RemovePattyFromGrill(orderIndex);
         controller.RemovePizzaFromOven(orderIndex);
-
-        controller.ResetDressing(currentIndex);
-        controller.RemoveDressing(currentIndex);
+        controller.RemoveDressing(orderIndex);
 
         if (orderIndex == currentIndex) {
             AudioManager.instance.StopPlayingSound();
@@ -91,8 +90,8 @@ public class OrderManager : MonoBehaviour
             controller.HideStations();
             controller.HideHud();
             ResetOrderNumberColor();
+            currentIndex = -1;
         }
-        currentIndex = -1;
     }
 
     public void OrderServed() {
@@ -115,6 +114,7 @@ public class OrderManager : MonoBehaviour
     }
 
     public void HightlightOrderNumber(int orderIndex) {
+        if (orderIndex < 0 || orderIndex >=6) return;
         orderNumberText[orderIndex].color = highlightedColor;
     }
 }
