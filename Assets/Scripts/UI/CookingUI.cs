@@ -129,6 +129,7 @@ public class CookingUI : MonoBehaviour
                 SetDressingDescription();
                 controller.SetCurrentDressingObject(currentIndex, GetDressingOrdered());
                 SetDressingKeys();
+                return;
             }
         }
 
@@ -168,6 +169,9 @@ public class CookingUI : MonoBehaviour
         ingredientImages[0].sprite = PrefabCache.instance.iconDict[Recipe.Ingredients.Ranch];
         ingredientImages[1].sprite = PrefabCache.instance.iconDict[Recipe.Ingredients.ThousandIsland];
         ingredientImages[2].sprite = PrefabCache.instance.iconDict[Recipe.Ingredients.Vinaigrette];
+        ingredientImages[0].enabled = true;
+        ingredientImages[1].enabled = true;
+        ingredientImages[2].enabled = true;
         buttonBackgroundHighlights[0].enabled = false;
         buttonBackgroundHighlights[1].enabled = false;
         buttonBackgroundHighlights[2].enabled = false;
