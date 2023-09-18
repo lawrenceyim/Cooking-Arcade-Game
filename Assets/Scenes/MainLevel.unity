@@ -5427,7 +5427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1296852748
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9557,6 +9557,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2238857170833610035, guid: 88e9f78943b539c46bad1487a31a950c, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: lessVinaigrette
+      value: 
+      objectReference: {fileID: 2238857170833610035, guid: 88e9f78943b539c46bad1487a31a950c, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: regularThousand
       value: 
       objectReference: {fileID: 2411569672652484793, guid: 4da9be45e921cb24abc5975c8c14e299, type: 3}
@@ -9565,11 +9569,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7837100788635962911, guid: fe38980148a6fec428afa561f7de3107, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: extraVinaigrette
+      value: 
+      objectReference: {fileID: 7837100788635962911, guid: fe38980148a6fec428afa561f7de3107, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: dishes.Array.size
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: regularVinagriatte
+      value: 
+      objectReference: {fileID: 686852988318791630, guid: cf26d37d1c31e374297f94abfd3e8c68, type: 3}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: regularVinaigrette
       value: 
       objectReference: {fileID: 686852988318791630, guid: cf26d37d1c31e374297f94abfd3e8c68, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}

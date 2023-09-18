@@ -94,6 +94,10 @@ public class Controller : MonoBehaviour
         cookingUI.ResetOven(index);
     }
 
+    public void ResetDressing(int index) {
+        cookingUI.ResetDressing(index);
+    }
+
     public void HideStations() {
         cookingUI.HideStations();
     }

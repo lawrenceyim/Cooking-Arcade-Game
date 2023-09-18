@@ -31,7 +31,6 @@ public class Dressing : MonoBehaviour
         ranchAmount[index] = 0;
         thousandAmount[index] = 0;
         vinaigretteAmount[index] = 0;
-        DestroyCurrentDressing();
     }
 
     public void DestroyCurrentDressing() {
@@ -41,24 +40,21 @@ public class Dressing : MonoBehaviour
     }
 
     public void DestroyCurrentRanch() {
-        if (currentRanch != null) {
-            Destroy(currentRanch);
-            currentRanch = null;
-        }
+        if (currentRanch == null) return;
+        Destroy(currentRanch);
+        currentRanch = null;
     }
 
     public void DestroyCurrentThousand() {
-        if (currentThousand != null) {
-            Destroy(currentThousand);
-            currentThousand = null;
-        }
+        if (currentThousand == null) return;
+        Destroy(currentThousand);
+        currentThousand = null;
     }
 
     public void DestroyCurrentVinaigrette() {
-        if (currentVinaigrette != null) {
-            Destroy(currentVinaigrette);
-            currentVinaigrette = null;
-        }
+        if (currentVinaigrette == null) return;
+        Destroy(currentVinaigrette);
+        currentVinaigrette = null;
     }
 
     public void AddRanch(int index, float amount) {
@@ -78,8 +74,8 @@ public class Dressing : MonoBehaviour
 
     public void SetCurrentDressingObject(int index, string type) {
         if (type == "Ranch") {
+            DestroyCurrentRanch();
             if (ranchAmount[index] < lessThreshold) {
-                DestroyCurrentRanch();
             } else if (ranchAmount[index] < regularThreshold) {
                 currentRanch = Instantiate(PrefabCache.instance.lessRanch, new Vector3(0, .5f, -5f), Quaternion.identity);
             } else if (ranchAmount[index] < extraThreshold) {
@@ -88,8 +84,8 @@ public class Dressing : MonoBehaviour
                 currentRanch = Instantiate(PrefabCache.instance.extraRanch, new Vector3(0, .5f, -5f), Quaternion.identity);
             }
         } else if (type == "Thousand") {
+            DestroyCurrentThousand();
             if (thousandAmount[index] < lessThreshold) {
-                DestroyCurrentThousand();
             } else if (thousandAmount[index] < regularThreshold) {
                 currentThousand = Instantiate(PrefabCache.instance.lessThousand, new Vector3(0, .5f, -5f), Quaternion.identity);
             } else if (thousandAmount[index] < extraThreshold) {
@@ -98,8 +94,8 @@ public class Dressing : MonoBehaviour
                 currentThousand = Instantiate(PrefabCache.instance.extraThousand, new Vector3(0, .5f, -5f), Quaternion.identity);
             }
         } else if (type == "Vinaigrette") {
+            DestroyCurrentVinaigrette();
             if (vinaigretteAmount[index] < lessThreshold) {
-                DestroyCurrentVinaigrette();
             } else if (vinaigretteAmount[index] < regularThreshold) {
                 currentVinaigrette = Instantiate(PrefabCache.instance.lessVinaigrette, new Vector3(0, .5f, -5f), Quaternion.identity);
             } else if (vinaigretteAmount[index] < extraThreshold) {

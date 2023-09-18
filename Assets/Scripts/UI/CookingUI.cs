@@ -126,6 +126,7 @@ public class CookingUI : MonoBehaviour
             }
         } else if (dish.foodType == Recipe.FoodTypes.Salad) {
             if (dressingReady[currentIndex]) {
+                SetDressingDescription();
                 controller.SetCurrentDressingObject(currentIndex, GetDressingOrdered());
                 SetDressingKeys();
             }
@@ -165,11 +166,14 @@ public class CookingUI : MonoBehaviour
         availableKeys[KeyCode.T] = Recipe.Ingredients.ThousandIsland;
         availableKeys[KeyCode.V] = Recipe.Ingredients.Vinaigrette;
         ingredientImages[0].sprite = PrefabCache.instance.iconDict[Recipe.Ingredients.Ranch];
-        buttonBackgroundHighlights[0].enabled = false;
         ingredientImages[1].sprite = PrefabCache.instance.iconDict[Recipe.Ingredients.ThousandIsland];
-        buttonBackgroundHighlights[1].enabled = false;
         ingredientImages[2].sprite = PrefabCache.instance.iconDict[Recipe.Ingredients.Vinaigrette];
+        buttonBackgroundHighlights[0].enabled = false;
+        buttonBackgroundHighlights[1].enabled = false;
         buttonBackgroundHighlights[2].enabled = false;
+        buttonKeys[0].text = "R";
+        buttonKeys[1].text = "T";
+        buttonKeys[2].text = "V";
     }
 
     public void SetOvenKeys() {
@@ -253,24 +257,25 @@ public class CookingUI : MonoBehaviour
             return;
         }
         if (dish.foodType == Recipe.FoodTypes.Salad && dressingReady[currentIndex]) {
-            if (Input.GetKey(KeyCode.R)) {
+            if (Input.GetKey(KeyCode.R) && SauceMatchesOrderedDressing("Ranch")) {
                 controller.AddRanch(currentIndex, Time.deltaTime);
                 buttonBackgroundHighlights[0].enabled = true;
             } else if (!Input.GetKey(KeyCode.R)) {
                 buttonBackgroundHighlights[0].enabled = false;
             } 
-            if (Input.GetKey(KeyCode.T)) {
+            if (Input.GetKey(KeyCode.T) && SauceMatchesOrderedDressing("Thousand")) {
                 controller.AddThousand(currentIndex, Time.deltaTime);
                 buttonBackgroundHighlights[1].enabled = true;
             } else if (!Input.GetKey(KeyCode.T)) {
                 buttonBackgroundHighlights[1].enabled = false;
             }
-            if (Input.GetKey(KeyCode.V)) {
+            if (Input.GetKey(KeyCode.V) && SauceMatchesOrderedDressing("Vinaigrette")) {
                 controller.AddVinaigrette(currentIndex, Time.deltaTime);
                 buttonBackgroundHighlights[2].enabled = true;
             } else if (!Input.GetKey(KeyCode.V)) {
                 buttonBackgroundHighlights[2].enabled = false;
             }
+            return;
         }
     
         if (availableKeys == null) return;
@@ -281,6 +286,14 @@ public class CookingUI : MonoBehaviour
                 panelOven.SetActive(true);
                 SetOvenKeys();
                 controller.ResetDishBeingWorkedOn(currentIndex);
+                return;
+            }
+            if (dish.foodType == Recipe.FoodTypes.Salad) {
+                SetDressingOrdered(currentIndex);
+                DeactivateButtons();
+                SetDressingKeys();
+                SetDressingDescription();
+                dressingReady[currentIndex] = true;
                 return;
             }
             DisplaySpaceBar("Press space to serve");
@@ -452,7 +465,7 @@ public class CookingUI : MonoBehaviour
     }
 
     public void SetDressingOrdered(int index) {
-        dressingOrdered[index] = UnityEngine.Random.Range(0, 9);
+        dressingOrdered[index] = (int) UnityEngine.Random.Range(0, 9);
     }
 
     public void SetDressingDescription() {
@@ -480,5 +493,9 @@ public class CookingUI : MonoBehaviour
         if (dressingOrdered[currentIndex] <= 2) return "Ranch";
         else if (dressingOrdered[currentIndex] <= 5) return "Thousand";
         else return "Vinaigrette";
+    }
+
+    public bool SauceMatchesOrderedDressing(string sauce) {
+        return sauce == GetDressingOrdered();
     }
 }

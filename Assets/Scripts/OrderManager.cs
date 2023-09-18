@@ -78,12 +78,16 @@ public class OrderManager : MonoBehaviour
         controller.RemovePattyFromGrill(orderIndex);
         controller.RemovePizzaFromOven(orderIndex);
 
+        controller.ResetDressing(currentIndex);
+        controller.RemoveDressing(currentIndex);
+
         if (orderIndex == currentIndex) {
             AudioManager.instance.StopPlayingSound();
             controller.ClearDescriptionPanel();
             controller.ClearCookingButtons();
             controller.DestroyCurrentPatty();
             controller.DestroyCurrentPizza();
+            controller.DestroyCurrentDressing();
             controller.HideStations();
             controller.HideHud();
             ResetOrderNumberColor();

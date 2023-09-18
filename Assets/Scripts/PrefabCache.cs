@@ -59,8 +59,6 @@ public class PrefabCache : MonoBehaviour
             Dish dishScript = dish.GetComponent<Dish>();
             dishByDishName.Add(dishScript.dishName, dishScript);
         }
-
-        // Recipe.ConvertDictToList();
     }
 
 }
