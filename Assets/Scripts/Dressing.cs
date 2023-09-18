@@ -133,4 +133,11 @@ public class Dressing : MonoBehaviour
     public float GetVinaigretteAmount(int index) {
         return vinaigretteAmount[index];
     }
+
+    public int GetRanchStage(int index) {
+        if (ranchAmount[index] >= extraThreshold || thousandAmount[index] >= extraThreshold || vinaigretteAmount[index] >= extraThreshold) return 2;
+        else if (ranchAmount[index] >= regularThreshold || thousandAmount[index] >= regularThreshold || vinaigretteAmount[index] >= regularThreshold) return 1;
+        else if (ranchAmount[index] >= lessThreshold || thousandAmount[index] >= lessThreshold || vinaigretteAmount[index] >= lessThreshold) return 0;
+        else return -1;
+    }
 }

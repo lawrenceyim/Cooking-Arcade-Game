@@ -162,6 +162,10 @@ public class Controller : MonoBehaviour
         return dressing.GetRanchAmount(index);
     }
 
+    public int GetRanchStage(int index) {
+        return dressing.GetRanchStage(index);
+    }
+
     public float GetThousandAmount(int index) {
         return dressing.GetThousandAmount(index);
     }

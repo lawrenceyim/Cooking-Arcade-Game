@@ -257,6 +257,21 @@ public class CookingUI : MonoBehaviour
             return;
         }
         if (dish.foodType == Recipe.FoodTypes.Salad && dressingReady[currentIndex]) {
+            if (SaladReadyToServe()) {
+                buttonBackgroundHighlights[0].enabled = false;
+                buttonBackgroundHighlights[1].enabled = false;
+                buttonBackgroundHighlights[2].enabled = false;
+
+                DisplaySpaceBar("Press space to serve");
+                if (Input.GetKey(KeyCode.Space)) {
+                    Debug.Log("Dish servered");
+                    controller.ServeTheDish();
+                }
+                return;
+            } else {
+                panelSpaceBar.SetActive(false);
+            }
+
             if (Input.GetKey(KeyCode.R) && SauceMatchesOrderedDressing("Ranch")) {
                 controller.AddRanch(currentIndex, Time.deltaTime);
                 buttonBackgroundHighlights[0].enabled = true;
@@ -497,5 +512,9 @@ public class CookingUI : MonoBehaviour
 
     public bool SauceMatchesOrderedDressing(string sauce) {
         return sauce == GetDressingOrdered();
+    }
+
+    public bool SaladReadyToServe() {
+        return controller.GetRanchStage(currentIndex) == (dressingOrdered[currentIndex] % 3);
     }
 }
