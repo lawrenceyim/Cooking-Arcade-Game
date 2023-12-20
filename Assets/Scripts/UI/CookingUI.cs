@@ -205,6 +205,9 @@ public class CookingUI : MonoBehaviour
     }
 
     void ProcessInput() {
+        if (GameState.gameIsPaused()) {
+            return;
+        }
         if (dish == null) return;
         if (dish.foodType == Recipe.FoodTypes.Burger && !grilledAlready[currentIndex]) {
             if (Input.GetKeyDown(KeyCode.Space)) {

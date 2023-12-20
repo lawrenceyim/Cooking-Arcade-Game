@@ -15,11 +15,13 @@ public class PauseMenu : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (Time.timeScale == 0f) {
+            if (GameState.gameIsPaused()) {
                 Time.timeScale = 1f;
+                GameState.unpauseGame();
                 pauseMenu.SetActive(false);
             } else {
                 Time.timeScale = 0f;
+                GameState.pauseGame();
                 pauseMenu.SetActive(true);
             }
         } 
