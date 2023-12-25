@@ -68,11 +68,12 @@ public class CookingUI : MonoBehaviour
     }
 
     public void AddActivity(Dish dish, int index) {
-        if (dish.GetType().Equals(Recipe.FoodTypes.Burger)) {
+        Debug.Log(dish.GetType());
+        if (dish.foodType.Equals(Recipe.FoodTypes.Burger)) {
             activities[index] = new BurgerActivity(this, controller, dish, grill, index);
-        } else if (dish.GetType().Equals(Recipe.FoodTypes.Pizza)) {
+        } else if (dish.foodType.Equals(Recipe.FoodTypes.Pizza)) {
             activities[index] = new PizzaActivity(this, controller, dish, oven, index);
-        } else if (dish.GetType().Equals(Recipe.FoodTypes.Salad)) {
+        } else if (dish.foodType.Equals(Recipe.FoodTypes.Salad)) {
             activities[index] = new SaladActivity(this, controller, dish, dressing, index);
         }
     }
@@ -83,6 +84,10 @@ public class CookingUI : MonoBehaviour
         DeactivateButtons();
         AudioManager.instance.StopPlayingSound();
         currentIndex = index;
+        if (activities[index] == null) {
+            Debug.Log("Activity is null");
+        }
+
         activities[index].SetupDisplay();
     }
 

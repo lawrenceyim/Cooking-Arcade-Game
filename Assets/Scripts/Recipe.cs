@@ -7,7 +7,8 @@ using UnityEngine;
 
 public static class Recipe
 {
-    public enum Ingredients {
+    public enum Ingredients
+    {
         avocado,
         bacon_burger,
         bacon_pizza,
@@ -31,7 +32,7 @@ public static class Recipe
         onions_burger,
         onions_salad,
         parmesan,
-        patty, 
+        patty,
         pepperoni,
         peppers,
         pineapple,
@@ -44,14 +45,16 @@ public static class Recipe
         Vinaigrette
     }
 
-    public enum FoodTypes {
+    public enum FoodTypes
+    {
         Burger,
-        Pizza, 
+        Pizza,
         Salad,
         Dressing
     }
 
-    public enum DishName {
+    public enum DishName
+    {
         TheWorks,
         ClassicBurger,
         Cheeseburger,
@@ -74,18 +77,20 @@ public static class Recipe
     public static List<Dish> dishList = new List<Dish>();
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    public static void InitializeRecipes() {
-        ingredientsForFoodType.Add(FoodTypes.Burger, new List<Ingredients>{Ingredients.bacon_burger, Ingredients.bun_bottom, Ingredients.bun_top,  
+    public static void InitializeRecipes()
+    {
+        ingredientsForFoodType.Add(FoodTypes.Burger, new List<Ingredients>{Ingredients.bacon_burger, Ingredients.bun_bottom, Ingredients.bun_top,
             Ingredients.cheese, Ingredients.lettuce_burger, Ingredients.onions_burger, Ingredients.patty, Ingredients.tomatoes_burger});
-        ingredientsForFoodType.Add(FoodTypes.Pizza, new List<Ingredients>{Ingredients.bacon_pizza, Ingredients.dough, Ingredients.ham, Ingredients.mozzarella, 
+        ingredientsForFoodType.Add(FoodTypes.Pizza, new List<Ingredients>{Ingredients.bacon_pizza, Ingredients.dough, Ingredients.ham, Ingredients.mozzarella,
             Ingredients.mushrooms_pizza, Ingredients.peppers, Ingredients.pepperoni, Ingredients.pineapple, Ingredients.sauce});
         ingredientsForFoodType.Add(FoodTypes.Salad, new List<Ingredients>{Ingredients.bacon_salad, Ingredients.carrots, Ingredients.chicken,
             Ingredients.croutons, Ingredients.cucumbers, Ingredients.lettuce_salad, Ingredients.olives, Ingredients.onions_salad, Ingredients.tomatoes_salad});
-        ingredientsForFoodType.Add(FoodTypes.Dressing, new List<Ingredients>{Ingredients.Ranch, Ingredients.ThousandIsland, Ingredients.Vinaigrette});
+        ingredientsForFoodType.Add(FoodTypes.Dressing, new List<Ingredients> { Ingredients.Ranch, Ingredients.ThousandIsland, Ingredients.Vinaigrette });
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    private static void InitializeKeys() {
+    private static void InitializeKeys()
+    {
         keyMapping.Add(Ingredients.avocado, KeyCode.A);
         keyMapping.Add(Ingredients.bacon_burger, KeyCode.B);
         keyMapping.Add(Ingredients.bacon_pizza, KeyCode.B);
@@ -123,7 +128,8 @@ public static class Recipe
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    private static void InitializePrice() {
+    private static void InitializePrice()
+    {
         ingredientCost.Add(Ingredients.bacon_burger, 3);
         ingredientCost.Add(Ingredients.bacon_salad, 3);
         ingredientCost.Add(Ingredients.bun_bottom, 1);
@@ -152,7 +158,8 @@ public static class Recipe
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    private static void InitializeDishNames() {
+    private static void InitializeDishNames()
+    {
         dishNameString.Add(DishName.BaconCheeseburger, "Bacon CheeseBurger");
         dishNameString.Add(DishName.ClassicBurger, "Classic Burger");
         dishNameString.Add(DishName.TheWorks, "The Works");
@@ -167,31 +174,38 @@ public static class Recipe
         dishNameString.Add(DishName.GreekSalad, "Greek Salad");
     }
 
-    public static List<Ingredients> GetAllIngredients(Dish dish) {
+    public static List<Ingredients> GetAllIngredients(Dish dish)
+    {
         return ingredientsForFoodType[dish.foodType];
     }
 
-    public static Dish SelectRandomRecipe() {
+    public static Dish SelectRandomRecipe()
+    {
         int randomIndex = UnityEngine.Random.Range(0, dishList.Count);
         return dishList[randomIndex];
     }
 
-    public static Dictionary<KeyCode, Ingredients> GetCurrentKeys(FoodTypes foodtype) {
+    public static Dictionary<KeyCode, Ingredients> GetCurrentKeys(FoodTypes foodtype)
+    {
         Dictionary<KeyCode, Ingredients> keys = new Dictionary<KeyCode, Ingredients>();
         List<Ingredients> ingred = ingredientsForFoodType[foodtype];
-        for (int i = 0; i < ingred.Count; i++) {
+        for (int i = 0; i < ingred.Count; i++)
+        {
             keys.Add(keyMapping[ingred[i]], ingred[i]);
         }
         return keys;
     }
 
-    public static void SetDistList(int day) {
+    public static void SetDistList(int day)
+    {
         dishList = GetNewDishList(day);
-    }              
+    }
 
-    public static List<Dish> GetNewDishList(int day) {
-        return day switch {
-            1 => new List<Dish>()   {PrefabCache.instance.dishByDishName[DishName.ClassicBurger]},
+    public static List<Dish> GetNewDishList(int day)
+    {
+        return day switch
+        {
+            1 => new List<Dish>() { PrefabCache.instance.dishByDishName[DishName.ClassicBurger] },
 
             2 => new List<Dish>()   {PrefabCache.instance.dishByDishName[DishName.ClassicBurger],
                                     PrefabCache.instance.dishByDishName[DishName.Cheeseburger]},
@@ -219,7 +233,7 @@ public static class Recipe
                                     PrefabCache.instance.dishByDishName[DishName.BaconCheeseburger],
                                     PrefabCache.instance.dishByDishName[DishName.TheWorks]},
 
-            8 => new List<Dish>()   {PrefabCache.instance.dishByDishName[DishName.CheesePizza]},
+            8 => new List<Dish>() { PrefabCache.instance.dishByDishName[DishName.CheesePizza] },
 
             9 => new List<Dish>()   {PrefabCache.instance.dishByDishName[DishName.CheesePizza],
                                     PrefabCache.instance.dishByDishName[DishName.PepperoniPizza]},
@@ -231,14 +245,14 @@ public static class Recipe
             11 => new List<Dish>()  {PrefabCache.instance.dishByDishName[DishName.CheesePizza],
                                     PrefabCache.instance.dishByDishName[DishName.PepperoniPizza],
                                     PrefabCache.instance.dishByDishName[DishName.VegetarianPizza],
-                                    PrefabCache.instance.dishByDishName[DishName.HawaiianPizza]},    
+                                    PrefabCache.instance.dishByDishName[DishName.HawaiianPizza]},
 
             12 => new List<Dish>()  {PrefabCache.instance.dishByDishName[DishName.CheesePizza],
                                     PrefabCache.instance.dishByDishName[DishName.PepperoniPizza],
                                     PrefabCache.instance.dishByDishName[DishName.VegetarianPizza],
                                     PrefabCache.instance.dishByDishName[DishName.HawaiianPizza],
                                     // PrefabCache.instance.dishByDishName[DishName.MeatLoversPizza]
-                                    },       
+                                    },
 
             13 => new List<Dish>()  {PrefabCache.instance.dishByDishName[DishName.CheesePizza],
                                     PrefabCache.instance.dishByDishName[DishName.PepperoniPizza],
@@ -248,7 +262,7 @@ public static class Recipe
                                     PrefabCache.instance.dishByDishName[DishName.ClassicBurger],
                                     PrefabCache.instance.dishByDishName[DishName.Cheeseburger],
                                     PrefabCache.instance.dishByDishName[DishName.BaconCheeseburger],
-                                    PrefabCache.instance.dishByDishName[DishName.TheWorks]},         
+                                    PrefabCache.instance.dishByDishName[DishName.TheWorks]},
 
             14 => new List<Dish>()  {PrefabCache.instance.dishByDishName[DishName.CheesePizza],
                                     PrefabCache.instance.dishByDishName[DishName.PepperoniPizza],
@@ -258,21 +272,55 @@ public static class Recipe
                                     PrefabCache.instance.dishByDishName[DishName.ClassicBurger],
                                     PrefabCache.instance.dishByDishName[DishName.Cheeseburger],
                                     PrefabCache.instance.dishByDishName[DishName.BaconCheeseburger],
-                                    PrefabCache.instance.dishByDishName[DishName.TheWorks]},     
-            15 => new List<Dish>() {PrefabCache.instance.dishByDishName[DishName.CaesarSalad]},
-            
+                                    PrefabCache.instance.dishByDishName[DishName.TheWorks]},
+            15 => new List<Dish>() { PrefabCache.instance.dishByDishName[DishName.CaesarSalad] },
+
             16 => new List<Dish>() {PrefabCache.instance.dishByDishName[DishName.CaesarSalad],
                                     PrefabCache.instance.dishByDishName[DishName.GardenSalad]},
 
             17 => new List<Dish>() {PrefabCache.instance.dishByDishName[DishName.CaesarSalad],
                                     PrefabCache.instance.dishByDishName[DishName.GardenSalad],
                                     PrefabCache.instance.dishByDishName[DishName.ChickenSalad]},
- 
+
             18 => new List<Dish>() {PrefabCache.instance.dishByDishName[DishName.CaesarSalad],
                                     PrefabCache.instance.dishByDishName[DishName.GardenSalad],
                                     PrefabCache.instance.dishByDishName[DishName.ChickenSalad],
                                     PrefabCache.instance.dishByDishName[DishName.GreekSalad]},
             _ => null
         };
+    }
+
+    // UNTESTED
+    public static FoodTypes GetFoodType(DishName dish)
+    {
+        switch (dish)
+        {
+            case DishName.TheWorks:
+                return FoodTypes.Burger;
+            case DishName.ClassicBurger:
+                return FoodTypes.Burger;
+            case DishName.Cheeseburger:
+                return FoodTypes.Burger;
+            case DishName.BaconCheeseburger:
+                return FoodTypes.Burger;
+            case DishName.CheesePizza:
+                return FoodTypes.Pizza;
+            case DishName.PepperoniPizza:
+                return FoodTypes.Pizza;
+            case DishName.HawaiianPizza:
+                return FoodTypes.Pizza;
+            case DishName.VegetarianPizza:
+                return FoodTypes.Pizza;
+            case DishName.CaesarSalad:
+                return FoodTypes.Salad;
+            case DishName.GardenSalad:
+                return FoodTypes.Salad;
+            case DishName.ChickenSalad:
+                return FoodTypes.Salad;
+            case DishName.GreekSalad:
+                return FoodTypes.Salad;
+            default:
+                return FoodTypes.Burger;
+        }
     }
 }

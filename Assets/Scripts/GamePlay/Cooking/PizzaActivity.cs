@@ -8,7 +8,7 @@ public class PizzaActivity : MonoBehaviour, IActivity
     float cookingTimer = 0f; // Current cooking time of the patty
     int pizzaStatus = 0; // 0 no pizza, 1 raw pizza, 2 cooked pizza, 3 burnt pizza
     float cookingTime = 5f;
-    Oven oven = null;
+    Oven oven;
 
     bool readyToServe = false;
     int currentIngredient = 0;

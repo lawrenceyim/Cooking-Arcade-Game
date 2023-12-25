@@ -175,8 +175,10 @@ public class BurgerActivity : MonoBehaviour, IActivity
             availableKeys[KeyCode.P] = Recipe.Ingredients.patty;
             cookingUI.SetIngredientImage(PrefabCache.instance.iconDict[Recipe.Ingredients.patty] , 0);
             cookingUI.SetButtonText("P", 0);
-            keycodeIndex = new Dictionary<KeyCode, int>();
-            keycodeIndex[KeyCode.P] = 0;
+            keycodeIndex = new Dictionary<KeyCode, int>
+            {
+                [KeyCode.P] = 0
+            };
             if (highlightedKeys[0]) {
                 cookingUI.HighlightButtonBackground(0);
             }
