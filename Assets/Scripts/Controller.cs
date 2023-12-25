@@ -9,12 +9,9 @@ public class Controller : MonoBehaviour
     [SerializeField] CustomerSpawner customerSpawner;
     [SerializeField] DataUI dataUI;
     [SerializeField] Description description;
-    [SerializeField] Dressing dressing;
     [SerializeField] EndOfDayUI endOfDayUI;
-    [SerializeField] Grill grill;
     [SerializeField] OrderManager orderManager;
     [SerializeField] OrderUI orderUI;
-    [SerializeField] Oven oven;
 
     void Start() {
         if (cooking == null ) {
@@ -70,6 +67,10 @@ public class Controller : MonoBehaviour
     }
 
     // CookingUI
+    public void AddActivity(Dish dish, int index) {    
+        cookingUI.AddActivity(dish, index);
+    }
+
     public void ClearCookingButtons() {
         cookingUI.DeactivateButtons();
     }
@@ -78,24 +79,13 @@ public class Controller : MonoBehaviour
         cookingUI.HideHud();
     }
 
-    public void UpdateCookingButtons(Dish dish, int index) {
-        cookingUI.UpdateButtons(dish, index);
+    public void UpdateCookingButtons(int index) {
+        cookingUI.UpdateButtons(index);
     }
 
      public void ResetCookingUI(int index) {
-        cookingUI.ResetCookingUI(index);
-     }
-
-    public void ResetGrill(int index) {
-        cookingUI.ResetGrill(index);
-    }
-
-    public void ResetOven(int index) {
-        cookingUI.ResetOven(index);
-    }
-
-    public void ResetDressing(int index) {
-        cookingUI.ResetDressing(index);
+        cookingUI.RemoveActivity(index);
+        cookingUI.ResetButtonHighlights();
     }
 
     public void HideStations() {
@@ -129,99 +119,9 @@ public class Controller : MonoBehaviour
         description.SetOrderDescription(dish);
     }
 
-    // Dressing
-    public void AddRanch(int index, float amount) {
-        dressing.AddRanch(index, amount);
-    }
-
-    public void AddThousand(int index, float amount) {
-        dressing.AddThousand(index, amount);
-    }
-
-    public void AddVinaigrette(int index, float amount) {
-        dressing.AddVinaigrette(index, amount);
-    }
-
-    public void DestroyCurrentDressing() {
-        dressing.DestroyCurrentDressing();
-    }
-
-    public void DestroyCurrentRanch() {
-        dressing.DestroyCurrentRanch();
-    }
-
-    public void DestroyCurrentThousand() {
-        dressing.DestroyCurrentThousand();
-    }
-
-    public void DestroyCurrentVinaigrette() {
-        dressing.DestroyCurrentVinaigrette();
-    }
-
-    public float GetRanchAmount(int index) {
-        return dressing.GetRanchAmount(index);
-    }
-
-    public int GetRanchStage(int index) {
-        return dressing.GetRanchStage(index);
-    }
-
-    public float GetThousandAmount(int index) {
-        return dressing.GetThousandAmount(index);
-    }
-
-    public float GetVinaigretteAmount(int index) {
-        return dressing.GetVinaigretteAmount(index);
-    }
-    
-    public void RemoveDressing(int index) {
-        dressing.RemoveDressing(index);
-    }
-
-    public void SetCurrentDressingObject(int index, string type) {
-        dressing.SetCurrentDressingObject(index, type);
-    }
-
-    public bool SauceMatchesOrder(int ranchStatus, int thousandStatus, int vinagriatteStatus) {
-        return dressing.SauceMatchesOrder(ranchStatus, thousandStatus, vinagriatteStatus);
-    }
-
     // EndOfDayUI
     public void UpdateSummary() {
         endOfDayUI.UpdateSummaryText();
-    }
-
-    // Grill
-    public void AddPattyToGrill(int index) {
-        grill.AddPattyToGrill(index);
-    }
-    
-    public void DestroyCurrentPatty() {
-        grill.DestroyCurrentPatty();
-    }
-
-    public int GetPattyStatus(int index) {
-        return grill.GetPattyStatus(index);
-    }
-    
-    public float GetPattyTimer(int index) {
-        return grill.GetPattyTimer(index);
-    }
-
-    public void InstantiateCurrentPatty(GameObject patty) {
-        grill.InstantiateCurrentPatty(patty);
-    }
-
-    public void RemovePattyFromGrill(int index) {
-        grill.RemovePattyFromGrill(index);
-    }
-
-    public void SetPattyGameObject(int index) {
-        grill.SetPattyGameObject(index);
-    }
-
-    public void SetPattyStatus(int index, int status) {
-        grill.SetPattyStatus(index, status);
     }
 
     // OrderManager
@@ -248,38 +148,5 @@ public class Controller : MonoBehaviour
 
     public void ResetOrderSlot(int index) {
         orderUI.ResetOrderSlot(index);
-    }
-
-    // Oven
-    public void AddPizzaToOven(int index) {
-        oven.AddPizzaToOven(index);
-    }
-
-    public void RemovePizzaFromOven(int index) {
-        oven.RemovePizzaFromOven(index);
-    }
-
-    public void InstantiateCurrentPizza(GameObject pizza) {
-        oven.InstantiateCurrentPizza(pizza);
-    }
-
-    public void DestroyCurrentPizza() {
-        oven.DestroyCurrentPizza();
-    }
-
-    public int GetPizzaStatus(int index) {
-        return oven.GetPizzaStatus(index);
-    }
-    
-    public float GetPizzaTimer(int index) {
-        return oven.GetPizzaTimer(index);
-    }
-
-    public void SetPizzaStatus(int index, int status) {
-        oven.SetPizzaStatus(index, status);
-    }
-
-    public void SetPizzaGameObject(int index) {
-        oven.SetPizzaGameObject(index);
     }
 }

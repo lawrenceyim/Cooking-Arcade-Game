@@ -1,37 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Dressing : MonoBehaviour
 {
-    [SerializeField] Controller controller;
-    float[] ranchAmount;
-    float[] thousandAmount;
-    float[] vinaigretteAmount;
     GameObject currentRanch;
     GameObject currentThousand;
     GameObject currentVinaigrette;
-    float lessThreshold = 0.5f;
-    float regularThreshold = 1.5f;
-    float extraThreshold = 2.5f;
-    
-    void Start()
-    {
-        ranchAmount = new float[6];
-        thousandAmount = new float[6];
-        vinaigretteAmount = new float[6];
-    }
-
-    void Update()
-    {
-
-    }
-
-    public void RemoveDressing(int index) {
-        ranchAmount[index] = 0;
-        thousandAmount[index] = 0;
-        vinaigretteAmount[index] = 0;
-    }
 
     public void DestroyCurrentDressing() {
         DestroyCurrentRanch();
@@ -57,53 +30,46 @@ public class Dressing : MonoBehaviour
         currentVinaigrette = null;
     }
 
-    public void AddRanch(int index, float amount) {
-        ranchAmount[index] += amount;
-        SetCurrentDressingObject(index, "Ranch");
-    }
-
-    public void AddThousand(int index, float amount) {
-        thousandAmount[index] += amount;
-        SetCurrentDressingObject(index, "Thousand");
-    }
-
-    public void AddVinaigrette(int index, float amount) {
-        vinaigretteAmount[index] += amount;
-        SetCurrentDressingObject(index, "Vinaigrette");
-    }
-
-    public void SetCurrentDressingObject(int index, string type) {
-        if (type == "Ranch") {
+    public void SetCurrentDressingObject(int stage) {
+        if (stage <= 2) {
             DestroyCurrentRanch();
-            if (ranchAmount[index] < lessThreshold) {
-            } else if (ranchAmount[index] < regularThreshold) {
-                currentRanch = Instantiate(PrefabCache.instance.lessRanch, new Vector3(0, .5f, -5f), Quaternion.identity);
-            } else if (ranchAmount[index] < extraThreshold) {
-                currentRanch = Instantiate(PrefabCache.instance.regularRanch, new Vector3(0, .5f, -5f), Quaternion.identity);
-            } else {
-                currentRanch = Instantiate(PrefabCache.instance.extraRanch, new Vector3(0, .5f, -5f), Quaternion.identity);
-            }
-        } else if (type == "Thousand") {
+        } else if (stage <= 5) {
             DestroyCurrentThousand();
-            if (thousandAmount[index] < lessThreshold) {
-            } else if (thousandAmount[index] < regularThreshold) {
-                currentThousand = Instantiate(PrefabCache.instance.lessThousand, new Vector3(0, .5f, -5f), Quaternion.identity);
-            } else if (thousandAmount[index] < extraThreshold) {
-                currentThousand = Instantiate(PrefabCache.instance.regularThousand, new Vector3(0, .5f, -5f), Quaternion.identity);
-            } else {
-                currentThousand = Instantiate(PrefabCache.instance.extraThousand, new Vector3(0, .5f, -5f), Quaternion.identity);
-            }
-        } else if (type == "Vinaigrette") {
+        } else {
             DestroyCurrentVinaigrette();
-            if (vinaigretteAmount[index] < lessThreshold) {
-            } else if (vinaigretteAmount[index] < regularThreshold) {
-                currentVinaigrette = Instantiate(PrefabCache.instance.lessVinaigrette, new Vector3(0, .5f, -5f), Quaternion.identity);
-            } else if (vinaigretteAmount[index] < extraThreshold) {
-                currentVinaigrette = Instantiate(PrefabCache.instance.regularVinaigrette, new Vector3(0, .5f, -5f), Quaternion.identity);
-            } else {
-                currentVinaigrette = Instantiate(PrefabCache.instance.extraVinaigrette, new Vector3(0, .5f, -5f), Quaternion.identity);
-            }
         }
+        
+        switch (stage) {
+            case 0:
+                currentRanch = Instantiate(PrefabCache.instance.lessRanch, new Vector3(0, .5f, -5f), Quaternion.identity);
+                break;
+            case 1:
+                currentRanch = Instantiate(PrefabCache.instance.regularRanch, new Vector3(0, .5f, -5f), Quaternion.identity);
+                break;
+            case 2:
+                currentRanch = Instantiate(PrefabCache.instance.extraRanch, new Vector3(0, .5f, -5f), Quaternion.identity);
+                break;
+            case 3:
+                currentThousand = Instantiate(PrefabCache.instance.lessThousand, new Vector3(0, .5f, -5f), Quaternion.identity);
+                break;
+            case 4:
+                currentThousand = Instantiate(PrefabCache.instance.regularThousand, new Vector3(0, .5f, -5f), Quaternion.identity);
+                break;
+            case 5:
+                currentThousand = Instantiate(PrefabCache.instance.extraThousand, new Vector3(0, .5f, -5f), Quaternion.identity);
+                break;
+            case 6:
+                currentVinaigrette = Instantiate(PrefabCache.instance.lessVinaigrette, new Vector3(0, .5f, -5f), Quaternion.identity);
+                break;
+            case 7:
+                currentVinaigrette = Instantiate(PrefabCache.instance.regularVinaigrette, new Vector3(0, .5f, -5f), Quaternion.identity);
+                break;
+            case 8:
+                currentVinaigrette = Instantiate(PrefabCache.instance.extraVinaigrette, new Vector3(0, .5f, -5f), Quaternion.identity);
+                break;
+            default:
+                break;
+        };
     }
 
     public bool SauceMatchesOrder(int ranchStatus, int thousandStatus, int vinaigretteStatus) {
@@ -120,24 +86,5 @@ public class Dressing : MonoBehaviour
         else if (vinaigretteStatus == 2 && currentVinaigrette != PrefabCache.instance.regularVinaigrette) return false;
         else if (vinaigretteStatus == 3 && currentVinaigrette != PrefabCache.instance.extraVinaigrette) return false;
         return true;
-    }
-
-    public float GetRanchAmount(int index) {
-        return ranchAmount[index];
-    }
-
-    public float GetThousandAmount(int index) {
-        return thousandAmount[index];
-    }
-
-    public float GetVinaigretteAmount(int index) {
-        return vinaigretteAmount[index];
-    }
-
-    public int GetRanchStage(int index) {
-        if (ranchAmount[index] >= extraThreshold || thousandAmount[index] >= extraThreshold || vinaigretteAmount[index] >= extraThreshold) return 2;
-        else if (ranchAmount[index] >= regularThreshold || thousandAmount[index] >= regularThreshold || vinaigretteAmount[index] >= regularThreshold) return 1;
-        else if (ranchAmount[index] >= lessThreshold || thousandAmount[index] >= lessThreshold || vinaigretteAmount[index] >= lessThreshold) return 0;
-        else return -1;
     }
 }

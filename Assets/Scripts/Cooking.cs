@@ -5,7 +5,6 @@ using UnityEngine;
 public class Cooking : MonoBehaviour
 {
     [SerializeField] Controller controller;
-
     OrderManager orderManager;
     GameObject[] dishes = new GameObject[6];
     int[] ingredientsAdded = new int[6];

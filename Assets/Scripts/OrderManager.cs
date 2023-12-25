@@ -37,7 +37,7 @@ public class OrderManager : MonoBehaviour
             {
                 currentIndex = i - 1;
                 controller.SetOrderDescription(orders[i - 1]);
-                controller.UpdateCookingButtons(orders[i - 1], currentIndex);
+                controller.UpdateCookingButtons(currentIndex);
                 controller.ChangeDishBeingWorkedOn(currentIndex);
                 ResetOrderNumberColor();
                 HightlightOrderNumber(currentIndex);
@@ -61,6 +61,7 @@ public class OrderManager : MonoBehaviour
                 controller.AddOrderToOrderSlot(i, orders[i].dishName, 30f);
                 customers[i] = customer;
                 controller.AddDishToCookingPanel(i, Instantiate(PrefabCache.instance.dishDict[orders[i].dishName], new Vector3(0f, -.4f, 0f), Quaternion.identity));
+                controller.AddActivity(orders[i], i);
                 break;
             }
         }
@@ -76,17 +77,10 @@ public class OrderManager : MonoBehaviour
         controller.RemoveDishFromCookingPanel(orderIndex);
         controller.ResetOrderSlot(orderIndex);
 
-        controller.RemovePattyFromGrill(orderIndex);
-        controller.RemovePizzaFromOven(orderIndex);
-        controller.RemoveDressing(orderIndex);
-
         if (orderIndex == currentIndex) {
             AudioManager.instance.StopPlayingSound();
             controller.ClearDescriptionPanel();
             controller.ClearCookingButtons();
-            controller.DestroyCurrentPatty();
-            controller.DestroyCurrentPizza();
-            controller.DestroyCurrentDressing();
             controller.HideStations();
             controller.HideHud();
             ResetOrderNumberColor();
@@ -100,7 +94,6 @@ public class OrderManager : MonoBehaviour
         RemoveOrder(currentIndex);
         ResetOrderNumberColor();
         AudioManager.instance.PlayCoinSound();
-
     }
 
     public bool HasOrder(int index) {
