@@ -25,7 +25,7 @@ public class CookingUI : MonoBehaviour
     Image[] ingredientImages;
     Image[] buttonBackgroundHighlights;
     TextMeshProUGUI[] buttonKeys;
-    int currentIndex;
+    int currentIndex = -1;
     IActivity[] activities;
     Dressing dressing;
     Grill grill;
@@ -57,8 +57,14 @@ public class CookingUI : MonoBehaviour
     }
 
     void Update() {
-        if (activities[currentIndex] == null) {
+        if (currentIndex < 0 || activities[currentIndex] == null) {
             return;
+        }
+        foreach (IActivity activity in activities) {
+            if (activity == null) {
+                continue;
+            }
+            activity.UpdateActivity(Time.deltaTime);
         }
         activities[currentIndex].ProcessInput();
     }
@@ -288,4 +294,11 @@ public class CookingUI : MonoBehaviour
         ingredientCard.SetActive(false);
     }
 
+    public void DisplayGrill() {
+        panelGrill.SetActive(true);
+    }
+
+    public void DisplayOven() {
+        panelOven.SetActive(true);
+    }
 }

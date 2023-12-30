@@ -15,6 +15,7 @@ public class SaladActivity : MonoBehaviour, IActivity
     Dressing dressing;
     int dressingOrdered;
 
+    float deltaTime = 0f;
     bool readyToServe = false;
     int currentIngredient = 0;
     CookingUI cookingUI;
@@ -254,5 +255,10 @@ public class SaladActivity : MonoBehaviour, IActivity
     public void DestroyActivity()
     {
         Destroy(this);
+    }
+
+    public void UpdateActivity(float deltaTime)
+    {
+        this.deltaTime += deltaTime;
     }
 }

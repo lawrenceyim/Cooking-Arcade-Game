@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BurgerActivity : MonoBehaviour, IActivity
 {
-    float cookingTimer; // Current cooking time of the patty
+    float cookingTimer = 0f; // Current cooking time of the patty
     bool grilled = false;
     int pattyStatus = 0; // 0 no patty, 1 raw patty, 2 cooked patty, 3 burnt patty
     float cookingTime = 5f; // Time to cook the patty
+    float burntTime = 10f;
     Grill grill;
 
+    float deltaTime = 0f;
     bool readyToServe = false;
     int currentIngredient = 0;
     CookingUI cookingUI;
@@ -22,23 +25,6 @@ public class BurgerActivity : MonoBehaviour, IActivity
     Dish dish;
     int index;
     
-    private void Update() {
-        if (!grilled && (pattyStatus == 1 || pattyStatus == 2)) {
-            cookingTimer += Time.deltaTime;
-            if (cookingTimer >= cookingTime) {
-                pattyStatus += 1;
-                grill.SetPattyGameObject(pattyStatus);
-            }
-        }
-        else if (pattyStatus == 2) {
-            cookingUI.SetCookedPattySlider(1);
-            cookingUI.SetBurntPattySlider((cookingTime - cookingTimer) / cookingTime);
-        } else {
-            cookingUI.SetCookedPattySlider((cookingTime - cookingTimer) / cookingTime);
-            cookingUI.SetBurntPattySlider(0);
-        }
-    }
-
     public BurgerActivity(CookingUI cookingUI, Controller controller, Dish dish, Grill grill, int index) {
         this.cookingUI = cookingUI;
         this.controller = controller;
@@ -63,6 +49,17 @@ public class BurgerActivity : MonoBehaviour, IActivity
             return;
         }
         if (!grilled) {
+            UpdateGrill();
+            if (Input.GetKeyDown(KeyCode.P)) {
+                if (pattyStatus == 0) {
+                    pattyStatus = 1;
+                    grill.SetPattyGameObject(pattyStatus);
+                    highlightedKeys[0] = true;
+                    cookingUI.HighlightButtonBackground(0);
+                    cookingUI.HidePanelSpaceBar();
+                    cookingUI.DisplayGrillTimer();
+                }
+            }
             if (Input.GetKeyDown(KeyCode.Space)) {
                 if (pattyStatus == 2) {
                     AudioManager.instance.StopPlayingSound();
@@ -74,18 +71,11 @@ public class BurgerActivity : MonoBehaviour, IActivity
                 } else if (pattyStatus == 3) {
                     AudioManager.instance.StopPlayingSound();
                     grill.DestroyCurrentPatty();
+                    cookingTimer = 0;
                     highlightedKeys[0] = false;
                     cookingUI.HideGrill();
                     cookingUI.HideGrillTimer();
                 }
-            }
-            if (Input.GetKeyDown(KeyCode.P) && highlightedKeys[0] == false) {
-                pattyStatus = 1;
-                grill.SetPattyGameObject(pattyStatus);
-                highlightedKeys[0] = true;
-                cookingUI.HighlightButtonBackground(0);
-                cookingUI.HidePanelSpaceBar();
-                cookingUI.DisplayGrillTimer();
             }
             return;
         }
@@ -125,6 +115,23 @@ public class BurgerActivity : MonoBehaviour, IActivity
             }
         }
 
+    }
+
+    private void UpdateGrill() {
+        DisplayGrill();
+        if (pattyStatus == 1 || pattyStatus == 2) {
+            AudioManager.instance.PlayGrillingSound();
+            cookingTimer += deltaTime;
+            if (cookingTimer >= burntTime) {
+                grill.SetPattyGameObject(1);
+                cookingUI.SetCookedPattySlider(cookingTimer / cookingTime);
+                cookingUI.SetBurntPattySlider(0);
+            } else if (cookingTimer >= cookingTime) {
+                grill.SetPattyGameObject(2);
+                cookingUI.SetCookedPattySlider(1);
+                cookingUI.SetBurntPattySlider((cookingTimer - cookingTime) / cookingTime);
+            }
+        }
     }
 
     public void ResetDish()
@@ -197,8 +204,17 @@ public class BurgerActivity : MonoBehaviour, IActivity
         }
     }
 
+    public void DisplayGrill() {
+        cookingUI.DisplayGrill();
+    }
+
     public void DestroyActivity()
     {
         Destroy(this);
+    }
+
+    public void UpdateActivity(float deltaTime)
+    {
+        this.deltaTime += deltaTime;
     }
 }

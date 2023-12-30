@@ -10,6 +10,7 @@ public class PizzaActivity : MonoBehaviour, IActivity
     float cookingTime = 5f;
     Oven oven;
 
+    float deltaTime = 0f;
     bool readyToServe = false;
     int currentIngredient = 0;
     CookingUI cookingUI = null;
@@ -20,24 +21,6 @@ public class PizzaActivity : MonoBehaviour, IActivity
     List<Recipe.Ingredients> neededForDish = null;
     Dish dish = null;
     int index;
-
-    private void Update()
-    {
-        if (baking && (pizzaStatus == 1 || pizzaStatus == 2)) {
-            cookingTimer += Time.deltaTime;
-            if (cookingTimer >= cookingTime) {
-                pizzaStatus += 1;
-                oven.SetPizzaGameObject(pizzaStatus);
-            }
-        }
-        else if (pizzaStatus == 2) {
-            cookingUI.SetCookedPattySlider(1);
-            cookingUI.SetBurntPattySlider((cookingTime - cookingTimer) / cookingTime);
-        } else {
-            cookingUI.SetCookedPattySlider((cookingTime - cookingTimer) / cookingTime);
-            cookingUI.SetBurntPattySlider(0);
-        }
-    }
 
     public PizzaActivity(CookingUI cookingUI, Controller controller, Dish dish, Oven oven, int index)
     {
@@ -67,7 +50,7 @@ public class PizzaActivity : MonoBehaviour, IActivity
 
         if (baking)
         {
-            
+            UpdateOven();
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (pizzaStatus == 2)
@@ -143,7 +126,24 @@ public class PizzaActivity : MonoBehaviour, IActivity
                 }
             }
         }
+    }
 
+    private void UpdateOven()
+    {
+        if (baking && (pizzaStatus == 1 || pizzaStatus == 2)) {
+            cookingTimer += deltaTime;
+            if (cookingTimer >= cookingTime) {
+                pizzaStatus += 1;
+                oven.SetPizzaGameObject(pizzaStatus);
+            }
+        }
+        else if (pizzaStatus == 2) {
+            cookingUI.SetCookedPattySlider(1);
+            cookingUI.SetBurntPattySlider((cookingTime - cookingTimer) / cookingTime);
+        } else {
+            cookingUI.SetCookedPattySlider((cookingTime - cookingTimer) / cookingTime);
+            cookingUI.SetBurntPattySlider(0);
+        }
     }
 
     public void ResetDish()
@@ -236,5 +236,10 @@ public class PizzaActivity : MonoBehaviour, IActivity
     public void DestroyActivity()
     {
         Destroy(this);
+    }
+
+    public void UpdateActivity(float deltaTime)
+    {
+        this.deltaTime += deltaTime;
     }
 }

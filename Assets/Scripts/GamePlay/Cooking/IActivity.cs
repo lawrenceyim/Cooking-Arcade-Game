@@ -10,4 +10,5 @@ public interface IActivity
     void ResetDish();
     void UpdateButtons();
     void DestroyActivity();
+    void UpdateActivity(float deltaTime);
 }
