@@ -65,6 +65,7 @@ public class BurgerActivity : MonoBehaviour, IActivity
                 if (pattyStatus == 2) {
                     AudioManager.instance.StopPlayingSound();
                     grilled = true;
+                    UpdateButtons();
                     grill.DestroyCurrentPatty();
                     cookingUI.HideGrill();
                     cookingUI.HidePanelSpaceBar();
@@ -185,6 +186,7 @@ public class BurgerActivity : MonoBehaviour, IActivity
     public void UpdateButtons() {
         availableKeys = new Dictionary<KeyCode, Recipe.Ingredients>();
         keycodeIndex = new Dictionary<KeyCode, int>();
+        cookingUI.DisplayHud();
 
         if (!grilled) {
             availableKeys[KeyCode.P] = Recipe.Ingredients.patty;
@@ -227,7 +229,6 @@ public class BurgerActivity : MonoBehaviour, IActivity
             cookingTimer += deltaTime;
             setPattyStage();
         }
-        Debug.Log(pattyStatus + " " + cookingTimer);
     }
 
     private void setPattyStage() {
