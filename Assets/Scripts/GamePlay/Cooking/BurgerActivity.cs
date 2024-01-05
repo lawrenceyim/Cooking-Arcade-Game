@@ -13,7 +13,6 @@ public class BurgerActivity : MonoBehaviour, IActivity
     float burntTime = 10f;
     Grill grill;
 
-    float deltaTime = 0f;
     bool readyToServe = false;
     int currentIngredient = 0;
     CookingUI cookingUI;
@@ -25,14 +24,14 @@ public class BurgerActivity : MonoBehaviour, IActivity
     Dish dish;
     int index;
     
-    public BurgerActivity(CookingUI cookingUI, Controller controller, Dish dish, Grill grill, int index) {
+    public BurgerActivity(CookingUI cookingUI, Controller controller, Dish dish, int index, Grill grill) {
         this.cookingUI = cookingUI;
         this.controller = controller;
         this.dish = dish;
-        this.grill = grill;
         this.index = index;
         highlightedKeys = new bool[cookingUI.GetCookingSlotsLength()];
         neededForDish = dish.ingredientsList;
+        this.grill = grill;
     }
 
     public void ClearDisplay()
@@ -49,9 +48,11 @@ public class BurgerActivity : MonoBehaviour, IActivity
             return;
         }
         if (!grilled) {
+            DisplayGrillTimer();
             UpdateGrill();
             if (Input.GetKeyDown(KeyCode.P)) {
                 if (pattyStatus == 0) {
+                    cookingTimer = 0;
                     pattyStatus = 1;
                     grill.SetPattyGameObject(pattyStatus);
                     highlightedKeys[0] = true;
@@ -72,6 +73,7 @@ public class BurgerActivity : MonoBehaviour, IActivity
                     AudioManager.instance.StopPlayingSound();
                     grill.DestroyCurrentPatty();
                     cookingTimer = 0;
+                    pattyStatus = 0;
                     highlightedKeys[0] = false;
                     cookingUI.HideGrill();
                     cookingUI.HideGrillTimer();
@@ -118,18 +120,19 @@ public class BurgerActivity : MonoBehaviour, IActivity
     }
 
     private void UpdateGrill() {
+        if (grilled) {
+            AudioManager.instance.StopPlayingSound();
+            return;
+        }
         DisplayGrill();
-        if (pattyStatus == 1 || pattyStatus == 2) {
+        if (pattyStatus > 0) {
             AudioManager.instance.PlayGrillingSound();
-            cookingTimer += deltaTime;
-            if (cookingTimer >= burntTime) {
+            if (pattyStatus == 1) {
                 grill.SetPattyGameObject(1);
-                cookingUI.SetCookedPattySlider(cookingTimer / cookingTime);
-                cookingUI.SetBurntPattySlider(0);
-            } else if (cookingTimer >= cookingTime) {
+            } else if (pattyStatus == 2) {
                 grill.SetPattyGameObject(2);
-                cookingUI.SetCookedPattySlider(1);
-                cookingUI.SetBurntPattySlider((cookingTimer - cookingTime) / cookingTime);
+            } else if (pattyStatus == 3) {
+                grill.SetPattyGameObject(3);
             }
         }
     }
@@ -152,10 +155,15 @@ public class BurgerActivity : MonoBehaviour, IActivity
     public void SetupDisplay()
     {
         DisplayGrillTimer();
+        UpdateGrill();
         UpdateButtons();
     }
 
     public void DisplayGrillTimer() {
+        if (grilled) {
+            cookingUI.HideGrillTimer();
+            return;
+        }
         if (pattyStatus == 0) {
             cookingUI.HideGrillTimer();
             return;
@@ -167,9 +175,9 @@ public class BurgerActivity : MonoBehaviour, IActivity
         }
         else if (pattyStatus == 2) {
             cookingUI.SetCookedPattySlider(1);
-            cookingUI.SetBurntPattySlider((cookingTime - cookingTimer) / cookingTime);
+            cookingUI.SetBurntPattySlider((cookingTimer - cookingTime) / cookingTime);
         } else {
-            cookingUI.SetCookedPattySlider((cookingTime - cookingTimer) / cookingTime);
+            cookingUI.SetCookedPattySlider(cookingTimer / cookingTime);
             cookingUI.SetBurntPattySlider(0);
         }
     }
@@ -215,6 +223,20 @@ public class BurgerActivity : MonoBehaviour, IActivity
 
     public void UpdateActivity(float deltaTime)
     {
-        this.deltaTime += deltaTime;
+        if (pattyStatus == 1 || pattyStatus == 2) { 
+            cookingTimer += deltaTime;
+            setPattyStage();
+        }
+        Debug.Log(pattyStatus + " " + cookingTimer);
+    }
+
+    private void setPattyStage() {
+        if (cookingTimer <= cookingTime) {
+            pattyStatus = 1;
+        } else if (cookingTimer <= burntTime) {
+            pattyStatus = 2;
+        } else {
+            pattyStatus = 3;
+        }
     }
 }

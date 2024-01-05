@@ -27,15 +27,15 @@ public class SaladActivity : MonoBehaviour, IActivity
     Dish dish;
     int index;
 
-    public SaladActivity(CookingUI cookingUI, Controller controller, Dish dish, Dressing dressing, int index)
+    public SaladActivity(CookingUI cookingUI, Controller controller, Dish dish, int index, Dressing dressing)
     {
         this.cookingUI = cookingUI;
         this.controller = controller;
         this.dish = dish;
-        this.dressing = dressing;
         this.index = index;
         highlightedKeys = new bool[cookingUI.GetCookingSlotsLength()];
         neededForDish = dish.ingredientsList;
+        this.dressing = dressing;
     }
 
     public void ClearDisplay() {
@@ -259,6 +259,6 @@ public class SaladActivity : MonoBehaviour, IActivity
 
     public void UpdateActivity(float deltaTime)
     {
-        this.deltaTime += deltaTime;
+        this.deltaTime = deltaTime;
     }
 }

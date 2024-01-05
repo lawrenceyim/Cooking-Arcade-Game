@@ -22,15 +22,15 @@ public class PizzaActivity : MonoBehaviour, IActivity
     Dish dish = null;
     int index;
 
-    public PizzaActivity(CookingUI cookingUI, Controller controller, Dish dish, Oven oven, int index)
+    public PizzaActivity(CookingUI cookingUI, Controller controller, Dish dish, int index, Oven oven)
     {
         this.cookingUI = cookingUI;
         this.controller = controller;
         this.dish = dish;
-        this.oven = oven;
         this.index = index;
         highlightedKeys = new bool[cookingUI.GetCookingSlotsLength()];
         neededForDish = dish.ingredientsList;
+        this.oven = oven;
     }
 
     public void ClearDisplay()
@@ -66,6 +66,8 @@ public class PizzaActivity : MonoBehaviour, IActivity
                 else if (pizzaStatus == 3)
                 {
                     oven.DestroyCurrentPizza();
+                    cookingTimer = 0;
+                    pizzaStatus = 0;
                     highlightedKeys[0] = false;
                     cookingUI.HideOven();
                     cookingUI.HideOvenTimer();
@@ -240,6 +242,6 @@ public class PizzaActivity : MonoBehaviour, IActivity
 
     public void UpdateActivity(float deltaTime)
     {
-        this.deltaTime += deltaTime;
+        this.deltaTime = deltaTime;
     }
 }

@@ -27,9 +27,9 @@ public class CookingUI : MonoBehaviour
     TextMeshProUGUI[] buttonKeys;
     int currentIndex = -1;
     IActivity[] activities;
-    Dressing dressing;
-    Grill grill;
-    Oven oven;
+    Dressing dressing = new Dressing();
+    Grill grill = new Grill();
+    Oven oven = new Oven();
 
     void Start()
     {
@@ -37,9 +37,6 @@ public class CookingUI : MonoBehaviour
             Debug.LogError("controller script is null");
         }
         activities = new IActivity[6];
-        dressing = new Dressing();
-        grill = new Grill();
-        oven = new Oven();
         buttonKeys = new TextMeshProUGUI[cookingSlots.Length];
         ingredientImages = new Image[cookingSlots.Length];
         buttonBackgroundHighlights = new Image[cookingSlots.Length];
@@ -76,11 +73,11 @@ public class CookingUI : MonoBehaviour
     public void AddActivity(Dish dish, int index) {
         Debug.Log(dish.GetType());
         if (dish.foodType.Equals(Recipe.FoodTypes.Burger)) {
-            activities[index] = new BurgerActivity(this, controller, dish, grill, index);
+            activities[index] = new BurgerActivity(this, controller, dish, index, grill);
         } else if (dish.foodType.Equals(Recipe.FoodTypes.Pizza)) {
-            activities[index] = new PizzaActivity(this, controller, dish, oven, index);
+            activities[index] = new PizzaActivity(this, controller, dish, index, oven);
         } else if (dish.foodType.Equals(Recipe.FoodTypes.Salad)) {
-            activities[index] = new SaladActivity(this, controller, dish, dressing, index);
+            activities[index] = new SaladActivity(this, controller, dish, index, dressing);
         }
     }
 
@@ -89,6 +86,9 @@ public class CookingUI : MonoBehaviour
         HideStations();
         DeactivateButtons();
         AudioManager.instance.StopPlayingSound();
+        if (activities[index] != null) {
+            activities[index].ClearDisplay();
+        }
         currentIndex = index;
         if (activities[index] == null) {
             Debug.Log("Activity is null");
