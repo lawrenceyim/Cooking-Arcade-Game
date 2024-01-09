@@ -13,7 +13,6 @@ public class BurgerActivity : MonoBehaviour, IActivity
     float burntTime = 10f;
     Grill grill;
 
-    bool readyToServe = false;
     int currentIngredient = 0;
     CookingUI cookingUI;
     Controller controller;
@@ -89,7 +88,6 @@ public class BurgerActivity : MonoBehaviour, IActivity
                 cookingUI.HidePanelSpaceBar();
                 cookingUI.DeactivateButtons();
                 controller.ServeTheDish();
-                cookingUI.RemoveActivity(index);
             }
             return;
         }
@@ -227,11 +225,11 @@ public class BurgerActivity : MonoBehaviour, IActivity
     {
         if (pattyStatus == 1 || pattyStatus == 2) { 
             cookingTimer += deltaTime;
-            setPattyStage();
+            SetPattyStage();
         }
     }
 
-    private void setPattyStage() {
+    private void SetPattyStage() {
         if (cookingTimer <= cookingTime) {
             pattyStatus = 1;
         } else if (cookingTimer <= burntTime) {

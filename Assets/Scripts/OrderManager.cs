@@ -68,7 +68,6 @@ public class OrderManager : MonoBehaviour
     }
 
     public void RemoveOrder(int orderIndex) {
-        Debug.Log("Removing order " + orderIndex.ToString());
         customers[orderIndex].GetComponent<Customer>().ChangeState();
         orders[orderIndex] = null;
         customers[orderIndex] = null;

@@ -63,9 +63,7 @@ public class CookingUI : MonoBehaviour
             }
             activity.UpdateActivity(Time.deltaTime);
         }
-        if (activities[currentIndex] != null) {
-            activities[currentIndex].ProcessInput();
-        }
+        activities[currentIndex].ProcessInput();
     }
 
     public int GetCookingSlotsLength() {
@@ -73,7 +71,6 @@ public class CookingUI : MonoBehaviour
     }
 
     public void AddActivity(Dish dish, int index) {
-        Debug.Log(dish.GetType());
         if (dish.foodType.Equals(Recipe.FoodTypes.Burger)) {
             activities[index] = new BurgerActivity(this, controller, dish, index, grill);
         } else if (dish.foodType.Equals(Recipe.FoodTypes.Pizza)) {
@@ -284,11 +281,17 @@ public class CookingUI : MonoBehaviour
     }
 
     public void RemoveActivity(int index) {
+        Debug.Log(activities[index] == null);
         if (index == currentIndex) {
             activities[currentIndex].ClearDisplay();
         }
+        Debug.Log(activities[index] == null);
         activities[index].DestroyActivity();
+        Debug.Log(activities[index] == null);
+
         activities[index] = null;
+        Debug.Log(activities[index] == null);
+
     }
 
     public void ShowIngredientCard() {
