@@ -63,7 +63,9 @@ public class CookingUI : MonoBehaviour
             }
             activity.UpdateActivity(Time.deltaTime);
         }
-        activities[currentIndex].ProcessInput();
+        if (activities[currentIndex] != null) {
+            activities[currentIndex].ProcessInput();
+        }
     }
 
     public int GetCookingSlotsLength() {
@@ -282,7 +284,10 @@ public class CookingUI : MonoBehaviour
     }
 
     public void RemoveActivity(int index) {
-        activities[currentIndex].DestroyActivity();
+        if (index == currentIndex) {
+            activities[currentIndex].ClearDisplay();
+        }
+        activities[index].DestroyActivity();
         activities[index] = null;
     }
 

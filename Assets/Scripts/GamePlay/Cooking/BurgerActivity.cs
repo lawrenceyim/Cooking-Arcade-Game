@@ -83,7 +83,7 @@ public class BurgerActivity : MonoBehaviour, IActivity
             return;
         }
 
-        if (readyToServe) {
+        if (controller.IsDishComplete()) {
             cookingUI.DisplaySpaceBar("Press space to server");
             if (Input.GetKeyDown(KeyCode.Space)) {
                 cookingUI.HidePanelSpaceBar();
