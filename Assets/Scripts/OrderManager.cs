@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class OrderManager : MonoBehaviour
-{
+public class OrderManager : MonoBehaviour {
     [SerializeField] Controller controller;
     [SerializeField] TextMeshProUGUI[] orderNumberText;
     Color highlightedColor = Color.yellow;
@@ -16,8 +15,7 @@ public class OrderManager : MonoBehaviour
     GameObject[] customers;
     int currentIndex = -1;
 
-    void Start()
-    {   
+    void Start() {
         if (controller == null) {
             Debug.LogError("controller script is null");
         }
@@ -31,10 +29,8 @@ public class OrderManager : MonoBehaviour
 
     void ProcessInput() {
         // Detect numeric key press
-        for (int i = 1; i <= numberOfOrders; i++)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha0 + i) && orders[i - 1] != null && currentIndex != i - 1)
-            {
+        for (int i = 1; i <= numberOfOrders; i++) {
+            if (Input.GetKeyDown(KeyCode.Alpha0 + i) && orders[i - 1] != null && currentIndex != i - 1) {
                 currentIndex = i - 1;
                 controller.SetOrderDescription(orders[i - 1]);
                 controller.UpdateCookingButtons(currentIndex);
@@ -72,7 +68,7 @@ public class OrderManager : MonoBehaviour
         orders[orderIndex] = null;
         customers[orderIndex] = null;
         controller.ResetCookingUI(orderIndex);
-        
+
         controller.RemoveDishFromCookingPanel(orderIndex);
         controller.ResetOrderSlot(orderIndex);
 
@@ -106,7 +102,7 @@ public class OrderManager : MonoBehaviour
     }
 
     public void HightlightOrderNumber(int orderIndex) {
-        if (orderIndex < 0 || orderIndex >=6) return;
+        if (orderIndex < 0 || orderIndex >= 6) return;
         orderNumberText[orderIndex].color = highlightedColor;
     }
 }

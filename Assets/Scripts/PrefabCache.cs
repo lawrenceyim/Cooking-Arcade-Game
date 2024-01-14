@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrefabCache : MonoBehaviour
-{
+public class PrefabCache : MonoBehaviour {
     public static PrefabCache instance;
     [SerializeField] public List<GameObject> dishes;
     [SerializeField] public GameObject[] customerPrefab;

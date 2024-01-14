@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Controller : MonoBehaviour
-{
+public class Controller : MonoBehaviour {
     [SerializeField] Cooking cooking;
     [SerializeField] CookingUI cookingUI;
     [SerializeField] CustomerSpawner customerSpawner;
@@ -14,25 +13,25 @@ public class Controller : MonoBehaviour
     [SerializeField] OrderUI orderUI;
 
     void Start() {
-        if (cooking == null ) {
+        if (cooking == null) {
             Debug.LogError("cooking script is null");
         }
-        if (cookingUI == null ) {
+        if (cookingUI == null) {
             Debug.LogError("cookingUI script is null");
         }
-        if (customerSpawner == null ) {
+        if (customerSpawner == null) {
             Debug.LogError("customerSpawner script is null");
         }
-        if (dataUI == null ) {
+        if (dataUI == null) {
             Debug.LogError("dataUI script is null");
         }
-        if (description == null ) {
+        if (description == null) {
             Debug.LogError("description script is null");
         }
-        if (orderManager == null ) {
+        if (orderManager == null) {
             Debug.LogError("orderManager script is null");
         }
-        if (orderUI == null ) {
+        if (orderUI == null) {
             Debug.LogError("orderUI script is null");
         }
     }
@@ -47,9 +46,9 @@ public class Controller : MonoBehaviour
     }
 
     public void ChangeDishBeingWorkedOn(int index) {
-        cooking.ChangeDish(index);        
+        cooking.ChangeDish(index);
     }
-    
+
     public bool IngredientAlreadyAdded(Recipe.Ingredients ingredient) {
         return cooking.IngredientAlreadyAdded(ingredient);
     }
@@ -57,7 +56,7 @@ public class Controller : MonoBehaviour
     public bool IsDishComplete() {
         return cooking.IsDishComplete();
     }
-    
+
     public void RemoveDishFromCookingPanel(int index) {
         cooking.RemoveDish(index);
     }
@@ -67,7 +66,7 @@ public class Controller : MonoBehaviour
     }
 
     // CookingUI
-    public void AddActivity(Dish dish, int index) {    
+    public void AddActivity(Dish dish, int index) {
         cookingUI.AddActivity(dish, index);
     }
 
@@ -83,7 +82,7 @@ public class Controller : MonoBehaviour
         cookingUI.UpdateButtons(index);
     }
 
-     public void ResetCookingUI(int index) {
+    public void ResetCookingUI(int index) {
         cookingUI.RemoveActivity(index);
         cookingUI.ResetButtonHighlights();
     }

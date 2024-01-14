@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomerSpawner : MonoBehaviour
-{
+public class CustomerSpawner : MonoBehaviour {
     [SerializeField] Controller controller;
     float spawnCooldown = 3f;
     Vector3 spawnPosition = new Vector3(-10f, -.55f, 25f);
@@ -12,8 +11,7 @@ public class CustomerSpawner : MonoBehaviour
     int customerCount = 0;
     int customerLimit = 6;
 
-    void Start()
-    {
+    void Start() {
         if (controller == null) {
             Debug.LogError("controller script is null");
         }
@@ -31,7 +29,7 @@ public class CustomerSpawner : MonoBehaviour
             }
             if (controller.GetTimeLeft() > 5) {
                 InvokeNextCustomerSpawn();
-            } 
+            }
         });
     }
 

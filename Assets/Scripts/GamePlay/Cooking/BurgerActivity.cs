@@ -4,8 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BurgerActivity : MonoBehaviour, IActivity
-{
+public class BurgerActivity : MonoBehaviour, IActivity {
     float cookingTimer = 0f; // Current cooking time of the patty
     bool grilled = false;
     int pattyStatus = 0; // 0 no patty, 1 raw patty, 2 cooked patty, 3 burnt patty
@@ -22,7 +21,7 @@ public class BurgerActivity : MonoBehaviour, IActivity
     List<Recipe.Ingredients> neededForDish = null;
     Dish dish;
     int index;
-    
+
     public BurgerActivity(CookingUI cookingUI, Controller controller, Dish dish, int index, Grill grill) {
         this.cookingUI = cookingUI;
         this.controller = controller;
@@ -33,16 +32,14 @@ public class BurgerActivity : MonoBehaviour, IActivity
         this.grill = grill;
     }
 
-    public void ClearDisplay()
-    {
+    public void ClearDisplay() {
         grill.DestroyCurrentPatty();
         cookingUI.HideGrillTimer();
         cookingUI.DeactivateButtons();
         cookingUI.HideHud();
     }
 
-    public void ProcessInput()
-    {
+    public void ProcessInput() {
         if (GameState.gameIsPaused()) {
             return;
         }
@@ -99,11 +96,9 @@ public class BurgerActivity : MonoBehaviour, IActivity
                     DiscardDish();
                 } else if (ingredient != dish.ingredientsList[currentIngredient]) {
                     DiscardDish();
-                }
-                else if (!PlayerData.HasEnoughMoney(Recipe.ingredientCost[ingredient])) {
+                } else if (!PlayerData.HasEnoughMoney(Recipe.ingredientCost[ingredient])) {
                     continue;
-                }
-                else if (!controller.IngredientAlreadyAdded(ingredient)) {
+                } else if (!controller.IngredientAlreadyAdded(ingredient)) {
                     AudioManager.instance.PlayAddIngredientSound();
                     PlayerData.DecreaseMoney(Recipe.ingredientCost[ingredient]);
                     controller.UpdateMoneyUI();
@@ -112,7 +107,7 @@ public class BurgerActivity : MonoBehaviour, IActivity
                     highlightedKeys[keycodeIndex[key]] = true;
                     currentIngredient++;
                     continue;
-                } 
+                }
             }
         }
 
@@ -136,8 +131,7 @@ public class BurgerActivity : MonoBehaviour, IActivity
         }
     }
 
-    public void ResetDish()
-    {
+    public void ResetDish() {
         currentIngredient = 0;
         controller.ResetDishBeingWorkedOn(index);
         for (int i = 0; i < availableKeys.Count; i++) {
@@ -151,8 +145,7 @@ public class BurgerActivity : MonoBehaviour, IActivity
         ResetDish();
     }
 
-    public void SetupDisplay()
-    {
+    public void SetupDisplay() {
         DisplayGrillTimer();
         UpdateGrill();
         UpdateButtons();
@@ -171,8 +164,7 @@ public class BurgerActivity : MonoBehaviour, IActivity
         if (pattyStatus == 3) {
             cookingUI.SetCookedPattySlider(1);
             cookingUI.SetBurntPattySlider(1);
-        }
-        else if (pattyStatus == 2) {
+        } else if (pattyStatus == 2) {
             cookingUI.SetCookedPattySlider(1);
             cookingUI.SetBurntPattySlider((cookingTimer - cookingTime) / cookingTime);
         } else {
@@ -188,10 +180,9 @@ public class BurgerActivity : MonoBehaviour, IActivity
 
         if (!grilled) {
             availableKeys[KeyCode.P] = Recipe.Ingredients.patty;
-            cookingUI.SetIngredientImage(PrefabCache.instance.iconDict[Recipe.Ingredients.patty] , 0);
+            cookingUI.SetIngredientImage(PrefabCache.instance.iconDict[Recipe.Ingredients.patty], 0);
             cookingUI.SetButtonText("P", 0);
-            keycodeIndex = new Dictionary<KeyCode, int>
-            {
+            keycodeIndex = new Dictionary<KeyCode, int> {
                 [KeyCode.P] = 0
             };
             if (highlightedKeys[0]) {
@@ -199,7 +190,7 @@ public class BurgerActivity : MonoBehaviour, IActivity
             }
             return;
         }
-        
+
         availableKeys = Recipe.GetCurrentKeys(Recipe.FoodTypes.Burger);
         for (int i = 0; i < neededForDish.Count; i++) {
             cookingUI.SetIngredientImage(PrefabCache.instance.iconDict[neededForDish[i]], i);
@@ -216,14 +207,12 @@ public class BurgerActivity : MonoBehaviour, IActivity
         cookingUI.DisplayGrill();
     }
 
-    public void DestroyActivity()
-    {
+    public void DestroyActivity() {
         Destroy(this);
     }
 
-    public void UpdateActivity(float deltaTime)
-    {
-        if (pattyStatus == 1 || pattyStatus == 2) { 
+    public void UpdateActivity(float deltaTime) {
+        if (pattyStatus == 1 || pattyStatus == 2) {
             cookingTimer += deltaTime;
             SetPattyStage();
         }

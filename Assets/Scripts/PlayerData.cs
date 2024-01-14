@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class PlayerData
-{
+public static class PlayerData {
     public static int money;
     public static int day;
     public static int expense;
@@ -16,8 +15,7 @@ public static class PlayerData
     public static int yResolution;
 
     [RuntimeInitializeOnLoadMethod]
-    static void RunOnGameStart()
-    {
+    static void RunOnGameStart() {
         LoadData();
         Screen.SetResolution(xResolution, yResolution, false);
     }

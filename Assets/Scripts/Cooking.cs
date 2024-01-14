@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cooking : MonoBehaviour
-{
+public class Cooking : MonoBehaviour {
     [SerializeField] Controller controller;
     OrderManager orderManager;
     GameObject[] dishes = new GameObject[6];
@@ -17,7 +16,7 @@ public class Cooking : MonoBehaviour
             Debug.LogError("controller script is null");
         }
     }
-    
+
     public void ResetDish(int index) {
         ingredientsAdded[index] = 0;
         for (int i = 0; i < dishes[index].transform.childCount; i++) {
@@ -81,6 +80,6 @@ public class Cooking : MonoBehaviour
             }
         }
         return false;
-    } 
+    }
 }
 

@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class Dressing : MonoBehaviour
-{
+public class Dressing : MonoBehaviour {
     GameObject currentRanch;
     GameObject currentThousand;
     GameObject currentVinaigrette;
@@ -38,7 +37,7 @@ public class Dressing : MonoBehaviour
         } else {
             DestroyCurrentVinaigrette();
         }
-        
+
         switch (stage) {
             case 0:
                 currentRanch = Instantiate(PrefabCache.instance.lessRanch, new Vector3(0, .5f, -5f), Quaternion.identity);

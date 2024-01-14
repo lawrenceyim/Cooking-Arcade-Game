@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PizzaActivity : MonoBehaviour, IActivity
-{   
+public class PizzaActivity : MonoBehaviour, IActivity {
     bool baking = false; // Is pizza ready to bake
     float cookingTimer = 0f; // Current cooking time of the patty
     int pizzaStatus = 0; // 0 no pizza, 1 raw pizza, 2 cooked pizza, 3 burnt pizza
@@ -22,8 +21,7 @@ public class PizzaActivity : MonoBehaviour, IActivity
     Dish dish = null;
     int index;
 
-    public PizzaActivity(CookingUI cookingUI, Controller controller, Dish dish, int index, Oven oven)
-    {
+    public PizzaActivity(CookingUI cookingUI, Controller controller, Dish dish, int index, Oven oven) {
         this.cookingUI = cookingUI;
         this.controller = controller;
         this.dish = dish;
@@ -33,28 +31,22 @@ public class PizzaActivity : MonoBehaviour, IActivity
         this.oven = oven;
     }
 
-    public void ClearDisplay()
-    {
+    public void ClearDisplay() {
         oven.DestroyCurrentPizza();
         cookingUI.HideOvenTimer();
         cookingUI.DeactivateButtons();
         cookingUI.HideHud();
     }
 
-    public void ProcessInput()
-    {
-        if (GameState.gameIsPaused())
-        {
+    public void ProcessInput() {
+        if (GameState.gameIsPaused()) {
             return;
         }
 
-        if (baking)
-        {
+        if (baking) {
             UpdateOven();
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (pizzaStatus == 2)
-                {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                if (pizzaStatus == 2) {
                     oven.DestroyCurrentPizza();
                     cookingUI.HideOven();
                     cookingUI.HidePanelSpaceBar();
@@ -62,9 +54,7 @@ public class PizzaActivity : MonoBehaviour, IActivity
                     cookingUI.HideOvenTimer();
                     controller.ServeTheDish();
                     cookingUI.RemoveActivity(index);
-                }
-                else if (pizzaStatus == 3)
-                {
+                } else if (pizzaStatus == 3) {
                     oven.DestroyCurrentPizza();
                     cookingTimer = 0;
                     pizzaStatus = 0;
@@ -80,11 +70,9 @@ public class PizzaActivity : MonoBehaviour, IActivity
             return;
         }
 
-        if (readyToServe)
-        {
+        if (readyToServe) {
             cookingUI.DisplaySpaceBar("Press space to server");
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
+            if (Input.GetKeyDown(KeyCode.Space)) {
                 cookingUI.HidePanelSpaceBar();
                 cookingUI.DeactivateButtons();
                 controller.ServeTheDish();
@@ -93,25 +81,16 @@ public class PizzaActivity : MonoBehaviour, IActivity
             return;
         }
 
-        foreach (KeyCode key in availableKeys.Keys)
-        {
-            if (Input.GetKeyDown(key))
-            {
+        foreach (KeyCode key in availableKeys.Keys) {
+            if (Input.GetKeyDown(key)) {
                 Recipe.Ingredients ingredient = availableKeys[key];
-                if (!neededForDish.Contains(ingredient))
-                {
+                if (!neededForDish.Contains(ingredient)) {
                     DiscardDish();
-                }
-                else if (ingredient != dish.ingredientsList[currentIngredient])
-                {
+                } else if (ingredient != dish.ingredientsList[currentIngredient]) {
                     DiscardDish();
-                }
-                else if (!PlayerData.HasEnoughMoney(Recipe.ingredientCost[ingredient]))
-                {
+                } else if (!PlayerData.HasEnoughMoney(Recipe.ingredientCost[ingredient])) {
                     continue;
-                }
-                else if (!controller.IngredientAlreadyAdded(ingredient))
-                {
+                } else if (!controller.IngredientAlreadyAdded(ingredient)) {
                     AudioManager.instance.PlayAddIngredientSound();
                     PlayerData.DecreaseMoney(Recipe.ingredientCost[ingredient]);
                     controller.UpdateMoneyUI();
@@ -130,16 +109,14 @@ public class PizzaActivity : MonoBehaviour, IActivity
         }
     }
 
-    private void UpdateOven()
-    {
+    private void UpdateOven() {
         if (baking && (pizzaStatus == 1 || pizzaStatus == 2)) {
             cookingTimer += deltaTime;
             if (cookingTimer >= cookingTime) {
                 pizzaStatus += 1;
                 oven.SetPizzaGameObject(pizzaStatus);
             }
-        }
-        else if (pizzaStatus == 2) {
+        } else if (pizzaStatus == 2) {
             cookingUI.SetCookedPattySlider(1);
             cookingUI.SetBurntPattySlider((cookingTime - cookingTimer) / cookingTime);
         } else {
@@ -148,56 +125,44 @@ public class PizzaActivity : MonoBehaviour, IActivity
         }
     }
 
-    public void ResetDish()
-    {
+    public void ResetDish() {
         currentIngredient = 0;
         controller.ResetDishBeingWorkedOn(index);
-        for (int i = 0; i < availableKeys.Count; i++)
-        {
+        for (int i = 0; i < availableKeys.Count; i++) {
             cookingUI.UnhighlightButtonBackground(i);
             highlightedKeys[i] = false;
         }
     }
 
-    private void DiscardDish()
-    {
+    private void DiscardDish() {
         AudioManager.instance.PlayTrashSound();
         ResetDish();
     }
 
-    public void SetupDisplay()
-    {
+    public void SetupDisplay() {
         DisplayOvenTimer();
         UpdateButtons();
     }
 
-    public void DisplayOvenTimer()
-    {
-        if (pizzaStatus == 0)
-        {
+    public void DisplayOvenTimer() {
+        if (pizzaStatus == 0) {
             cookingUI.HideOvenTimer();
             return;
         }
         cookingUI.DisplayOvenTimer();
-        if (pizzaStatus == 3)
-        {
+        if (pizzaStatus == 3) {
             cookingUI.SetCookedPizzaSlider(1);
             cookingUI.SetBurntPizzaSlider(1);
-        }
-        else if (pizzaStatus == 2)
-        {
+        } else if (pizzaStatus == 2) {
             cookingUI.SetCookedPizzaSlider(1);
             cookingUI.SetBurntPizzaSlider((cookingTime - cookingTimer) / cookingTime);
-        }
-        else
-        {
+        } else {
             cookingUI.SetCookedPizzaSlider((cookingTime - cookingTimer) / cookingTime);
             cookingUI.SetBurntPizzaSlider(0);
         }
     }
 
-    public void UpdateButtons()
-    {
+    public void UpdateButtons() {
         if (baking) {
             cookingUI.HideIngredientCard();
             cookingUI.DeactivateButtons();
@@ -220,28 +185,25 @@ public class PizzaActivity : MonoBehaviour, IActivity
             return;
         }
 
+        cookingUI.DisplayHud();
         keycodeIndex = new Dictionary<KeyCode, int>();
         availableKeys = Recipe.GetCurrentKeys(Recipe.FoodTypes.Pizza);
-        for (int i = 0; i < neededForDish.Count; i++)
-        {
+        for (int i = 0; i < neededForDish.Count; i++) {
             cookingUI.SetIngredientImage(PrefabCache.instance.iconDict[neededForDish[i]], i);
             cookingUI.UnhighlightButtonBackground(i);
             cookingUI.SetButtonText(Recipe.keyMapping[neededForDish[i]].ToString(), i);
-            if (highlightedKeys[i])
-            {
+            if (highlightedKeys[i]) {
                 cookingUI.HighlightButtonBackground(i);
             }
             keycodeIndex.Add(Recipe.keyMapping[neededForDish[i]], i);
         }
     }
 
-    public void DestroyActivity()
-    {
+    public void DestroyActivity() {
         Destroy(this);
     }
 
-    public void UpdateActivity(float deltaTime)
-    {
+    public void UpdateActivity(float deltaTime) {
         this.deltaTime = deltaTime;
     }
 }

@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HoverOverSpriteChange : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
-{
+public class HoverOverSpriteChange : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     [SerializeField] Sprite originalSprite;
     [SerializeField] Sprite hoverOverSprite;
     Image image;
@@ -14,13 +13,11 @@ public class HoverOverSpriteChange : MonoBehaviour, IPointerEnterHandler, IPoint
         image = GetComponent<Image>();
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
+    public void OnPointerEnter(PointerEventData eventData) {
         image.sprite = hoverOverSprite;
     }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        image.sprite = originalSprite;  
+    public void OnPointerExit(PointerEventData eventData) {
+        image.sprite = originalSprite;
     }
 }

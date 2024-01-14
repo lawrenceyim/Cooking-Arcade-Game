@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class Oven : MonoBehaviour
-{
+public class Oven : MonoBehaviour {
     GameObject currentPizza;
 
     public void InstantiateCurrentPizza(GameObject pizza) {

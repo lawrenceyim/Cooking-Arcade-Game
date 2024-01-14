@@ -3,8 +3,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class CookingUI : MonoBehaviour
-{   
+public class CookingUI : MonoBehaviour {
     [SerializeField] Controller controller;
     [SerializeField] GameObject[] cookingSlots;
     [SerializeField] GameObject panelSpaceBar;
@@ -31,8 +30,7 @@ public class CookingUI : MonoBehaviour
     Grill grill = new Grill();
     Oven oven = new Oven();
 
-    void Start()
-    {
+    void Start() {
         if (controller == null) {
             Debug.LogError("controller script is null");
         }
@@ -108,8 +106,8 @@ public class CookingUI : MonoBehaviour
     //     if (GameState.gameIsPaused()) {
     //         return;
     //     }
-        
-    
+
+
     //     if (controller.IsDishComplete()) {
     //         if (dish.foodType == Recipe.FoodTypes.Pizza) {
     //             ResetDishAndButtons();
@@ -174,7 +172,7 @@ public class CookingUI : MonoBehaviour
     public void HideHud() {
         transparencyPanel.SetActive(false);
         UIDishCard.SetActive(false);
-        ingredientCard.SetActive(false);        
+        ingredientCard.SetActive(false);
         panelSpaceBar.SetActive(false);
     }
 
@@ -297,7 +295,7 @@ public class CookingUI : MonoBehaviour
     public void ShowIngredientCard() {
         ingredientCard.SetActive(true);
     }
-            
+
     public void HideIngredientCard() {
         ingredientCard.SetActive(false);
     }

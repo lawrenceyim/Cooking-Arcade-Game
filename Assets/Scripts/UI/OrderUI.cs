@@ -4,12 +4,11 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class OrderUI : MonoBehaviour
-{
+public class OrderUI : MonoBehaviour {
     [SerializeField] Controller controller;
     [SerializeField] GameObject[] orderBlocks;
     float[] timeLeft;
-    float[] startingTime; 
+    float[] startingTime;
     [SerializeField] Slider[] sliders;
     [SerializeField] Image[] sliderFillColorImages;
     [SerializeField] Image[] sliderHandleImages;
@@ -18,8 +17,7 @@ public class OrderUI : MonoBehaviour
     Color32 yellowFill = new Color32(217, 208, 41, 255);
     Color32 redFill = new Color32(135, 30, 30, 255);
 
-    void Start()
-    {
+    void Start() {
         if (controller == null) {
             Debug.LogError("controller script is null");
         }
@@ -30,12 +28,11 @@ public class OrderUI : MonoBehaviour
         }
     }
 
-    void Update()
-    {
+    void Update() {
         for (int i = 0; i < orderBlocks.Length; i++) {
             if (controller.OrderSlotIsOccupied(i)) {
                 UpdateSlider(i);
-            } 
+            }
         }
     }
 
@@ -44,7 +41,7 @@ public class OrderUI : MonoBehaviour
         startingTime[index] = time;
         sliders[index].value = 1f;
         sliderHandleImages[index].sprite = PrefabCache.instance.dishIconDict[dishName];
-        sliderFillColorImages[index].color = greenFill; 
+        sliderFillColorImages[index].color = greenFill;
         sliderFillColorImages[index].enabled = true;
         sliderHandleImages[index].enabled = true;
     }

@@ -1,15 +1,14 @@
 using UnityEngine;
 
-public class Grill : MonoBehaviour
-{
+public class Grill : MonoBehaviour {
     GameObject currentPatty;
 
     public void InstantiateCurrentPatty(GameObject patty) {
         if (patty == PrefabCache.instance.burntPatty) {
-            currentPatty = Instantiate(patty, new Vector3(0,1.5f,-5), Quaternion.identity);
+            currentPatty = Instantiate(patty, new Vector3(0, 1.5f, -5), Quaternion.identity);
             return;
         }
-        currentPatty = Instantiate(patty, new Vector3(0,1,-5), Quaternion.identity);
+        currentPatty = Instantiate(patty, new Vector3(0, 1, -5), Quaternion.identity);
     }
 
     public void DestroyCurrentPatty() {
@@ -42,5 +41,5 @@ public class Grill : MonoBehaviour
         }
     }
 
-    
+
 }

@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dish : MonoBehaviour
-{
+public class Dish : MonoBehaviour {
     [SerializeField] public Recipe.DishName dishName;
     [SerializeField] public Recipe.FoodTypes foodType;
     [SerializeField] public List<Recipe.Ingredients> ingredientsList;

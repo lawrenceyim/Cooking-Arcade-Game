@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaladActivity : MonoBehaviour, IActivity
-{
+public class SaladActivity : MonoBehaviour, IActivity {
     bool addingDressing = false; // Is pizza ready to bake
     float ranchAmount;
     float thousandAmount;
@@ -27,8 +26,7 @@ public class SaladActivity : MonoBehaviour, IActivity
     Dish dish;
     int index;
 
-    public SaladActivity(CookingUI cookingUI, Controller controller, Dish dish, int index, Dressing dressing)
-    {
+    public SaladActivity(CookingUI cookingUI, Controller controller, Dish dish, int index, Dressing dressing) {
         this.cookingUI = cookingUI;
         this.controller = controller;
         this.dish = dish;
@@ -46,8 +44,7 @@ public class SaladActivity : MonoBehaviour, IActivity
     }
 
     public void ProcessInput() {
-        if (GameState.gameIsPaused())
-        {
+        if (GameState.gameIsPaused()) {
             return;
         }
         if (addingDressing) {
@@ -69,7 +66,7 @@ public class SaladActivity : MonoBehaviour, IActivity
                 dressing.SetCurrentDressingObject(GetDressingStage("Ranch"));
             } else if (!Input.GetKey(KeyCode.R)) {
                 cookingUI.UnhighlightButtonBackground(0);
-            } 
+            }
             if (Input.GetKey(KeyCode.T) && SauceMatchesOrderedDressing("Thousand")) {
                 cookingUI.HighlightButtonBackground(1);
                 dressing.SetCurrentDressingObject(GetDressingStage("Thousand"));
@@ -87,10 +84,9 @@ public class SaladActivity : MonoBehaviour, IActivity
             return;
         }
 
-        if (readyToServe){
+        if (readyToServe) {
             cookingUI.DisplaySpaceBar("Press space to server");
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
+            if (Input.GetKeyDown(KeyCode.Space)) {
                 cookingUI.HidePanelSpaceBar();
                 cookingUI.DeactivateButtons();
                 controller.ServeTheDish();
@@ -99,25 +95,16 @@ public class SaladActivity : MonoBehaviour, IActivity
             return;
         }
 
-        foreach (KeyCode key in availableKeys.Keys)
-        {
-            if (Input.GetKeyDown(key))
-            {
+        foreach (KeyCode key in availableKeys.Keys) {
+            if (Input.GetKeyDown(key)) {
                 Recipe.Ingredients ingredient = availableKeys[key];
-                if (!neededForDish.Contains(ingredient))
-                {
+                if (!neededForDish.Contains(ingredient)) {
                     DiscardDish();
-                }
-                else if (ingredient != dish.ingredientsList[currentIngredient])
-                {
+                } else if (ingredient != dish.ingredientsList[currentIngredient]) {
                     DiscardDish();
-                }
-                else if (!PlayerData.HasEnoughMoney(Recipe.ingredientCost[ingredient]))
-                {
+                } else if (!PlayerData.HasEnoughMoney(Recipe.ingredientCost[ingredient])) {
                     continue;
-                }
-                else if (!controller.IngredientAlreadyAdded(ingredient))
-                {
+                } else if (!controller.IngredientAlreadyAdded(ingredient)) {
                     AudioManager.instance.PlayAddIngredientSound();
                     PlayerData.DecreaseMoney(Recipe.ingredientCost[ingredient]);
                     controller.UpdateMoneyUI();
@@ -143,17 +130,17 @@ public class SaladActivity : MonoBehaviour, IActivity
             controller.SetDescription("Moderate amount of Ranch");
         } else if (dressingOrdered == 2) {
             controller.SetDescription("Lot of Ranch");
-        }else if (dressingOrdered == 3) {
+        } else if (dressingOrdered == 3) {
             controller.SetDescription("Little bit of Thousand Island sauce");
-        }else if (dressingOrdered == 4) {
+        } else if (dressingOrdered == 4) {
             controller.SetDescription("Moderate amount of Thousand Island sauce");
-        }else if (dressingOrdered == 5) {
+        } else if (dressingOrdered == 5) {
             controller.SetDescription("Lot of Thousand Island sauce");
-        }else if (dressingOrdered == 6) {
+        } else if (dressingOrdered == 6) {
             controller.SetDescription("Little bit of Vinaigrette");
-        }else if (dressingOrdered == 7) {
+        } else if (dressingOrdered == 7) {
             controller.SetDescription("Moderate amount of Vinaigrette");
-        }else if (dressingOrdered == 8) {
+        } else if (dressingOrdered == 8) {
             controller.SetDescription("Lot of Vinaigrette");
         }
     }
@@ -185,41 +172,36 @@ public class SaladActivity : MonoBehaviour, IActivity
             }
         }
     }
-        
+
     public bool SauceMatchesOrderedDressing(string sauce) {
         return sauce == GetDressingOrdered();
     }
 
-    public string GetDressingOrdered () {
+    public string GetDressingOrdered() {
         if (dressingOrdered <= 2) return "Ranch";
         else if (dressingOrdered <= 5) return "Thousand";
         else return "Vinaigrette";
     }
 
-    public void SetupDisplay()
-    {
+    public void SetupDisplay() {
         UpdateButtons();
     }
 
-    public void ResetDish()
-    {
+    public void ResetDish() {
         currentIngredient = 0;
         controller.ResetDishBeingWorkedOn(index);
-        for (int i = 0; i < availableKeys.Count; i++)
-        {
+        for (int i = 0; i < availableKeys.Count; i++) {
             cookingUI.UnhighlightButtonBackground(i);
             highlightedKeys[i] = false;
         }
     }
 
-    private void DiscardDish()
-    {
+    private void DiscardDish() {
         AudioManager.instance.PlayTrashSound();
         ResetDish();
     }
 
-    public void UpdateButtons()
-    {
+    public void UpdateButtons() {
         if (addingDressing) {
             availableKeys = new Dictionary<KeyCode, Recipe.Ingredients>();
             availableKeys[KeyCode.R] = Recipe.Ingredients.Ranch;
@@ -239,26 +221,22 @@ public class SaladActivity : MonoBehaviour, IActivity
 
         keycodeIndex = new Dictionary<KeyCode, int>();
         availableKeys = Recipe.GetCurrentKeys(Recipe.FoodTypes.Pizza);
-        for (int i = 0; i < neededForDish.Count; i++)
-        {
+        for (int i = 0; i < neededForDish.Count; i++) {
             cookingUI.SetIngredientImage(PrefabCache.instance.iconDict[neededForDish[i]], i);
             cookingUI.UnhighlightButtonBackground(i);
             cookingUI.SetButtonText(Recipe.keyMapping[neededForDish[i]].ToString(), i);
-            if (highlightedKeys[i])
-            {
+            if (highlightedKeys[i]) {
                 cookingUI.HighlightButtonBackground(i);
             }
             keycodeIndex.Add(Recipe.keyMapping[neededForDish[i]], i);
         }
     }
 
-    public void DestroyActivity()
-    {
+    public void DestroyActivity() {
         Destroy(this);
     }
 
-    public void UpdateActivity(float deltaTime)
-    {
+    public void UpdateActivity(float deltaTime) {
         this.deltaTime = deltaTime;
     }
 }

@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OptionsMenu : MonoBehaviour
-{
+public class OptionsMenu : MonoBehaviour {
     [SerializeField] Slider musicVolumeSlider;
     [SerializeField] Slider soundEffectVolumeSlider;
 
     void Start() {
         musicVolumeSlider.value = PlayerData.musicVolumeSetting;
-        soundEffectVolumeSlider.value = PlayerData.soundEffectVolumeSetting;    
+        soundEffectVolumeSlider.value = PlayerData.soundEffectVolumeSetting;
     }
 
-    void Update()
-    {
+    void Update() {
         if (PlayerData.soundEffectVolumeSetting != soundEffectVolumeSlider.value) {
             PlayerData.soundEffectVolumeSetting = soundEffectVolumeSlider.value;
             ES3.Save("soundEffectVolumeSetting", PlayerData.soundEffectVolumeSetting);

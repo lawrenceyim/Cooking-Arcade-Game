@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayIntroLetter : MonoBehaviour
-{
+public class PlayIntroLetter : MonoBehaviour {
     [SerializeField] AudioClip partA;
     [SerializeField] AudioClip partB;
     [SerializeField] AudioSource audioSource;
@@ -12,37 +11,29 @@ public class PlayIntroLetter : MonoBehaviour
     private bool isPlayingFirstClip = true;
     private bool hasPlayedSecondClip = false;
 
-    private void Start()
-    {
+    private void Start() {
         audioSource = GetComponent<AudioSource>();
         PlayFirstClip();
     }
 
-    private void PlayFirstClip()
-    {
+    private void PlayFirstClip() {
         audioSource.clip = partA;
         audioSource.Play();
     }
 
-    private void PlaySecondClip()
-    {
+    private void PlaySecondClip() {
         audioSource.clip = partB;
         audioSource.Play();
     }
 
-    private void Update()
-    {
+    private void Update() {
         if (hasPlayedSecondClip) return;
 
-        if (!audioSource.isPlaying)
-        {
-            if (isPlayingFirstClip)
-            {
+        if (!audioSource.isPlaying) {
+            if (isPlayingFirstClip) {
                 PlaySecondClip();
                 hasPlayedSecondClip = true;
-            }
-            else
-            {
+            } else {
                 PlayFirstClip();
             }
             isPlayingFirstClip = !isPlayingFirstClip;

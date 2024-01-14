@@ -4,16 +4,14 @@ using Unity.Properties;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PauseMenu : MonoBehaviour
-{
+public class PauseMenu : MonoBehaviour {
     [SerializeField] GameObject pauseMenu;
-    
+
     private void Start() {
         pauseMenu.SetActive(false);
     }
 
-    void Update()
-    {
+    void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if (GameState.gameIsPaused()) {
                 Time.timeScale = 1f;
@@ -24,7 +22,7 @@ public class PauseMenu : MonoBehaviour
                 GameState.pauseGame();
                 pauseMenu.SetActive(true);
             }
-        } 
+        }
     }
 
     public void ResumeGame() {

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class EndOfDayUI : MonoBehaviour
-{
+public class EndOfDayUI : MonoBehaviour {
     [SerializeField] GameObject summaryPanel;
     [SerializeField] TextMeshProUGUI summaryAmountText;
     [SerializeField] TextMeshProUGUI profitAmountText;

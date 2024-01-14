@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneManagerScript : MonoBehaviour
-{
+public class SceneManagerScript : MonoBehaviour {
     bool pizzaLetterIntroPlayed;
     bool saladLetterIntroPlayed;
 
@@ -44,7 +43,7 @@ public class SceneManagerScript : MonoBehaviour
     public void QuitGame() {
         Application.Quit();
     }
-    
+
     public void ReturnToMainMenu() {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");

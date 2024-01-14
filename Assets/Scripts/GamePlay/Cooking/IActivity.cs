@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
-public interface IActivity
-{
+public interface IActivity {
     void ProcessInput();
     void SetupDisplay();
     void ClearDisplay();

@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Customer : MonoBehaviour
-{
+public class Customer : MonoBehaviour {
     enum State {
         Walking,
         Waiting,
@@ -22,8 +21,7 @@ public class Customer : MonoBehaviour
     float yDown;
     float yOffset = .2f;
 
-    void Start()
-    {
+    void Start() {
         if (controller == null) {
             Debug.LogError("controller script is null");
         }
@@ -37,8 +35,7 @@ public class Customer : MonoBehaviour
         timer.SetTimer(UnityEngine.Random.Range(2f, 4.5f), () => ChangeState());
     }
 
-    void Update()
-    {
+    void Update() {
         switch (currentState) {
             case State.Walking:
                 MoveX();

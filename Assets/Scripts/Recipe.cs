@@ -5,10 +5,8 @@ using System.Net.NetworkInformation;
 using TMPro;
 using UnityEngine;
 
-public static class Recipe
-{
-    public enum Ingredients
-    {
+public static class Recipe {
+    public enum Ingredients {
         avocado,
         bacon_burger,
         bacon_pizza,
@@ -45,16 +43,14 @@ public static class Recipe
         Vinaigrette
     }
 
-    public enum FoodTypes
-    {
+    public enum FoodTypes {
         Burger,
         Pizza,
         Salad,
         Dressing
     }
 
-    public enum DishName
-    {
+    public enum DishName {
         TheWorks,
         ClassicBurger,
         Cheeseburger,
@@ -77,8 +73,7 @@ public static class Recipe
     public static List<Dish> dishList = new List<Dish>();
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    public static void InitializeRecipes()
-    {
+    public static void InitializeRecipes() {
         ingredientsForFoodType.Add(FoodTypes.Burger, new List<Ingredients>{Ingredients.bacon_burger, Ingredients.bun_bottom, Ingredients.bun_top,
             Ingredients.cheese, Ingredients.lettuce_burger, Ingredients.onions_burger, Ingredients.patty, Ingredients.tomatoes_burger});
         ingredientsForFoodType.Add(FoodTypes.Pizza, new List<Ingredients>{Ingredients.bacon_pizza, Ingredients.dough, Ingredients.ham, Ingredients.mozzarella,
@@ -89,8 +84,7 @@ public static class Recipe
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    private static void InitializeKeys()
-    {
+    private static void InitializeKeys() {
         keyMapping.Add(Ingredients.avocado, KeyCode.A);
         keyMapping.Add(Ingredients.bacon_burger, KeyCode.B);
         keyMapping.Add(Ingredients.bacon_pizza, KeyCode.B);
@@ -128,8 +122,7 @@ public static class Recipe
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    private static void InitializePrice()
-    {
+    private static void InitializePrice() {
         ingredientCost.Add(Ingredients.bacon_burger, 3);
         ingredientCost.Add(Ingredients.bacon_salad, 3);
         ingredientCost.Add(Ingredients.bun_bottom, 1);
@@ -158,8 +151,7 @@ public static class Recipe
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    private static void InitializeDishNames()
-    {
+    private static void InitializeDishNames() {
         dishNameString.Add(DishName.BaconCheeseburger, "Bacon CheeseBurger");
         dishNameString.Add(DishName.ClassicBurger, "Classic Burger");
         dishNameString.Add(DishName.TheWorks, "The Works");
@@ -174,37 +166,30 @@ public static class Recipe
         dishNameString.Add(DishName.GreekSalad, "Greek Salad");
     }
 
-    public static List<Ingredients> GetAllIngredients(Dish dish)
-    {
+    public static List<Ingredients> GetAllIngredients(Dish dish) {
         return ingredientsForFoodType[dish.foodType];
     }
 
-    public static Dish SelectRandomRecipe()
-    {
+    public static Dish SelectRandomRecipe() {
         int randomIndex = UnityEngine.Random.Range(0, dishList.Count);
         return dishList[randomIndex];
     }
 
-    public static Dictionary<KeyCode, Ingredients> GetCurrentKeys(FoodTypes foodtype)
-    {
+    public static Dictionary<KeyCode, Ingredients> GetCurrentKeys(FoodTypes foodtype) {
         Dictionary<KeyCode, Ingredients> keys = new Dictionary<KeyCode, Ingredients>();
         List<Ingredients> ingred = ingredientsForFoodType[foodtype];
-        for (int i = 0; i < ingred.Count; i++)
-        {
+        for (int i = 0; i < ingred.Count; i++) {
             keys.Add(keyMapping[ingred[i]], ingred[i]);
         }
         return keys;
     }
 
-    public static void SetDistList(int day)
-    {
+    public static void SetDistList(int day) {
         dishList = GetNewDishList(day);
     }
 
-    public static List<Dish> GetNewDishList(int day)
-    {
-        return day switch
-        {
+    public static List<Dish> GetNewDishList(int day) {
+        return day switch {
             1 => new List<Dish>() { PrefabCache.instance.dishByDishName[DishName.ClassicBurger] },
 
             2 => new List<Dish>()   {PrefabCache.instance.dishByDishName[DishName.ClassicBurger],
@@ -291,10 +276,8 @@ public static class Recipe
     }
 
     // UNTESTED
-    public static FoodTypes GetFoodType(DishName dish)
-    {
-        switch (dish)
-        {
+    public static FoodTypes GetFoodType(DishName dish) {
+        switch (dish) {
             case DishName.TheWorks:
                 return FoodTypes.Burger;
             case DishName.ClassicBurger:

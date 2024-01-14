@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class DataUI : MonoBehaviour
-{
+public class DataUI : MonoBehaviour {
     [SerializeField] Controller controller;
     [SerializeField] TextMeshPro dayUI;
     [SerializeField] TextMeshPro moneyUI;
@@ -14,8 +13,7 @@ public class DataUI : MonoBehaviour
     private float dayLength = 60 * 5f;
     bool levelRunning;
 
-    void Start()
-    {
+    void Start() {
         if (controller == null) {
             Debug.LogError("controller script is null");
         }
@@ -25,8 +23,7 @@ public class DataUI : MonoBehaviour
         timeLeft = dayLength;
     }
 
-    void Update()
-    {
+    void Update() {
         if (timeLeft > 0) {
             // timeLeft -= Time.deltaTime;
             // timerUI.text = ((int) timeLeft).ToString();

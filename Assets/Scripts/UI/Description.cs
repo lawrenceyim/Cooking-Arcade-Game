@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Description : MonoBehaviour
-{
+public class Description : MonoBehaviour {
     [SerializeField] Controller controller;
     [SerializeField] TextMeshProUGUI orderName;
     [SerializeField] TextMeshProUGUI orderDescription;
@@ -34,6 +33,6 @@ public class Description : MonoBehaviour
     }
 
     void Update() {
-        
+
     }
 }
