@@ -121,13 +121,7 @@ public class BurgerActivity : MonoBehaviour, IActivity {
         DisplayGrill();
         if (pattyStatus > 0) {
             AudioManager.instance.PlayGrillingSound();
-            if (pattyStatus == 1) {
-                grill.SetPattyGameObject(1);
-            } else if (pattyStatus == 2) {
-                grill.SetPattyGameObject(2);
-            } else if (pattyStatus == 3) {
-                grill.SetPattyGameObject(3);
-            }
+            grill.SetPattyGameObject(pattyStatus);
         }
     }
 

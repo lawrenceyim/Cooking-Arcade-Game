@@ -7,9 +7,9 @@ public class PizzaActivity : MonoBehaviour, IActivity {
     float cookingTimer = 0f; // Current cooking time of the patty
     int pizzaStatus = 0; // 0 no pizza, 1 raw pizza, 2 cooked pizza, 3 burnt pizza
     float cookingTime = 5f;
+    float burntTime = 10f;
     Oven oven;
 
-    float deltaTime = 0f;
     bool readyToServe = false;
     int currentIngredient = 0;
     CookingUI cookingUI = null;
@@ -108,6 +108,7 @@ public class PizzaActivity : MonoBehaviour, IActivity {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 baking = true;
                 ResetDish();
+                pizzaStatus = 0;
                 cookingUI.HideHud();
                 cookingUI.DisplayOvenTimer();
                 cookingUI.DisplayOven();
@@ -116,18 +117,13 @@ public class PizzaActivity : MonoBehaviour, IActivity {
     }
 
     private void UpdateOven() {
-        if (baking && (pizzaStatus == 1 || pizzaStatus == 2)) {
-            cookingTimer += deltaTime;
-            if (cookingTimer >= cookingTime) {
-                pizzaStatus += 1;
+        if (!baking) {
+            AudioManager.instance.StopPlayingSound();
+        } else if (baking) {
+            DisplayOven();
+            if (pizzaStatus > 0) {
                 oven.SetPizzaGameObject(pizzaStatus);
             }
-        } else if (pizzaStatus == 2) {
-            cookingUI.SetCookedPattySlider(1);
-            cookingUI.SetBurntPattySlider((cookingTime - cookingTimer) / cookingTime);
-        } else {
-            cookingUI.SetCookedPattySlider((cookingTime - cookingTimer) / cookingTime);
-            cookingUI.SetBurntPattySlider(0);
         }
     }
 
@@ -151,6 +147,10 @@ public class PizzaActivity : MonoBehaviour, IActivity {
     }
 
     public void DisplayOvenTimer() {
+        if (!baking) {
+            cookingUI.HideOvenTimer();
+            return;
+        }
         if (pizzaStatus == 0) {
             cookingUI.HideOvenTimer();
             return;
@@ -161,9 +161,9 @@ public class PizzaActivity : MonoBehaviour, IActivity {
             cookingUI.SetBurntPizzaSlider(1);
         } else if (pizzaStatus == 2) {
             cookingUI.SetCookedPizzaSlider(1);
-            cookingUI.SetBurntPizzaSlider((cookingTime - cookingTimer) / cookingTime);
+            cookingUI.SetBurntPizzaSlider((cookingTimer - cookingTime) / cookingTime);
         } else {
-            cookingUI.SetCookedPizzaSlider((cookingTime - cookingTimer) / cookingTime);
+            cookingUI.SetCookedPizzaSlider(cookingTimer / cookingTime);
             cookingUI.SetBurntPizzaSlider(0);
         }
     }
@@ -210,6 +210,23 @@ public class PizzaActivity : MonoBehaviour, IActivity {
     }
 
     public void UpdateActivity(float deltaTime) {
-        this.deltaTime = deltaTime;
+        if (pizzaStatus == 1 || pizzaStatus == 2) {
+            cookingTimer += deltaTime;
+            SetPizzaStage();
+        }
+    }
+
+    private void SetPizzaStage() {
+        if (cookingTimer <= cookingTime) {
+            pizzaStatus = 1;
+        } else if (cookingTimer <= burntTime) {
+            pizzaStatus = 2;
+        } else {
+            pizzaStatus = 3;
+        }
+    }
+
+    public void DisplayOven() {
+        cookingUI.DisplayOven();
     }
 }
