@@ -98,13 +98,19 @@ public class PizzaActivity : MonoBehaviour, IActivity {
                     cookingUI.HighlightButtonBackground(keycodeIndex[key]);
                     highlightedKeys[keycodeIndex[key]] = true;
                     currentIngredient++;
-
-                    if (currentIngredient == neededForDish.Count - 1) {
-                        baking = true;
-                        ResetDish();
-                    }
                     continue;
                 }
+            }
+        }
+
+        if (currentIngredient == neededForDish.Count && !baking) {
+            cookingUI.DisplaySpaceBar("Press space to put pizza in the oven");
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                baking = true;
+                ResetDish();
+                cookingUI.HideHud();
+                cookingUI.DisplayOvenTimer();
+                cookingUI.DisplayOven();
             }
         }
     }
