@@ -62,6 +62,7 @@ public class PizzaActivity : MonoBehaviour, IActivity {
                     cookingUI.HideOven();
                     cookingUI.HideOvenTimer();
                 } else if (pizzaStatus == 0) {
+                    pizzaStatus = 1;
                     oven.SetPizzaGameObject(pizzaStatus);
                     cookingUI.HidePanelSpaceBar();
                     cookingUI.DisplayOvenTimer();
@@ -104,7 +105,7 @@ public class PizzaActivity : MonoBehaviour, IActivity {
         }
 
         if (currentIngredient == neededForDish.Count && !baking) {
-            cookingUI.DisplaySpaceBar("Press space to put pizza in the oven");
+            cookingUI.DisplaySpaceBar("Press space to go to the oven");
             if (Input.GetKeyDown(KeyCode.Space)) {
                 baking = true;
                 ResetDish();
@@ -121,8 +122,13 @@ public class PizzaActivity : MonoBehaviour, IActivity {
             AudioManager.instance.StopPlayingSound();
         } else if (baking) {
             DisplayOven();
-            if (pizzaStatus > 0) {
-                oven.SetPizzaGameObject(pizzaStatus);
+            switch (pizzaStatus) {
+                case 0:
+                    cookingUI.DisplaySpaceBar("Press space to put the pizza in the oven");
+                    return;
+                case 1: case 2: case 3:
+                    oven.SetPizzaGameObject(pizzaStatus);
+                    return;
             }
         }
     }
