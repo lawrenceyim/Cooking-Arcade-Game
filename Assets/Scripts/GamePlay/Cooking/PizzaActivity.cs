@@ -44,6 +44,7 @@ public class PizzaActivity : MonoBehaviour, IActivity {
         }
 
         if (baking) {
+            DisplayOvenTimer();
             UpdateOven();
             if (Input.GetKeyDown(KeyCode.Space)) {
                 if (pizzaStatus == 2) {
@@ -149,6 +150,7 @@ public class PizzaActivity : MonoBehaviour, IActivity {
 
     public void SetupDisplay() {
         DisplayOvenTimer();
+        UpdateOven();
         UpdateButtons();
     }
 
@@ -161,6 +163,7 @@ public class PizzaActivity : MonoBehaviour, IActivity {
             cookingUI.HideOvenTimer();
             return;
         }
+        Debug.Log(pizzaStatus);
         cookingUI.DisplayOvenTimer();
         if (pizzaStatus == 3) {
             cookingUI.SetCookedPizzaSlider(1);
@@ -168,7 +171,7 @@ public class PizzaActivity : MonoBehaviour, IActivity {
         } else if (pizzaStatus == 2) {
             cookingUI.SetCookedPizzaSlider(1);
             cookingUI.SetBurntPizzaSlider((cookingTimer - cookingTime) / cookingTime);
-        } else {
+        } else if (pizzaStatus == 1) {
             cookingUI.SetCookedPizzaSlider(cookingTimer / cookingTime);
             cookingUI.SetBurntPizzaSlider(0);
         }
