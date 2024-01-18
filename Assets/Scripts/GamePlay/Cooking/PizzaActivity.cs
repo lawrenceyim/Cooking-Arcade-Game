@@ -54,7 +54,6 @@ public class PizzaActivity : MonoBehaviour, IActivity {
                     cookingUI.DeactivateButtons();
                     cookingUI.HideOvenTimer();
                     controller.ServeTheDish();
-                    cookingUI.RemoveActivity(index);
                 } else if (pizzaStatus == 3) {
                     oven.DestroyCurrentPizza();
                     cookingTimer = 0;
@@ -78,7 +77,6 @@ public class PizzaActivity : MonoBehaviour, IActivity {
                 cookingUI.HidePanelSpaceBar();
                 cookingUI.DeactivateButtons();
                 controller.ServeTheDish();
-                cookingUI.RemoveActivity(index);
             }
             return;
         }
@@ -163,7 +161,6 @@ public class PizzaActivity : MonoBehaviour, IActivity {
             cookingUI.HideOvenTimer();
             return;
         }
-        Debug.Log(pizzaStatus);
         cookingUI.DisplayOvenTimer();
         if (pizzaStatus == 3) {
             cookingUI.SetCookedPizzaSlider(1);
