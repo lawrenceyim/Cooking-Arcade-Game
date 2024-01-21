@@ -120,8 +120,7 @@ public class SaladActivity : MonoBehaviour, IActivity {
             cookingUI.DisplaySpaceBar("Press space to go to the dressings.");
             if (Input.GetKeyDown(KeyCode.Space)) {
                 addingDressing = true;
-                ResetDish();
-                cookingUI.HideHud();
+                UpdateButtons();
             }
         }
     }
@@ -206,6 +205,7 @@ public class SaladActivity : MonoBehaviour, IActivity {
     }
 
     public void UpdateButtons() {
+        cookingUI.DisplayHud();
         if (addingDressing) {
             availableKeys = new Dictionary<KeyCode, Recipe.Ingredients>();
             availableKeys[KeyCode.R] = Recipe.Ingredients.Ranch;
@@ -222,8 +222,6 @@ public class SaladActivity : MonoBehaviour, IActivity {
             cookingUI.SetButtonText("V", 2);
             return;
         }
-
-        cookingUI.DisplayHud();
         keycodeIndex = new Dictionary<KeyCode, int>();
         availableKeys = Recipe.GetCurrentKeys(Recipe.FoodTypes.Salad);
         for (int i = 0; i < neededForDish.Count; i++) {
