@@ -14,7 +14,6 @@ public class SaladActivity : MonoBehaviour, IActivity {
     Dressing dressing;
     int dressingOrdered;
 
-    float deltaTime = 0f;
     bool readyToServe = false;
     int currentIngredient = 0;
     CookingUI cookingUI;
@@ -185,6 +184,7 @@ public class SaladActivity : MonoBehaviour, IActivity {
 
     public void SetupDisplay() {
         UpdateButtons();
+        UpdateDressing();
     }
 
     public void ResetDish() {
@@ -219,6 +219,7 @@ public class SaladActivity : MonoBehaviour, IActivity {
             return;
         }
 
+        cookingUI.DisplayHud();
         keycodeIndex = new Dictionary<KeyCode, int>();
         availableKeys = Recipe.GetCurrentKeys(Recipe.FoodTypes.Pizza);
         for (int i = 0; i < neededForDish.Count; i++) {
@@ -232,11 +233,19 @@ public class SaladActivity : MonoBehaviour, IActivity {
         }
     }
 
+    private void UpdateDressing() {
+
+    }
+
+    private void DisplayDressingBar() {
+
+    }
+
     public void DestroyActivity() {
         Destroy(this);
     }
 
     public void UpdateActivity(float deltaTime) {
-        this.deltaTime = deltaTime;
+
     }
 }
