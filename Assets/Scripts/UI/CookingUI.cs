@@ -102,67 +102,6 @@ public class CookingUI : MonoBehaviour {
         }
     }
 
-    // void ProcessInput() {
-    //     if (GameState.gameIsPaused()) {
-    //         return;
-    //     }
-
-
-    //     if (controller.IsDishComplete()) {
-    //         if (dish.foodType == Recipe.FoodTypes.Pizza) {
-    //             ResetDishAndButtons();
-    //             readyToBakePizza[currentIndex] = true;
-    //             panelOven.SetActive(true);
-    //             SetOvenKeys();
-    //             controller.ResetDishBeingWorkedOn(currentIndex);
-    //             return;
-    //         }
-    //         if (dish.foodType == Recipe.FoodTypes.Salad && !dressingReady[currentIndex]) {
-    //             SetDressingOrdered(currentIndex);
-    //             DeactivateButtons();
-    //             SetDressingKeys();
-    //             SetDressingDescription();
-    //             dressingReady[currentIndex] = true;
-    //             return;
-    //         }
-    //         DisplaySpaceBar("Press space to serve");
-    //         if (Input.GetKeyDown(KeyCode.Space)) {
-    //             grilledAlready[currentIndex] = false;
-    //             panelSpaceBar.SetActive(false);
-    //             for (int i = 0; i < cookingSlots.Length; i++) {
-    //                 highlightedKeys[currentIndex, i] = false;
-    //             }
-    //             currentIngredient[currentIndex] = 0;
-    //             controller.ServeTheDish();
-    //             return;
-    //         }
-    //         return;
-    //     }
-    //     foreach (KeyCode key in availableKeys.Keys) {
-    //         if (Input.GetKeyDown(key)) {
-    //             Recipe.Ingredients ingredient = availableKeys[key];
-    //             if (!neededForDish.Contains(ingredient)) {
-    //                 DiscardDish();
-    //             } else if (ingredient != dish.ingredientsList[currentIngredient[currentIndex]]) {
-    //                 DiscardDish();
-    //             }
-    //             else if (!PlayerData.HasEnoughMoney(Recipe.ingredientCost[ingredient])) {
-    //                 continue;
-    //             }
-    //             else if (!controller.IngredientAlreadyAdded(ingredient)) {
-    //                 AudioManager.instance.PlayAddIngredientSound();
-    //                 PlayerData.DecreaseMoney(Recipe.ingredientCost[ingredient]);
-    //                 controller.UpdateMoneyUI();
-    //                 controller.AddIngredientToDish(ingredient);
-    //                 buttonBackgroundHighlights[keycodeIndex[key]].enabled = true;
-    //                 highlightedKeys[currentIndex, keycodeIndex[key]] = true;
-    //                 currentIngredient[currentIndex]++;
-    //                 continue;
-    //             } 
-    //         }
-    //     }
-    // }
-
     public void DisplayHud() {
         transparencyPanel.SetActive(true);
         UIDishCard.SetActive(true);

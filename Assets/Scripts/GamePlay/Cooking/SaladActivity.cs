@@ -111,15 +111,19 @@ public class SaladActivity : MonoBehaviour, IActivity {
                     cookingUI.HighlightButtonBackground(keycodeIndex[key]);
                     highlightedKeys[keycodeIndex[key]] = true;
                     currentIngredient++;
-
-                    if (currentIngredient == neededForDish.Count - 1) {
-                        readyToServe = true;
-                    }
                     continue;
                 }
             }
         }
 
+        if (currentIngredient == neededForDish.Count && !addingDressing) {
+            cookingUI.DisplaySpaceBar("Press space to go to the dressings.");
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                addingDressing = true;
+                ResetDish();
+                cookingUI.HideHud();
+            }
+        }
     }
 
     public void SetDressingDescription() {
@@ -221,7 +225,7 @@ public class SaladActivity : MonoBehaviour, IActivity {
 
         cookingUI.DisplayHud();
         keycodeIndex = new Dictionary<KeyCode, int>();
-        availableKeys = Recipe.GetCurrentKeys(Recipe.FoodTypes.Pizza);
+        availableKeys = Recipe.GetCurrentKeys(Recipe.FoodTypes.Salad);
         for (int i = 0; i < neededForDish.Count; i++) {
             cookingUI.SetIngredientImage(PrefabCache.instance.iconDict[neededForDish[i]], i);
             cookingUI.UnhighlightButtonBackground(i);
