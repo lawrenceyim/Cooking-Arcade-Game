@@ -33,6 +33,7 @@ public class SaladActivity : MonoBehaviour, IActivity {
         highlightedKeys = new bool[cookingUI.GetCookingSlotsLength()];
         neededForDish = dish.ingredientsList;
         this.dressing = dressing;
+        this.dressingOrdered = GenerateRandomDressing();
     }
 
     public void ClearDisplay() {
@@ -126,6 +127,9 @@ public class SaladActivity : MonoBehaviour, IActivity {
     }
 
     public void SetDressingDescription() {
+        if (!addingDressing) {
+            return;
+        }
         if (dressingOrdered == 0) {
             controller.SetDescription("Little bit of Ranch");
         } else if (dressingOrdered == 1) {
@@ -188,6 +192,7 @@ public class SaladActivity : MonoBehaviour, IActivity {
     public void SetupDisplay() {
         UpdateButtons();
         UpdateDressing();
+        SetDressingDescription();
     }
 
     public void ResetDish() {
@@ -248,6 +253,10 @@ public class SaladActivity : MonoBehaviour, IActivity {
     }
 
     public void UpdateActivity(float deltaTime) {
+        SetDressingDescription();
+    }
 
+    public int GenerateRandomDressing() {
+        return UnityEngine.Random.Range(0,9);
     }
 }
