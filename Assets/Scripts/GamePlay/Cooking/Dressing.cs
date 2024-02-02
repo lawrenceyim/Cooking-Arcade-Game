@@ -30,14 +30,7 @@ public class Dressing : MonoBehaviour {
     }
 
     public void SetCurrentDressingObject(int stage) {
-        if (stage <= 2) {
-            DestroyCurrentRanch();
-        } else if (stage <= 5) {
-            DestroyCurrentThousand();
-        } else {
-            DestroyCurrentVinaigrette();
-        }
-
+        DestroyCurrentDressing();
         switch (stage) {
             case 0:
                 currentRanch = Instantiate(PrefabCache.instance.lessRanch, new Vector3(0, .5f, -5f), Quaternion.identity);

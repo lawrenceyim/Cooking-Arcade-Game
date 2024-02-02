@@ -8,11 +8,13 @@ public class SaladActivity : MonoBehaviour, IActivity {
     float ranchAmount;
     float thousandAmount;
     float vinaigretteAmount;
-    float lessThreshold = 0.5f;
-    float regularThreshold = 1.5f;
-    float extraThreshold = 2.5f;
+    float minThreshold = .25f;
+    float lessThreshold = 1.5f;
+    float regularThreshold = 3f;
+    float extraThreshold = 4.5f;
     Dressing dressing;
     int dressingOrdered;
+    float addAmount = 0f;
 
     bool readyToServe = false;
     int currentIngredient = 0;
@@ -48,50 +50,45 @@ public class SaladActivity : MonoBehaviour, IActivity {
             return;
         }
         if (addingDressing) {
+            CheckIfReadyToServe();
             if (readyToServe) {
                 cookingUI.UnhighlightButtonBackground(0);
                 cookingUI.UnhighlightButtonBackground(1);
                 cookingUI.UnhighlightButtonBackground(2);
                 cookingUI.DisplaySpaceBar("Press space to server");
                 if (Input.GetKey(KeyCode.Space)) {
+                    cookingUI.HidePanelSpaceBar();
+                    cookingUI.DeactivateButtons();
+                    dressing.DestroyCurrentDressing();
+                    controller.ResetDishBeingWorkedOn(index);
                     controller.ServeTheDish();
                 }
-                return;
             } else {
                 cookingUI.HidePanelSpaceBar();
             }
 
             if (Input.GetKey(KeyCode.R) && SauceMatchesOrderedDressing("Ranch")) {
+                ranchAmount += addAmount;
                 cookingUI.HighlightButtonBackground(0);
                 dressing.SetCurrentDressingObject(GetDressingStage("Ranch"));
             } else if (!Input.GetKey(KeyCode.R)) {
                 cookingUI.UnhighlightButtonBackground(0);
             }
             if (Input.GetKey(KeyCode.T) && SauceMatchesOrderedDressing("Thousand")) {
+                thousandAmount += addAmount;
                 cookingUI.HighlightButtonBackground(1);
                 dressing.SetCurrentDressingObject(GetDressingStage("Thousand"));
             } else if (!Input.GetKey(KeyCode.T)) {
                 cookingUI.UnhighlightButtonBackground(1);
             }
             if (Input.GetKey(KeyCode.V) && SauceMatchesOrderedDressing("Vinaigrette")) {
+                vinaigretteAmount += addAmount;
                 cookingUI.HighlightButtonBackground(2);
                 dressing.SetCurrentDressingObject(GetDressingStage("Vinaigrette"));
             } else if (!Input.GetKey(KeyCode.V)) {
                 cookingUI.UnhighlightButtonBackground(1);
             }
-
-            // SET CURRENT DRESSING OBJECT
-            return;
-        }
-
-        if (readyToServe) {
-            cookingUI.DisplaySpaceBar("Press space to server");
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                cookingUI.HidePanelSpaceBar();
-                cookingUI.DeactivateButtons();
-                controller.ServeTheDish();
-                cookingUI.RemoveActivity(index);
-            }
+            DisplayDressingBar();
             return;
         }
 
@@ -148,34 +145,42 @@ public class SaladActivity : MonoBehaviour, IActivity {
             controller.SetDescription("Moderate amount of Vinaigrette");
         } else if (dressingOrdered == 8) {
             controller.SetDescription("Lot of Vinaigrette");
-        }
+        } 
     }
 
     private int GetDressingStage(String type) {
         if (type.Equals("Ranch")) {
-            if (ranchAmount <= lessThreshold && ranchAmount > 0) {
+            if (ranchAmount <= lessThreshold && ranchAmount > minThreshold) {
                 return 0;
-            } else if (ranchAmount <= regularThreshold) {
+            } else if (ranchAmount <= regularThreshold && ranchAmount > minThreshold) {
                 return 1;
+            } else if (ranchAmount <= extraThreshold && ranchAmount > minThreshold) {
+                return 2;
             } else {
                 return 2;
             }
         } else if (type.Equals("Thousand")) {
-            if (thousandAmount <= lessThreshold && vinaigretteAmount > 0) {
+            if (thousandAmount <= lessThreshold && vinaigretteAmount > minThreshold) {
                 return 3;
-            } else if (thousandAmount <= regularThreshold) {
+            } else if (thousandAmount <= regularThreshold && vinaigretteAmount > minThreshold) {
                 return 4;
+            } else if (thousandAmount <= extraThreshold && vinaigretteAmount > minThreshold) {
+                return 5;
             } else {
                 return 5;
             }
-        } else {
-            if (vinaigretteAmount <= lessThreshold && vinaigretteAmount > 0) {
+        } else if (type.Equals("Vinaigrette")) {
+            if (vinaigretteAmount <= lessThreshold && vinaigretteAmount > minThreshold) {
                 return 6;
-            } else if (vinaigretteAmount <= regularThreshold) {
+            } else if (vinaigretteAmount <= regularThreshold && vinaigretteAmount > minThreshold) {
                 return 7;
+            } else if (vinaigretteAmount <= extraThreshold && vinaigretteAmount > minThreshold) {
+                return 8;
             } else {
                 return 8;
             }
+        } else {
+            return -1;
         }
     }
 
@@ -245,7 +250,19 @@ public class SaladActivity : MonoBehaviour, IActivity {
     }
 
     private void DisplayDressingBar() {
-
+        switch (GetDressingOrdered()) {
+            case "Ranch":
+                cookingUI.SetDressingProgressBar(ranchAmount / extraThreshold);
+                break;
+            case "Thousand":
+                cookingUI.SetDressingProgressBar(thousandAmount / extraThreshold);
+                break;
+            case "Vinaigrette":
+                cookingUI.SetDressingProgressBar(vinaigretteAmount / extraThreshold);
+                break;
+            default:
+                return;
+        }
     }
 
     public void DestroyActivity() {
@@ -253,10 +270,20 @@ public class SaladActivity : MonoBehaviour, IActivity {
     }
 
     public void UpdateActivity(float deltaTime) {
+        if (addingDressing) {
+            addAmount = deltaTime;
+        }
         SetDressingDescription();
     }
 
     public int GenerateRandomDressing() {
-        return UnityEngine.Random.Range(0,9);
+        return UnityEngine.Random.Range(0, 9);
+    }
+
+    private void CheckIfReadyToServe() {
+        cookingUI.HidePanelSpaceBar();
+        if (addingDressing) {
+            readyToServe = (dressingOrdered == GetDressingStage(GetDressingOrdered()));
+        }
     }
 }
