@@ -246,4 +246,8 @@ public class CookingUI : MonoBehaviour {
     public void DisplayOven() {
         panelOven.SetActive(true);
     }
+
+    public void SetCurrentIndex(int index) {
+        currentIndex = index;
+    }
 }

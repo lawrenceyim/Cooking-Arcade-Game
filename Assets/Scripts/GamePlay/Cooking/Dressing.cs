@@ -63,20 +63,4 @@ public class Dressing : MonoBehaviour {
                 break;
         };
     }
-
-    public bool SauceMatchesOrder(int ranchStatus, int thousandStatus, int vinaigretteStatus) {
-        if (ranchStatus == 0 && currentRanch != null) return false;
-        else if (ranchStatus == 1 && currentRanch != PrefabCache.instance.lessRanch) return false;
-        else if (ranchStatus == 2 && currentRanch != PrefabCache.instance.regularRanch) return false;
-        else if (ranchStatus == 3 && currentRanch != PrefabCache.instance.extraRanch) return false;
-        if (thousandStatus == 0 && currentThousand != null) return false;
-        else if (thousandStatus == 1 && currentThousand != PrefabCache.instance.lessThousand) return false;
-        else if (thousandStatus == 2 && currentThousand != PrefabCache.instance.regularThousand) return false;
-        else if (thousandStatus == 3 && currentThousand != PrefabCache.instance.extraThousand) return false;
-        if (vinaigretteStatus == 0 && currentVinaigrette != null) return false;
-        else if (vinaigretteStatus == 1 && currentVinaigrette != PrefabCache.instance.lessVinaigrette) return false;
-        else if (vinaigretteStatus == 2 && currentVinaigrette != PrefabCache.instance.regularVinaigrette) return false;
-        else if (vinaigretteStatus == 3 && currentVinaigrette != PrefabCache.instance.extraVinaigrette) return false;
-        return true;
-    }
 }

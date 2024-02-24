@@ -91,6 +91,11 @@ public class Controller : MonoBehaviour {
         cookingUI.HideStations();
     }
 
+    
+    public void SetCurrentIndex(int index) {
+        cookingUI.SetCurrentIndex(index);
+    }
+
     // CustomerSpawner
     public bool CheckIfCustomerCountIsZero() {
         return customerSpawner.NoCustomersLeft();

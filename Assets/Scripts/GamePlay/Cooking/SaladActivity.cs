@@ -57,12 +57,12 @@ public class SaladActivity : MonoBehaviour, IActivity {
                 cookingUI.UnhighlightButtonBackground(2);
                 cookingUI.DisplaySpaceBar("Press space to server");
                 if (Input.GetKey(KeyCode.Space)) {
-                    cookingUI.HidePanelSpaceBar();
-                    cookingUI.DeactivateButtons();
+                    ClearDisplay();
                     dressing.DestroyCurrentDressing();
                     controller.ResetDishBeingWorkedOn(index);
                     controller.ServeTheDish();
                 }
+                return;
             } else {
                 cookingUI.HidePanelSpaceBar();
             }
@@ -150,38 +150,37 @@ public class SaladActivity : MonoBehaviour, IActivity {
 
     private int GetDressingStage(String type) {
         if (type.Equals("Ranch")) {
-            if (ranchAmount <= lessThreshold && ranchAmount > minThreshold) {
+            if (ranchAmount <= minThreshold) {
+                return -1;
+            } else if (ranchAmount <= lessThreshold) {
                 return 0;
-            } else if (ranchAmount <= regularThreshold && ranchAmount > minThreshold) {
+            } else if (ranchAmount <= regularThreshold) {
                 return 1;
-            } else if (ranchAmount <= extraThreshold && ranchAmount > minThreshold) {
-                return 2;
-            } else {
+            } else if (ranchAmount <= extraThreshold) {
                 return 2;
             }
         } else if (type.Equals("Thousand")) {
-            if (thousandAmount <= lessThreshold && vinaigretteAmount > minThreshold) {
+            if (thousandAmount <= minThreshold) {
+                return -1;
+            } else if (thousandAmount <= lessThreshold) {
                 return 3;
-            } else if (thousandAmount <= regularThreshold && vinaigretteAmount > minThreshold) {
+            } else if (thousandAmount <= regularThreshold) {
                 return 4;
-            } else if (thousandAmount <= extraThreshold && vinaigretteAmount > minThreshold) {
-                return 5;
-            } else {
+            } else if (thousandAmount <= extraThreshold) {
                 return 5;
             }
         } else if (type.Equals("Vinaigrette")) {
-            if (vinaigretteAmount <= lessThreshold && vinaigretteAmount > minThreshold) {
+            if (vinaigretteAmount <= minThreshold) {
+                return -1;
+            } else if (vinaigretteAmount <= lessThreshold) {
                 return 6;
-            } else if (vinaigretteAmount <= regularThreshold && vinaigretteAmount > minThreshold) {
+            } else if (vinaigretteAmount <= regularThreshold) {
                 return 7;
-            } else if (vinaigretteAmount <= extraThreshold && vinaigretteAmount > minThreshold) {
-                return 8;
-            } else {
+            } else if (vinaigretteAmount <= extraThreshold) {
                 return 8;
             }
-        } else {
-            return -1;
-        }
+        } 
+        return -1;
     }
 
     public bool SauceMatchesOrderedDressing(string sauce) {
@@ -191,12 +190,12 @@ public class SaladActivity : MonoBehaviour, IActivity {
     public string GetDressingOrdered() {
         if (dressingOrdered <= 2) return "Ranch";
         else if (dressingOrdered <= 5) return "Thousand";
-        else return "Vinaigrette";
+        else if (dressingOrdered <= 8) return "Vinaigrette";
+        else return "";
     }
 
     public void SetupDisplay() {
         UpdateButtons();
-        UpdateDressing();
         SetDressingDescription();
     }
 
@@ -243,10 +242,6 @@ public class SaladActivity : MonoBehaviour, IActivity {
             }
             keycodeIndex.Add(Recipe.keyMapping[neededForDish[i]], i);
         }
-    }
-
-    private void UpdateDressing() {
-
     }
 
     private void DisplayDressingBar() {

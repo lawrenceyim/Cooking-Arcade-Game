@@ -88,6 +88,7 @@ public class OrderManager : MonoBehaviour {
         controller.UpdateMoneyUI();
         RemoveOrder(currentIndex);
         ResetOrderNumberColor();
+        controller.SetCurrentIndex(-1);
         AudioManager.instance.PlayCoinSound();
     }
 
