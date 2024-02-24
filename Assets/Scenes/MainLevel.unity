@@ -9585,9 +9585,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4298379781775575330, guid: 8d957d7b7012c8a408a9968400362bc5, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: customerPrefab.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: dishIconPrefab.Array.size
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
+      propertyPath: customerPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 516305000796953393, guid: 96f22b1d2ea2ac148ba1436fd2e427f9, type: 3}
     - target: {fileID: 7531438835523566876, guid: b45f11958d882ab479b6ff8ea7168591, type: 3}
       propertyPath: dishIconPrefab.Array.data[4]
       value: 
