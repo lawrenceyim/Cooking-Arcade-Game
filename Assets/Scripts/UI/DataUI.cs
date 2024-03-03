@@ -7,10 +7,11 @@ public class DataUI : MonoBehaviour {
     [SerializeField] Controller controller;
     [SerializeField] TextMeshPro dayUI;
     [SerializeField] TextMeshPro moneyUI;
-    // [SerializeField] TextMeshPro timerUI;
     [SerializeField] GameObject UIDishCard;
+    [SerializeField] Sprite[] timerSprites;
+    [SerializeField] SpriteRenderer timer;
     private float timeLeft;
-    private float dayLength = 60 * 5f;
+    private float dayLength = 60;
     bool levelRunning;
 
     void Start() {
@@ -24,13 +25,9 @@ public class DataUI : MonoBehaviour {
     }
 
     void Update() {
-        if (timeLeft > 0) {
-            // timeLeft -= Time.deltaTime;
-            // timerUI.text = ((int) timeLeft).ToString();
-            // if (timeLeft <= 0) {
-            //     timerUI.text = "0";
-            // }
-        } else if (levelRunning) {
+        if (levelRunning) {
+            timeLeft -= Time.deltaTime;
+            UpdateTimerSprite();
             if (controller.CheckIfCustomerCountIsZero() && Time.timeScale > 0) {
                 levelRunning = false;
                 EndLevel();
@@ -48,6 +45,13 @@ public class DataUI : MonoBehaviour {
 
     public float GetTimeLeft() {
         return timeLeft;
+    }
+
+
+    public void UpdateTimerSprite() {
+        float percentage = (timeLeft / dayLength) * 100f;
+        int index = 28 - Mathf.Clamp(Mathf.RoundToInt(percentage * (timerSprites.Length - 1) / 100f), 0, timerSprites.Length - 1);
+        timer.sprite = timerSprites[index];
     }
 
     void EndLevel() {

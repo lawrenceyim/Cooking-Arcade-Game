@@ -4,21 +4,21 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HoverOverSpriteChange : MonoBehaviour {
+public class HoverOverImageSpriteChange : MonoBehaviour {
     [SerializeField] Sprite originalSprite;
     [SerializeField] Sprite hoverOverSprite;
-    SpriteRenderer spriteRenderer;
+    Image sourceImage;
 
     private void Start() {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        sourceImage = GetComponent<Image>();
     }
 
     public void OnMouseOver() {
-        spriteRenderer.sprite = hoverOverSprite;
+        sourceImage.sprite = hoverOverSprite;
     }
 
     public void OnMouseExit() {
-        spriteRenderer.sprite = originalSprite;
+        sourceImage.sprite = originalSprite;
     }
 
 }
