@@ -10,6 +10,7 @@ public class DataUI : MonoBehaviour {
     [SerializeField] GameObject UIDishCard;
     [SerializeField] Sprite[] timerSprites;
     [SerializeField] SpriteRenderer timer;
+    [SerializeField] TextMeshPro timerCountDown;
     [SerializeField] FadingTransition fadingTransition;
     private float timeLeft;
     private float dayLength = 60; // Set to 300 or 60?
@@ -23,16 +24,17 @@ public class DataUI : MonoBehaviour {
         UpdateMoneyUI();
         UpdateDayUI();
         timeLeft = dayLength;
+        timerCountDown.text = timeLeft.ToString();
     }
 
     void Update() {
         if (levelRunning) {
             timeLeft -= Time.deltaTime;
+            timerCountDown.text = Mathf.Floor(timeLeft).ToString();
             UpdateTimerSprite();
             if (controller.CheckIfCustomerCountIsZero() && Time.timeScale > 0) {
                 levelRunning = false;
                 fadingTransition.StartFadeIn();
-                //EndLevel();
             }
         }
     }
