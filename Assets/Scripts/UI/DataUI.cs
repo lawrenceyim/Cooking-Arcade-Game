@@ -10,8 +10,9 @@ public class DataUI : MonoBehaviour {
     [SerializeField] GameObject UIDishCard;
     [SerializeField] Sprite[] timerSprites;
     [SerializeField] SpriteRenderer timer;
+    [SerializeField] FadingTransition fadingTransition;
     private float timeLeft;
-    private float dayLength = 60;
+    private float dayLength = 60; // Set to 300 or 60?
     bool levelRunning;
 
     void Start() {
@@ -30,7 +31,8 @@ public class DataUI : MonoBehaviour {
             UpdateTimerSprite();
             if (controller.CheckIfCustomerCountIsZero() && Time.timeScale > 0) {
                 levelRunning = false;
-                EndLevel();
+                fadingTransition.StartFadeIn();
+                //EndLevel();
             }
         }
     }
@@ -47,14 +49,14 @@ public class DataUI : MonoBehaviour {
         return timeLeft;
     }
 
-
     public void UpdateTimerSprite() {
         float percentage = (timeLeft / dayLength) * 100f;
         int index = 28 - Mathf.Clamp(Mathf.RoundToInt(percentage * (timerSprites.Length - 1) / 100f), 0, timerSprites.Length - 1);
         timer.sprite = timerSprites[index];
     }
 
-    void EndLevel() {
+    public void EndLevel() {
+        Debug.Log("Ending level called");
         Time.timeScale = 0f;
         UIDishCard.SetActive(false);
         controller.UpdateSummary();

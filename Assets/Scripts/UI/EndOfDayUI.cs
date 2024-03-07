@@ -5,9 +5,8 @@ using TMPro;
 
 public class EndOfDayUI : MonoBehaviour {
     [SerializeField] GameObject summaryPanel;
-    [SerializeField] TextMeshProUGUI summaryAmountText;
-    [SerializeField] TextMeshProUGUI profitAmountText;
-    [SerializeField] TextMeshProUGUI dayText;
+    [SerializeField] TextMeshPro summaryAmountText;
+    [SerializeField] TextMeshPro dayText;
 
     private void Start() {
         summaryPanel.SetActive(false);
@@ -15,8 +14,7 @@ public class EndOfDayUI : MonoBehaviour {
 
     public void UpdateSummaryText() {
         dayText.text = "Day " + PlayerData.day.ToString();
-        summaryAmountText.text = $"{PlayerData.revenue}\n{-PlayerData.expense}";
-        profitAmountText.text = $"{PlayerData.revenue - PlayerData.expense}";
+        summaryAmountText.text = $"{PlayerData.revenue}\n{-PlayerData.expense}\n\n{PlayerData.revenue - PlayerData.expense}";
         summaryPanel.SetActive(true);
         PlayerData.IncrementDay();
         PlayerData.SaveData();

@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class FadingTransition : MonoBehaviour {
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] GameObject openSign;
+    [SerializeField] DataUI dataUI;
+
     float opacity = 1f;
     float fadingSpeed = .1f;
     Color color = new Color(0f, 0f, 0f);
@@ -24,8 +26,10 @@ public class FadingTransition : MonoBehaviour {
             opacity += Time.fixedDeltaTime * fadingSpeed;
 
             if (opacity >= 1) {
+                Debug.Log("Ending level");
                 fadingIn = false;
                 opacity = 1;
+                dataUI.EndLevel();
             }
 
             color.a = opacity;
@@ -53,7 +57,7 @@ public class FadingTransition : MonoBehaviour {
     }
 
     public void StartFadeIn() {
+        Time.timeScale = 0;
         fadingIn = true;
     }
-
 }
