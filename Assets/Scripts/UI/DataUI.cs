@@ -13,7 +13,7 @@ public class DataUI : MonoBehaviour {
     [SerializeField] TextMeshPro timerCountDown;
     [SerializeField] FadingTransition fadingTransition;
     private float timeLeft;
-    private float dayLength = 60; // Set to 300 or 60?
+    private float dayLength = 10; // Set to 300 or 60?
     bool levelRunning;
 
     void Start() {
@@ -30,7 +30,7 @@ public class DataUI : MonoBehaviour {
     void Update() {
         if (levelRunning) {
             timeLeft -= Time.deltaTime;
-            timerCountDown.text = Mathf.Floor(timeLeft).ToString();
+            timerCountDown.text = Mathf.Max(Mathf.Floor(timeLeft), 0).ToString();
             UpdateTimerSprite();
             if (controller.CheckIfCustomerCountIsZero() && Time.timeScale > 0) {
                 levelRunning = false;
