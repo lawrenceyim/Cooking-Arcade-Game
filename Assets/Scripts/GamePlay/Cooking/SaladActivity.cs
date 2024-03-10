@@ -8,9 +8,9 @@ public class SaladActivity : MonoBehaviour, IActivity {
     float ranchAmount;
     float thousandAmount;
     float vinaigretteAmount;
-    float minThreshold = .25f;
-    float lessThreshold = 1.5f;
-    float regularThreshold = 3f;
+    float minThreshold = .5f;
+    float lessThreshold = 1.8f;
+    float regularThreshold = 3.2f;
     float extraThreshold = 4.5f;
     Dressing dressing;
     int dressingOrdered;
@@ -119,6 +119,7 @@ public class SaladActivity : MonoBehaviour, IActivity {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 addingDressing = true;
                 UpdateButtons();
+                SetDressingDescription();
             }
         }
     }
@@ -196,7 +197,11 @@ public class SaladActivity : MonoBehaviour, IActivity {
 
     public void SetupDisplay() {
         UpdateButtons();
-        SetDressingDescription();
+        if (addingDressing) {
+            SetDressingDescription();
+        } else {
+            controller.SetOrderDescription(dish);
+        }
     }
 
     public void ResetDish() {
@@ -268,7 +273,6 @@ public class SaladActivity : MonoBehaviour, IActivity {
         if (addingDressing) {
             addAmount = deltaTime;
         }
-        SetDressingDescription();
     }
 
     public int GenerateRandomDressing() {
