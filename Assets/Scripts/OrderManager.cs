@@ -32,6 +32,7 @@ public class OrderManager : MonoBehaviour {
         for (int i = 1; i <= numberOfOrders; i++) {
             if (Input.GetKeyDown(KeyCode.Alpha0 + i) && orders[i - 1] != null && currentIndex != i - 1) {
                 currentIndex = i - 1;
+                controller.HideStations();
                 controller.SetOrderDescription(orders[i - 1]);
                 controller.UpdateCookingButtons(currentIndex);
                 controller.ChangeDishBeingWorkedOn(currentIndex);

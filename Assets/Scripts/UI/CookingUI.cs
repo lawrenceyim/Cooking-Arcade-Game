@@ -83,14 +83,10 @@ public class CookingUI : MonoBehaviour {
         HideStations();
         DeactivateButtons();
         AudioManager.instance.StopPlayingSound();
-        if (activities[index] != null) {
-            activities[index].ClearDisplay();
+         if (currentIndex >= 0 && activities[currentIndex] != null) {
+            activities[currentIndex].ClearDisplay();
         }
         currentIndex = index;
-        if (activities[index] == null) {
-            Debug.Log("Activity is null");
-        }
-
         activities[index].SetupDisplay();
     }
 

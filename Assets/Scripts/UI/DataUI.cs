@@ -13,7 +13,7 @@ public class DataUI : MonoBehaviour {
     [SerializeField] TextMeshPro timerCountDown;
     [SerializeField] FadingTransition fadingTransition;
     private float timeLeft;
-    private float dayLength = 10; // Set to 300 or 60?
+    private float dayLength = 60; // Set to 300 or 60?
     bool levelRunning;
 
     void Start() {
