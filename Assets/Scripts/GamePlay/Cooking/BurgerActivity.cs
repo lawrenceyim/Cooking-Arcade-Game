@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class BurgerActivity : MonoBehaviour, IActivity {
     float cookingTimer = 0f; // Current cooking time of the patty
@@ -59,6 +57,7 @@ public class BurgerActivity : MonoBehaviour, IActivity {
             }
             if (Input.GetKeyDown(KeyCode.Space)) {
                 if (pattyStatus == 2) {
+                    highlightedKeys[0] = false;
                     AudioManager.instance.StopPlayingSound();
                     grilled = true;
                     UpdateButtons();
@@ -110,7 +109,6 @@ public class BurgerActivity : MonoBehaviour, IActivity {
                 }
             }
         }
-
     }
 
     private void UpdateGrill() {
@@ -186,14 +184,15 @@ public class BurgerActivity : MonoBehaviour, IActivity {
         }
 
         availableKeys = Recipe.GetCurrentKeys(Recipe.FoodTypes.Burger);
-        for (int i = 0; i < neededForDish.Count; i++) {
-            cookingUI.SetIngredientImage(PrefabCache.instance.iconDict[neededForDish[i]], i);
+        KeyValuePair<KeyCode, Recipe.Ingredients>[] keyValuePairs = availableKeys.ToArray();
+        for (int i = 0; i < keyValuePairs.Length; i++) {
+            cookingUI.SetIngredientImage(PrefabCache.instance.iconDict[keyValuePairs[i].Value], i);
             cookingUI.UnhighlightButtonBackground(i);
-            cookingUI.SetButtonText(Recipe.keyMapping[neededForDish[i]].ToString(), i);
+            cookingUI.SetButtonText(Recipe.keyMapping[keyValuePairs[i].Value].ToString(), i);
             if (highlightedKeys[i]) {
                 cookingUI.HighlightButtonBackground(i);
             }
-            keycodeIndex.Add(Recipe.keyMapping[neededForDish[i]], i);
+            keycodeIndex.Add(Recipe.keyMapping[keyValuePairs[i].Value], i);
         }
     }
 

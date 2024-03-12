@@ -14,6 +14,7 @@ public class OrderManager : MonoBehaviour {
     Dish[] orders;
     GameObject[] customers;
     int currentIndex = -1;
+    float timePerOrder = 60f;
 
     void Start() {
         if (controller == null) {
@@ -55,7 +56,7 @@ public class OrderManager : MonoBehaviour {
         for (int i = 0; i < numberOfOrders; i++) {
             if (orders[i] == null) {
                 orders[i] = Recipe.SelectRandomRecipe();
-                controller.AddOrderToOrderSlot(i, orders[i].dishName, 30f);
+                controller.AddOrderToOrderSlot(i, orders[i].dishName, timePerOrder);
                 customers[i] = customer;
                 controller.AddDishToCookingPanel(i, Instantiate(PrefabCache.instance.dishDict[orders[i].dishName], new Vector3(0f, -.4f, 0f), Quaternion.identity));
                 controller.AddActivity(orders[i], i);

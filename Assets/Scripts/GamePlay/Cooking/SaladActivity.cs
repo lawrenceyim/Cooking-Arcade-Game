@@ -1,7 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class SaladActivity : MonoBehaviour, IActivity {
     bool addingDressing = false; // Is pizza ready to bake
@@ -20,7 +20,7 @@ public class SaladActivity : MonoBehaviour, IActivity {
     int currentIngredient = 0;
     CookingUI cookingUI;
     Controller controller;
-    Dictionary<KeyCode, Recipe.Ingredients> availableKeys = Recipe.GetCurrentKeys(Recipe.FoodTypes.Burger);
+    Dictionary<KeyCode, Recipe.Ingredients> availableKeys = Recipe.GetCurrentKeys(Recipe.FoodTypes.Salad);
     Dictionary<KeyCode, int> keycodeIndex;
     bool[] highlightedKeys;
     List<Recipe.Ingredients> neededForDish;
@@ -236,16 +236,21 @@ public class SaladActivity : MonoBehaviour, IActivity {
             cookingUI.SetButtonText("V", 2);
             return;
         }
+
+        availableKeys = new Dictionary<KeyCode, Recipe.Ingredients>();
         keycodeIndex = new Dictionary<KeyCode, int>();
+        cookingUI.DisplayHud();
+
         availableKeys = Recipe.GetCurrentKeys(Recipe.FoodTypes.Salad);
-        for (int i = 0; i < neededForDish.Count; i++) {
-            cookingUI.SetIngredientImage(PrefabCache.instance.iconDict[neededForDish[i]], i);
+        KeyValuePair<KeyCode, Recipe.Ingredients>[] keyValuePairs = availableKeys.ToArray();
+        for (int i = 0; i < keyValuePairs.Length; i++) {
+            cookingUI.SetIngredientImage(PrefabCache.instance.iconDict[keyValuePairs[i].Value], i);
             cookingUI.UnhighlightButtonBackground(i);
-            cookingUI.SetButtonText(Recipe.keyMapping[neededForDish[i]].ToString(), i);
+            cookingUI.SetButtonText(Recipe.keyMapping[keyValuePairs[i].Value].ToString(), i);
             if (highlightedKeys[i]) {
                 cookingUI.HighlightButtonBackground(i);
             }
-            keycodeIndex.Add(Recipe.keyMapping[neededForDish[i]], i);
+            keycodeIndex.Add(Recipe.keyMapping[keyValuePairs[i].Value], i);
         }
     }
 

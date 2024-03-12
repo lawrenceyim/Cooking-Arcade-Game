@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PizzaActivity : MonoBehaviour, IActivity {
     bool baking = false; // Is pizza ready to bake
@@ -14,7 +14,7 @@ public class PizzaActivity : MonoBehaviour, IActivity {
     int currentIngredient = 0;
     CookingUI cookingUI = null;
     Controller controller = null;
-    Dictionary<KeyCode, Recipe.Ingredients> availableKeys = Recipe.GetCurrentKeys(Recipe.FoodTypes.Burger);
+    Dictionary<KeyCode, Recipe.Ingredients> availableKeys = Recipe.GetCurrentKeys(Recipe.FoodTypes.Pizza);
     Dictionary<KeyCode, int> keycodeIndex = null;
     bool[] highlightedKeys;
     List<Recipe.Ingredients> neededForDish = null;
@@ -197,17 +197,20 @@ public class PizzaActivity : MonoBehaviour, IActivity {
             return;
         }
 
-        cookingUI.DisplayHud();
+        availableKeys = new Dictionary<KeyCode, Recipe.Ingredients>();
         keycodeIndex = new Dictionary<KeyCode, int>();
+        cookingUI.DisplayHud();
+
         availableKeys = Recipe.GetCurrentKeys(Recipe.FoodTypes.Pizza);
-        for (int i = 0; i < neededForDish.Count; i++) {
-            cookingUI.SetIngredientImage(PrefabCache.instance.iconDict[neededForDish[i]], i);
+        KeyValuePair<KeyCode, Recipe.Ingredients>[] keyValuePairs = availableKeys.ToArray();
+        for (int i = 0; i < keyValuePairs.Length; i++) {
+            cookingUI.SetIngredientImage(PrefabCache.instance.iconDict[keyValuePairs[i].Value], i);
             cookingUI.UnhighlightButtonBackground(i);
-            cookingUI.SetButtonText(Recipe.keyMapping[neededForDish[i]].ToString(), i);
+            cookingUI.SetButtonText(Recipe.keyMapping[keyValuePairs[i].Value].ToString(), i);
             if (highlightedKeys[i]) {
                 cookingUI.HighlightButtonBackground(i);
             }
-            keycodeIndex.Add(Recipe.keyMapping[neededForDish[i]], i);
+            keycodeIndex.Add(Recipe.keyMapping[keyValuePairs[i].Value], i);
         }
     }
 
