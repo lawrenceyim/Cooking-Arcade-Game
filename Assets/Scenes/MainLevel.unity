@@ -1533,6 +1533,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -162}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &399475502 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6803987786342506921, guid: 81c0224372cb43e49b9d536ef677f232, type: 3}
+  m_PrefabInstance: {fileID: 3897154270859274236}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &399475504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399475502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b1fd030cca70fd4484a8445abb26af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSources:
+  - {fileID: 2112143717}
 --- !u!1 &409498030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,6 +1872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 524101299}
   functionName: Unpause
+  pauseMenuScript: {fileID: 7287524167756476328}
 --- !u!114 &448289543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2697,6 +2717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 524101299}
   functionName: Exit
+  pauseMenuScript: {fileID: 0}
 --- !u!114 &760794803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3313,6 +3334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
   functionName: Return
+  pauseMenuScript: {fileID: 0}
 --- !u!61 &881275924
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8832,6 +8854,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6803987786342506921, guid: 81c0224372cb43e49b9d536ef677f232, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 399475504}
     - targetCorrespondingSourceObject: {fileID: 927289026433192947, guid: 81c0224372cb43e49b9d536ef677f232, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2112143718}
@@ -9343,6 +9368,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 524101299}
+  observerGameObjects:
+  - {fileID: 399475502}
 --- !u!1001 &8295171669788392855
 PrefabInstance:
   m_ObjectHideFlags: 0

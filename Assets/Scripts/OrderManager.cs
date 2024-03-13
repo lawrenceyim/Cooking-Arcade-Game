@@ -17,6 +17,7 @@ public class OrderManager : MonoBehaviour {
     float timePerOrder = 60f;
 
     void Start() {
+        GameState.UnpauseGame();
         if (controller == null) {
             Debug.LogError("controller script is null");
         }

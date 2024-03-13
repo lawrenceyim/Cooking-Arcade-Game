@@ -39,7 +39,7 @@ public class PizzaActivity : MonoBehaviour, IActivity {
     }
 
     public void ProcessInput() {
-        if (GameState.gameIsPaused()) {
+        if (GameState.IsGameIsPaused()) {
             return;
         }
 

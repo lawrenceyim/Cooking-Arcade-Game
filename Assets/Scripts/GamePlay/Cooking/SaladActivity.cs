@@ -46,7 +46,7 @@ public class SaladActivity : MonoBehaviour, IActivity {
     }
 
     public void ProcessInput() {
-        if (GameState.gameIsPaused()) {
+        if (GameState.IsGameIsPaused()) {
             return;
         }
         if (addingDressing) {

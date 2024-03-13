@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 public class SpriteButton : MonoBehaviour {
     [SerializeField] GameObject pauseMenu;
     [SerializeField] string functionName;
+    [SerializeField] PauseMenu pauseMenuScript;
+
     private void OnMouseDown() {
         if (functionName == "Return") {
             ReturnToMainMenu();
         } else if (functionName == "Unpause") {
-            Time.timeScale = 1f;
+            pauseMenuScript.ResumeGame();
             pauseMenu.SetActive(false);
         } else if (functionName == "Exit") {
             Application.Quit();
