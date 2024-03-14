@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Options.unity
     guid: 6a162e752f95751498c69585637616a2
+  - enabled: 1
+    path: Assets/Scenes/SaladLetter.unity
+    guid: c1c7cbf611f12c648bbbcf220ea72d74
   m_configObjects: {}

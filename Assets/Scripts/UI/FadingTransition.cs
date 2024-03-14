@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Analytics;
 
 public class FadingTransition : MonoBehaviour {
     [SerializeField] SpriteRenderer spriteRenderer;
@@ -9,7 +10,7 @@ public class FadingTransition : MonoBehaviour {
     [SerializeField] DataUI dataUI;
 
     float opacity = 1f;
-    float fadingSpeed = .1f;
+    float fadingSpeed = .05f;
     Color color = new Color(0f, 0f, 0f);
     bool fadingIn = false;
     bool fadingOut = false;
@@ -22,6 +23,9 @@ public class FadingTransition : MonoBehaviour {
     }
 
     void Update() {
+        if (GameState.IsGameIsPaused()) {
+            return;
+        }
         if (fadingIn) {
             opacity += Time.fixedDeltaTime * fadingSpeed;
 
