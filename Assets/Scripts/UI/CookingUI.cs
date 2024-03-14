@@ -213,20 +213,6 @@ public class CookingUI : MonoBehaviour {
         buttonKeys[index].text = text;
     }
 
-    public void RemoveActivity(int index) {
-        Debug.Log(activities[index] == null);
-        if (index == currentIndex) {
-            activities[currentIndex].ClearDisplay();
-        }
-        Debug.Log(activities[index] == null);
-        activities[index].DestroyActivity();
-        Debug.Log(activities[index] == null);
-
-        activities[index] = null;
-        Debug.Log(activities[index] == null);
-
-    }
-
     public void ShowIngredientCard() {
         ingredientCard.SetActive(true);
     }

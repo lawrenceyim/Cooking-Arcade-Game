@@ -8,6 +8,5 @@ public interface IActivity {
     void ClearDisplay();
     void ResetDish();
     void UpdateButtons();
-    void DestroyActivity();
     void UpdateActivity(float deltaTime);
 }

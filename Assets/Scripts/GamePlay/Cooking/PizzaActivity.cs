@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class PizzaActivity : MonoBehaviour, IActivity {
+public class PizzaActivity : IActivity {
     bool baking = false; // Is pizza ready to bake
     float cookingTimer = 0f; // Current cooking time of the patty
     int pizzaStatus = 0; // 0 no pizza, 1 raw pizza, 2 cooked pizza, 3 burnt pizza
@@ -212,10 +212,6 @@ public class PizzaActivity : MonoBehaviour, IActivity {
             }
             keycodeIndex.Add(Recipe.keyMapping[keyValuePairs[i].Value], i);
         }
-    }
-
-    public void DestroyActivity() {
-        Destroy(this);
     }
 
     public void UpdateActivity(float deltaTime) {

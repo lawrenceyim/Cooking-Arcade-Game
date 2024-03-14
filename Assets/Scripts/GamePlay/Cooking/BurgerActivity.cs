@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class BurgerActivity : MonoBehaviour, IActivity {
+public class BurgerActivity : IActivity {
     float cookingTimer = 0f; // Current cooking time of the patty
     bool grilled = false;
     int pattyStatus = 0; // 0 no patty, 1 raw patty, 2 cooked patty, 3 burnt patty
@@ -199,10 +199,6 @@ public class BurgerActivity : MonoBehaviour, IActivity {
 
     public void DisplayGrill() {
         cookingUI.DisplayGrill();
-    }
-
-    public void DestroyActivity() {
-        Destroy(this);
     }
 
     public void UpdateActivity(float deltaTime) {

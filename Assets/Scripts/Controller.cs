@@ -83,7 +83,6 @@ public class Controller : MonoBehaviour {
     }
 
     public void ResetCookingUI(int index) {
-        cookingUI.RemoveActivity(index);
         cookingUI.ResetButtonHighlights();
     }
 

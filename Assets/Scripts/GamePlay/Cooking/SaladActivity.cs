@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class SaladActivity : MonoBehaviour, IActivity {
+public class SaladActivity : IActivity {
     bool addingDressing = false; // Is pizza ready to bake
     float ranchAmount;
     float thousandAmount;
@@ -268,10 +268,6 @@ public class SaladActivity : MonoBehaviour, IActivity {
             default:
                 return;
         }
-    }
-
-    public void DestroyActivity() {
-        Destroy(this);
     }
 
     public void UpdateActivity(float deltaTime) {
