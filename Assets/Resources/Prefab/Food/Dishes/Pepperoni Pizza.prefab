@@ -52,7 +52,7 @@ MonoBehaviour:
   foodType: 1
   ingredientsList: 0b0000001b0000001100000018000000
   description: Dough->Sauce->Mozzarella->Pepperoni
-  sellingPrice: 12
+  sellingPrice: 24
 --- !u!1001 &620458531638414435
 PrefabInstance:
   m_ObjectHideFlags: 0

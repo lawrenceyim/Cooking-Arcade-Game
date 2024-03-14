@@ -53,7 +53,7 @@ MonoBehaviour:
   foodType: 1
   ingredientsList: 0b0000001b000000110000001900000012000000
   description: Dough->Sauce->Mozzarella->Pepper->Mushroom
-  sellingPrice: 15
+  sellingPrice: 30
 --- !u!1001 &1714427707543954093
 PrefabInstance:
   m_ObjectHideFlags: 0

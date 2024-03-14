@@ -53,7 +53,7 @@ MonoBehaviour:
   foodType: 0
   ingredientsList: 0400000017000000070000000100000005000000
   description: Bottom Bun->Patty->Cheese->Bacon->Top Bun
-  sellingPrice: 15
+  sellingPrice: 30
 --- !u!1001 &609847904344488641
 PrefabInstance:
   m_ObjectHideFlags: 0

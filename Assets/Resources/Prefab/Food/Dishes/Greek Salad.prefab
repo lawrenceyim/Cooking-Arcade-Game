@@ -53,7 +53,7 @@ MonoBehaviour:
   foodType: 2
   ingredientsList: 1e0000000a0000001500000013000000
   description: Tomatoes->Cucumbers->Onions->Olives
-  sellingPrice: 15
+  sellingPrice: 30
 --- !u!1001 &2856139593018842775
 PrefabInstance:
   m_ObjectHideFlags: 0

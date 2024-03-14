@@ -53,7 +53,7 @@ MonoBehaviour:
   foodType: 1
   ingredientsList: 0b0000001b00000011000000100000001a000000
   description: Dough->Sauce->Mozzarella->Ham->Pineapple
-  sellingPrice: 16
+  sellingPrice: 32
 --- !u!1001 &1434415259479421419
 PrefabInstance:
   m_ObjectHideFlags: 0

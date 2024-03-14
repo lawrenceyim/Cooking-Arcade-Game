@@ -52,7 +52,7 @@ MonoBehaviour:
   foodType: 2
   ingredientsList: 0f0000000900000003000000
   description: Lettuce->Croutons->Bacon
-  sellingPrice: 15
+  sellingPrice: 30
 --- !u!1001 &1118701496999309837
 PrefabInstance:
   m_ObjectHideFlags: 0
