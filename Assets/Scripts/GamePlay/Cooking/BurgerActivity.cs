@@ -71,6 +71,7 @@ public class BurgerActivity : MonoBehaviour, IActivity {
                     cookingTimer = 0;
                     pattyStatus = 0;
                     highlightedKeys[0] = false;
+                    cookingUI.UnhighlightButtonBackground(0);
                     cookingUI.HideGrill();
                     cookingUI.HideGrillTimer();
                 }
