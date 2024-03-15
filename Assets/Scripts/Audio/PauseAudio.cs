@@ -7,7 +7,6 @@ public class PauseAudio : MonoBehaviour, Observer
 
     public void Start() {
         isPaused = GameState.IsGameIsPaused();
-        Debug.Log(isPaused);
     }
 
     public void PauseAudioSource() {

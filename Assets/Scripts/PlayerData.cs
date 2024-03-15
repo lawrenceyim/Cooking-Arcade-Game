@@ -1,6 +1,4 @@
-using System.IO;
-using System.Collections;
-using System.Collections.Generic;
+using ES3Types;
 using UnityEngine;
 
 public static class PlayerData {
@@ -13,6 +11,7 @@ public static class PlayerData {
     public static int defaultMoney = 1000;
     public static int xResolution;
     public static int yResolution;
+    public static bool saveFileExists;
 
     [RuntimeInitializeOnLoadMethod]
     static void RunOnGameStart() {
@@ -21,29 +20,33 @@ public static class PlayerData {
     }
 
     public static void SaveData() {
-        ES3.Save("money", money);
-        ES3.Save("day", day);
-        ES3.Save("musicVolumeSetting", musicVolumeSetting);
-        ES3.Save("soundEffectVolumeSetting", soundEffectVolumeSetting);
-        ES3.Save("xResolution", xResolution);
-        ES3.Save("yResolution", yResolution);
+        ES3.Save(Es3Values.SAVE_FILE_EXISTS, saveFileExists);
+        ES3.Save(Es3Values.MONEY, money);
+        ES3.Save(Es3Values.DAY, day);
+        ES3.Save(Es3Values.MUSIC_VOLUME, musicVolumeSetting);
+        ES3.Save(Es3Values.SOUND_EFFECT_VOLUME, soundEffectVolumeSetting);
+        ES3.Save(Es3Values.X_RESOLUTION, xResolution);
+        ES3.Save(Es3Values.Y_RESOLUTION, yResolution);
     }
 
     public static void LoadData() {
-        money = ES3.Load("money", defaultMoney);
-        day = ES3.Load("day", 1);
-        musicVolumeSetting = ES3.Load("musicVolumeSetting", .1f);
-        soundEffectVolumeSetting = ES3.Load("soundEffectVolumeSetting", .2f);
-        xResolution = ES3.Load("xResolution", 1280);
-        yResolution = ES3.Load("yResolution", 720);
+        saveFileExists = ES3.Load(Es3Values.SAVE_FILE_EXISTS, false);
+        money = ES3.Load(Es3Values.MONEY, defaultMoney);
+        day = ES3.Load(Es3Values.DAY, 1);
+        musicVolumeSetting = ES3.Load(Es3Values.MUSIC_VOLUME, .1f);
+        soundEffectVolumeSetting = ES3.Load(Es3Values.SOUND_EFFECT_VOLUME, .2f);
+        xResolution = ES3.Load(Es3Values.X_RESOLUTION, 1280);
+        yResolution = ES3.Load(Es3Values.Y_RESOLUTION, 720);
     }
 
     public static void ResetSave() {
         // ES3.DeleteFile("SaveFile.es3");
-        ES3.Save("money", defaultMoney);
-        ES3.Save("day", 1);
-        ES3.Save("pizzaLetterIntroPlayed", false);
-        ES3.Save("saladLetterIntroPlayed", false);
+        ES3.Save(Es3Values.SAVE_FILE_EXISTS, false);
+        ES3.Save(Es3Values.MONEY, defaultMoney);
+        ES3.Save(Es3Values.DAY, 1);
+        ES3.Save(Es3Values.PIZZA_LETTER_PLAYED, false);
+        ES3.Save(Es3Values.SALAD_LETTER_PLAYED, false);
+        LoadData();
     }
 
     public static bool HasEnoughMoney(int amount) {

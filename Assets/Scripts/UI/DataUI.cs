@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class DataUI : MonoBehaviour {
+public class DataUI : MonoBehaviour, Subject {
     [SerializeField] Controller controller;
     [SerializeField] TextMeshPro dayUI;
     [SerializeField] TextMeshPro moneyUI;
@@ -12,6 +12,8 @@ public class DataUI : MonoBehaviour {
     [SerializeField] SpriteRenderer timer;
     [SerializeField] TextMeshPro timerCountDown;
     [SerializeField] FadingTransition fadingTransition;
+    [SerializeField] GameObject[] observerGameObjects;
+    List<Observer> observers;
     private float timeLeft;
     private float dayLength = 60; // Set to 300 or 60?
     bool levelRunning;
@@ -19,6 +21,10 @@ public class DataUI : MonoBehaviour {
     void Start() {
         if (controller == null) {
             Debug.LogError("controller script is null");
+        }
+        observers = new List<Observer>();
+        foreach (GameObject gameObject in observerGameObjects) {
+            observers.Add(gameObject.GetComponent<Observer>());
         }
         levelRunning = true;
         UpdateMoneyUI();
@@ -58,9 +64,26 @@ public class DataUI : MonoBehaviour {
     }
 
     public void EndLevel() {
-        Debug.Log("Ending level called");
-        Time.timeScale = 0f;
+        GameState.PauseGame();
+        UpdateObserver();
         UIDishCard.SetActive(false);
         controller.UpdateSummary();
+    }
+
+    public void AddObserver()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void RemoveObserver()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void UpdateObserver()
+    {
+        foreach (Observer observer in observers) {
+            observer.ReceiveUpdate();
+        }
     }
 }

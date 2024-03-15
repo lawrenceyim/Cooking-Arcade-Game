@@ -1188,6 +1188,8 @@ MonoBehaviour:
   timer: {fileID: 1454786600}
   timerCountDown: {fileID: 666953866}
   fadingTransition: {fileID: 1120951770}
+  observerGameObjects:
+  - {fileID: 399475502}
 --- !u!1 &270810488
 GameObject:
   m_ObjectHideFlags: 0
@@ -4552,7 +4554,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158343970}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -9}
+  m_LocalPosition: {x: 0, y: 0, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

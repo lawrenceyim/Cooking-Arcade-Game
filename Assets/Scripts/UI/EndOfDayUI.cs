@@ -17,6 +17,7 @@ public class EndOfDayUI : MonoBehaviour {
         summaryAmountText.text = $"{PlayerData.revenue}\n{-PlayerData.expense}\n\n{PlayerData.revenue - PlayerData.expense}";
         summaryPanel.SetActive(true);
         PlayerData.IncrementDay();
+        PlayerData.saveFileExists = true;
         PlayerData.SaveData();
     }
 }
