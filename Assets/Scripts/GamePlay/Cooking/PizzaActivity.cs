@@ -49,11 +49,10 @@ public class PizzaActivity : IActivity {
         if (GameState.IsGameIsPaused()) {
             return;
         }
-
+        UpdateActiveActivity();
         if (baking) {
             DisplayOvenTimer();
             UpdateOven();
-            UpdateActiveActivity();
             if (Input.GetKeyDown(KeyCode.Space)) {
                 if (pizzaStatus == PizzaStatus.COOKED_PIZZA) {
                     oven.DestroyCurrentPizza();
@@ -65,11 +64,11 @@ public class PizzaActivity : IActivity {
                 } else if (pizzaStatus == PizzaStatus.BURNT_PIZZA) {
                     oven.DestroyCurrentPizza();
                     cookingTimer = 0;
-                    pizzaStatus = 0;
+                    pizzaStatus = PizzaStatus.NO_PIZZA;
                     highlightedKeys[0] = false;
                     cookingUI.HideOven();
                     cookingUI.HideOvenTimer();
-                } else if (pizzaStatus == 0) {
+                } else if (pizzaStatus == PizzaStatus.NO_PIZZA) {
                     pizzaStatus = PizzaStatus.UNCOOKED_PIZZA;
                     oven.SetPizzaGameObject((int) pizzaStatus);
                     cookingUI.HidePanelSpaceBar();
@@ -80,7 +79,7 @@ public class PizzaActivity : IActivity {
         }
 
         if (readyToServe) {
-            cookingUI.DisplaySpaceBar("Press space to server");
+            cookingUI.DisplaySpaceBar("Press space to serve");
             if (Input.GetKeyDown(KeyCode.Space)) {
                 cookingUI.HidePanelSpaceBar();
                 cookingUI.DeactivateButtons();
@@ -112,11 +111,10 @@ public class PizzaActivity : IActivity {
         }
 
         if (currentIngredient == neededForDish.Count && !baking) {
-            cookingUI.DisplaySpaceBar("Press space to go to the oven");
             if (Input.GetKeyDown(KeyCode.Space)) {
                 baking = true;
                 ResetDish();
-                pizzaStatus = 0;
+                pizzaStatus = PizzaStatus.NO_PIZZA;
                 cookingUI.HideHud();
                 cookingUI.DisplayOvenTimer();
                 cookingUI.DisplayOven();
@@ -165,7 +163,7 @@ public class PizzaActivity : IActivity {
             cookingUI.HideOvenTimer();
             return;
         }
-        if (pizzaStatus == 0) {
+        if (pizzaStatus == PizzaStatus.NO_PIZZA) {
             cookingUI.HideOvenTimer();
             return;
         }
@@ -186,22 +184,6 @@ public class PizzaActivity : IActivity {
         if (baking) {
             cookingUI.HideIngredientCard();
             cookingUI.DeactivateButtons();
-            switch (pizzaStatus) {
-                case PizzaStatus.NO_PIZZA:
-                    cookingUI.DisplaySpaceBar("Press space to put pizza in the oven");
-                    break;
-                case PizzaStatus.UNCOOKED_PIZZA:
-                    break;
-                case PizzaStatus.COOKED_PIZZA:
-                    cookingUI.DisplaySpaceBar("Press space to put serve pizza");
-                    break;
-                case PizzaStatus.BURNT_PIZZA:
-                    cookingUI.DisplaySpaceBar("Press space to discard burnt pizza");
-                    break;
-                default:
-                    cookingUI.DisplaySpaceBar("Press space to discard burnt pizza");
-                    break;
-            }
             return;
         }
 
@@ -239,13 +221,24 @@ public class PizzaActivity : IActivity {
         }
     }
 
-        public void UpdateActiveActivity() {
+    public void UpdateActiveActivity() {
         if (baking) {
+            if (pizzaStatus == PizzaStatus.NO_PIZZA) {
+                cookingUI.DisplaySpaceBar("Press space to put pizza in the oven");
+            }
             if (pizzaStatus == PizzaStatus.COOKED_PIZZA) {
                 cookingUI.DisplaySpaceBar("Press space to stop baking.");
             }
             if (pizzaStatus == PizzaStatus.BURNT_PIZZA) {
                 cookingUI.DisplaySpaceBar("Press space to discard the burnt pizza.");
+            }
+            if (pizzaStatus == PizzaStatus.UNCOOKED_PIZZA) {
+                cookingUI.HidePanelSpaceBar();
+            }
+        } else {
+                                Debug.Log(currentIngredient + " " + neededForDish.Count);
+            if (currentIngredient == neededForDish.Count && !baking) {
+                cookingUI.DisplaySpaceBar("Press space to go to the oven");
             }
         }
     }

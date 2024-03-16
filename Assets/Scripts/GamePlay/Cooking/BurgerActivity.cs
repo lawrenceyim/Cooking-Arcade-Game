@@ -51,7 +51,7 @@ public class BurgerActivity : IActivity {
         if (!grilled) {
             DisplayGrillTimer();
             UpdateGrill();
-            UpdateInactiveActivity();
+            UpdateActiveActivity();
             if (Input.GetKeyDown(KeyCode.P)) {
                 if (pattyStatus == 0) {
                     cookingTimer = 0;
@@ -88,7 +88,7 @@ public class BurgerActivity : IActivity {
         }
 
         if (controller.IsDishComplete()) {
-            cookingUI.DisplaySpaceBar("Press space to server");
+            cookingUI.DisplaySpaceBar("Press space to serve");
             if (Input.GetKeyDown(KeyCode.Space)) {
                 cookingUI.HidePanelSpaceBar();
                 cookingUI.DeactivateButtons();
@@ -216,7 +216,7 @@ public class BurgerActivity : IActivity {
         }
     }
 
-    public void UpdateInactiveActivity() {
+    public void UpdateActiveActivity() {
         if (!grilled) {
             if (pattyStatus == PattyStatus.COOKED_PATTY) {
                 cookingUI.DisplaySpaceBar("Press space to stop grilling.");

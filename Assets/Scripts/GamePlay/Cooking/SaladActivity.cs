@@ -55,7 +55,7 @@ public class SaladActivity : IActivity {
                 cookingUI.UnhighlightButtonBackground(0);
                 cookingUI.UnhighlightButtonBackground(1);
                 cookingUI.UnhighlightButtonBackground(2);
-                cookingUI.DisplaySpaceBar("Press space to server");
+                cookingUI.DisplaySpaceBar("Press space to serve");
                 if (Input.GetKey(KeyCode.Space)) {
                     ClearDisplay();
                     dressing.DestroyCurrentDressing();
