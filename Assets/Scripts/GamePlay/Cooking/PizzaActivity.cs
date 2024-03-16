@@ -3,9 +3,16 @@ using UnityEngine;
 using System.Linq;
 
 public class PizzaActivity : IActivity {
+    enum PizzaStatus {
+        NO_PIZZA = 0,
+        UNCOOKED_PIZZA = 1,
+        COOKED_PIZZA = 2,
+        BURNT_PIZZA = 3 
+    }
+
     bool baking = false; // Is pizza ready to bake
     float cookingTimer = 0f; // Current cooking time of the patty
-    int pizzaStatus = 0; // 0 no pizza, 1 raw pizza, 2 cooked pizza, 3 burnt pizza
+    PizzaStatus pizzaStatus = PizzaStatus.NO_PIZZA;
     float cookingTime = 5f;
     float burntTime = 10f;
     Oven oven;
@@ -46,15 +53,16 @@ public class PizzaActivity : IActivity {
         if (baking) {
             DisplayOvenTimer();
             UpdateOven();
+            UpdateActiveActivity();
             if (Input.GetKeyDown(KeyCode.Space)) {
-                if (pizzaStatus == 2) {
+                if (pizzaStatus == PizzaStatus.COOKED_PIZZA) {
                     oven.DestroyCurrentPizza();
                     cookingUI.HideOven();
                     cookingUI.HidePanelSpaceBar();
                     cookingUI.DeactivateButtons();
                     cookingUI.HideOvenTimer();
                     controller.ServeTheDish();
-                } else if (pizzaStatus == 3) {
+                } else if (pizzaStatus == PizzaStatus.BURNT_PIZZA) {
                     oven.DestroyCurrentPizza();
                     cookingTimer = 0;
                     pizzaStatus = 0;
@@ -62,8 +70,8 @@ public class PizzaActivity : IActivity {
                     cookingUI.HideOven();
                     cookingUI.HideOvenTimer();
                 } else if (pizzaStatus == 0) {
-                    pizzaStatus = 1;
-                    oven.SetPizzaGameObject(pizzaStatus);
+                    pizzaStatus = PizzaStatus.UNCOOKED_PIZZA;
+                    oven.SetPizzaGameObject((int) pizzaStatus);
                     cookingUI.HidePanelSpaceBar();
                     cookingUI.DisplayOvenTimer();
                 }
@@ -122,11 +130,11 @@ public class PizzaActivity : IActivity {
         } else if (baking) {
             DisplayOven();
             switch (pizzaStatus) {
-                case 0:
+                case PizzaStatus.NO_PIZZA:
                     cookingUI.DisplaySpaceBar("Press space to put the pizza in the oven");
                     return;
-                case 1: case 2: case 3:
-                    oven.SetPizzaGameObject(pizzaStatus);
+                case PizzaStatus.UNCOOKED_PIZZA: case PizzaStatus.COOKED_PIZZA: case PizzaStatus.BURNT_PIZZA:
+                    oven.SetPizzaGameObject((int) pizzaStatus);
                     return;
             }
         }
@@ -162,13 +170,13 @@ public class PizzaActivity : IActivity {
             return;
         }
         cookingUI.DisplayOvenTimer();
-        if (pizzaStatus == 3) {
+        if (pizzaStatus == PizzaStatus.BURNT_PIZZA) {
             cookingUI.SetCookedPizzaSlider(1);
             cookingUI.SetBurntPizzaSlider(1);
-        } else if (pizzaStatus == 2) {
+        } else if (pizzaStatus == PizzaStatus.COOKED_PIZZA) {
             cookingUI.SetCookedPizzaSlider(1);
             cookingUI.SetBurntPizzaSlider((cookingTimer - cookingTime) / cookingTime);
-        } else if (pizzaStatus == 1) {
+        } else if (pizzaStatus == PizzaStatus.UNCOOKED_PIZZA) {
             cookingUI.SetCookedPizzaSlider(cookingTimer / cookingTime);
             cookingUI.SetBurntPizzaSlider(0);
         }
@@ -179,15 +187,15 @@ public class PizzaActivity : IActivity {
             cookingUI.HideIngredientCard();
             cookingUI.DeactivateButtons();
             switch (pizzaStatus) {
-                case 0:
+                case PizzaStatus.NO_PIZZA:
                     cookingUI.DisplaySpaceBar("Press space to put pizza in the oven");
                     break;
-                case 1:
+                case PizzaStatus.UNCOOKED_PIZZA:
                     break;
-                case 2:
+                case PizzaStatus.COOKED_PIZZA:
                     cookingUI.DisplaySpaceBar("Press space to put serve pizza");
                     break;
-                case 3:
+                case PizzaStatus.BURNT_PIZZA:
                     cookingUI.DisplaySpaceBar("Press space to discard burnt pizza");
                     break;
                 default:
@@ -215,7 +223,7 @@ public class PizzaActivity : IActivity {
     }
 
     public void UpdateActivity(float deltaTime) {
-        if (pizzaStatus == 1 || pizzaStatus == 2) {
+        if (pizzaStatus == PizzaStatus.UNCOOKED_PIZZA || pizzaStatus == PizzaStatus.COOKED_PIZZA) {
             cookingTimer += deltaTime;
             SetPizzaStage();
         }
@@ -223,11 +231,22 @@ public class PizzaActivity : IActivity {
 
     private void SetPizzaStage() {
         if (cookingTimer <= cookingTime) {
-            pizzaStatus = 1;
+            pizzaStatus = PizzaStatus.UNCOOKED_PIZZA;
         } else if (cookingTimer <= burntTime) {
-            pizzaStatus = 2;
+            pizzaStatus = PizzaStatus.COOKED_PIZZA;
         } else {
-            pizzaStatus = 3;
+            pizzaStatus = PizzaStatus.BURNT_PIZZA;
+        }
+    }
+
+        public void UpdateActiveActivity() {
+        if (baking) {
+            if (pizzaStatus == PizzaStatus.COOKED_PIZZA) {
+                cookingUI.DisplaySpaceBar("Press space to stop baking.");
+            }
+            if (pizzaStatus == PizzaStatus.BURNT_PIZZA) {
+                cookingUI.DisplaySpaceBar("Press space to discard the burnt pizza.");
+            }
         }
     }
 

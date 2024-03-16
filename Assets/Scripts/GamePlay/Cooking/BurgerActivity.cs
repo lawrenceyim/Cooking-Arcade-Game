@@ -3,9 +3,16 @@ using System.Linq;
 using UnityEngine;
 
 public class BurgerActivity : IActivity {
+    enum PattyStatus {
+        NO_PATTY = 0,
+        RAW_PATTY = 1,
+        COOKED_PATTY = 2,
+        BURNT_PATTY = 3
+    }
+
     float cookingTimer = 0f; // Current cooking time of the patty
     bool grilled = false;
-    int pattyStatus = 0; // 0 no patty, 1 raw patty, 2 cooked patty, 3 burnt patty
+    PattyStatus pattyStatus = PattyStatus.NO_PATTY;
     float cookingTime = 5f; // Time to cook the patty
     float burntTime = 10f;
     Grill grill;
@@ -44,11 +51,12 @@ public class BurgerActivity : IActivity {
         if (!grilled) {
             DisplayGrillTimer();
             UpdateGrill();
+            UpdateInactiveActivity();
             if (Input.GetKeyDown(KeyCode.P)) {
                 if (pattyStatus == 0) {
                     cookingTimer = 0;
-                    pattyStatus = 1;
-                    grill.SetPattyGameObject(pattyStatus);
+                    pattyStatus = PattyStatus.RAW_PATTY;
+                    grill.SetPattyGameObject((int) pattyStatus);
                     highlightedKeys[0] = true;
                     cookingUI.HighlightButtonBackground(0);
                     cookingUI.HidePanelSpaceBar();
@@ -56,7 +64,7 @@ public class BurgerActivity : IActivity {
                 }
             }
             if (Input.GetKeyDown(KeyCode.Space)) {
-                if (pattyStatus == 2) {
+                if (pattyStatus == PattyStatus.COOKED_PATTY) {
                     highlightedKeys[0] = false;
                     AudioManager.instance.StopPlayingSound();
                     grilled = true;
@@ -65,7 +73,7 @@ public class BurgerActivity : IActivity {
                     cookingUI.HideGrill();
                     cookingUI.HidePanelSpaceBar();
                     cookingUI.HideGrillTimer();
-                } else if (pattyStatus == 3) {
+                } else if (pattyStatus == PattyStatus.BURNT_PATTY) {
                     AudioManager.instance.StopPlayingSound();
                     grill.DestroyCurrentPatty();
                     cookingTimer = 0;
@@ -120,7 +128,7 @@ public class BurgerActivity : IActivity {
         DisplayGrill();
         if (pattyStatus > 0) {
             AudioManager.instance.PlayGrillingSound();
-            grill.SetPattyGameObject(pattyStatus);
+            grill.SetPattyGameObject((int) pattyStatus);
         }
     }
 
@@ -154,10 +162,10 @@ public class BurgerActivity : IActivity {
             return;
         }
         cookingUI.DisplayGrillTimer();
-        if (pattyStatus == 3) {
+        if (pattyStatus == PattyStatus.BURNT_PATTY) {
             cookingUI.SetCookedPattySlider(1);
             cookingUI.SetBurntPattySlider(1);
-        } else if (pattyStatus == 2) {
+        } else if (pattyStatus == PattyStatus.COOKED_PATTY) {
             cookingUI.SetCookedPattySlider(1);
             cookingUI.SetBurntPattySlider((cookingTimer - cookingTime) / cookingTime);
         } else {
@@ -202,19 +210,30 @@ public class BurgerActivity : IActivity {
     }
 
     public void UpdateActivity(float deltaTime) {
-        if (pattyStatus == 1 || pattyStatus == 2) {
+        if (pattyStatus == PattyStatus.RAW_PATTY || pattyStatus == PattyStatus.COOKED_PATTY) {
             cookingTimer += deltaTime;
             SetPattyStage();
         }
     }
 
+    public void UpdateInactiveActivity() {
+        if (!grilled) {
+            if (pattyStatus == PattyStatus.COOKED_PATTY) {
+                cookingUI.DisplaySpaceBar("Press space to stop grilling.");
+            }
+            if (pattyStatus == PattyStatus.BURNT_PATTY) {
+                cookingUI.DisplaySpaceBar("Press space to discard the burnt patty.");
+            }
+        }
+    }
+
     private void SetPattyStage() {
         if (cookingTimer <= cookingTime) {
-            pattyStatus = 1;
+            pattyStatus = PattyStatus.RAW_PATTY;
         } else if (cookingTimer <= burntTime) {
-            pattyStatus = 2;
+            pattyStatus = PattyStatus.COOKED_PATTY;
         } else {
-            pattyStatus = 3;
+            pattyStatus = PattyStatus.BURNT_PATTY;
         }
     }
 }
