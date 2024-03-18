@@ -33,8 +33,10 @@ public class SceneManagerScript : MonoBehaviour {
             return;
         }
         if (PlayerData.day > 21) {
+            Debug.Log("Loading game");
             PlayerData.ResetSave();
             LoadEndLetter();
+            return;
         }
         PlayerData.StartDay();
         SceneManager.LoadScene(SceneName.MAIN_LEVEL.name);

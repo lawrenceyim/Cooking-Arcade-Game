@@ -7216,7 +7216,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae26732822e331a4b9b9cb47dfa667c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  script: {fileID: 1934583188}
   textMeshPro: {fileID: 302212655}
+--- !u!114 &1934583188 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7754425751818438427, guid: 0eb594fad7c805644b767abce15494b0, type: 3}
+  m_PrefabInstance: {fileID: 8295171669788392855}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934583184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2809f6e3b1998347b3a7b0c596bfd9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1955563183
 GameObject:
   m_ObjectHideFlags: 0
