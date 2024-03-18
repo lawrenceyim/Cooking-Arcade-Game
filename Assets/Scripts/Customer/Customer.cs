@@ -14,12 +14,21 @@ public class Customer : MonoBehaviour {
     Vector3 target;
     float speed = 3f;
     State currentState = State.Walking;
+    float travelTime;
     Timer timer;
     Action DecreaseCustomerCount;
     bool shiftUp;
     float yUp;
     float yDown;
     float yOffset = .2f;
+    CustomerSpawner customerSpawner;
+
+    public void Initialize(CustomerSpawner customerSpawner, float travelTime) {
+        this.customerSpawner = customerSpawner;
+        this.travelTime = travelTime;
+        timer = gameObject.AddComponent<Timer>();
+        timer.SetTimer(travelTime, () => ChangeState());
+    }
 
     void Start() {
         if (controller == null) {
@@ -31,8 +40,6 @@ public class Customer : MonoBehaviour {
         yUp = target.y + yOffset;
         yDown = target.y - yOffset;
         target.y = yUp;
-        timer = gameObject.AddComponent<Timer>();
-        timer.SetTimer(UnityEngine.Random.Range(2f, 4.5f), () => ChangeState());
     }
 
     void Update() {
@@ -82,6 +89,7 @@ public class Customer : MonoBehaviour {
             controller.AddCustomerOrder(gameObject);
         } else {
             currentState = State.Leaving;
+            customerSpawner.ReturnTravelTime(travelTime);
         }
     }
 
