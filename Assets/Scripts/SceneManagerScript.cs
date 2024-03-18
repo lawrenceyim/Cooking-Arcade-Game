@@ -63,4 +63,8 @@ public class SceneManagerScript : MonoBehaviour {
     public void OpenTutorialScene() {
         SceneManager.LoadScene(SceneName.TUTORIAL.name);
     }
+
+    public void LoadEndLetter() {
+        SceneManager.LoadScene(SceneName.END_LETTER.name);
+    }
 }

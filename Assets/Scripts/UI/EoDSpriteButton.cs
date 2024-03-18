@@ -6,7 +6,8 @@ public class EoDSpriteButton : MonoBehaviour
     public enum ButtonAction {
         StartNextDay,
         ReturnToMenu,
-        ExitGame
+        ExitGame,
+        EndGame
     }
 
     [SerializeField] ButtonAction buttonAction;
@@ -23,6 +24,13 @@ public class EoDSpriteButton : MonoBehaviour
             case ButtonAction.ExitGame:
                 Application.Quit();
                 break;
+            case ButtonAction.EndGame:
+                sceneManagerScript.LoadEndLetter();
+                break;
         }
+    }
+
+    public void SetButtonAction(ButtonAction buttonAction) {
+        this.buttonAction = buttonAction;
     }
 }

@@ -236,7 +236,6 @@ public class PizzaActivity : IActivity {
                 cookingUI.HidePanelSpaceBar();
             }
         } else {
-                                Debug.Log(currentIngredient + " " + neededForDish.Count);
             if (currentIngredient == neededForDish.Count && !baking) {
                 cookingUI.DisplaySpaceBar("Press space to go to the oven");
             }

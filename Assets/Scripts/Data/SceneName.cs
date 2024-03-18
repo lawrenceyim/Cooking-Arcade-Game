@@ -13,5 +13,6 @@ public class SceneName
     public static readonly SceneName MAIN_MENU = new SceneName("MainMenu");
     public static readonly SceneName TUTORIAL = new SceneName("Tutorial");
     public static readonly SceneName OPTIONS = new SceneName("Options");
+    public static readonly SceneName END_LETTER = new SceneName("EndLetter");
 
 }
