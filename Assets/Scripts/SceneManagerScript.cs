@@ -16,7 +16,7 @@ public class SceneManagerScript : MonoBehaviour {
         PlayerData.ResetSave();
         PlayerData.LoadData();
         GameState.UnpauseGame();
-        SceneManager.LoadScene("Intro");
+        SceneManager.LoadScene(SceneName.INTRO.name);
     }
 
     public void LoadGame() {
@@ -24,16 +24,16 @@ public class SceneManagerScript : MonoBehaviour {
         GameState.UnpauseGame();
         if (PlayerData.day == 8 && !pizzaLetterIntroPlayed) {
             ES3.Save(Es3Values.PIZZA_LETTER_PLAYED, true);
-            SceneManager.LoadScene("PizzaLetter");
+            SceneManager.LoadScene(SceneName.PIZZA_LETTER.name);
             return;
         }
         if (PlayerData.day == 15 && !saladLetterIntroPlayed) {
             ES3.Save(Es3Values.SALAD_LETTER_PLAYED, true);
-            SceneManager.LoadScene("SaladLetter");
+            SceneManager.LoadScene(SceneName.SALAD_LETTER.name);
             return;
         }
         PlayerData.StartDay();
-        SceneManager.LoadScene("MainLevel");
+        SceneManager.LoadScene(SceneName.MAIN_LEVEL.name);
     }
 
     public void StartNextDay() {
@@ -45,18 +45,22 @@ public class SceneManagerScript : MonoBehaviour {
     }
 
     public void ReturnToMainMenu() {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(SceneName.MAIN_MENU.name);
     }
 
     public void LoadPizzaLetter() {
-        SceneManager.LoadScene("PizzaLetter");
+        SceneManager.LoadScene(SceneName.PIZZA_LETTER.name);
     }
 
     public void LoadSaladLetter() {
-        SceneManager.LoadScene("SaladLetter");
+        SceneManager.LoadScene(SceneName.SALAD_LETTER.name);
     }
 
     public void LoadOptions() {
-        SceneManager.LoadScene("Options");
+        SceneManager.LoadScene(SceneName.OPTIONS.name);
+    }
+
+    public void OpenTutorialScene() {
+        SceneManager.LoadScene(SceneName.TUTORIAL.name);
     }
 }
