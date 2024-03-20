@@ -33,7 +33,6 @@ public class SceneManagerScript : MonoBehaviour {
             return;
         }
         if (PlayerData.day > 21) {
-            PlayerData.ResetSave();
             LoadEndLetter();
             return;
         }
@@ -54,10 +53,12 @@ public class SceneManagerScript : MonoBehaviour {
     }
 
     public void LoadPizzaLetter() {
+        GameState.UnpauseGame();
         SceneManager.LoadScene(SceneName.PIZZA_LETTER.name);
     }
 
     public void LoadSaladLetter() {
+        GameState.UnpauseGame();
         SceneManager.LoadScene(SceneName.SALAD_LETTER.name);
     }
 
@@ -70,10 +71,13 @@ public class SceneManagerScript : MonoBehaviour {
     }
 
     public void LoadEndLetter() {
+        GameState.UnpauseGame();
         SceneManager.LoadScene(SceneName.END_LETTER.name);
     }
 
     public void LoadCredit() {
+        PlayerData.ResetSave();
+        GameState.UnpauseGame();
         SceneManager.LoadScene(SceneName.CREDIT_SCENE.name);
     }
 }

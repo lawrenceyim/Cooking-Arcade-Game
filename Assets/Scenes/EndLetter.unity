@@ -236,7 +236,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1093016772}
   - component: {fileID: 1093016771}
-  - component: {fileID: 1093016770}
   - component: {fileID: 1093016769}
   m_Layer: 0
   m_Name: Audio Source - Intro Letter
@@ -258,21 +257,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMusic: 0
-  audioSource: {fileID: 1093016771}
---- !u!114 &1093016770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1093016768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd5a9fad55f40f94586f49f799b389c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  partA: {fileID: 8300000, guid: 9eddfaf54a282e04287b481083951750, type: 3}
-  partB: {fileID: 8300000, guid: 0a60a4427bbf05e4b80c02e8b019117d, type: 3}
   audioSource: {fileID: 1093016771}
 --- !u!82 &1093016771
 AudioSource:

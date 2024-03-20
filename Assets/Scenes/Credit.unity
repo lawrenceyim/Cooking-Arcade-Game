@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalSprite: {fileID: 21300000, guid: 22e103967e7dcf04e90e8d8d6edbbf44, type: 3}
-  hoverOverSprite: {fileID: 21300000, guid: a968db06c378e0147bf25e65ad5a5ebb, type: 3}
+  hoverOverSprite: {fileID: 21300000, guid: 36ab1528b0597424d808eef68233fe21, type: 3}
 --- !u!212 &72798642
 SpriteRenderer:
   m_ObjectHideFlags: 0
