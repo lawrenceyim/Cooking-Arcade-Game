@@ -72,4 +72,8 @@ public class SceneManagerScript : MonoBehaviour {
     public void LoadEndLetter() {
         SceneManager.LoadScene(SceneName.END_LETTER.name);
     }
+
+    public void LoadCredit() {
+        SceneManager.LoadScene(SceneName.CREDIT_SCENE.name);
+    }
 }
