@@ -10,7 +10,7 @@ public class FadingTransition : MonoBehaviour {
     [SerializeField] DataUI dataUI;
 
     float opacity = 1f;
-    float fadingSpeed = .05f;
+    float fadingSpeed = .5f;
     Color color = new Color(0f, 0f, 0f);
     bool fadingIn = false;
     bool fadingOut = false;
