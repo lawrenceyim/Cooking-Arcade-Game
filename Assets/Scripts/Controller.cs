@@ -122,6 +122,10 @@ public class Controller : MonoBehaviour {
         description.SetOrderDescription(dish);
     }
 
+    public void SetOrderNameOnly(Dish dish) {
+        description.SetOrderNameOnly(dish);
+    }
+
     // EndOfDayUI
     public void UpdateSummary() {
         endOfDayUI.UpdateSummaryText();

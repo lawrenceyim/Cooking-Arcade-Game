@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BurgerActivity : IActivity {
@@ -70,9 +71,8 @@ public class BurgerActivity : IActivity {
                     grilled = true;
                     UpdateButtons();
                     grill.DestroyCurrentPatty();
-                    cookingUI.HideGrill();
+                    SetupDisplay();
                     cookingUI.HidePanelSpaceBar();
-                    cookingUI.HideGrillTimer();
                 } else if (pattyStatus == PattyStatus.BURNT_PATTY) {
                     AudioManager.instance.StopPlayingSound();
                     grill.DestroyCurrentPatty();
@@ -147,9 +147,16 @@ public class BurgerActivity : IActivity {
     }
 
     public void SetupDisplay() {
-        DisplayGrillTimer();
-        UpdateGrill();
         UpdateButtons();
+        if (!grilled) {
+            DisplayGrillTimer();
+            UpdateGrill();
+            controller.SetOrderNameOnly(dish);
+        } else {
+            cookingUI.HideGrill();
+            cookingUI.HideGrillTimer();
+            controller.SetOrderDescription(dish);
+        }
     }
 
     public void DisplayGrillTimer() {
