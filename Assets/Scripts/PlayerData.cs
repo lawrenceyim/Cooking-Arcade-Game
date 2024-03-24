@@ -57,6 +57,10 @@ public static class PlayerData {
         day++;
     }
 
+    public static void DecrementDay() {
+        day--;
+    }
+
     public static void StartDay() {
         revenue = 0;
         expense = 0;

@@ -7,7 +7,7 @@ public class EoDSpriteButton : MonoBehaviour
         StartNextDay,
         ReturnToMenu,
         ExitGame,
-        EndGame
+        EndGame,
     }
 
     [SerializeField] ButtonAction buttonAction;

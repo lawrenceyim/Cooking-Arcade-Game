@@ -9280,6 +9280,11 @@ MonoBehaviour:
   summaryPanel: {fileID: 2052933836}
   summaryAmountText: {fileID: 1762989682}
   dayText: {fileID: 300627476}
+  starSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  buttonText: {fileID: 302212655}
 --- !u!114 &7287524167756476319
 MonoBehaviour:
   m_ObjectHideFlags: 0
