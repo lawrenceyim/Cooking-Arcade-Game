@@ -9,4 +9,5 @@ public static class Es3Values
     public static readonly string SOUND_EFFECT_VOLUME = "soundEffectVolumeSetting";
     public static readonly string X_RESOLUTION = "xResolution";
     public static readonly string Y_RESOLUTION = "yResolution";
+    public static readonly string STARS = "stars";
 }

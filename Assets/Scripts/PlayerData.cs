@@ -12,6 +12,7 @@ public static class PlayerData {
     public static int xResolution;
     public static int yResolution;
     public static bool saveFileExists;
+    public static bool[] stars;
 
     [RuntimeInitializeOnLoadMethod]
     static void RunOnGameStart() {
@@ -27,6 +28,7 @@ public static class PlayerData {
         ES3.Save(Es3Values.SOUND_EFFECT_VOLUME, soundEffectVolumeSetting);
         ES3.Save(Es3Values.X_RESOLUTION, xResolution);
         ES3.Save(Es3Values.Y_RESOLUTION, yResolution);
+        ES3.Save(Es3Values.STARS, stars);
     }
 
     public static void LoadData() {
@@ -37,6 +39,7 @@ public static class PlayerData {
         soundEffectVolumeSetting = ES3.Load(Es3Values.SOUND_EFFECT_VOLUME, .2f);
         xResolution = ES3.Load(Es3Values.X_RESOLUTION, 1280);
         yResolution = ES3.Load(Es3Values.Y_RESOLUTION, 720);
+        stars = ES3.Load(Es3Values.STARS, new bool[21]);
     }
 
     public static void ResetSave() {

@@ -15,5 +15,6 @@ public class SceneName
     public static readonly SceneName OPTIONS = new SceneName("Options");
     public static readonly SceneName END_LETTER = new SceneName("EndLetter");
     public static readonly SceneName CREDIT_SCENE = new SceneName("Credit");
+    public static readonly SceneName RESULT_SCENE = new SceneName("ResultScreen");
 
 }

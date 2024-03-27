@@ -75,6 +75,10 @@ public class SceneManagerScript : MonoBehaviour {
         SceneManager.LoadScene(SceneName.END_LETTER.name);
     }
 
+    public void LoadResult() {
+        SceneManager.LoadScene(SceneName.RESULT_SCENE.name);
+    }
+
     public void LoadCredit() {
         PlayerData.ResetSave();
         GameState.UnpauseGame();

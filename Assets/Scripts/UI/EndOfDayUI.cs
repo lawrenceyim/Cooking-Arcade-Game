@@ -44,6 +44,7 @@ public class EndOfDayUI : MonoBehaviour {
         }
         if (PlayerData.revenue >= threeStarThreshold) {
             ChangeStarColor(2);
+            PlayerData.stars[PlayerData.day] = true;
         }
 
         if (daySuccessful) {
