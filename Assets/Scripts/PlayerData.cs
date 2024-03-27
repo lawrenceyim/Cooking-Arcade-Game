@@ -49,6 +49,7 @@ public static class PlayerData {
         ES3.Save(Es3Values.DAY, 1);
         ES3.Save(Es3Values.PIZZA_LETTER_PLAYED, false);
         ES3.Save(Es3Values.SALAD_LETTER_PLAYED, false);
+        ES3.Save(Es3Values.STARS, new bool[21]);
         LoadData();
     }
 
