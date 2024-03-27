@@ -68,6 +68,7 @@ public class PizzaActivity : IActivity {
                     highlightedKeys[0] = false;
                     cookingUI.HideOven();
                     cookingUI.HideOvenTimer();
+                    cookingUI.HidePanelSpaceBar();
                 } else if (pizzaStatus == PizzaStatus.NO_PIZZA) {
                     pizzaStatus = PizzaStatus.UNCOOKED_PIZZA;
                     oven.SetPizzaGameObject((int) pizzaStatus);

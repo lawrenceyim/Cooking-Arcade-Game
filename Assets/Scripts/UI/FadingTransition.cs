@@ -26,19 +26,19 @@ public class FadingTransition : MonoBehaviour {
         if (GameState.IsGameIsPaused()) {
             return;
         }
-        if (fadingIn) {
-            opacity += Time.fixedDeltaTime * fadingSpeed;
+        //if (fadingIn) {
+        //    opacity += Time.fixedDeltaTime * fadingSpeed;
 
-            if (opacity >= 1) {
-                Debug.Log("Ending level");
-                fadingIn = false;
-                opacity = 1;
-                dataUI.EndLevel();
-            }
+        //    if (opacity >= 1) {
+        //        Debug.Log("Ending level");
+        //        fadingIn = false;
+        //        opacity = 1;
+        //        dataUI.EndLevel();
+        //    }
 
-            color.a = opacity;
-            spriteRenderer.color = color;
-        }
+        //    color.a = opacity;
+        //    spriteRenderer.color = color;
+        //}
         if (fadingOut) {
             opacity -= Time.fixedDeltaTime * fadingSpeed;
 
@@ -60,8 +60,8 @@ public class FadingTransition : MonoBehaviour {
         fadingOut = true;
     }
 
-    public void StartFadeIn() {
-        Time.timeScale = 0;
-        fadingIn = true;
-    }
+    //public void StartFadeIn() {
+    //    Time.timeScale = 0;
+    //    fadingIn = true;
+    //}
 }

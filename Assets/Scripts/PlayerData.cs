@@ -13,6 +13,7 @@ public static class PlayerData {
     public static int yResolution;
     public static bool saveFileExists;
     public static bool[] stars;
+    public static bool[] passedDay;
 
     [RuntimeInitializeOnLoadMethod]
     static void RunOnGameStart() {
@@ -29,6 +30,7 @@ public static class PlayerData {
         ES3.Save(Es3Values.X_RESOLUTION, xResolution);
         ES3.Save(Es3Values.Y_RESOLUTION, yResolution);
         ES3.Save(Es3Values.STARS, stars);
+        ES3.Save(Es3Values.PASSED_DAY, passedDay);
     }
 
     public static void LoadData() {
@@ -40,6 +42,7 @@ public static class PlayerData {
         xResolution = ES3.Load(Es3Values.X_RESOLUTION, 1280);
         yResolution = ES3.Load(Es3Values.Y_RESOLUTION, 720);
         stars = ES3.Load(Es3Values.STARS, new bool[21]);
+        passedDay = ES3.Load(Es3Values.PASSED_DAY, new bool[21]);
     }
 
     public static void ResetSave() {
@@ -50,6 +53,7 @@ public static class PlayerData {
         ES3.Save(Es3Values.PIZZA_LETTER_PLAYED, false);
         ES3.Save(Es3Values.SALAD_LETTER_PLAYED, false);
         ES3.Save(Es3Values.STARS, new bool[21]);
+        ES3.Save(Es3Values.PASSED_DAY, new bool[21]);
         LoadData();
     }
 
@@ -79,5 +83,17 @@ public static class PlayerData {
     public static void DecreaseMoney(int amount) {
         money -= amount;
         expense += amount;
+    }
+
+    public static void AddStarForDay(int day) {
+        stars[day - 1] = true;
+    }
+
+    public static void PassedDay(int day) {
+        passedDay[day - 1] = true;
+    }
+
+    public static bool PlayerPassedDaySuccessfully(int day) {
+        return passedDay[day - 1];
     }
 }

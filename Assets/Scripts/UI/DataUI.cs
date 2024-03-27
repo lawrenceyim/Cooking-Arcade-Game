@@ -40,7 +40,7 @@ public class DataUI : MonoBehaviour, Subject {
             UpdateTimerSprite();
             if (controller.CheckIfCustomerCountIsZero() && Time.timeScale > 0) {
                 levelRunning = false;
-                fadingTransition.StartFadeIn();
+                EndLevel();
             }
         }
     }

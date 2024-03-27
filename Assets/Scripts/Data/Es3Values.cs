@@ -10,4 +10,5 @@ public static class Es3Values
     public static readonly string X_RESOLUTION = "xResolution";
     public static readonly string Y_RESOLUTION = "yResolution";
     public static readonly string STARS = "stars";
+    public static readonly string PASSED_DAY = "passedDay";
 }

@@ -82,6 +82,7 @@ public class BurgerActivity : IActivity {
                     cookingUI.UnhighlightButtonBackground(0);
                     cookingUI.HideGrill();
                     cookingUI.HideGrillTimer();
+                    cookingUI.HidePanelSpaceBar();
                 }
             }
             return;

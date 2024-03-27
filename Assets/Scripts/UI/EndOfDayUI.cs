@@ -5,57 +5,65 @@ using TMPro;
 
 public class EndOfDayUI : MonoBehaviour {
     [SerializeField] GameObject summaryPanel;
-    [SerializeField] TextMeshPro summaryAmountText;
+    [SerializeField] TextMeshPro summaryRevenueExpenseText;
+    [SerializeField] TextMeshPro summaryProfitText;
     [SerializeField] TextMeshPro dayText;
     [SerializeField] SpriteRenderer[] starSprites; // Should only be exactly 3 sprites
-    [SerializeField] TextMeshPro buttonText;
+    [SerializeField] Sprite successSprite;
+    [SerializeField] Sprite failureSprite;
+    [SerializeField] CookingUI cookingUI;
 
-    Color failureColor = new Color(0, 0, 0, .2f);
-    Color successColor = new Color(255, 255, 255, 1f);
+    [SerializeField] SpriteRenderer startNextDaySpriteRenderer;
+    [SerializeField] BoxCollider2D startNextDayBoxCollider;
+    Color availableColor = new Color(255, 255, 255, 1f);
+    Color disabledColor = new Color(0, 0, 0, .5f);
 
-
-    float oneStarThreshold = 50;
-    float twostarThreshold = 150;
-    float threeStarThreshold = 300;
-    bool daySuccessful = false;
+    int oneStarThreshold = 50;
+    int twostarThreshold = 150;
+    int threeStarThreshold = 300;
 
     private void Start() {
         summaryPanel.SetActive(false);
-        foreach (SpriteRenderer sprite in starSprites) {
-            sprite.color = failureColor;
+        foreach (SpriteRenderer spriteRenderer in starSprites) {
+            spriteRenderer.sprite = failureSprite;
         }
     }
 
     public void UpdateSummaryText() {
+        cookingUI.HideHud();
         dayText.text = "Day " + PlayerData.day.ToString();
-        summaryAmountText.text = $"{PlayerData.revenue}\n{-PlayerData.expense}\n\n{PlayerData.revenue - PlayerData.expense}";
+        summaryRevenueExpenseText.text = $"{PlayerData.revenue}\n{-PlayerData.expense}";
+        summaryProfitText.text = $"{PlayerData.revenue - PlayerData.expense}";
         summaryPanel.SetActive(true);
         PlayerData.saveFileExists = true;
         CalculatePerformance();
     }
 
     private void CalculatePerformance() {
-        if (PlayerData.revenue >= oneStarThreshold) {
-            daySuccessful = true;
-            ChangeStarColor(0);    
+        int profit = PlayerData.revenue - PlayerData.expense;
+        if (profit >= oneStarThreshold) {
+            PlayerData.PassedDay(PlayerData.day);
+            ChangeStarSprite(0);    
         }
-        if (PlayerData.revenue >= twostarThreshold) {
-            ChangeStarColor(1);
+        if (profit >= twostarThreshold) {
+            ChangeStarSprite(1);
         }
-        if (PlayerData.revenue >= threeStarThreshold) {
-            ChangeStarColor(2);
-            PlayerData.stars[PlayerData.day] = true;
+        if (profit >= threeStarThreshold) {
+            ChangeStarSprite(2);
+            PlayerData.AddStarForDay(PlayerData.day);
         }
 
-        if (daySuccessful) {
+        if (PlayerData.PlayerPassedDaySuccessfully(PlayerData.day)) {
             PlayerData.IncrementDay();
+            startNextDaySpriteRenderer.color = availableColor;
+            startNextDayBoxCollider.enabled = true;
         } else {
-            buttonText.text = "Retry Day";
+            startNextDaySpriteRenderer.color = disabledColor;
+            startNextDayBoxCollider.enabled = false;
         }
         PlayerData.SaveData();
     }
-
-    private void ChangeStarColor(int index) {
-        starSprites[index].color = successColor;
+    private void ChangeStarSprite(int index) {
+        starSprites[index].sprite = successSprite;
     }
 }

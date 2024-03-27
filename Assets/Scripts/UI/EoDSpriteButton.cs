@@ -4,10 +4,11 @@ using UnityEngine.SceneManagement;
 public class EoDSpriteButton : MonoBehaviour
 {
     public enum ButtonAction {
-        StartNextDay,
-        ReturnToMenu,
-        ExitGame,
-        EndGame,
+        StartNextDay = 0,
+        ReturnToMenu = 1,
+        ExitGame = 2,
+        EndGame = 3,
+        Retry = 4,
     }
 
     [SerializeField] ButtonAction buttonAction;
@@ -26,6 +27,11 @@ public class EoDSpriteButton : MonoBehaviour
                 break;
             case ButtonAction.EndGame:
                 sceneManagerScript.LoadEndLetter();
+                break;
+            case ButtonAction.Retry:
+                PlayerData.DecrementDay();
+                PlayerData.SaveData();
+                sceneManagerScript.LoadGame();
                 break;
         }
     }
