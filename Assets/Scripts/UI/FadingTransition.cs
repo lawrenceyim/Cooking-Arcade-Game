@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Analytics;
+using TMPro;
 
 public class FadingTransition : MonoBehaviour {
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] GameObject openSign;
     [SerializeField] DataUI dataUI;
+    [SerializeField] List<TextMeshPro> goals;
 
     float opacity = 1f;
     float fadingSpeed = .5f;
@@ -47,6 +47,9 @@ public class FadingTransition : MonoBehaviour {
                 opacity = 0;
                 Time.timeScale = 1;
                 openSign.SetActive(false);
+                foreach (TextMeshPro goal in goals) {
+                    goal.enabled = false;
+                }
                 // Start game
             }
 

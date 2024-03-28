@@ -18,10 +18,6 @@ public class EndOfDayUI : MonoBehaviour {
     Color availableColor = new Color(255, 255, 255, 1f);
     Color disabledColor = new Color(0, 0, 0, .5f);
 
-    int oneStarThreshold = 50;
-    int twostarThreshold = 150;
-    int threeStarThreshold = 300;
-
     private void Start() {
         summaryPanel.SetActive(false);
         foreach (SpriteRenderer spriteRenderer in starSprites) {
@@ -40,15 +36,16 @@ public class EndOfDayUI : MonoBehaviour {
     }
 
     private void CalculatePerformance() {
+        int[] goals = DailyProfitGoal.GetDailyProfitGoal(PlayerData.day);
         int profit = PlayerData.revenue - PlayerData.expense;
-        if (profit >= oneStarThreshold) {
+        if (profit >= goals[0]) {
             PlayerData.PassedDay(PlayerData.day);
             ChangeStarSprite(0);    
         }
-        if (profit >= twostarThreshold) {
+        if (profit >= goals[1]) {
             ChangeStarSprite(1);
         }
-        if (profit >= threeStarThreshold) {
+        if (profit >= goals[2]) {
             ChangeStarSprite(2);
             PlayerData.AddStarForDay(PlayerData.day);
         }
